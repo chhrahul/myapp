@@ -9906,7 +9906,8 @@ function keyboardHideHandler(e){
 function keyboardShowHandler(e){
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {
-		// $(".tempdiv").html("<style>header { position: static; float: left; z-index: 99; } footer { position: static; float: left; z-index: 99; margin-top: 130em;} .container.main-container { position: static; float: left; z-index: 9; margin:0; display: inline-block;} html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; }</style>");
+		alert("fdg");
+		$(".tempdiv").html("<style>header { position: static; float: left; z-index: 99; } footer { position: static; float: left; z-index: 99; margin-top: 130em;} .container.main-container { position: static; float: left; z-index: 9; margin:0; display: inline-block;} html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; }</style>");
 	}
 }
 
