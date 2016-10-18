@@ -2452,3 +2452,6 @@ div#pageone {
 .contacts-container i.oc-icon-replay {
     font-size: 30px;
 }
+.ui-loader.ui-corner-all.ui-body-a.ui-loader-default {
+    display: none;
+}
