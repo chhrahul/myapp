@@ -41,7 +41,7 @@
 <gap:plugin name="cordova-plugin-media-capture" source="pgb"  />
 <gap:plugin name="cordova-plugin-splashscreen" source="pgb"  />
 <gap:plugin name="cordova-plugin-barcodescanner" source="npm"  />
-<gap:plugin name="ionic-plugin-keyboard" spec="1" />
+<gap:plugin name="com.ionic.keyboard" spec="1.0.3" source="pgb" />
 
 <plugin name="com.synconset.imagepicker" spec="1.0.4" source="pgb" />
   
