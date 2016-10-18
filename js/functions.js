@@ -2500,12 +2500,12 @@ function loadagendaitem() {
 										var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
 									}
 									
-									comment_video = '<div class="video-player-wrapper"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 150px; background-color: #000;" controls></video></div>';
+									comment_video = '<div class="video-player-wrapper"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div>';
 							
 								} 
 								else {
 									var comment_video = '<div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>';
-									// comment_video = '<div class="video-player-wrapper"><video src="http:' + videoUrl + '" webkit-playsinline style="width: 100%; height: 150px; background-color: #000;" controls></video></div>';
+									// comment_video = '<div class="video-player-wrapper"><video src="http:' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div>';
 								}
 							$('.here-video').html(comment_video);
 							}
@@ -5863,7 +5863,7 @@ function loadnotes()
 										// alert("mobile");
 										var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
 									}
-									comment_video = '<div style="width:60%;padding:20px;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 150px; background-color: #000;" controls></video></div></div>';
+									comment_video = '<div style="width:60%;padding:20px;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 								}
 								else
 								{
@@ -7847,13 +7847,13 @@ function showcomments(sortby,sortdr,l)
 											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
 										}
 										
-										comment_video = videoUrl + '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 150px; background-color: #000;" controls></video></div></div>';
+										comment_video = videoUrl + '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 									}
 									else {										
 										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
 										
 										// var videoUrl = "http" + res.hosted_vimeo_link_hls;
-										// comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 150px; background-color: #000;" controls></video></div></div>';
+										// comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 									}
 
 								}
