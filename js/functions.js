@@ -3067,7 +3067,7 @@ function loaduserdetail() {
             dataType: "json",
             method: "GET",
             success: function(obj) {
-            	// console.log(JSON.stringify(obj));
+            	console.log(JSON.stringify(obj));
                 var label = '';
                 $.each(obj.topScoresViewVars.breadcrumbs, function(key, val) {
 
@@ -3150,8 +3150,10 @@ function loaduserdetail() {
                   	}
                     $(".user-points-table table tbody").append('<tr class=' + classcss + '><td><a href="#" onclick="gotopoints(' + val.instance_id + ')"><span class="num">' + val.position + '.</span>' + icon + val.name + '</a></td><td class="point"><a href="#" onclick="gotopoints(' + val.instance_id + ')">' + cnt + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
                     
-     //                $(".user-points-table-title th.col-xs-4:nth-child(2)").hide();
-					// $(".user-points-table-title th.col-xs-4:nth-child(3)").hide();
+                    if(obj.hideTeamScores == true || obj.hideTeamScores == "true") {
+	                    $(".user-points-table-title th.col-xs-4:nth-child(2)").hide();
+						$(".user-points-table-title th.col-xs-4:nth-child(3)").hide();
+					}
 
 
                 });
@@ -3368,7 +3370,6 @@ function loaddetailteampoints() {
             dataType: "json",
             method: "GET",
             success: function(obj) {
-
                 var label = '';
                 $.each(obj.topScoresViewVars.breadcrumbs, function(key, val) {
 
@@ -3383,7 +3384,9 @@ function loaddetailteampoints() {
                 $(".team-points-table table tbody").html('');
                 var i = 0;
                 $.each(obj.topScoresViewVars.teamPointsSel, function(key, val) {
-                    if (key == obj.topScoresViewVars.currentUserTeam) {
+                	// console.log(key);
+                    // if (key == obj.topScoresViewVars.currentUserTeam) {
+					if (key == obj.topScoresViewVars.pos) {
                         var classcss = "current-user";
                     } else {
                         var classcss = "";
@@ -3461,7 +3464,7 @@ function loaddetailteampoints() {
 				// $(".teamscores-leaderboards-container").hide();
 				jQuery(".first-container").show();
 				jQuery(".teamscores-leaderboards-container").show();
-				jQuery(".teamscores-leaderboards-container .header-title row").hide();
+				jQuery(".teamscores-leaderboards-container .header-title.row").hide();
                 jQuery(".loading_agenda_items").hide();
             }
         });
