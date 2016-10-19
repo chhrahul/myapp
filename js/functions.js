@@ -3354,7 +3354,11 @@ function loaddetailteampoints() {
     jQuery(document).ready(function($) {
         //loadcommonthings(); 
         isLoggedIn();
-        $(".leaderboards-container").hide();
+        // $(".leaderboards-container").hide();
+        $(".yourscores-leaderboards-container").hide();
+		$(".last-container").hide();
+		$(".yourteam-leaderboards-container").hide();
+		$(".score-card-container").hide();
         jQuery(".loading_agenda_items").show();
         importfooter('team-points/-/'+localStorage.short_url+'-' + localStorage.event_id + '/topscores/' + localStorage.instance_id, 'your-team');
         var main_url = localStorage.url + 'team-points/-/'+localStorage.short_url+'-' + localStorage.event_id + '/topscores/' + localStorage.instance_id + '?gvm_json=1';
@@ -3452,7 +3456,12 @@ function loaddetailteampoints() {
                  }
                });  
               });
-                jQuery(".leaderboards-container").show();
+    //             jQuery(".leaderboards-container").show();
+    //             $(".yourscores-leaderboards-container").hide();
+				// $(".teamscores-leaderboards-container").hide();
+				jQuery(".first-container").show();
+				jQuery(".teamscores-leaderboards-container").show();
+				jQuery(".teamscores-leaderboards-container .header-title row").hide();
                 jQuery(".loading_agenda_items").hide();
             }
         });
