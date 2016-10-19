@@ -1582,6 +1582,7 @@ function changetoprofile(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	 $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8532,6 +8533,7 @@ function changetogamification(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8561,6 +8563,7 @@ function changetoagenda(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8589,6 +8592,7 @@ function changetoticketing(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8617,6 +8621,7 @@ function changetopoints(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8647,6 +8652,7 @@ function changetocontacts(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8676,6 +8682,7 @@ function changetonotes(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8705,6 +8712,7 @@ function changetosponsors(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8733,6 +8741,7 @@ function changetoallagenda(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8761,6 +8770,7 @@ function changetoteampoints(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8789,6 +8799,7 @@ function changetoyourpoints(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8817,6 +8828,7 @@ function changetoyourcontacts(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8844,6 +8856,7 @@ function changetoagendaitem(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8872,6 +8885,7 @@ function changetoaddcomments(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8900,6 +8914,7 @@ function changetoseeker(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8927,6 +8942,7 @@ function changetoaddquestions(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8954,6 +8970,7 @@ function changetoaddquiz(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8981,6 +8998,7 @@ function changetovoting(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9008,6 +9026,7 @@ function changetouserdetail(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9034,6 +9053,8 @@ function changetoteamdetailpoint(id) {
 	$(".score-card-container").hide();
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
+	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9061,6 +9082,7 @@ function changetoyourdetailpoint(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9088,6 +9110,7 @@ function changetoviewfriend(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9114,6 +9137,8 @@ function changetoseekerresults(id) {
 	$(".score-card-container").hide();
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
+	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9141,6 +9166,7 @@ function changetoscorecard(id) {
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
@@ -10024,6 +10050,7 @@ function changetomyscanner(id) {
 	$(".scannerDiv").show();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	 $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
