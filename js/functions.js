@@ -3581,7 +3581,7 @@ function loadyourdetailteampoints() {
                 // jQuery(".score-card-container").show();
                 jQuery(".first-container").show();
                 jQuery(".yourteam-leaderboards-container").show();
-                jquery(".yourteam-leaderboards-container .header-title.row").hide();
+                jQuery(".yourteam-leaderboards-container .header-title.row").hide();
                 // jQuery(".leaderboards-container").show();
                 jQuery(".loading_agenda_items").hide();
             }
@@ -5140,7 +5140,7 @@ function importhomepage() {
     {
         var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id + '&locale='+localStorage.event_language;
     }
-   alert(main_urld)
+   // alert(main_urld)
     jQuery.ajax({
         url: main_urld,
         dataType: "json",
