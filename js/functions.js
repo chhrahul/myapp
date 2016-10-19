@@ -2984,7 +2984,64 @@ function formatpoints(id)
    {
       var user_total = id;
    }
-   return user_total;
+
+	// var idLen = id.length % 3;
+ //    var space = "0";
+ //    if(idLen == 0) {
+ //        var user_total = "";
+ //        for(i = 0; i < id.length; i++) {
+ //            if(space == 3) {
+ //                if(i == id.length-1) {
+ //            		user_total += id[i];
+ //            	}
+ //            	else {
+ //                	user_total += id[i] + " ";
+ //            	}
+ //                var space = 0;
+ //            }
+ //            else {
+ //                user_total += id[i];                        
+ //            }
+ //            space++;
+ //        }
+ //    }
+	// if(idLen == 1) {
+ //        var user_total = id[0]+" ";
+ //        for(i = 1; i < id.length; i++) {
+ //            if(space == 3) {
+ //               if(i == id.length-1) {
+ //            		user_total += id[i];
+ //            	}
+ //            	else {
+ //                	user_total += id[i] + " ";
+ //            	}
+ //                var space = 0;
+ //            }
+ //            else {
+ //                user_total += id[i];                        
+ //            }
+ //            space++;
+ //        }
+ //    }
+	// if(idLen == 2) {
+ //        var user_total = id[0]+id[1]+" ";
+ //        for(i = 2; i < id.length; i++) {
+ //            if(space == 3) {
+ //            	if(i == id.length-1) {
+ //            		user_total += id[i];
+ //            	}
+ //            	else {
+ //                	user_total += id[i] + " ";
+ //            	}
+ //                var space = 0;
+ //            }
+ //            else {
+ //                user_total += id[i];                        
+ //            }
+ //            space++;
+ //        }
+ //    }
+	return user_total;
 }
 
 //function to go to user point detail page
@@ -3042,6 +3099,9 @@ function loaduserdetail() {
                     i++;
                      var id = val.points ;
                      var user_total = formatpoints(id);
+                     if(user_total == null || user_total == undefined || user_total == "null" || user_total == "n ull" || user_total == "") {
+                     	user_total = "0";
+                     }
                      $(".team-points-table table tbody").append('<tr class=' + classcss + '><td class="num-col"><span class="num">' + i + '</span></td>' + newtd + '<td><span class="name">' + val.name + '</span></td><td class="point">' + user_total + '</td></tr>');
 
                 });
