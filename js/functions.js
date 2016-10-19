@@ -3469,6 +3469,10 @@ function loadyourdetailteampoints() {
         //loadcommonthings(); 
         isLoggedIn();
         $(".leaderboards-container").hide();
+        $(".yourscores-leaderboards-container").hide();
+		$(".teamscores-leaderboards-container").hide();
+		$(".yourteam-leaderboards-container").hide();
+		$(".score-card-container").hide();
         jQuery(".loading_agenda_items").show();
         importfooter('Your-team/-/'+localStorage.short_url+'-' + localStorage.event_id + '/topscores/' + localStorage.instance_id, 'your-team');
         var main_url = localStorage.url + 'Your-team/-/'+localStorage.short_url+'-' + localStorage.event_id + '/topscores/' + localStorage.instance_id + '?gvm_json=1';
@@ -3478,7 +3482,7 @@ function loadyourdetailteampoints() {
             dataType: "json",
             method: "GET",
             success: function(obj) {
-
+            	console.log(JSON.stringify(obj));
                 var label = '';
                 $.each(obj.topScoresViewVars.breadcrumbs, function(key, val) {
 
@@ -3508,7 +3512,7 @@ function loadyourdetailteampoints() {
                         var newtd = '<td class="avatar-col"></td>';
                     }
                     //alert(user_total)        
-                    $(".team-points-table table tbody").append('<tr class=' + classcss + '><td class="num-col"><span class="num">' + i + '</span></td>' + newtd + '<td><span class="name">' + val.fName + ' ' + val.lName + '</span></td><td class="point">' + user_total + '</td></tr>');
+                    $(".team-points-table table tbody").append('<tr class=' + classcss + '><td class="num-col"><span class="num">' + i + '</span></td>' + newtd + '<td><span class="name">' + val.first_name + ' ' + val.last_name + '</span></td><td class="point">' + user_total + '</td></tr>');
 
                 });
                 var difference = Number(10) - Number(i);
@@ -3517,7 +3521,8 @@ function loadyourdetailteampoints() {
                     $(".team-points-table table tbody").append('<tr><td class="num-col"><span class="num">' + i + '</span></td><td class="avatar-col"></td><td><span class="name">-</span></td><td class="point">0</td></tr>');
                 }
                 $(".user-points-table table tbody").html('');
-                $.each(obj.categories, function(key, val) {
+                $.each(obj.categories, function(key, val) {              	
+                	
                     if (val.instance_id == localStorage.instance_id) {
                         var classcss = "active";
                     } else {
@@ -3567,7 +3572,10 @@ function loadyourdetailteampoints() {
                  }
                });  
               });
-                jQuery(".leaderboards-container").show();
+                jQuery(".score-card-container").show();
+                jQuery(".first-container").show();
+                jQuery(".yourteam-leaderboards-container").show();
+                // jQuery(".leaderboards-container").show();
                 jQuery(".loading_agenda_items").hide();
             }
         });
