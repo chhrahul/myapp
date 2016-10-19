@@ -3228,8 +3228,14 @@ function showTeamPointsData() {
 				if(user_total == null || user_total == "null" || user_total == "n ull" ||  user_total == undefined ||  user_total == "") {
 					user_total = "0";
 				}
+				if(results.rows.item(i).position == "null" || results.rows.item(i).position == null || results.rows.item(i).position == "n ull") {
+					var positionrowsitem = "";
+				}
+				else {
+					var positionrowsitem = results.rows.item(i).position;
+				}
 
-                $(".table-striped tbody").append('<tr><td><a href="#" onclick="gototeamdetail(' + results.rows.item(i).instance_id + ');"><span class="num">' + results.rows.item(i).position + '.</span>' + icon + '<span class="icon"></span>&nbsp;' + results.rows.item(i).name + '</a></td><td class="point"><a href="#" onclick="gototeamdetail(' + results.rows.item(i).instance_id + ');">' + green_count_html + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
+                $(".table-striped tbody").append('<tr><td><a href="#" onclick="gototeamdetail(' + results.rows.item(i).instance_id + ');"><span class="num">' + positionrowsitem + '.</span>' + icon + '<span class="icon"></span>&nbsp;' + results.rows.item(i).name + '</a></td><td class="point"><a href="#" onclick="gototeamdetail(' + results.rows.item(i).instance_id + ');">' + green_count_html + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
 
             }
             
