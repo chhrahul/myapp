@@ -4693,6 +4693,7 @@ function loadprofile() {
                     
         tx.executeSql("SELECT * FROM OCEVENTS_qa", [], function(tx, results) {
             var len = results.rows.length;  
+            // console.log(len);
             if(len > 0)
             {
                $(".qa-list").html('<dt>'+localStorage.qlabel+'</dt>');
@@ -4700,6 +4701,12 @@ function loadprofile() {
             for (i = 0; i < len; i++) {
                 // alert(results.rows.item(i).answer);
                 $('.qa-list').append('<dd><h4 class="qa-item-title">' + results.rows.item(i).question + '</h4><p style="width: 97%; word-wrap: break-word; display: inline-block;">' + results.rows.item(i).answer + '</p></dd>');
+            }
+            if(len == 0) {
+            	$('.qa-list').hide();
+            }
+            else {
+            	$('.qa-list').show();
             }
         });
 
@@ -4759,7 +4766,7 @@ function loadprofile() {
 	        dataType: "json",
 	        method: "GET",
 	        success: function(obj) {
-	        	console.log(JSON.stringify(obj))
+	        	// console.log(JSON.stringify(obj))
 				if(obj.allowFacebook == "0" || obj.allowFacebook == 0) {
 					$('.user-facebook-link').hide(); 
 				}
@@ -5155,7 +5162,7 @@ function importhomepage() {
     {
         var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id + '&locale='+localStorage.event_language;
     }
-   alert(main_urld)
+   // alert(main_urld)
     jQuery.ajax({
         url: main_urld,
         dataType: "json",
