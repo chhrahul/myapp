@@ -2953,38 +2953,35 @@ function showPointsData() {
 //function to format points string
 function formatpoints(id)
 {
-   if(id.length == 10)
-   {
-      var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6]+' '+id[7]+id[8]+id[9];
-   }
-   else if(id.length == 9)
-   {
-      var user_total = id[0]+id[1]+id[2]+' '+id[3]+id[4]+id[5]+' '+id[6]+id[7]+id[8];
-   }
-   else if(id.length == 8)
-   {
-      var user_total = id[0]+id[1]+' '+id[2]+id[3]+id[4]+' '+id[5]+id[6]+id[7];
-   }
-   else if(id.length == 7)
-   {
-      var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6];
-   }
-   else if(id.length == 6)
-   {
-      var user_total = id[0]+id[1]+id[2]+' '+id[3]+id[4]+id[5];
-   } 
-   else if(id.length == 5)
-   {
-      var user_total = id[0]+id[1]+' '+id[2]+id[3]+id[4];
-   } 
-   else if(id.length == 4)
-   {
-      var user_total = id[0]+' '+id[1]+id[2]+id[3];
-   }
-   else
-   {
-      var user_total = id;
-   }
+	if(id == null || id == undefined || id == "null" || id == "n ull" || id == "") {
+		user_total = "0";
+	}
+	else{
+		if(id.length == 10) {
+			var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6]+' '+id[7]+id[8]+id[9];
+		}
+		else if(id.length == 9) {
+			var user_total = id[0]+id[1]+id[2]+' '+id[3]+id[4]+id[5]+' '+id[6]+id[7]+id[8];
+		}
+		else if(id.length == 8) {
+			var user_total = id[0]+id[1]+' '+id[2]+id[3]+id[4]+' '+id[5]+id[6]+id[7];
+		}
+		else if(id.length == 7) {
+			var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6];
+		}
+		else if(id.length == 6) {
+			var user_total = id[0]+id[1]+id[2]+' '+id[3]+id[4]+id[5];
+		} 
+		else if(id.length == 5) {
+			var user_total = id[0]+id[1]+' '+id[2]+id[3]+id[4];
+		} 
+		else if(id.length == 4) {
+			var user_total = id[0]+' '+id[1]+id[2]+id[3];
+		}
+		else {
+			var user_total = id;
+		}
+	}
 
 	// var idLen = id.length % 3;
  //    var space = "0";
@@ -3422,8 +3419,16 @@ function loaddetailteampoints() {
                         icon = '<span class="icon"><i class="gicon-points"></i></span>';
                     }
                     var id = val.points ;
-                 var user_total = formatpoints(id);
-                    $(".user-points-table table tbody").append('<tr class=' + classcss + '><td><a href="#" onclick="gototeamdetail(' + val.instance_id + ')"><span class="num">' + val.position + '.</span>' + icon + val.name + '</a></td><td class="point"><a href="#" onclick="gototeamdetail(' + val.instance_id + ')">' + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
+                    
+                 	var user_total = formatpoints(id);
+                 	
+                 	if (val.position == null || val.position == undefined || val.position == "" || val.position == "n ull" || val.position == "null") {
+                 		var valPosition = "";
+                 	}
+                 	else {
+                 		var valPosition = val.position;
+                 	}
+                    $(".user-points-table table tbody").append('<tr class=' + classcss + '><td><a href="#" onclick="gototeamdetail(' + val.instance_id + ')"><span class="num">' + valPosition + '.</span>' + icon + val.name + '</a></td><td class="point"><a href="#" onclick="gototeamdetail(' + val.instance_id + ')">' + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
 
                 });
                 db.transaction(function(tx) {
@@ -3573,9 +3578,10 @@ function loadyourdetailteampoints() {
                  }
                });  
               });
-                jQuery(".score-card-container").show();
+                // jQuery(".score-card-container").show();
                 jQuery(".first-container").show();
                 jQuery(".yourteam-leaderboards-container").show();
+                jquery(".yourteam-leaderboards-container .header-title.row").hide();
                 // jQuery(".leaderboards-container").show();
                 jQuery(".loading_agenda_items").hide();
             }
@@ -5134,7 +5140,7 @@ function importhomepage() {
     {
         var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id + '&locale='+localStorage.event_language;
     }
-   // alert(main_urld)
+   alert(main_urld)
     jQuery.ajax({
         url: main_urld,
         dataType: "json",
@@ -8533,7 +8539,7 @@ function changetogamification(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
-	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
