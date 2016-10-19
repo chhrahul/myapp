@@ -3155,12 +3155,9 @@ function loaduserdetail() {
 						$(".user-points-table-title th.col-xs-4:nth-child(3)").hide();
 					}
 					else {
-
 	                    $(".user-points-table-title th.col-xs-4:nth-child(2)").show();
 						$(".user-points-table-title th.col-xs-4:nth-child(3)").show();
 					}
-
-
                 });
                 db.transaction(function(tx) {
     
@@ -5157,7 +5154,7 @@ function importhomepage() {
     {
         var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id + '&locale='+localStorage.event_language;
     }
-   // alert(main_urld)
+   alert(main_urld)
     jQuery.ajax({
         url: main_urld,
         dataType: "json",
@@ -9986,7 +9983,7 @@ function showhidefacebook() {
         dataType: "json",
         method: "GET",
         success: function(obj) {
-        	console.log(JSON.stringify(obj))
+        	// console.log(JSON.stringify(obj))
         	// var shfb = obj.allowFacebook;
         	// var iststusr = obj.eventuser.is_test_user;
         	localStorage.shfb = obj.allowFacebook;
