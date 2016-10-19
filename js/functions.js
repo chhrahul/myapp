@@ -4759,6 +4759,7 @@ function loadprofile() {
 	        dataType: "json",
 	        method: "GET",
 	        success: function(obj) {
+	        	console.log(JSON.stringify(obj))
 				if(obj.allowFacebook == "0" || obj.allowFacebook == 0) {
 					$('.user-facebook-link').hide(); 
 				}
@@ -5663,9 +5664,9 @@ function showfooter(active) {
 					onclickfn = '';
 
                     
-                    // if (name == 'home') {
-                    // 	onclick = 'onclick="changetogamification(); return false;"';
-                    // }
+                    if (name == 'home') {
+                    	onclickfn = 'onclick="changetogamification(); return false;"';
+                    }
 					if (name == 'agenda') {
                       onclickfn = 'onclick="changetoagenda(); return false;"';
                     }
