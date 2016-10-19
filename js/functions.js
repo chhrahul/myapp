@@ -3482,7 +3482,7 @@ function loadyourdetailteampoints() {
             dataType: "json",
             method: "GET",
             success: function(obj) {
-            	console.log(JSON.stringify(obj));
+            	// console.log(JSON.stringify(obj));
                 var label = '';
                 $.each(obj.topScoresViewVars.breadcrumbs, function(key, val) {
 
