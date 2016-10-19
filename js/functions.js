@@ -3067,7 +3067,7 @@ function loaduserdetail() {
             dataType: "json",
             method: "GET",
             success: function(obj) {
-            	console.log(JSON.stringify(obj));
+            	// console.log(JSON.stringify(obj));
                 var label = '';
                 $.each(obj.topScoresViewVars.breadcrumbs, function(key, val) {
 
@@ -3153,6 +3153,11 @@ function loaduserdetail() {
                     if(obj.hideTeamScores == true || obj.hideTeamScores == "true") {
 	                    $(".user-points-table-title th.col-xs-4:nth-child(2)").hide();
 						$(".user-points-table-title th.col-xs-4:nth-child(3)").hide();
+					}
+					else {
+
+	                    $(".user-points-table-title th.col-xs-4:nth-child(2)").show();
+						$(".user-points-table-title th.col-xs-4:nth-child(3)").show();
 					}
 
 
