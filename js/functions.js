@@ -4254,8 +4254,8 @@ function showcommoncontacts(obj,checkhide) {
 	        {
 	           fullname = val.fullName;
 	        } 
-
-            flink = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + fteam + '</h6><span><i class="oc-icon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4>Incoming contact request</h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request">Decline</a><a href="#" onclick=approveRequest("' + val.player_code + '") class="success send-friend-request">Approve</a></div></div>';
+			// console.log("val.is_friend => " + val.is_friend + " , val.status => " + val.status + " , fullname => " + fullname + " , obj.enableFriendsRequests => " + obj.enableFriendsRequests);
+            flink = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + fteam + '</h6><span><i class="oc-icon-replay"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4>Incoming contact request</h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request">Decline</a><a href="#" onclick=approveRequest("' + val.player_code + '") class="success send-friend-request">Approve</a></div></div>';
 
 
             $('.friends-requests-container').append(fdivider + '<div class="friends-item-wrapper ' + ficon_class + '">  ' + flink + '  </div>');
@@ -4298,13 +4298,13 @@ function showcommoncontacts(obj,checkhide) {
         {
            fullname = val.fullName;
         }   
-
+		// console.log("val.is_friend => " + val.is_friend + " , val.status => " + val.status + " , fullname => " + fullname + " , obj.enableFriendsRequests => " + obj.enableFriendsRequests);
         if (val.is_friend == 1 && val.status == 1) {
             icon_class = 'pending';
             link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-replay"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="waiting"></h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request waitingno">No</a></div></div>';
         }
         if (val.is_friend == 1 && val.status == 2) {
-            link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="fa fa-angle-right"></i></span></a></div>';
+            link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-nav-forward"></i></span></a></div>';
         }
         if (val.is_friend == 0 && obj.enableFriendsRequests == true) {
             link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="sendreq"></h4><div class="confirm-btn-wrapper"><a href="" class="danger cancel sendreqno"></a><a href="#" onclick=sendRequest("' + val.player_code + '") class="success send-friend-request sendreqyes"></a></div></div>';
