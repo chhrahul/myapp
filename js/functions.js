@@ -2952,9 +2952,21 @@ function showPointsData() {
 //function to format points string
 function formatpoints(id)
 {
-  if(id.length == 7)
+   if(id.length == 10)
    {
-      var user_total = id[0]+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6];
+      var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6]+' '+id[7]+id[8]+id[9];
+   }
+   else if(id.length == 9)
+   {
+      var user_total = id[0]+id[1]+id[2]+' '+id[3]+id[4]+id[5]+' '+id[6]+id[7]+id[8];
+   }
+   else if(id.length == 8)
+   {
+      var user_total = id[0]+id[1]+' '+id[2]+id[3]+id[4]+' '+id[5]+id[6]+id[7];
+   }
+   else if(id.length == 7)
+   {
+      var user_total = id[0]+' '+id[1]+id[2]+id[3]+' '+id[4]+id[5]+id[6];
    }
    else if(id.length == 6)
    {
@@ -3075,7 +3087,8 @@ function loaduserdetail() {
                         var cnt = '';
                     }
                     if(val.name == "Total" || val.name == "total") {
-                  		var user_total = localStorage.totalid;
+                    	var id = localStorage.totalid;
+                  		var user_total = formatpoints(id);
                   	}
                     $(".user-points-table table tbody").append('<tr class=' + classcss + '><td><a href="#" onclick="gotopoints(' + val.instance_id + ')"><span class="num">' + val.position + '.</span>' + icon + val.name + '</a></td><td class="point"><a href="#" onclick="gotopoints(' + val.instance_id + ')">' + cnt + user_total + '<i class="fa fa-angle-right"></i></a></td></tr>');
                     
