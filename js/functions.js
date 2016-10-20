@@ -7753,6 +7753,7 @@ function showcomments(sortby,sortdr,l)
 {
 	localStorage.imageURI = "";
 	localStorage.popUpObjectData = "";
+	localStorage.comment_id = "";
 	jQuery(".submit_com").show();
 	jQuery(".loading_send").hide();
 	jQuery(".uploadImgePreviews").html("");
