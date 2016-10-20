@@ -1709,6 +1709,9 @@ function loadgamification() {
                 		                     
                 }
                 
+                var iframeId = 'videoPlayer-' + results.rows.item(0).banner_video;
+                var thisIframesHeight = window.parent.$(iframeId).height();
+                alert("thisIframesHeight => " + thisIframesHeight);
 
                 $(".welcome-title h1").html(results.rows.item(0).main_title);
                 $(".welcome-content").html(results.rows.item(0).main_text);
