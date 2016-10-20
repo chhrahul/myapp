@@ -4196,8 +4196,16 @@ function loadfrienddetail() {
 //function to download vCard
 function downloadVcard(url) {
     var download_url = localStorage.url + url;
+
+	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+	if(isIphone) {
+		window.open(download_url, '_system');
+	}
+	else {
+		navigator.app.loadUrl(download_url, { openExternal:true });
+	}
+
     //alert(download_url)
-    navigator.app.loadUrl(download_url, { openExternal:true });
     //window.open(download_url, '_system');
     //alert(download_url)
     /*var fileTransfer = new FileTransfer();
