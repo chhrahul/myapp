@@ -4209,7 +4209,7 @@ function downloadVcard(url) {
     //alert(download_url)
     //window.open(download_url, '_system');
     //alert(download_url)
-    /*var fileTransfer = new FileTransfer();
+    var fileTransfer = new FileTransfer();
     var store = cordova.file.dataDirectory;
     fileTransfer.download(
         download_url,
@@ -4223,7 +4223,7 @@ function downloadVcard(url) {
             alert("download error target " + error.target);
             alert("upload error code: " + error.code);
         }
-    ); */
+    ); 
 }
 
 function showLink(url) {
