@@ -5399,7 +5399,7 @@ function importhomepage() {
                 	else {
                 		downloadLogoFile(obj.data.url, obj.data.type, image_url);
                 	}
-                	localStorage.mainlogoSmallImage1 = image_url;
+                	localStorage.mainlogoSmallImage = localStorage.url + image_url;
                 	// if(localStorage.url == "https://beta.oceventmanager.com/"){
                 	// 	downloadLogoFile(obj.data.url, obj.data.type, image_url); 
                 	// }
