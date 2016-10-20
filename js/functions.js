@@ -4209,17 +4209,15 @@ function loadfrienddetail() {
 //function to download vCard
 function downloadVcard(url) {
     var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
-    alert(download_url);
+   
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {	
 		// navigator.app.loadUrl(download_url, { openExternal:true });
-		// var ref = window.open(download_url, '_blank', 'location=yes');
-		// ref.addEventListener('loadstart', function() {
-			// alert(event.url); 
-		// });		 
-		e.preventDefault();
-		window.open(download_url, "_system");
-		return false;
+		var ref = window.open(download_url, '_blank', 'location=yes');
+		ref.addEventListener('loadstart', function() {
+			alert(event.url); 
+		});		 
+		
 	}
 	else {
 		navigator.app.loadUrl(download_url, { openExternal:true });
