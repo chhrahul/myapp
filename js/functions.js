@@ -1729,14 +1729,16 @@ function loadgamification() {
 
                 var iframeSrcUrl = results.rows.item(0).iframe_url + "&isApp=1";
                 iframeSrcUrl = iframeSrcUrl.replace("http://_", "http://");
+
+                var thisIframesHeight = window.parent.$("#homepage-content").height();
+                var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: relative !important; margin: 70px 0 !important; padding: 0; } </style>");
                 
                 // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + results.rows.item(0).iframe_url + ' name="homepage-content" id="homepage-content" />');
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
-                var welHeight = parseInt(thisIframesHeight) + parseInt(40);  
-                // alert("thisIframesHeight => " + thisIframesHeight + " , welHeight => " + welHeight);
-                
+                var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
                 $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: relative !important; margin: 70px 0 !important; padding: 0; } </style>");
                 alert("Wel cont iframe")
 
