@@ -4116,15 +4116,7 @@ function loadfrienddetail() {
                     $('.em').html(obj.email);
                 }
                 if (checkdefined(obj.downloadVCardLink) == 'yes') {
-                	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-					if(isIphone) {
-						var url = localStorage.url + obj.downloadVCardLink;
-						alert(url)
-						$('.vcard').attr('onclick', + url );
-					}
-					else {
-           	 			$('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
-                   	}
+                    $('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
                 }
                 if (checkdefined(obj.gender) == 'yes') {
                     $('.gender').html(obj.gender);
@@ -4204,9 +4196,10 @@ function loadfrienddetail() {
 //function to download vCard
 function downloadVcard(url) {
     var download_url = localStorage.url + url;
-
+    alert(download_url)
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {
+		alert("iphone download_url")
 		window.open(download_url, '_system');
 	}
 	else {
