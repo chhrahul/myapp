@@ -4205,7 +4205,7 @@ function loadfrienddetail() {
 
 //function to download vCard
 function downloadVcard(url) {
-    var download_url = localStorage.url + url;
+    var download_url = localStorage.url.substr(0, currentUrl.length - 1) + url;
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {		
 		// window.open(download_url, '_system');
