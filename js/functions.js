@@ -4118,7 +4118,8 @@ function loadfrienddetail() {
                 if (checkdefined(obj.downloadVCardLink) == 'yes') {
                 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 					if(isIphone) {
-						var url = localStorage.url + obj.downloadVCardLink
+						var url = localStorage.url + obj.downloadVCardLink;
+						alert(url)
 						$('.vcard').attr('onclick', + url );
 					}
 					else {
