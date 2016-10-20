@@ -4215,7 +4215,7 @@ function downloadVcard(url) {
 		// navigator.app.loadUrl(download_url, { openExternal:true });
 		// var ref = window.open(download_url, '_blank', 'location=yes');
 		// ref.addEventListener('loadstart', function() {
-			alert(event.url); 
+			// alert(event.url); 
 		// });		 
 		e.preventDefault();
 		window.open(download_url, "_system");
