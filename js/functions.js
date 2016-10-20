@@ -1676,8 +1676,13 @@ function loadgamification() {
             //            alert(results.rows.item(0).main_logo_small_image);
             if (results.rows.item(0).type == 'content') {
                 if (results.rows.item(0).main_logo_small_image != undefined && results.rows.item(0).main_logo_small_image != null && results.rows.item(0).main_logo_small_image != '') {
-                	localStorage.mainlogoSmallImage = results.rows.item(0).main_logo_small_image;
-                    $(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+                	// localStorage.mainlogoSmallImage = results.rows.item(0).main_logo_small_image;
+					if(localStorage.mainlogoSmallImage) {
+						$(".logo_inner").attr('src', localStorage.mainlogoSmallImage);
+					}
+					else {
+						$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+					}
                 }
                 if (results.rows.item(0).main_banner_image != undefined && results.rows.item(0).main_banner_image != null && results.rows.item(0).main_banner_image != '') {
                     $(".main_banner_image").attr('src', results.rows.item(0).main_banner_image);
@@ -1710,8 +1715,13 @@ function loadgamification() {
             } else if (results.rows.item(0).type == 'url') {
                 // var ref = window.open('http://apache.org', '_system', 'location=yes');
                 if (results.rows.item(0).main_logo_small_image != undefined && results.rows.item(0).main_logo_small_image != null && results.rows.item(0).main_logo_small_image != '') {
-                	localStorage.mainlogoSmallImage = results.rows.item(0).main_logo_small_image;
-                    $(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+                	// localStorage.mainlogoSmallImage = results.rows.item(0).main_logo_small_image;
+					if(localStorage.mainlogoSmallImage) {
+						$(".logo_inner").attr('src', localStorage.mainlogoSmallImage);
+					}
+						else {
+					$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+					}
                 }
                 
                 var iphoneDetect = navigator.userAgent.indexOf('iPhone') >= 0; 
@@ -4199,24 +4209,24 @@ function downloadVcard(url) {
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {		
 		// window.open(download_url, '_system');
-		// var ref = window.open(download_url, '_blank', 'location=yes');
-		// ref.addEventListener('loadstart', function() { alert(event.url); });
-		var fileTransfer = new FileTransfer();
-	    var store = cordova.file.dataDirectory;
-	    fileTransfer.download(
-	        download_url,
-	        store + "theFile.vcf",
-	        function(theFile) {
-	            alert("File Downloaded Successfully on your device, check it here : " + theFile.toURI());
-	            //showLink(theFile.toURI());
-	        },
-	        function(error) {
-	            // alert("download error source " + error.source);
-	            // alert("download error target " + error.target);
-	            // alert("upload error code: " + error.code);
-	            alert("download error");
-	        }
-	    ); 
+		var ref = window.open(download_url, '_blank', 'location=yes');
+		ref.addEventListener('loadstart', function() { alert(event.url); });
+		// var fileTransfer = new FileTransfer();
+	 //    var store = cordova.file.dataDirectory;
+	 //    fileTransfer.download(
+	 //        download_url,
+	 //        store + "theFile.vcf",
+	 //        function(theFile) {
+	 //            alert("File Downloaded Successfully on your device, check it here : " + theFile.toURI());
+	 //            //showLink(theFile.toURI());
+	 //        },
+	 //        function(error) {
+	 //            // alert("download error source " + error.source);
+	 //            // alert("download error target " + error.target);
+	 //            // alert("upload error code: " + error.code);
+	 //            alert("download error");
+	 //        }
+	 //    ); 
 	}
 	else {
 		navigator.app.loadUrl(download_url, { openExternal:true });
@@ -4812,8 +4822,12 @@ function loadprofile() {
 
         tx.executeSql("SELECT * FROM OCEVENTS_homepage", [], function(tx, results) {
             var len = results.rows.length;
-
-            $(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+			if(localStorage.mainlogoSmallImage) {
+				$(".logo_inner").attr('src', localStorage.mainlogoSmallImage);
+			}
+			else {
+				$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+			}
 
 
 
@@ -5033,7 +5047,12 @@ function loadcommonthings() {
 
         tx.executeSql("SELECT * FROM OCEVENTS_homepage", [], function(tx, results) {
             var len = results.rows.length;    
-            $(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+			if(localStorage.mainlogoSmallImage) {
+				$(".logo_inner").attr('src', localStorage.mainlogoSmallImage);
+			}
+			else {
+				$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+			}
         });
         tx.executeSql("SELECT * FROM OCEVENTS_events", [], function(tx, results) {
             var len = results.rows.length;
@@ -5395,11 +5414,13 @@ function importhomepage() {
                    image_url ="/resources/files/event/images/thumb_1464273519.jpg";
                 	if(checkdefined(obj.data.main_logo_image) == "yes") {
                 		downloadLogoFile(obj.data.url, obj.data.type, obj.data.main_logo_image.small_url);
+                		localStorage.mainlogoSmallImage = obj.data.main_logo_image.small_url;
                 	}
                 	else {
                 		downloadLogoFile(obj.data.url, obj.data.type, image_url);
+                		localStorage.mainlogoSmallImage = localStorage.url + image_url;
                 	}
-                	localStorage.mainlogoSmallImage = localStorage.url + image_url;
+                	
                 	// if(localStorage.url == "https://beta.oceventmanager.com/"){
                 	// 	downloadLogoFile(obj.data.url, obj.data.type, image_url); 
                 	// }
