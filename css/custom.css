@@ -1894,7 +1894,7 @@ body #fatimes {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: none;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     bottom: 0;

@@ -1709,9 +1709,7 @@ function loadgamification() {
                 		                     
                 }
 
-                var iframeId = 'videoPlayer-' + results.rows.item(0).banner_video;
-                var thisIframesHeight = window.parent.$(iframeId).height();
-                alert("thisIframesHeight => " + thisIframesHeight);
+                
 
                 $(".welcome-title h1").html(results.rows.item(0).main_title);
                 $(".welcome-content").html(results.rows.item(0).main_text);
@@ -1734,8 +1732,14 @@ function loadgamification() {
                 
                 // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + results.rows.item(0).iframe_url + ' name="homepage-content" id="homepage-content" />');
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
+
+                var thisIframesHeight = window.parent.$("#homepage-content").height();
+                var welHeight = parseInt(thisIframesHeight) + parseInt(40);  
+                welHeight = welHeight+"px"
+                // alert("thisIframesHeight => " + thisIframesHeight + " , welHeight => " + welHeight);
                 
-                
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + " !important; position: relative !important; margin: 70px 0 !important; padding: 0; } </style>");
+
                 //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
                 {
@@ -10093,6 +10097,7 @@ function keyboardShowHandler(e){
 	if(isIphone) {
 		// $(".tempdiv").html("<style> header { position: static; float: left; z-index: 99; } footer { position: static; float: left; z-index: 99; margin-top: 130em;} .container.main-container { position: static; float: left; z-index: 9; margin:0; display: inline-block;} html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; } </style>");
 		$(".tempdiv").html("<style> header { position: absolute; } footer { position: absolute; } .container.main-container { position: relative; float: left; top: 0px; } html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; } .main-wrapper { overflow: hidden !important; } </style>");
+
 	}
 }
    
@@ -10103,7 +10108,7 @@ function changetomyscanner(id) {
 	$(".agenda-menu-container").hide();
 	$(".ticketing-container").hide();
 	$(".leaderboards-container").hide();
-	$(".contacts-container").hide();
+	$(".contacts-container").hide();parseI
 	$(".notes-container").hide();
 	$(".add-comments-container").hide();
 	$(".add-questions-container").hide();
