@@ -1735,10 +1735,10 @@ function loadgamification() {
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);  
-                welHeight = welHeight+"px"
                 // alert("thisIframesHeight => " + thisIframesHeight + " , welHeight => " + welHeight);
                 
-                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + " !important; position: relative !important; margin: 70px 0 !important; padding: 0; } </style>");
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: relative !important; margin: 70px 0 !important; padding: 0; } </style>");
+                alert("Wel cont iframe")
 
                 //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
