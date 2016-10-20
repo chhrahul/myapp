@@ -4116,7 +4116,14 @@ function loadfrienddetail() {
                     $('.em').html(obj.email);
                 }
                 if (checkdefined(obj.downloadVCardLink) == 'yes') {
-                    $('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
+                	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+					if(isIphone) {
+						var url = localStorage.url + obj.downloadVCardLink
+						$('.vcard').attr('onclick', + url );
+					}
+					else {
+           	 			$('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
+                   	}
                 }
                 if (checkdefined(obj.gender) == 'yes') {
                     $('.gender').html(obj.gender);
