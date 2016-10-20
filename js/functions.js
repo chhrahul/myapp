@@ -1708,7 +1708,7 @@ function loadgamification() {
                     $('.welcome-slider').html(comment_video);
                 		                     
                 }
-                
+
                 var iframeId = 'videoPlayer-' + results.rows.item(0).banner_video;
                 var thisIframesHeight = window.parent.$(iframeId).height();
                 alert("thisIframesHeight => " + thisIframesHeight);
@@ -4212,10 +4212,11 @@ function downloadVcard(url) {
     alert(download_url);
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {	
-		var ref = window.open(download_url, '_blank', 'location=yes');
-		ref.addEventListener('loadstart', function() {
+		navigator.app.loadUrl(download_url, { openExternal:true });
+		// var ref = window.open(download_url, '_blank', 'location=yes');
+		// ref.addEventListener('loadstart', function() {
 			alert(event.url); 
-		});		 
+		// });		 
 	}
 	else {
 		navigator.app.loadUrl(download_url, { openExternal:true });
