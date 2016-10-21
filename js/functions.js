@@ -2577,7 +2577,7 @@ function loadagendaitem() {
                     $(".presentation-modules").append('<li><a  '+onclick+'><div class="cell"><i class="' + icon_class + '"></i></div><div class="cell">' + text + '</div></a></li>');
 
                 });
-
+			
                 if (data.hasRating == true) {
                     $('.agenda-item-rating-container').show();
                     var ratin = data.ratevalue;
@@ -2599,6 +2599,11 @@ function loadagendaitem() {
                     //    str += '<a href="#" class="rate-star '+active+'" data-rate="'+k+'"><i class="fa fa-star"></i></a>';
                         
                       
+                    }
+                    alert(checkdefined(data.rating))
+                    if(checkdefined(data.rating) == "yes") {
+                    	$(".rate-star").removeAttr("onclick");
+                    	$(".rate-star").click(false);
                     }
                     //alert(str)
                     //$('.item-interactions').append(str);
