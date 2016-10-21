@@ -4385,7 +4385,7 @@ function sendRequest(player_code) {
 }
 
 function showcommoncontacts(obj,checkhide) {
-	console.log(obj, + " ,,,,,,,,," +checkhide)
+	// console.log(obj, + " ,,,,,,,,," +checkhide)
     var icon_class = '';
     var link = '';
     var team = '';
@@ -4412,7 +4412,9 @@ function showcommoncontacts(obj,checkhide) {
         $('.friends-requests-container').show();
       }
     
-    
+    $('a.show-friends-btn.ui-link').attr('onclick', 'changetoyourcontacts();');
+	$('a.show-friends-btn.ui-link').html('All users');
+	$("a.show-friends-btn.ui-link").css("display","inline-block");
     $.each(obj.receivedFriendsRequests, function(key, val) {
         if (checkdefined(val.event_user_id) == 'yes') {
 
@@ -4615,6 +4617,7 @@ function showcommoncontacts(obj,checkhide) {
           $(".loading_agenda_items").hide();
       	  //$(".add-friends-container").show();
       	  $(".contacts-container").show();
+      	  $("a.show-friends-btn.ui-link").css("display","inline-block");
     }
 
 }
@@ -4659,6 +4662,8 @@ function loadyourcontacts() {
 		$(".contacts-container").hide();
         //showAgendaData();
 
+		$('a.show-friends-btn.ui-link').attr('onclick', 'changetocontacts();');
+		$('a.show-friends-btn.ui-link').html('Your contacts');
         var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends?gvm_json=1';
         $(".friends-items-container").html('&nbsp');
         var icon_class = '';
@@ -4742,6 +4747,7 @@ function loadyourcontacts() {
               });  
           });
                 $(".loading_agenda_items").hide();
+                $("a.show-friends-btn.ui-link").css("display","inline-block");
                 //$(".add-friends-container").show();
                $(".contacts-container").show();
           
