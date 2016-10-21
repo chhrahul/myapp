@@ -1741,7 +1741,7 @@ function loadgamification() {
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
                 $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: list-item !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; } </style>");
 
-                alert(welHeight)
+                // alert(welHeight)
                 if(checkdefined(localStorage.menu) == 'yes')
                 {
                 
