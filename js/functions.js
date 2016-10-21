@@ -2603,11 +2603,11 @@ function loadagendaitem() {
                     //alert(str)
                     //$('.item-interactions').append(str);
                   // $('.item-interactions').append('</div>'); 
-                  if(data.displayComment == true)
-                  {
+                  // if(data.displayComment == true)
+                  // {
                      $('#rate').removeClass('hidden'); 
                      //$('.after-rating-container').removeClass('hidden'); 
-                  }
+                  // }
                 }
                 else {
 
