@@ -4661,9 +4661,9 @@ function loadyourcontacts() {
         $(".view-friend-container").hide();
 		$(".contacts-container").hide();
         //showAgendaData();
-
+        
+		$('.show-friends-btn').html('All users');
 		$('a.show-friends-btn.ui-link').attr('onclick', 'changetocontacts();');
-		$('a.show-friends-btn.ui-link').html('All users');
         var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends?gvm_json=1';
         $(".friends-items-container").html('&nbsp');
         var icon_class = '';
