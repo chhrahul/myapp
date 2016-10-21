@@ -2543,7 +2543,7 @@ function loadagendaitem() {
                 if (data.hasRating == true) {
                 	var ratin = data.ratevalue;
                     var maxratin = 5;
-                    console.log("data.rating => " + data.rating);
+                    // console.log("data.rating => " + data.rating);
                 	if(data.rating == "true" || data.rating == true) {
                     	var ratinghtml = '<div class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">'
                     	for(k = 1; k<=maxratin;k++)    	{
@@ -2565,29 +2565,14 @@ function loadagendaitem() {
                    // $('.item-interactions').html('<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="'+ratin+'" data-original-title="" title="">');
                    $('.item-interaction-rate').attr('data-ratevalue',ratin);
                     var str = '';
-                    for(k = 1; k<=maxratin;k++)
-                    {
-                        //var active = '';
-                        if(k <= ratin )
-                        {
-                         // alert(ratin)
-                         // alert(k)
-                          //active = 'active'
+                    for(k = 1; k<=maxratin;k++) {
+                        if(k <= ratin ) {
                           $('.f'+k).addClass('active');
-                        }
-                    //    str += '<a href="#" class="rate-star '+active+'" data-rate="'+k+'"><i class="fa fa-star"></i></a>';
-                        
-                      
+                        }           
                     }
-                    
-                    //alert(str)
-                    //$('.item-interactions').append(str);
-                  // $('.item-interactions').append('</div>'); 
-                  if(data.displayComment == true)
-                  {
-                     $('#rate').removeClass('hidden'); 
-                     //$('.after-rating-container').removeClass('hidden'); 
-                  }
+					if(data.displayComment == true) {
+						$('#rate').removeClass('hidden'); 
+					}
                 }
                 else {
 
@@ -4098,9 +4083,11 @@ function loadfrienddetail() {
                     var prev_friend_id = split_it[1];
                     //  alert(prev_friend_id);
                     $('.prev').attr('onclick', 'viewfriend(' + prev_friend_id + ')');
+                    $('.prev').show();
                 } else {
                     $('.prev').hide();
                 }
+                // alert(checkdefined(obj.nextFriendLink)
                 if (checkdefined(obj.nextFriendLink) == 'yes') {
                     var next_link = obj.nextFriendLink;
                     var split_it = next_link.split('view/');
@@ -4108,8 +4095,9 @@ function loadfrienddetail() {
                     //  alert(next_friend_id);
                     // $('.next').attr('onclick','viewfriend("'+next_friend_id+'")');
                     $('.next').attr('onclick', 'viewfriend(' + next_friend_id + ')');
+                    $('.next').show();
                 } else {
-                    $('.nextFriendLink').hide();
+                    $('.next').hide();
                 }
                 $('.friends-item-img').attr('style', 'background-image: url(' + obj.userImageSrc + ');');
                 $('.frndnm').html(obj.fullName);
@@ -4132,6 +4120,9 @@ function loadfrienddetail() {
                 if (checkdefined(obj.gender) == 'yes') {
                     $('.gender').html(obj.gender);
                     $(".friendGender").show();
+                }
+                else {
+                    $(".friendGender").hide();
                 }
                 if (checkdefined(obj.userQA) == 'yes') {
                 	$("h3.registration-questions-title").show();
