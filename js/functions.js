@@ -2413,6 +2413,8 @@ function loadagendaitem() {
 		jQuery(".notes-agenda-container").hide();
 		jQuery(".list-agendalist-container").hide();
 
+        $('#agendamenuheader').attr('onclick', 'changetoagenda();');
+
         $.ajax({
             url: main_url,
             dataType: "json",
@@ -3840,6 +3842,8 @@ function loadagenda() {
         //loadcommonthings();
          isLoggedIn();
          jQuery(".loading_agenda_items").show();
+
+        $('#agendamenuheader').attr('onclick', 'changetoallsponsors();');
          $('.fa-clock-o').html('&nbsp;');
         db.transaction(function(tx) {
         tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
@@ -3938,45 +3942,45 @@ function showcommonagendalist(obj) {
 }
 
 //function to load current sponsors
-function loadallsponsors() {
-    jQuery(document).ready(function($) {
-        loadcommonthings(); isLoggedIn();
-        importfooter('sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id, 'sponsors');
-        $(".agenda-container").hide();
+// function loadallsponsors() {
+//     jQuery(document).ready(function($) {
+//         loadcommonthings(); isLoggedIn();
+//         importfooter('sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id, 'sponsors');
+//         $(".agenda-container").hide();
         
-        //showAgendaData();
+//         //showAgendaData();
 
-        var main_url = localStorage.url + 'sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?gvm_json=1&ajax=1&all=1';
-        // alert(main_url);
-        $("#presentations-list").html('&nbsp');
-        $.ajax({
-            url: main_url,
-            dataType: "json",
-            method: "GET",
-            success: function(obj) {
-                showcommonagendalist(obj);
-                db.transaction(function(tx) {
-                tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-                  var len = results.rows.length;                  
-                  for (i = 0; i < len; i++) {                    
-                    if(results.rows.item(i).key_constant == 'isSponsorLabel')
-                    {
-                        $('.header-title h1').html(unescape(results.rows.item(i).key_val));                     
-                    }
-                    if(results.rows.item(i).key_constant == 'SeeCurrent')
-                    {
-                        $('.seal').html(unescape(results.rows.item(i).key_val));                     
-                    }
-				  }
-                });
-              });
-                jQuery(".agenda-container").show();
-                jQuery(".loading_agenda_items").hide();
+//         var main_url = localStorage.url + 'sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?gvm_json=1&ajax=1&all=1';
+//         // alert(main_url);
+//         $("#presentations-list").html('&nbsp');
+//         $.ajax({
+//             url: main_url,
+//             dataType: "json",
+//             method: "GET",
+//             success: function(obj) {
+//                 showcommonagendalist(obj);
+//                 db.transaction(function(tx) {
+//                 tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+//                   var len = results.rows.length;                  
+//                   for (i = 0; i < len; i++) {                    
+//                     if(results.rows.item(i).key_constant == 'isSponsorLabel')
+//                     {
+//                         $('.header-title h1').html(unescape(results.rows.item(i).key_val));                     
+//                     }
+//                     if(results.rows.item(i).key_constant == 'SeeCurrent')
+//                     {
+//                         $('.seal').html(unescape(results.rows.item(i).key_val));                     
+//                     }
+// 				  }
+//                 });
+//               });
+//                 jQuery(".agenda-container").show();
+//                 jQuery(".loading_agenda_items").hide();
 
-            }
-        });
-    });
-}
+//             }
+//         });
+//     });
+// }
 
 //function to load all sponsors
 function loadsponsors() {
@@ -3986,7 +3990,8 @@ function loadsponsors() {
 		jQuery(".loading_agenda_items").show();
 		importfooter('sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id, 'sponsors');
 		$(".agenda-container").hide();
-		$('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoallagenda(); return false;" data-type="all"><span>All</span><i class="fa fa-clock-o"></i></a></span>');
+		$('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoallsponsors(); return false;" data-type="all"><span>All</span><i class="fa fa-clock-o"></i></a></span>');		
+        $('#agendamenuheader').attr('onclick', 'changetosponsors();');
 		//showAgendaData();
 
 		var main_url = localStorage.url + 'sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?gvm_json=1';
@@ -4013,6 +4018,54 @@ function loadsponsors() {
 				});
 				jQuery(".list-agendalist-container").show();
 				jQuery(".loading_agenda_items").hide();
+            }
+        });
+    });
+}
+
+
+
+//function to fetch agenda items
+function loadallsponsors() {
+    jQuery(document).ready(function($) {
+        // loadcommonthings();
+        isLoggedIn();
+        jQuery(".loading_agenda_items").show();
+        importfooter('agenda', 'agenda');
+		$(".agenda-container").hide();
+		$(".notes-container").hide();
+		$('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetosponsors(); return false;" data-type="all"><span>seeCurrent</span><i class="fa fa-clock-o"></i></a></span>');
+        $('#agendamenuheader').attr('onclick', 'changetoallsponsors();');
+        //showAgendaData();
+        //http://www.oceventmanager.com/agenda/-/'+localStorage.short_url+'-100041/?ajax=1&all=1&gvm_json=1
+        var main_url = localStorage.url + 'sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?ajax=1&all=1&gvm_json=1';
+        // alert(main_url);
+        $("#presentations-list").html('&nbsp;');
+        $.ajax({
+            url: main_url,
+            dataType: "json",
+            method: "GET",
+            success: function(obj) {
+                showcommonagendalist(obj); 
+                db.transaction(function(tx) {
+                  tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+                  var len = results.rows.length;                  
+                  for (i = 0; i < len; i++) {                    
+                    if(results.rows.item(i).key_constant == 'Sponsers')
+                    {
+                        $('.header-title h1').html(unescape(results.rows.item(i).key_val));                     
+                    }
+                    if(results.rows.item(i).key_constant == 'SeeCurrent')
+                    {
+                        $('.seealls span').html(unescape(results.rows.item(i).key_val));                     
+                    }
+                    
+                 }
+               });
+            });
+                jQuery(".agenda-container").show();
+				$(".notes-container").hide();
+                jQuery(".loading_agenda_items").hide();
             }
         });
     });
@@ -8799,6 +8852,37 @@ function changetosponsors(id)
 		$('.dropdown-btn').trigger('click');
 	}
 	loadsponsors();  
+}
+
+function changetoallsponsors(id)
+{
+	$('.welcome-container').hide();
+	$(".user-profile-container").hide(); 
+	$(".ticketing-container").hide();
+	$(".leaderboards-container").hide();
+	$(".contacts-container").hide();
+	$(".add-friends-container").hide();
+	$(".notes-container").hide();
+	$(".add-comments-container").hide();
+	$(".add-questions-container").hide();
+	$(".single-seeker-container").hide();
+	$(".quiz-container").hide();
+	$(".voting-page-container").hide();
+	$(".last-container").hide();
+	$(".view-friend-container").hide();
+	$(".seeker-results-container").hide();
+	$(".score-card-container").hide();
+	$(".agenda-item-container").hide();
+	$(".scannerDiv").hide();
+	$("#tooltipster-409679").hide();
+	$(".footer-menu").removeClass("footer-menu-open");
+	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
+	if(id == 'yes')
+	{
+		$('.dropdown-btn').trigger('click');
+	}
+	loadallsponsors();  
 }
 
 function changetoallagenda(id)
