@@ -2368,44 +2368,6 @@ function loadagendaitem() {
         importfooter('View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda-item');
 		var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '?gvm_json=1';
 
-		// if(checkdefined(localStorage.direct_access_module_href) == 'yes')
-		// {
-		// 	if(localStorage.ins_id == localStorage.agenda_id)
-		// 	{
-		// 		//importfooter(localStorage.direct_access_module_href, 'agenda-item');
-		// 		//var main_url = localStorage.url + localStorage.direct_access_module_href + '?gvm_json=1';
-		// 		var inputString = localStorage.direct_access_module_href;
-		// 		if ( inputString.indexOf("comment") > -1 ) {
-		// 			window.location.href="add_comments.html";
-		// 		} 
-		// 		else if ( inputString.indexOf("seeker") > -1 ) {
-		// 			changetoseeker();
-		// 		}
-		// 		else if ( inputString.indexOf("question") > -1 ) {
-		// 			changetoaddquestions();
-		// 		}
-		// 		else if ( inputString.indexOf("Quiz") > -1 ) {
-		// 			window.location.href="add_quiz.html";
-		// 		}
-		// 		else if ( inputString.indexOf("quiz") > -1 ) {
-		// 			window.location.href="add_quiz.html";
-		// 		}
-		// 		else if ( inputString.indexOf("vote") > -1 ) {
-		// 			changetovoting();
-		// 		}
-		// 	}
-		// 	else
-		// 	{       
-		// 		importfooter('View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda-item');
-		// 		var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '?gvm_json=1';
-		// 	}
-		// }
-		// else
-		// {
-		// 	importfooter('View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda-item');
-		// 	var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '?gvm_json=1';
-		// }
-
 		//loadcommonthings(); 
 		isLoggedIn();
 		//alert(main_url)
@@ -2579,10 +2541,27 @@ function loadagendaitem() {
                 });
 			
                 if (data.hasRating == true) {
-                    $('.agenda-item-rating-container').show();
-                    var ratin = data.ratevalue;
-                    //alert(ratin)
+                	var ratin = data.ratevalue;
                     var maxratin = 5;
+                    console.log("data.rating => " + data.rating);
+                	if(data.rating == "true" || data.rating == true) {
+                    	var ratinghtml = '<div class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">'
+                    	for(k = 1; k<=maxratin;k++)    	{
+                    		 if(k <= ratin ) {
+                		 		ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+                    		 }
+                    		 else {
+                    		 	ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+                    		 }
+                		}
+                		ratinghtml += '<div>';
+                		$('.item-interactions').html(ratinghtml);
+                    }
+                    else {
+                    	var ratinghtml = '<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="1" data-original-title="" title=""><a href="javascript:void(0)" onclick="rateme(1);" class="rate-star f1" data-rate="1"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(2);" class="rate-star f2" data-rate="2"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(3);" class="rate-star f3" data-rate="3"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(4);" class="rate-star f4" data-rate="4"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(5);" class="rate-star f5" data-rate="5"><i class="fa fa-star"></i></a></div>';
+                    }
+                    $('.agenda-item-rating-container').show();
+                    
                    // $('.item-interactions').html('<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="'+ratin+'" data-original-title="" title="">');
                    $('.item-interaction-rate').attr('data-ratevalue',ratin);
                     var str = '';
@@ -2601,10 +2580,6 @@ function loadagendaitem() {
                       
                     }
                     
-                    if(checkdefined(data.rating) == "yes") {
-                    	$(".rate-star").removeAttr("onclick");
-                    	$(".rate-star").click(false);
-                    }
                     //alert(str)
                     //$('.item-interactions').append(str);
                   // $('.item-interactions').append('</div>'); 
