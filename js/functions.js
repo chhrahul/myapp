@@ -4343,9 +4343,7 @@ function showcommoncontacts(obj,checkhide) {
         $('.friends-requests-container').show();
       }
     
-    $('a.show-friends-btn.ui-link').attr('onclick', 'changetoyourcontacts();');
-	$('a.show-friends-btn.ui-link').html('All users');
-	$("a.show-friends-btn.ui-link").css("display","inline-block");
+    $('.show-friends-btn').attr('onclick', 'changetoyourcontacts();').html('All users').css("display","inline-block");
     $.each(obj.receivedFriendsRequests, function(key, val) {
         if (checkdefined(val.event_user_id) == 'yes') {
 
@@ -4464,7 +4462,8 @@ function showcommoncontacts(obj,checkhide) {
                       } 
                       if(results.rows.item(i).key_constant == 'YourFriends')
                       {
-                        $('.show-friends-btn').html(unescape(results.rows.item(i).key_val));                     
+                        $('.show-friends-btn').html(unescape(results.rows.item(i).key_val));
+                        $('.show-friends-btn').attr('onclick', 'changetoyourcontacts();');                    
                       } 
                       if(results.rows.item(i).key_constant == 'pendingOutgoingFriendRequestDesc')
                       {
@@ -4593,8 +4592,7 @@ function loadyourcontacts() {
 		$(".contacts-container").hide();
         //showAgendaData();
 
-		$('.show-friends-btn').html('All users');
-		$('a.show-friends-btn.ui-link').attr('onclick', 'changetocontacts();');
+		$('.show-friends-btn').html('All users').attr('onclick', 'changetocontacts();');
         var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends?gvm_json=1';
         $(".friends-items-container").html('&nbsp');
         var icon_class = '';
@@ -4618,13 +4616,13 @@ function loadyourcontacts() {
                       if (first_letter != val.first_name[0].toUpperCase()) {
                           //alert(first_letter)
                           //alert(val.first_name[0].toUpperCase())
-                          divider = '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
+                          divider += '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
                       }
   
                       first_letter = val.first_name[0].toUpperCase();
                    }
                     if (key == 0 && val.first_name[0] != 'A') {
-                        divider = '<div class="friends-item-title"> </div>';
+                        divider += '<div class="friends-item-title"> </div>';
                     }
 
 
@@ -4641,7 +4639,7 @@ function loadyourcontacts() {
                         link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="gicon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4>Keep waiting for response?</h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request">No</a></div></div>';
                     }
                     if (val.is_friend == 1 && val.status == 2) {
-                        link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="fa fa-angle-right"></i></span></a></div>';
+                        link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-nav-forward"></i></span></a></div>';
                     }
                     if (val.is_friend == 0) {
                         link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="gicon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4>Send contact request?</h4><div class="confirm-btn-wrapper"><a href="" class="danger cancel">No</a><a href="#" onclick=sendRequest("' + val.player_code + '") class="success send-friend-request">Yes</a></div></div>';
