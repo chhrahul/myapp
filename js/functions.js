@@ -2600,7 +2600,7 @@ function loadagendaitem() {
                         
                       
                     }
-                    alert(checkdefined(data.rating))
+                    
                     if(checkdefined(data.rating) == "yes") {
                     	$(".rate-star").removeAttr("onclick");
                     	$(".rate-star").click(false);
