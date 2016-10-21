@@ -2603,11 +2603,11 @@ function loadagendaitem() {
                     //alert(str)
                     //$('.item-interactions').append(str);
                   // $('.item-interactions').append('</div>'); 
-                  // if(data.displayComment == true)
-                  // {
+                  if(data.displayComment == true)
+                  {
                      $('#rate').removeClass('hidden'); 
                      //$('.after-rating-container').removeClass('hidden'); 
-                  // }
+                  }
                 }
                 else {
 
@@ -3799,7 +3799,8 @@ function loadallagenda() {
         jQuery(".loading_agenda_items").show();
         importfooter('agenda', 'agenda');
         
-        
+        $('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoagenda(); return false;" data-type="all"><span>All</span><i class="fa fa-clock-o"></i></a></span>');
+		$('#agendamenuheader').attr('onclick', 'changetoallagenda();');
         
         $(".agenda-container").hide();
         //showAgendaData();
@@ -3842,8 +3843,8 @@ function loadagenda() {
         //loadcommonthings();
          isLoggedIn();
          jQuery(".loading_agenda_items").show();
-
-        $('#agendamenuheader').attr('onclick', 'changetoallsponsors();');
+		$('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoallagenda(); return false;" data-type="all"><span>All</span><i class="fa fa-clock-o"></i></a></span>');
+		$('#agendamenuheader').attr('onclick', 'changetoagenda();');
          $('.fa-clock-o').html('&nbsp;');
         db.transaction(function(tx) {
         tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
@@ -3940,47 +3941,6 @@ function showcommonagendalist(obj) {
         // }
     });
 }
-
-//function to load current sponsors
-// function loadallsponsors() {
-//     jQuery(document).ready(function($) {
-//         loadcommonthings(); isLoggedIn();
-//         importfooter('sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id, 'sponsors');
-//         $(".agenda-container").hide();
-        
-//         //showAgendaData();
-
-//         var main_url = localStorage.url + 'sponsors/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?gvm_json=1&ajax=1&all=1';
-//         // alert(main_url);
-//         $("#presentations-list").html('&nbsp');
-//         $.ajax({
-//             url: main_url,
-//             dataType: "json",
-//             method: "GET",
-//             success: function(obj) {
-//                 showcommonagendalist(obj);
-//                 db.transaction(function(tx) {
-//                 tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-//                   var len = results.rows.length;                  
-//                   for (i = 0; i < len; i++) {                    
-//                     if(results.rows.item(i).key_constant == 'isSponsorLabel')
-//                     {
-//                         $('.header-title h1').html(unescape(results.rows.item(i).key_val));                     
-//                     }
-//                     if(results.rows.item(i).key_constant == 'SeeCurrent')
-//                     {
-//                         $('.seal').html(unescape(results.rows.item(i).key_val));                     
-//                     }
-// 				  }
-//                 });
-//               });
-//                 jQuery(".agenda-container").show();
-//                 jQuery(".loading_agenda_items").hide();
-
-//             }
-//         });
-//     });
-// }
 
 //function to load all sponsors
 function loadsponsors() {
@@ -4661,8 +4621,8 @@ function loadyourcontacts() {
         $(".view-friend-container").hide();
 		$(".contacts-container").hide();
         //showAgendaData();
-        
-		$('.show-friends-btn').html('All users');
+
+		$('a.show-friends-btn.ui-link').html('All users');
 		$('a.show-friends-btn.ui-link').attr('onclick', 'changetocontacts();');
         var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends?gvm_json=1';
         $(".friends-items-container").html('&nbsp');
