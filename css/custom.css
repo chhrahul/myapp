@@ -2455,3 +2455,6 @@ div#pageone {
 .ui-loader.ui-corner-all.ui-body-a.ui-loader-default {
     display: none;
 }
+.contacts-container .friend-request-confirm-wrapper {
+    padding-top: 25px;
+}

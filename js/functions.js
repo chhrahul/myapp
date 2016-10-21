@@ -1583,6 +1583,7 @@ function changetoprofile(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	 $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -4450,6 +4451,8 @@ function showcommoncontacts(obj,checkhide) {
         $(".loading_agenda_items").hide();
        // $(".add-friends-container").show();
        $(".contacts-container").show();
+       $(".sendreqno").html("No");
+       $(".sendreqyes").html("Yes");
         
         // alert(divider+'<div class="friends-item-wrapper '+icon_class+'">  '+link+'  </div>')
     });
@@ -8604,6 +8607,7 @@ function changetogamification(id)
 	$(".scannerDiv").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
+	$(".questions-filter-items").fadeOut();
 	
 	if(id == 'yes')
 	{
@@ -8635,6 +8639,7 @@ function changetoagenda(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8664,6 +8669,7 @@ function changetoticketing(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8693,6 +8699,7 @@ function changetopoints(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8724,6 +8731,7 @@ function changetocontacts(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8754,6 +8762,7 @@ function changetonotes(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8784,6 +8793,7 @@ function changetosponsors(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8813,6 +8823,7 @@ function changetoallagenda(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8842,6 +8853,7 @@ function changetoteampoints(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8871,6 +8883,7 @@ function changetoyourpoints(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8900,6 +8913,7 @@ function changetoyourcontacts(id)
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8928,6 +8942,7 @@ function changetoagendaitem(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8957,6 +8972,7 @@ function changetoaddcomments(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -8986,6 +9002,7 @@ function changetoseeker(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9014,6 +9031,7 @@ function changetoaddquestions(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9042,6 +9060,7 @@ function changetoaddquiz(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9070,6 +9089,7 @@ function changetovoting(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9098,6 +9118,7 @@ function changetouserdetail(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9126,6 +9147,7 @@ function changetoteamdetailpoint(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9154,6 +9176,7 @@ function changetoyourdetailpoint(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9182,6 +9205,7 @@ function changetoviewfriend(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9210,6 +9234,7 @@ function changetoseekerresults(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
@@ -9238,6 +9263,7 @@ function changetoscorecard(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
@@ -10123,6 +10149,7 @@ function changetomyscanner(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	 $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+	$(".questions-filter-items").fadeOut();
 	if(id == 'yes') 
 	{
 		$('.dropdown-btn').trigger('click');
