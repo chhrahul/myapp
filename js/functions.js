@@ -5888,6 +5888,7 @@ function gotoseeker()
 function loadnotes()
 {
     //alert(ur)
+    localStorage.note_id = "";
     localStorage.imageURI = "";
 	localStorage.popUpObjectData = "";
 	jQuery(".submit_com").show();
@@ -5902,7 +5903,7 @@ function loadnotes()
 			localStorage.submitnotestatus = "";			
 			window.setTimeout(function () {
 			    closenotescommentbox();
-			}, 10 * 100);
+			}, 100 * 100);
 		}
 		else {
 			$(".error-status").removeClass("hide");
@@ -7772,7 +7773,7 @@ function showcomments(sortby,sortdr,l)
 			localStorage.submitcommentstatus = "";
 			window.setTimeout(function () {
 			    closecommentbox();
-			}, 10 * 100);
+			}, 100 * 100);
 		}
 		else {
 			$(".error-status").removeClass("hide");
@@ -10774,7 +10775,7 @@ function addnote()
 
 						if(notesImgaeLength > 1) {
 							addNotesImages();
-							console.log("length is greater than one(1)" + notesImgaeLength);
+							// console.log("length is greater than one(1)" + notesImgaeLength);
 						}
 						else {
 							localStorage.imageURI = '';
