@@ -4622,7 +4622,7 @@ function loadyourcontacts() {
 		$(".contacts-container").hide();
         //showAgendaData();
 
-		$('a.show-friends-btn.ui-link').html('All users');
+		$('.show-friends-btn').html('All users');
 		$('a.show-friends-btn.ui-link').attr('onclick', 'changetocontacts();');
         var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends?gvm_json=1';
         $(".friends-items-container").html('&nbsp');
