@@ -1739,9 +1739,9 @@ function loadgamification() {
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
-                // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: list-item !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; } </style>");
+                // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; } </style>");
 
-                // alert(welHeight)
+                //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
                 {
                 
@@ -4197,25 +4197,20 @@ function loadfrienddetail() {
 
 //function to download vCard
 function downloadVcard(url) {
-    var url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
+    var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
    
-	// var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-	// if(isIphone) {	
+	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+	if(isIphone) {	
 		// navigator.app.loadUrl(download_url, { openExternal:true });
-		var ref = window.open(url, '_blank', 'toolbarposition=top,location=yes');
-		ref.addEventListener('loadstart', function(e) {
-			// alert(event.url + " , " + e.url); 
-
-			if(e.url.indexOf('system_browser')>-1) {
-		        ref.close();
-		        window.open(e.url, '_system');
-		    }
+		var ref = window.open(download_url, '_blank', 'location=yes');
+		ref.addEventListener('loadstart', function() {
+			alert(event.url); 
 		});		 
 		
-	// }
-	// else {
-	// 	navigator.app.loadUrl(download_url, { openExternal:true });
-	// }
+	}
+	else {
+		navigator.app.loadUrl(download_url, { openExternal:true });
+	}
 
     //alert(download_url)
     //window.open(download_url, '_system');
