@@ -3956,7 +3956,7 @@ function loadallsponsors() {
         // loadcommonthings();
         isLoggedIn();
         jQuery(".loading_agenda_items").show();
-        importfooter('agenda', 'agenda');
+        importfooter('agenda', 'sponsors');
 		$(".agenda-container").hide();
 		$(".notes-container").hide();
 		$('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetosponsors(); return false;" data-type="all"><span>seeCurrent</span><i class="fa fa-clock-o"></i></a></span>');
@@ -6633,7 +6633,7 @@ function showvoting(sortby,sortdr,l)
 
        $('.prev').attr('onclick', 'gotoagenda("' + localStorage.agenda_id + '")'); 
         
-        importfooter('Add-vote/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda');
+        importfooter('Add-vote/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'voting');
 
         if(localStorage.url == "https://beta.oceventmanager.com/"){
     		var main_urgl = localStorage.url + 'Add-vote/-/Beta-eventroute-' + localStorage.event_id + '/' + localStorage.agenda_id + localStorage.voteforwarderid +'/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
@@ -7063,7 +7063,7 @@ function showquiz()
 	    $(".footertag").show();  
          
         //alert('hi')
-        importfooter('Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda');
+        importfooter('Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'quiz');
         var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
 		// alert(main_url);
         $.ajax({
@@ -7244,7 +7244,7 @@ function loadscorecard()
         jQuery(".loading_agenda_items").show();
         
         //alert('hi')
-        importfooter('Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id+'/scorecard', 'agenda');
+        importfooter('Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id+'/scorecard', 'points');
                                     
         var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/scoreboard/?gvm_json=1';
 
@@ -7472,7 +7472,7 @@ function showquestions(sortby,sortdr,l)
 
 
         jQuery(".loading_agenda_items").show();
-        importfooter('Add-question/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda');
+        importfooter('Add-question/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'q_and_a');
         var main_url = localStorage.url + 'Add-question/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
         // alert(main_url)
         $.ajax({
