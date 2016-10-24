@@ -1735,8 +1735,10 @@ function loadgamification() {
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
                                 
                 // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + results.rows.item(0).iframe_url + ' name="homepage-content" id="homepage-content" />');
+
                 var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
-                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrlTest + ' name="homepage-content" id="homepage-content" />');
+                
+                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
