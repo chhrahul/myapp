@@ -4204,14 +4204,14 @@ function downloadVcard(url) {
 	var uri = encodeURI(download_url);
 	
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-	alert(isIphone)
+	// alert(isIphone)
 	if(isIphone) {
 		var fileURL = fs.root.fullPath + "/ocUser.vcf"; 
 	}
 	else {
 		var fileURL =  "///storage/emulated/0/DCIM/ocUser.vcf";
 	}
-
+alert(fileURL);
 	fileTransfer.download(
 		uri, fileURL, function(entry) {
 			// console.log("download complete: " + entry.toURL());
