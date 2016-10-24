@@ -4206,7 +4206,7 @@ function downloadVcard(url) {
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	// alert(isIphone)
 	if(isIphone) {
-		var fileURL = fs.root.fullPath + "/ocUser.vcf"; 
+		var fileURL = "/ocUser.vcf"; 
 	}
 	else {
 		var fileURL =  "///storage/emulated/0/DCIM/ocUser.vcf";
