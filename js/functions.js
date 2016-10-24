@@ -4201,36 +4201,20 @@ function downloadVcard(url) {
     var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
    
 	var fileTransfer = new FileTransfer();
-	var uri = encodeURI(download_url);
-	
-	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-	// alert(isIphone)
-	if(isIphone) {
-		var fileURL = "/ocUser.vcf"; 
-	}
-	else {
-		var fileURL =  "///storage/emulated/0/DCIM/ocUser.vcf";
-	}
-alert(fileURL);
-	fileTransfer.download(
-		uri, fileURL, function(entry) {
-			// console.log("download complete: " + entry.toURL());
-			shownotification("download complete: " + entry.toURL(),"VCF");
-		},
-
-		function(error) {
-			shownotification("Error in Downloading ","VCF");
-			// console.log("download error source " + error.source);
-			// console.log("download error target " + error.target);
-			// console.log("download error code" + error.code);
-			},
-
-		false, {
-			headers: {
-				"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-			}
-		}
-	);
+    var store = cordova.file.dataDirectory;
+    fileTransfer.download(
+        download_url,
+        store + "theFile.vcf",
+        function(theFile) {
+            alert("File Downloaded Successfully on your device, check it here : " + theFile.toURI());
+            //showLink(theFile.toURI());
+        },
+        function(error) {
+            alert("download error source " + error.source);
+            // alert("download error target " + error.target);
+            // alert("upload error code: " + error.code);
+        }
+    ); 
 }
 
 function showLink(url) {
