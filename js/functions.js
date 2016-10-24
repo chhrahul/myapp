@@ -4119,17 +4119,7 @@ function loadfrienddetail() {
                     $('.em').html(obj.email);
                 }
                 if (checkdefined(obj.downloadVCardLink) == 'yes') {
-                	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-                	var vCardLink = obj.downloadVCardLink;
-					if(isIphone) {	
-						var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + vCardLink;
-						$("#downVCard").html('<a href="' + download_url + '" class="vcard ui-link" target="_system"><i class="fa fa-download"> Download VCard</i></a>');
-					}
-					else {
-						var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + vCardLink;
-						$("#downVCard").html('<a href="' + download_url + '" class="vcard ui-link" target="_self"><i class="fa fa-download"> Download VCard</i></a>');
-                    	// $('.vcard').attr('onclick', 'downloadVcard("' + vCardLink + '")');
-                    }
+                    $('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
                 }
                 if (checkdefined(obj.gender) == 'yes') {
                     $('.gender').html(obj.gender);
@@ -4210,11 +4200,23 @@ function loadfrienddetail() {
 }
 
 //function to download vCard
-function downloadVcard(url) {   
+function downloadVcard(url) {
+    var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
+   
 	var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
    
-	navigator.app.loadUrl(download_url, { openExternal:true });
-
+	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+	if(isIphone) {	
+		// navigator.app.loadUrl(download_url, { openExternal:true });
+		var ref = window.open(download_url, '_self', 'location=no');
+		ref.addEventListener('loadstart', function() {
+			alert(event.url); 
+		});		 
+		  
+	}
+	else {
+		navigator.app.loadUrl(download_url, { openExternal:true });
+	}
 }
 
 function showLink(url) {
