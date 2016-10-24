@@ -4119,7 +4119,14 @@ function loadfrienddetail() {
                     $('.em').html(obj.email);
                 }
                 if (checkdefined(obj.downloadVCardLink) == 'yes') {
-                    $('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
+                	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+					if(isIphone) {	
+						var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
+						$("#downVCard").html('<a href="' + download_url + '" class="vcard ui-link"><i class="fa fa-download"> Download VCard</i></a>')
+					}
+					else {
+                    	$('.vcard').attr('onclick', 'downloadVcard("' + obj.downloadVCardLink + '")');
+                    }
                 }
                 if (checkdefined(obj.gender) == 'yes') {
                     $('.gender').html(obj.gender);
@@ -4200,24 +4207,21 @@ function loadfrienddetail() {
 }
 
 //function to download vCard
-function downloadVcard(url) {
-    var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
+function downloadVcard(url) {   
+	var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
    
-	var fileTransfer = new FileTransfer();
-    var store = cordova.file.dataDirectory;
-    fileTransfer.download(
-        download_url,
-        store + "theFile.vcf",
-        function(theFile) {
-            alert("File Downloaded Successfully on your device, check it here : " + theFile.toURI());
-            //showLink(theFile.toURI());
-        },
-        function(error) {
-            alert("download error source " + error.source);
-            // alert("download error target " + error.target);
-            // alert("upload error code: " + error.code);
-        }
-    ); 
+	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+	if(isIphone) {	
+		// navigator.app.loadUrl(download_url, { openExternal:true });
+		var ref = window.open(download_url, '_self', 'location=yes');
+		ref.addEventListener('loadstart', function() {
+			alert(event.url); 
+		});		 
+		  
+	}
+	else {
+		navigator.app.loadUrl(download_url, { openExternal:true });
+	}
 }
 
 function showLink(url) {
