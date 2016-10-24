@@ -1162,7 +1162,8 @@ header, footer {
 }
 
 .gamification-mobile-aside-wrapper-open .gamification-mobile-aside-wrapper {
-    bottom: 65px;
+    /*bottom: 65px;*/
+    bottom: 0px;
 }
 
 .hide-footer-labels .gamification-mobile-aside-wrapper-open .gamification-mobile-aside-wrapper  {
@@ -1170,7 +1171,8 @@ header, footer {
 }
 
 .gamification-mobile-aside-wrapper-open .gamification-footer-menu {
-    bottom: 415px;
+    /*bottom: 415px;*/
+    bottom: 350px;
 }
 
 .hide-footer-labels .gamification-mobile-aside-wrapper-open .gamification-footer-menu {
