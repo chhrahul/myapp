@@ -4123,7 +4123,7 @@ function loadfrienddetail() {
                 	var vCardLink = obj.downloadVCardLink;
 					if(isIphone) {	
 						var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + vCardLink;
-						$("#downVCard").html('<a href="' + download_url + '" class="vcard ui-link" target="_self"><i class="fa fa-download"> Download VCard</i></a>');
+						$("#downVCard").html('<a href="' + download_url + '" class="vcard ui-link" target="_system"><i class="fa fa-download"> Download VCard</i></a>');
 					}
 					else {
 						var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + vCardLink;
