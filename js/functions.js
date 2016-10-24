@@ -1735,7 +1735,8 @@ function loadgamification() {
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
                                 
                 // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + results.rows.item(0).iframe_url + ' name="homepage-content" id="homepage-content" />');
-                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
+                var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
+                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrlTest + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
@@ -4199,37 +4200,79 @@ function loadfrienddetail() {
 function downloadVcard(url) {
     var download_url = localStorage.url.substr(0, localStorage.url.length - 1) + url;
    
-	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-	if(isIphone) {	
-		// navigator.app.loadUrl(download_url, { openExternal:true });
-		var ref = window.open(download_url, '_blank', 'location=yes');
-		ref.addEventListener('loadstart', function() {
-			alert(event.url); 
-		});		 
-		
-	}
-	else {
-		navigator.app.loadUrl(download_url, { openExternal:true });
-	}
+	// var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+	// if(isIphone) {	
+	// 	// navigator.app.loadUrl(download_url, { openExternal:true });
+	// 	var ref = window.open(download_url, '_system', 'location=yes');
+	// 	ref.addEventListener('loadstart', function() {
+	// 		// alert(event.url); 
+	// 	});		 
+		  
+	// }
+	// else {
+	// 	// navigator.app.loadUrl(download_url, { openExternal:true });
+	// 	var ref = cordova.InAppBrowser.open(download_url, '_blank', 'location=yes');
+	// 	ref.addEventListener('loadstart', function(event) { 
+	// 		alert(event.url); 
+	// 	});
+	// }
 
-    //alert(download_url)
-    //window.open(download_url, '_system');
-    //alert(download_url)
-    // var fileTransfer = new FileTransfer();
-    // var store = cordova.file.dataDirectory;
-    // fileTransfer.download(
-    //     download_url,
-    //     store + "theFile.vcf",
-    //     function(theFile) {
-    //         alert("File Downloaded Successfully on your device, check it here : " + theFile.toURI());
-    //         //showLink(theFile.toURI());
-    //     },
-    //     function(error) {
-    //         alert("download error source " + error.source);
-    //         alert("download error target " + error.target);
-    //         alert("upload error code: " + error.code);
-    //     }
-    // ); 
+	var fileTransfer = new FileTransfer();
+   var uri = encodeURI(download_url);
+   var fileURL =  "///storage/emulated/0/DCIM/myFile.vcf";
+
+   fileTransfer.download(
+      uri, fileURL, function(entry) {
+         // console.log("download complete: " + entry.toURL());
+         shownotification("download complete: " + entry.toURL(),"VCF");
+      },
+		
+      function(error) {
+      	shownotification("Error in Downloading ","VCF");
+         // console.log("download error source " + error.source);
+         // console.log("download error target " + error.target);
+         // console.log("download error code" + error.code);
+      },
+		
+      false, {
+         headers: {
+            "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+         }
+      }
+   );
+
+ //    var url = "https://experience.live/gamification?tc=1";
+	// var target = '_blank';
+	// var options = "location=yes"
+	// var ref = cordova.InAppBrowser.open(url, target, options);
+	// var i =0;
+	// ref.addEventListener('loadstart', loadstartCallback);
+	// ref.addEventListener('loadstop', loadstopCallback);
+	// ref.addEventListener('loadloaderror', loaderrorCallback);
+	// ref.addEventListener('exit', exitCallback);
+
+	// function loadstartCallback(event) {
+	// 	console.log('Loading started: '  + event.url);
+	// }
+
+	// function loadstopCallback(event) {
+	// 	i++;
+	// 	console.log('Loading finished: ' + event.url);
+	// 	if(i == 1) {			
+	// 		var ref = cordova.InAppBrowser.open(download_url, target, options);
+
+	// 		ref.addEventListener('loadstart', loadstartCallback);
+	// 		ref.addEventListener('loadstop', loadstopCallback);
+	// 	}
+	// }
+
+	// function loaderrorCallback(error) {
+	// 	console.log('Loading error: ' + error.message);
+	// }
+
+	// function exitCallback() {
+	// 	console.log('Browser is closed...');
+	// }
 }
 
 function showLink(url) {
