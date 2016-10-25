@@ -8453,7 +8453,7 @@ function submitcomment(instance_id) {
 
 		// }
 
-	}
+	// }
 	else { 
 
 		//alert(comment)
