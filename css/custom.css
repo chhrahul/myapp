@@ -2463,3 +2463,7 @@ div#pageone {
 .container.main-container.add-friends-container.contacts-container a.show-friends-btn.ui-link {
     display: inline-block !important;
 }
+.swiper-container.swiper-container-horizontal.customcommenttextarea {
+    height: 160px;
+    overflow: scroll;
+}
