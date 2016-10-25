@@ -10699,6 +10699,9 @@ function multiimageupload() {
 		}, 
 		function (error) {
 			console.log('Error: ' + error);
+		}, 
+		{
+			maximumImagesCount: 5
 		}
 	);
 }
