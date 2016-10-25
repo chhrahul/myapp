@@ -1746,7 +1746,7 @@ function loadgamification() {
                 var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
                 var iframeSrcUrlMike = "https://experience.live/g-homepage/-/OCintranet-100041/?i=%2FOC-Heroes%2FYoutube-ContentID";
 
-                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
+                $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrlTest + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
