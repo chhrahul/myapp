@@ -4210,7 +4210,7 @@ function downloadVcard(url) {
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {	
 		// navigator.app.loadUrl(download_url, { openExternal:true });
-		var ref = window.open(download_url, '_self', 'location=no');
+		var ref = window.open(download_url, '_blank', 'location=yes');
 		ref.addEventListener('loadstart', function() {
 			alert(event.url); 
 		});		 
