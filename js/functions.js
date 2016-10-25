@@ -989,6 +989,9 @@ function loginme() {
 														if(localStorage.event_id == "" || localStorage.event_id == undefined || localStorage.event_id == null ) {
 															localStorage.event_id = obj.data.event_id;
 														}
+														else {
+															onloadchangetoevent(localStorage.event_id,0);
+														}
 														localStorage.event_language = obj.data.event_language;
 														login_process();
 													});
@@ -5088,9 +5091,7 @@ function getLoggedInUser(id)
       success: function(obj) {
           db.transaction(function(tx) {                                        
             tx.executeSql('update OCEVENTS_user set position = "' + obj.data.position + '", team = "'+obj.data.team+'"');
-            //alert('done')
             localStorage.event_language = obj.data.event_language;
-           // alert(localStorage.event_language) 
                      
             login_process();
           });                                
@@ -5123,6 +5124,21 @@ function changecurrentevent(event_id,id)
             getLoggedInUser();
        
           
+      }
+    });
+}
+
+function onloadchangetoevent(event_id)
+{                      
+    var main_url = localStorage.url + 'api/index.php/main/changeEvent?gvm_json=1';
+    jQuery.ajax({
+      url: main_url,
+      dataType: "json",
+      method: "POST",
+      data:{eventId:event_id},
+      success: function(obj) {
+          localStorage.event_id = obj.data.event_id;
+          localStorage.short_url = obj.data.short_url;
       }
     });
 }
@@ -5170,7 +5186,6 @@ function login_process() {
 
 function importhomepage() {
 	
-
     if(localStorage.event_language == 'en')
     {
        var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id;
