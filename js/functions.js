@@ -10701,6 +10701,7 @@ function multiimageupload() {
 			console.log('Error: ' + error);
 		}, 
 		{
+			maximumImagesCount: 5,
 			width: 500,
 			quality: 100
 		}
