@@ -989,11 +989,15 @@ function loginme() {
 														if(localStorage.event_id == "" || localStorage.event_id == undefined || localStorage.event_id == null ) {
 															localStorage.event_id = obj.data.event_id;
 														}
-														else {
-															onloadchangetoevent(localStorage.event_id,0);
-														}
-														localStorage.event_language = obj.data.event_language;
-														login_process();
+														// else {
+														// 	onloadchangetoevent(localStorage.event_id,0);
+														// }
+														// if(localStorage.event_language == "" || localStorage.event_language == undefined || localStorage.event_language == null ) {
+														// 	localStorage.event_language = obj.data.event_language;
+														// }
+														// onloadchangetoevent(localStorage.event_id,0);
+														changecurrentevent(localStorage.event_id,0);
+														// login_process();
 													});
 				                                });
 
@@ -5128,18 +5132,20 @@ function changecurrentevent(event_id,id)
     });
 }
 
-function onloadchangetoevent(event_id)
-{                      
+function onloadchangetoevent(event_id) {  
+	// alert(event_id)                    
     var main_url = localStorage.url + 'api/index.php/main/changeEvent?gvm_json=1';
     jQuery.ajax({
-      url: main_url,
-      dataType: "json",
-      method: "POST",
-      data:{eventId:event_id},
-      success: function(obj) {
-          localStorage.event_id = obj.data.event_id;
-          localStorage.short_url = obj.data.short_url;
-      }
+		url: main_url,
+		dataType: "json",
+		method: "POST",
+		data:{eventId:event_id},
+		success: function(obj) {
+			// console.log(JSON.stringify(obj))
+			localStorage.event_id = obj.data.event_id;
+			localStorage.short_url = obj.data.short_url;
+			localStorage.event_language = obj.data.event_language
+		}
     });
 }
 
