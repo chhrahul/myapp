@@ -2190,29 +2190,24 @@ function hidethumb(pos)
 {
 	var allImageURI = localStorage.imageURI.split(",,,");
 	var len = allImageURI.length;
+
 	if(len != 0) {		
 	    $("#hideDiv"+pos).remove();
-		for(i=0; i<len; i++) {
-			if(i==0) {
-				if(pos == i) {
-					allImageURI[pos] = "noImage";
-				} else {
-					localStorage.imageURI = allImageURI[i];
-				}
-			}
-			else{
-				if(pos == i) {
-					allImageURI[pos] += ",,,noImage";
-				} else {
-					localStorage.imageURI += ",,," + allImageURI[i]
-				}
-			}
-		}
+	    allImageURI[pos] = "noImage";
 	}
 	else {
 		localStorage.imageURI = '';
 		jQuery('.uploadImgePreviews').html("");
 	}
+	
+	for(i=0; i < len; i++) {
+		if(i == 0) {
+			localStorage.imageURI = allImageURI[i];
+		}
+		else {
+			localStorage.imageURI += ",,," + allImageURI[i];
+		}			
+	}			
 }
 
 function showbuttons() {
@@ -5132,22 +5127,22 @@ function changecurrentevent(event_id,id)
     });
 }
 
-function onloadchangetoevent(event_id) {  
-	// alert(event_id)                    
-    var main_url = localStorage.url + 'api/index.php/main/changeEvent?gvm_json=1';
-    jQuery.ajax({
-		url: main_url,
-		dataType: "json",
-		method: "POST",
-		data:{eventId:event_id},
-		success: function(obj) {
-			// console.log(JSON.stringify(obj))
-			localStorage.event_id = obj.data.event_id;
-			localStorage.short_url = obj.data.short_url;
-			localStorage.event_language = obj.data.event_language
-		}
-    });
-}
+// function onloadchangetoevent(event_id) {  
+// 	// alert(event_id)                    
+//     var main_url = localStorage.url + 'api/index.php/main/changeEvent?gvm_json=1';
+//     jQuery.ajax({
+// 		url: main_url,
+// 		dataType: "json",
+// 		method: "POST",
+// 		data:{eventId:event_id},
+// 		success: function(obj) {
+// 			// console.log(JSON.stringify(obj))
+// 			localStorage.event_id = obj.data.event_id;
+// 			localStorage.short_url = obj.data.short_url;
+// 			localStorage.event_language = obj.data.event_language
+// 		}
+//     });
+// }
 
 function login_process() {
 
@@ -8340,82 +8335,116 @@ function submitcomment(instance_id) {
 		var allImageURI = localStorage.imageURI.split(",,,"); 
 
 		var imageData = allImageURI["0"];
+		if(imageData !== "noImage") {	
 
-		// console.log("allImageURI => " + allImageURI);          
-		var photo_ur = imageData;
-		var options = new FileUploadOptions();
-		var imageURI = photo_ur;
-		options.fileKey = "files[]";
+			// console.log("allImageURI => " + allImageURI);          
+			var photo_ur = imageData;
+			var options = new FileUploadOptions();
+			var imageURI = photo_ur;
+			options.fileKey = "files[]";
 
-		if(localStorage.mime == 'video/mp4') {
-			if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
-				var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-			} else {
-				var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.mp4';
+			if(localStorage.mime == 'video/mp4') {
+				if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
+					var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+				} else {
+					var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.mp4';
+				}
+			}
+			else {
+				if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
+					var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+				} else {
+					var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.jpg';
+				}
+			}
+			options.fileName = newfname;
+			// alert(newfname);
+			options.mimeType = localStorage.mime;
+			var params = new Object();    
+			params.submit_form = submit_form;
+			params.form_noresubmit_code = form_noresubmit_code;
+			params.comment_id = comment_id;
+			params.action = action;
+			params.comment = comment;
+			//options.headers = "Content-Type: multipart/form-data; boundary=38516d25820c4a9aad05f1e42cb442f4";
+			options.params = params;
+			options.chunkedMode = false;
+			var ft = new FileTransfer();
+			// console.log("imageURI => " + imageURI);
+			var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+			// console.log("main_url => " + main_url);
+			ft.upload(imageURI, encodeURI(main_url), win, fail, options);
+
+			function win(r) {
+				// localStorage.imageURI = '';
+				// localStorage.resubmit_code = '';      
+				// // window.location.href="add_comments.html"
+				// //changetoaddcomments();
+				var rr = JSON.parse(r.response);
+				$.each(rr.commentInstances, function(key, val) {
+					// console.log( val.event_user_id + " ,...,...,..., " + rr.commentInstances.length);
+					if(val.event_user_id == localStorage.user_id){
+						localStorage.comment_id = val.instance_id;
+						// console.log(localStorage.comment_id);	
+						// alert(localStorage.comment_id);		    	
+			    		var imagesfinal = localStorage.imageURI.split(",,,");
+			    		// console.log("length => " + imagesfinal.length)
+			    		var length = imagesfinal.length
+			    		if(length > 1) {
+			    			 addCommentImages();
+			    			// console.log("length is greater than one(1)");
+			    		}
+			    		else {
+				    		localStorage.imageURI = '';
+							localStorage.resubmit_code = '';      
+							// window.location.href="add_comments.html"
+							localStorage.submitcommentstatus = "1";
+							changetoaddcomments();
+						}
+						return false;
+					}
+				});		
+			}
+
+			function fail(error) {
+				alert("An error has occure: Code = " + error.code);
+				// alert("upload error source " + error.source);
+				// alert("upload error target " + error.target);
+				jQuery(".submit_com").show();
+				jQuery(".loading_send").hide();
 			}
 		}
-		else {
-			if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
-				var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-			} else {
-				var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.jpg';
-			}
-		}
-		options.fileName = newfname;
-		// alert(newfname);
-		options.mimeType = localStorage.mime;
-		var params = new Object();    
-		params.submit_form = submit_form;
-		params.form_noresubmit_code = form_noresubmit_code;
-		params.comment_id = comment_id;
-		params.action = action;
-		params.comment = comment;
-		//options.headers = "Content-Type: multipart/form-data; boundary=38516d25820c4a9aad05f1e42cb442f4";
-		options.params = params;
-		options.chunkedMode = false;
-		var ft = new FileTransfer();
-		// console.log("imageURI => " + imageURI);
-		var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
-		// console.log("main_url => " + main_url);
-		ft.upload(imageURI, encodeURI(main_url), win, fail, options);
+		else {		
 
-		function win(r) {
-			// localStorage.imageURI = '';
-			// localStorage.resubmit_code = '';      
-			// // window.location.href="add_comments.html"
-			// //changetoaddcomments();
-			var rr = JSON.parse(r.response);
-			$.each(rr.commentInstances, function(key, val) {
-				// console.log( val.event_user_id + " ,...,...,..., " + rr.commentInstances.length);
-				if(val.event_user_id == localStorage.user_id){
-					localStorage.comment_id = val.instance_id;
-					// console.log(localStorage.comment_id);	
-					// alert(localStorage.comment_id);		    	
-		    		var imagesfinal = localStorage.imageURI.split(",,,");
-		    		// console.log("length => " + imagesfinal.length)
+			//alert(comment)
+			var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+			jQuery.ajax({
+				url: main_url,
+				dataType: "json",
+				method: "POST",
+				data: {
+					submit_form: submit_form,
+					form_noresubmit_code:form_noresubmit_code,
+					comment_id:comment_id,
+					action:action,
+					comment:comment
+				},
+				success: function(resp) {
+					var imagesfinal = localStorage.imageURI.split(",,,");
+
 		    		var length = imagesfinal.length
 		    		if(length > 1) {
 		    			 addCommentImages();
-		    			// console.log("length is greater than one(1)");
 		    		}
 		    		else {
 			    		localStorage.imageURI = '';
 						localStorage.resubmit_code = '';      
-						// window.location.href="add_comments.html"
 						localStorage.submitcommentstatus = "1";
 						changetoaddcomments();
 					}
-					return false;
 				}
-			});		
-		}
+			});
 
-		function fail(error) {
-			alert("An error has occure: Code = " + error.code);
-			// alert("upload error source " + error.source);
-			// alert("upload error target " + error.target);
-			jQuery(".submit_com").show();
-			jQuery(".loading_send").hide();
 		}
 
 	}
