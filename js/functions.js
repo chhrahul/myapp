@@ -8334,9 +8334,15 @@ function submitcomment(instance_id) {
 	if(checkdefined(localStorage.imageURI) == 'yes') {
 		var allImageURI = localStorage.imageURI.split(",,,"); 
 
-		var imageData = allImageURI["0"];
-		if(imageData !== "noImage") {	
+		var imageDataUrl = allImageURI["0"];
+		if(imageDataUrl == "noImage") {
+			imageData == "";
+		}
+		else {
+			imageData = allImageURI["0"];
 
+		}
+		alert(imageData)
 			// console.log("allImageURI => " + allImageURI);          
 			var photo_ur = imageData;
 			var options = new FileUploadOptions();
@@ -8414,38 +8420,38 @@ function submitcomment(instance_id) {
 				jQuery(".loading_send").hide();
 			}
 		}
-		else {		
+		// else {		
 
-			//alert(comment)
-			var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
-			jQuery.ajax({
-				url: main_url,
-				dataType: "json",
-				method: "POST",
-				data: {
-					submit_form: submit_form,
-					form_noresubmit_code:form_noresubmit_code,
-					comment_id:comment_id,
-					action:action,
-					comment:comment
-				},
-				success: function(resp) {
-					var imagesfinal = localStorage.imageURI.split(",,,");
+		// 	//alert(comment)
+		// 	var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+		// 	jQuery.ajax({
+		// 		url: main_url,
+		// 		dataType: "json",
+		// 		method: "POST",
+		// 		data: {
+		// 			submit_form: submit_form,
+		// 			form_noresubmit_code:form_noresubmit_code,
+		// 			comment_id:comment_id,
+		// 			action:action,
+		// 			comment:comment
+		// 		},
+		// 		success: function(resp) {
+		// 			var imagesfinal = localStorage.imageURI.split(",,,");
 
-		    		var length = imagesfinal.length
-		    		if(length > 1) {
-		    			 addCommentImages();
-		    		}
-		    		else {
-			    		localStorage.imageURI = '';
-						localStorage.resubmit_code = '';      
-						localStorage.submitcommentstatus = "1";
-						changetoaddcomments();
-					}
-				}
-			});
+		//     		var length = imagesfinal.length
+		//     		if(length > 1) {
+		//     			 addCommentImages();
+		//     		}
+		//     		else {
+		// 	    		localStorage.imageURI = '';
+		// 				localStorage.resubmit_code = '';      
+		// 				localStorage.submitcommentstatus = "1";
+		// 				changetoaddcomments();
+		// 			}
+		// 		}
+		// 	});
 
-		}
+		// }
 
 	}
 	else { 
@@ -10763,7 +10769,14 @@ function addnote()
       	if(checkdefined(localStorage.imageURI) == 'yes') {
     
 			var allImageURI = localStorage.imageURI.split(",,,"); 
-			var imageData = allImageURI["0"];      
+			var imageDataUrl = allImageURI["0"];
+			if(imageDataUrl == "noImage") {
+				imageData == "";
+			}
+			else {
+				imageData = allImageURI["0"];
+
+			}      
 			var photo_ur = imageData;
 			var options = new FileUploadOptions();
 			var imageURI = photo_ur;
