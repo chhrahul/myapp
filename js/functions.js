@@ -7756,7 +7756,7 @@ function closequestionbox() {
 function closenotescommentbox() {
 	$("#show-form-container").show();
 	$(".questions-filter-items").fadeOut();
-	$("#cpmainnote").html('<div class="close-btn-wrapper" onclick="closeingcommentbox();"><i class="fa fa-times close-btn"></i></div><div data-role="fieldcontain" class="form-group hidden frmfld_note_id"><input id="frmfld_note_id" name="note_id" type="hidden" value="0"></div><div data-role="fieldcontain" class="form-group fileupload frmfld_files"><i class="gicon-camera file-upload" onclick="shownotesbuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea frmfld_note"><textarea class="form-control" id="frmfld_note" name="note" maxlength="4096" placeholder="" style="height: 52px; overflow-y: hidden;"></textarea><span><i class="gicon-notes"></i></span></div><div class="success-status hide"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit"><button type="button" name="submit" class="submit_com" onclick="addnote();"></button></div></div><img src="img/loading.gif" class="loading_send" style="display:none" /><div class="swiper-container swiper-container-horizontal"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadImgePreviews"></div></div>');
+	$("#cpmainnote").html('<div class="close-btn-wrapper" onclick="closeingcommentbox();"><i class="fa fa-times close-btn"></i></div><div data-role="fieldcontain" class="form-group hidden frmfld_note_id ui-field-contain"><input id="frmfld_note_id" name="note_id" type="hidden" value="0"></div><div data-role="fieldcontain" class="form-group fileupload frmfld_files ui-field-contain"><i class="gicon-camera file-upload" onclick="shownotesbuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea frmfld_note ui-field-contain"><textarea class="form-control ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow" id="frmfld_note" name="note" maxlength="4096" placeholder="Make a note" style="height: 52px; overflow-y: hidden; width: 100%; margin-left: 67px;"></textarea><span style="margin-left: 63px;"><i class="gicon-notes"></i></span></div><div class="success-status hide" style="display: none;"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit ui-field-contain"><button type="button" name="submit" class="submit_com ui-btn ui-shadow ui-corner-all" onclick="addnote();">Save</button></div><img src="img/loading.gif" class="loading_send" style="display:none"></div><div class="swiper-container swiper-container-horizontal"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadImgePreviews"></div></div></div>');
 }
 //function to show comments
 function showcomments(sortby,sortdr,l)
@@ -8335,14 +8335,10 @@ function submitcomment(instance_id) {
 		var allImageURI = localStorage.imageURI.split(",,,"); 
 
 		var imageDataUrl = allImageURI["0"];
-		if(imageDataUrl == "noImage") {
-			imageData == "";
-		}
-		else {
-			imageData = allImageURI["0"];
-
-		}
-		alert(imageData)
+		if(imageDataUrl !== "noImage") {
+			var imageData = allImageURI["0"];
+		
+		
 			// console.log("allImageURI => " + allImageURI);          
 			var photo_ur = imageData;
 			var options = new FileUploadOptions();
@@ -8420,40 +8416,52 @@ function submitcomment(instance_id) {
 				jQuery(".loading_send").hide();
 			}
 		}
-		// else {		
+		else {		
 
-		// 	//alert(comment)
-		// 	var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
-		// 	jQuery.ajax({
-		// 		url: main_url,
-		// 		dataType: "json",
-		// 		method: "POST",
-		// 		data: {
-		// 			submit_form: submit_form,
-		// 			form_noresubmit_code:form_noresubmit_code,
-		// 			comment_id:comment_id,
-		// 			action:action,
-		// 			comment:comment
-		// 		},
-		// 		success: function(resp) {
-		// 			var imagesfinal = localStorage.imageURI.split(",,,");
+			//alert(comment)
+			var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+			jQuery.ajax({
+				url: main_url,
+				dataType: "json",
+				method: "POST",
+				data: {
+					submit_form: submit_form,
+					form_noresubmit_code:form_noresubmit_code,
+					comment_id:comment_id,
+					action:action,
+					comment:comment
+				},
+				success: function(r) {
+					var rr = JSON.parse(r.response);
+					$.each(rr.commentInstances, function(key, val) {
+						// console.log( val.event_user_id + " ,...,...,..., " + rr.commentInstances.length);
+						if(val.event_user_id == localStorage.user_id){
+							localStorage.comment_id = val.instance_id;
+							// console.log(localStorage.comment_id);	
+							// alert(localStorage.comment_id);		    	
+				    		var imagesfinal = localStorage.imageURI.split(",,,");
+				    		// console.log("length => " + imagesfinal.length)
+				    		var length = imagesfinal.length
+				    		if(length > 1) {
+				    			 addCommentImages();
+				    			// console.log("length is greater than one(1)");
+				    		}
+				    		else {
+					    		localStorage.imageURI = '';
+								localStorage.resubmit_code = '';      
+								// window.location.href="add_comments.html"
+								localStorage.submitcommentstatus = "1";
+								changetoaddcomments();
+							}
+							return false;
+						}
+					});	
+				}
+			});
 
-		//     		var length = imagesfinal.length
-		//     		if(length > 1) {
-		//     			 addCommentImages();
-		//     		}
-		//     		else {
-		// 	    		localStorage.imageURI = '';
-		// 				localStorage.resubmit_code = '';      
-		// 				localStorage.submitcommentstatus = "1";
-		// 				changetoaddcomments();
-		// 			}
-		// 		}
-		// 	});
+		}
 
-		// }
-
-	// }
+	}
 	else { 
 
 		//alert(comment)
@@ -10770,79 +10778,113 @@ function addnote()
     
 			var allImageURI = localStorage.imageURI.split(",,,"); 
 			var imageDataUrl = allImageURI["0"];
-			if(imageDataUrl == "noImage") {
-				imageData == "";
-			}
-			else {
-				imageData = allImageURI["0"];
-
-			}      
-			var photo_ur = imageData;
-			var options = new FileUploadOptions();
-			var imageURI = photo_ur;
-			options.fileKey = "files[]";
-    
-			if(localStorage.mime == 'video/mp4')
-			{
-				if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
-					var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-				} 
-				else {
-					var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.mp4';
-				}
-			}
-			else
-			{
-				if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
-					var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-				} 
-				else {
-					var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.jpg';
-				}
-			}
-			options.fileName = newfname;
-			options.mimeType = localStorage.mime;
-			var params = new Object();    
-			params.submit_form = submit_form;
-			params.form_noresubmit_code = form_noresubmit_code;
-			params.note = code;
-			options.params = params;
-			options.chunkedMode = false;
-			var ft = new FileTransfer();
-			var main_url = localStorage.url + 'Add-note/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
-
-			ft.upload(imageURI, encodeURI(main_url), win, fail, options);
-
-			function win(r) {			
-				var rr = JSON.parse(r.response);
-
-				$.each(rr.noteInstances, function(key, val) {
-
-					if(val.event_user_id == localStorage.user_id) {
-						localStorage.note_id = val.instance_id;
-						var imagesfinal = localStorage.imageURI.split(",,,");
-						var notesImgaeLength = imagesfinal.length;
-
-						if(notesImgaeLength > 1) {
-							addNotesImages();
-							// console.log("length is greater than one(1)" + notesImgaeLength);
-						}
-						else {
-							localStorage.imageURI = '';
-							localStorage.resubmit_code = '';      
-							localStorage.submitnotestatus = "1";
-							changetonotes();
-						}
-						return false;
+			if(imageDataUrl !== "noImage") {
+				var imageData = allImageURI["0"];
+			    
+				var photo_ur = imageData;
+				var options = new FileUploadOptions();
+				var imageURI = photo_ur;
+				options.fileKey = "files[]";
+	    
+				if(localStorage.mime == 'video/mp4')
+				{
+					if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
+						var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+					} 
+					else {
+						var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.mp4';
 					}
-				});	
-			}
+				}
+				else
+				{
+					if (imageURI.substr(imageURI.lastIndexOf('/') + 1).indexOf(".") >= 0) {
+						var newfname = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+					} 
+					else {
+						var newfname = jQuery.trim(imageURI.substr(imageURI.lastIndexOf('/') + 1)) + '.jpg';
+					}
+				}
+				options.fileName = newfname;
+				options.mimeType = localStorage.mime;
+				var params = new Object();    
+				params.submit_form = submit_form;
+				params.form_noresubmit_code = form_noresubmit_code;
+				params.note = code;
+				options.params = params;
+				options.chunkedMode = false;
+				var ft = new FileTransfer();
+				var main_url = localStorage.url + 'Add-note/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
-			function fail(error) {
-				alert("An error has occurred: Code = " + error.code);
-				jQuery(".submit_com").show();
-				jQuery(".loading_send").hide();
-			}    
+				ft.upload(imageURI, encodeURI(main_url), win, fail, options);
+
+				function win(r) {			
+					var rr = JSON.parse(r.response);
+
+					$.each(rr.noteInstances, function(key, val) {
+
+						if(val.event_user_id == localStorage.user_id) {
+							localStorage.note_id = val.instance_id;
+							var imagesfinal = localStorage.imageURI.split(",,,");
+							var notesImgaeLength = imagesfinal.length;
+
+							if(notesImgaeLength > 1) {
+								addNotesImages();
+								// console.log("length is greater than one(1)" + notesImgaeLength);
+							}
+							else {
+								localStorage.imageURI = '';
+								localStorage.resubmit_code = '';      
+								localStorage.submitnotestatus = "1";
+								changetonotes();
+							}
+							return false;
+						}
+					});	
+				}
+
+				function fail(error) {
+					alert("An error has occurred: Code = " + error.code);
+					jQuery(".submit_com").show();
+					jQuery(".loading_send").hide();
+				}    
+			}
+			else { 
+				var main_url = localStorage.url + 'Add-note/-/'+localStorage.short_url+'-'+localStorage.event_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+				jQuery.ajax({
+					url: main_url,
+					dataType: "json",
+					method: "POST",
+					data: {
+						submit_form: submit_form,
+						form_noresubmit_code:form_noresubmit_code,
+						note:code
+					},
+					success: function(r) {
+						var rr = JSON.parse(r.response);
+
+						$.each(rr.noteInstances, function(key, val) {
+
+							if(val.event_user_id == localStorage.user_id) {
+								localStorage.note_id = val.instance_id;
+								var imagesfinal = localStorage.imageURI.split(",,,");
+								var notesImgaeLength = imagesfinal.length;
+
+								if(notesImgaeLength > 1) {
+									addNotesImages();
+									// console.log("length is greater than one(1)" + notesImgaeLength);
+								}
+								else {
+									localStorage.imageURI = '';
+									localStorage.resubmit_code = '';      
+									localStorage.submitnotestatus = "1";
+									changetonotes();
+								}
+								return false;
+							}
+						});	
+					}
+				});
+		    } 
 	   }
 	   else { 
 			var main_url = localStorage.url + 'Add-note/-/'+localStorage.short_url+'-'+localStorage.event_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
