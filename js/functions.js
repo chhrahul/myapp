@@ -1748,7 +1748,7 @@ function loadgamification() {
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
-                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: absolute !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
 
                 //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
