@@ -1647,7 +1647,6 @@ function loadgamification() {
     
     innoti();
 	
-	changeATag();
 	//alert(localStorage.reloadPage);
 
     if(localStorage.voteforwarderid == undefined || localStorage.voteforwarderid == null || localStorage.voteforwarderid == ""){
@@ -11001,32 +11000,8 @@ function addNotesImages() {
 	    }  
 }
 
-
-function changeATag() {
-	var notificationAtag = $('#notifications').find('a');
-	console.log('#notifications' + notificationAtag);
-	console.log($('#notifications').html())
-	$.each(notificationAtag, function(key, val) {
-		console.log(val);
-	});
-
-    $('#notifications').find('a').each(function() {
-    	console.log('#notifications a');
-        var hrefAttr = $(this).attr('href');
-        console.log(hrefAttr);
-        if(hrefAttr !== "#") {
-            console.log("if => " + hrefAttr);
-            $(this).attr('href', "#");
-            $(this).attr('onclick', "urlClickFn('" + hrefAttr + "');")
-        }
-        else {
-            console.log("else => " + hrefAttr);
-        }
-    });
-}
-
 function urlClickFn(url) {
-    alert(url);
+    // alert(url);
     var download_url = url;
     var ref = window.open(download_url, '_system', 'location=yes');
 	ref.addEventListener('loadstart', function() {
