@@ -1746,7 +1746,7 @@ function loadgamification() {
 
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
                 
-                $(".homepageContentIframe").attr("src", iframeSrcUrl);
+                // $(".homepageContentIframe").attr("src", iframeSrcUrl);
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
