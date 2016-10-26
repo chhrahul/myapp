@@ -1647,6 +1647,7 @@ function loadgamification() {
     
     innoti();
 	
+	changeATag();
 	//alert(localStorage.reloadPage);
 
     if(localStorage.voteforwarderid == undefined || localStorage.voteforwarderid == null || localStorage.voteforwarderid == ""){
@@ -10524,6 +10525,7 @@ function innoti() {
 				        	else {
 				        		var agotext = "";
 				        	}
+				        	// console.log("aaaaaaaa =========> " +val.text);
 				        	if(i < len) {
 			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + agotext + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
 			        		}
@@ -10532,12 +10534,22 @@ function innoti() {
 			        		}
 			        		$(".slimScrollDiv, #notifications").css("height","380px");
 
+			        		var notiid = "#dtid"+ val.instance_id;
+			        		$(notiid).find('a').each(function() {
+						        var hrefAttr = $(this).attr('href');
+						        if(hrefAttr !== "#") {
+						            $(this).attr('href', "#");
+						            $(this).attr('onclick', "urlClickFn('" + hrefAttr + "');")
+						        }
+						    });
+
 			        	});
 			        }
 		        }
 		    });
 		}
 	});
+	
 }
 
 function newinnoti(val) {
@@ -10560,6 +10572,15 @@ function newinnoti(val) {
 
 	$("#notifications-count").html(noticount).show();		
 	$("#notifications").prepend('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');	
+
+	var notiid = "#dtid"+ val.instance_id;
+	$(notiid).find('a').each(function() {
+        var hrefAttr = $(this).attr('href');
+        if(hrefAttr !== "#") {
+            $(this).attr('href', "#");
+            $(this).attr('onclick', "urlClickFn('" + hrefAttr + "');")
+        }
+    });
 }
 
 function notistatuschange(data) {
@@ -10657,6 +10678,15 @@ function loadmorenoti(data) {
 		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
 		        		}
 		        		$(".slimScrollDiv, #notifications").css("height","380px");
+
+		        		var notiid = "#dtid"+ val.instance_id;
+		        		$(notiid).find('a').each(function() {
+					        var hrefAttr = $(this).attr('href');
+					        if(hrefAttr !== "#") {
+					            $(this).attr('href', "#");
+					            $(this).attr('onclick', "urlClickFn('" + hrefAttr + "');")
+					        }
+					    });
 		        	});
 		        }
 			}
@@ -10699,8 +10729,8 @@ function multiimageupload() {
 			console.log('Error: ' + error);
 		}, 
 		{
-			maximumImagesCount: 5,
-			width: 500,
+			// maximumImagesCount: 5,
+			width: 300,
 			quality: 100
 		}
 	);
@@ -10969,5 +10999,37 @@ function addNotesImages() {
 			    }
 			}
 	    }  
+}
 
+
+function changeATag() {
+	var notificationAtag = $('#notifications').find('a');
+	console.log('#notifications' + notificationAtag);
+	console.log($('#notifications').html())
+	$.each(notificationAtag, function(key, val) {
+		console.log(val);
+	});
+
+    $('#notifications').find('a').each(function() {
+    	console.log('#notifications a');
+        var hrefAttr = $(this).attr('href');
+        console.log(hrefAttr);
+        if(hrefAttr !== "#") {
+            console.log("if => " + hrefAttr);
+            $(this).attr('href', "#");
+            $(this).attr('onclick', "urlClickFn('" + hrefAttr + "');")
+        }
+        else {
+            console.log("else => " + hrefAttr);
+        }
+    });
+}
+
+function urlClickFn(url) {
+    alert(url);
+    var download_url = url;
+    var ref = window.open(download_url, '_system', 'location=yes');
+	ref.addEventListener('loadstart', function() {
+		alert(event.url); 
+	});	
 }
