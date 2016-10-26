@@ -1741,15 +1741,15 @@ function loadgamification() {
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);       
 
-                // var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
-                // var iframeSrcUrlMike = "https://experience.live/g-homepage/-/OCintranet-100041/?i=%2FOC-Heroes%2FYoutube-ContentID";
-
+                var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
+               
                 // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = (parseInt(thisIframesHeight) + parseInt(40)) + "px";     
-                alert(thisIframesHeight + " , " + welHeight);            
+                // alert(thisIframesHeight + " , " + welHeight);            
                 // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: absolute !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+                $("#homepage-content").attr("src", iframeSrcUrl);
                 $("#homepage-content").show().css("height", welHeight);
                 $('.welcome-container').html("");
 
