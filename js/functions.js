@@ -1667,7 +1667,7 @@ function loadgamification() {
     	// location.reload();
     } 
 
-    $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+    $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image"></div><div class="col-xs-12"><div class="welcome-title"><h1></h1></div><p></p><div class="welcome-content"></div></div></div>');
     $(".welcome-container").css("margin-top", "0px")
     
     jQuery( document ).ready(function() {
@@ -1728,8 +1728,8 @@ function loadgamification() {
 					if(localStorage.mainlogoSmallImage) {
 						$(".logo_inner").attr('src', localStorage.mainlogoSmallImage);
 					}
-						else {
-					$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
+					else {
+						$(".logo_inner").attr('src', results.rows.item(0).main_logo_small_image);
 					}
                 }
                 
@@ -1741,12 +1741,12 @@ function loadgamification() {
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
                                 
-                // $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + results.rows.item(0).iframe_url + ' name="homepage-content" id="homepage-content" />');
-
-                var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
-                var iframeSrcUrlMike = "https://experience.live/g-homepage/-/OCintranet-100041/?i=%2FOC-Heroes%2FYoutube-ContentID";
+                // var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
+                // var iframeSrcUrlMike = "https://experience.live/g-homepage/-/OCintranet-100041/?i=%2FOC-Heroes%2FYoutube-ContentID";
 
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
+                
+                $(".homepageContentIframe").attr("src", iframeSrcUrl);
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
                 var welHeight = parseInt(thisIframesHeight) + parseInt(40);                 
