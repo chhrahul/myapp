@@ -2140,6 +2140,10 @@ body #fatimes {
 #notifications .oc-icon-trash {
     z-index: 99999;
 }
+#notifications strong {
+    font-weight: normal;
+    color: #96BD1F;
+}
 .tooltipster-sidetip .tooltipster-content {
     color: #fff !important;
 }
