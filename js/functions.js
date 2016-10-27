@@ -1738,9 +1738,6 @@ function loadgamification() {
                 var iframeSrcUrl = results.rows.item(0).iframe_url + "&isApp=1";
                 iframeSrcUrl = iframeSrcUrl.replace("http://_", "http://");
 
-                var thisIframesHeight = window.parent.$("#homepage-content").height();
-                var welHeight = parseInt(thisIframesHeight) + parseInt(40);       
-
                 var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
                
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
@@ -1754,7 +1751,7 @@ function loadgamification() {
                 else {
                 	var welHeight = "550px";
                 }           
-                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + " !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
                 // $("#homepage-content").attr("src", iframeSrcUrl);
                 // $("#homepage-content").show().css("height", welHeight);
                 // $('.welcome-container').html("");
