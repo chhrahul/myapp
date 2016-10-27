@@ -1667,7 +1667,7 @@ function loadgamification() {
     	// location.reload();
     } 
 
-    $(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+    
     $(".welcome-container").css("margin-top", "0px")
     
     jQuery( document ).ready(function() {
@@ -1683,6 +1683,8 @@ function loadgamification() {
             var len = results.rows.length;
             //            alert(results.rows.item(0).main_logo_small_image);
             if (results.rows.item(0).type == 'content') {
+            	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
+
                 if (results.rows.item(0).main_logo_small_image != undefined && results.rows.item(0).main_logo_small_image != null && results.rows.item(0).main_logo_small_image != '') {
                 	// localStorage.mainlogoSmallImage = results.rows.item(0).main_logo_small_image;
 					if(localStorage.mainlogoSmallImage) {
@@ -1763,139 +1765,131 @@ function loadgamification() {
                    var website_id =  localStorage.website_id;
                   // alert(website_id)
                 $(document).ready(function () {
-                if (typeof $("#homepage-content")[0] !== "undefined") {
-                $('.welcome-container').append('<a id="gamification-footer-menu" class="gamification-footer-menu show-menu" href="javascript:void(0);">Pages</a>');
-                $('.welcome-container').append('<div class="gamification-mobile-aside-wrapper show-menu" id="gamification-mobile-aside-wrapper"><div class="mobile-aside-container"><form class="mobile-aside-search-form"><div class="main-input-container"><button onclick="javascript:void(0);"><i class="fa fa-search"></i></button><input type="text" class="mobile_search_string" data-website="'+website_id+'" placeholder="Search"></div></form><ul class="mobile-aside-menu" id="gamificationMobileMenu"><div id="sitebuilderNavigation"></div></ul></div></div>');
-                
-           
-                
-                  var navCounter = 0;
-      
-				function getNavigation() {
-					if (navCounter == 20) {
-						return false;
+					if (typeof $("#homepage-content")[0] !== "undefined") {
+						$('.welcome-container').append('<a id="gamification-footer-menu" class="gamification-footer-menu show-menu" href="javascript:void(0);">Pages</a>');
+						$('.welcome-container').append('<div class="gamification-mobile-aside-wrapper show-menu" id="gamification-mobile-aside-wrapper"><div class="mobile-aside-container"><form class="mobile-aside-search-form"><div class="main-input-container"><button onclick="javascript:void(0);"><i class="fa fa-search"></i></button><input type="text" class="mobile_search_string" data-website="'+website_id+'" placeholder="Search"></div></form><ul class="mobile-aside-menu" id="gamificationMobileMenu"><div id="sitebuilderNavigation"></div></ul></div></div>');
+
+						var navCounter = 0;
+
+						function getNavigation() {
+							if (navCounter == 20) {
+							return false;
+							}
+
+							if (typeof $("#homepage-content")[0].contentWindow.sbGamificationNavigation !== "undefined") {
+								$(".gamification-footer-menu").addClass('show-menu');
+								$(".gamification-mobile-aside-wrapper").addClass('show-menu');
+
+								$("#gamification-footer-menu").on("click", function () {
+									$("#gamificationMobileMenu").show();
+									// $("#gamificationMobileSearch").hide(); 
+									$('.main-wrapper').toggleClass("gamification-mobile-aside-wrapper-open");
+
+									return false;
+								});
+
+
+								var sbGamificationNavigation = $("#homepage-content")[0].contentWindow.sbGamificationNavigation;
+								//alert(sbGamificationNavigation)
+								$("#sitebuilderNavigation").html(sbGamificationNavigation);
+								$("#sitebuilderNavigation li a").each(function(k, v)
+								{
+									var href = $(v).attr("href"); 
+									//alert(localStorage.url+href);
+									$(v).attr("href",localStorage.url+href);
+								});
+								$("#sitebuilderNavigation li a").on("click", function () {
+
+									$("#sitebuilderNavigation li a").removeClass("active");
+									$(this).addClass("active");
+								});
+							} 
+							else {
+								setTimeout(function () {
+									getNavigation();
+								}, 1000);
+							}
+
+							navCounter++;
+
+							return true;
+						}
+
+						getNavigation();
 					}
-
-                if (typeof $("#homepage-content")[0].contentWindow.sbGamificationNavigation !== "undefined") {
-                    $(".gamification-footer-menu").addClass('show-menu');
-                    $(".gamification-mobile-aside-wrapper").addClass('show-menu');
-
-                    $("#gamification-footer-menu").on("click", function () {
-                        $("#gamificationMobileMenu").show();
-                       // $("#gamificationMobileSearch").hide(); 
-                        $('.main-wrapper').toggleClass("gamification-mobile-aside-wrapper-open");
-
-                        return false;
-                    });
-
-
-                    var sbGamificationNavigation = $("#homepage-content")[0].contentWindow.sbGamificationNavigation;
-                          //alert(sbGamificationNavigation)
-                    $("#sitebuilderNavigation").html(sbGamificationNavigation);
-                    $("#sitebuilderNavigation li a").each(function(k, v)
-                    {
-                      var href = $(v).attr("href"); 
-                       //alert(localStorage.url+href);
-                       $(v).attr("href",localStorage.url+href);
-                    });
-                    $("#sitebuilderNavigation li a").on("click", function () {
-                    
-                        $("#sitebuilderNavigation li a").removeClass("active");
-                        $(this).addClass("active");
-                    });
-                } else {
-                    setTimeout(function () {
-                        getNavigation();
-                    }, 1000);
-                }
-
-                navCounter++;
-
-                return true;
-            }
-
-            getNavigation();
-        }
-        //$(' .main-wrapper > header:first-child').css('display','none !important;');
-        //$("#homepage-content").contents().find("header").css("display", "none !important;");
         
-    var interval = 300;
-    var websiteId = $('.mobile_search_string').data('website');
-    $('.mobile_search_string').keyup(function () {
-        var filter = $(this).val();
-         //alert(websiteId)
-          //alert(filter)
-            //alert(localStorage.url + 'modules/sitebuilder/ajax/fe_search_ws.php')
-        if (filter != "") {
-            delay(function () {
-                $.ajax({
-                    type: "POST",
-                    url: localStorage.url + 'modules/sitebuilder/ajax/fe_search_ws.php',
-                    data: {
-                        action: 'search_string',
-                        filter: filter,
-                        website_id: websiteId
-                    },
-                    dataType: 'json',
-                    success: function (jsonData) {
-                        //alert(JSON.stringify(jsonData));
-                        var res = '';
+				    var interval = 300;
+				    var websiteId = $('.mobile_search_string').data('website');
+			    	$('.mobile_search_string').keyup(function () {
+				        var filter = $(this).val();
+				         //alert(websiteId)
+				          //alert(filter)
+				            //alert(localStorage.url + 'modules/sitebuilder/ajax/fe_search_ws.php')
+				        if (filter != "") {
+				            delay(function () {
+				                $.ajax({
+				                    type: "POST",
+				                    url: localStorage.url + 'modules/sitebuilder/ajax/fe_search_ws.php',
+				                    data: {
+				                        action: 'search_string',
+				                        filter: filter,
+				                        website_id: websiteId
+				                    },
+				                    dataType: 'json',
+				                    success: function (jsonData) {
+				                        //alert(JSON.stringify(jsonData));
+				                        var res = '';
 
-                        if (jsonData['status'] != 'error') {
+				                        if (jsonData['status'] != 'error') {
 
-                            $.each(jsonData['results']['categories'], function (ci, category) {
+				                            $.each(jsonData['results']['categories'], function (ci, category) {
 
-                                if (category['count'] > 0) {
+				                                if (category['count'] > 0) {
 
-                                    res += '<div class="mobile-aside-result-list-title">\
-											' + category["title"] + ':\
-										</div>\
-										<ul class="search-results-list">';
+				                                    res += '<div class="mobile-aside-result-list-title">\
+															' + category["title"] + ':\
+														</div>\
+														<ul class="search-results-list">';
 
-                                    $.each(category["search"], function (si, searchResult) {
-                                        res += '<li>\
-												<a href="'+ localStorage.url + searchResult["url"] + '" target="homepage-content">\
-													 ' + searchResult["title"] + '\
-												</a>\
-											</li>';
-                                    });
+				                                    $.each(category["search"], function (si, searchResult) {
+				                                        res += '<li>\
+																<a href="'+ localStorage.url + searchResult["url"] + '" target="homepage-content">\
+																	 ' + searchResult["title"] + '\
+																</a>\
+															</li>';
+				                                    });
 
-                                    res += '</ul>';
+				                                    res += '</ul>';
 
-                                }
+				                                }
 
-                            });
+				                            });
 
-                        } else { //No results
-                            res += jsonData['no_results'];
-                        }
-                        //alert(res)
-                        //$('.mobile-aside-search-results').html(res);
-                        //$('#gamificationMobileMenu').hide();
-                        //$('#gamificationMobileSearch').show();
-                        $("#sitebuilderNavigation").html('<div id="gamificationMobileSearch" style="display: block;"><h3>Search results</h3>');
-                        $("#sitebuilderNavigation").append(res);
-                        $("#sitebuilderNavigation").append('</div>');
-                    }
-                });
-            }, interval);
-        } else {
-            $("#gamificationMobileMenu").show();
-            $("#gamificationMobileSearch").hide();
-        }
-    });
+				                        } else { 
+				                            res += jsonData['no_results'];
+				                        }
+				                        $("#sitebuilderNavigation").html('<div id="gamificationMobileSearch" style="display: block;"><h3>Search results</h3>');
+				                        $("#sitebuilderNavigation").append(res);
+				                        $("#sitebuilderNavigation").append('</div>');
+				                    }
+			                	});
+			           		 }, interval);
+			        	} else {
+				            $("#gamificationMobileMenu").show();
+				            $("#gamificationMobileSearch").hide();
+				        }
+		    		});
     
-var delay = (function () {
-    var timer = 0;
-    return function (callback, ms) {
-        clearTimeout(timer);
-        timer = setTimeout(callback, ms);
-    };
-})();           
+					var delay = (function () {
+					    var timer = 0;
+					    return function (callback, ms) {
+					        clearTimeout(timer);
+					        timer = setTimeout(callback, ms);
+					    };
+					})();   
         
-        
-    });
-    }
+    			});
+   		 }
    
     
             }
@@ -1915,11 +1909,8 @@ var delay = (function () {
                      localStorage.agenda_id = ag_id;     
                     changetovoting();
                   }
-                  else
-                  {
-                    //localStorage.agenda_id = results.rows.item(0).main_title;
-                    localStorage.agenda_id = ag_id;
-                    //alert(localStorage.agenda_id)
+                  else {                    
+                    localStorage.agenda_id = ag_id;                   
                     //window.location.href = 'agenda_item.html';
                     changetoagendaitem();
                     }
