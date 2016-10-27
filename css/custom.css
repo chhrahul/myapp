@@ -2130,6 +2130,16 @@ body #fatimes {
     padding: 0 14px;
     text-align: right;
 }
+#notifications .actions-bar span {
+    width: 70%;
+    float: right;
+}
+#notifications .actions-bar i.oc-icon-trash {
+    margin-top: 7px;
+}
+#notifications .oc-icon-trash {
+    z-index: 99999;
+}
 .tooltipster-sidetip .tooltipster-content {
     color: #fff !important;
 }

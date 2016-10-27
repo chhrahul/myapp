@@ -10587,6 +10587,7 @@ function deleteallnoti() {
 			action: 'notification_delete_all'
         },
         success: function(obj) {
+        	// console.log(JSON.stringify(obj));
         	innoti();
         }
     });
