@@ -2124,6 +2124,12 @@ body #fatimes {
     font-size: 16px;
     float: left;
 }
+#notifications .actions-bar {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 14px;
+    text-align: right;
+}
 .tooltipster-sidetip .tooltipster-content {
     color: #fff !important;
 }

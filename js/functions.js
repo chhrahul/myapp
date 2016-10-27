@@ -10514,7 +10514,7 @@ function innoti() {
 		        		$("#notifications-count").html(countnoti).show();
 		        	}
 		        	if(len > 0) {
-						$("#notifications").html("");
+						$("#notifications").html('<dt class="actions-bar"><span class="action delete-all" onclick="deleteallnoti()"><i class="oc-icon-trash"></i> deleteAllNotifications</span></dt>');
 			        	$.each(textnoti, function(key, val) {
 			        		i++;
 			        		var notitime = jQuery.timeago(val.time);
@@ -10536,10 +10536,10 @@ function innoti() {
 				        	}
 				        	// console.log("aaaaaaaa =========> " +val.text);
 				        	if(i < len) {
-			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + agotext + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
+			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + agotext + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
 			        		}
 			        		else {
-			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + len + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
+			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + len + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
 			        		}
 			        		$(".slimScrollDiv, #notifications").css("height","380px");
 
@@ -10561,6 +10561,37 @@ function innoti() {
 	
 }
 
+function deletesinglenoti(data) {
+	var main_url = localStorage.url + 'modules/gamification/ajax/frontend_ws.php';
+	jQuery.ajax({
+        url: main_url,
+        dataType: "json",
+        method: "POST",
+        data: {
+			action: 'notification_delete',
+			instance_id: data
+        },
+        success: function(obj) {
+        	innoti();
+        }
+    });
+}
+
+function deleteallnoti() {
+	var main_url = localStorage.url + 'modules/gamification/ajax/frontend_ws.php';
+	jQuery.ajax({
+        url: main_url,
+        dataType: "json",
+        method: "POST",
+        data: {
+			action: 'notification_delete_all'
+        },
+        success: function(obj) {
+        	innoti();
+        }
+    });
+}
+
 function newinnoti(val) {
 
 	var noticount = $("#notifications-count").html();
@@ -10580,7 +10611,7 @@ function newinnoti(val) {
 	var notitime = jQuery.timeago(val.time);
 
 	$("#notifications-count").html(noticount).show();		
-	$("#notifications").prepend('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');	
+	$("#notifications").prepend('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');	
 
 	var notiid = "#dtid"+ val.instance_id;
 	$(notiid).find('a').each(function() {
@@ -10624,26 +10655,26 @@ function notistatuschange(data) {
 	        }
 	    });
 	}
-	else {
-		jQuery.ajax({
-	        url: main_url,
-	        dataType: "json",
-	        method: "POST",
-	        data: {
-				action: 'notification_mark_as',
-				instance_id: data,
-				read: false
-            },
-	        success: function(obj) {
-	        	if(obj.status == "success"){
-					$("#facircle" + data).removeClass("fa-circle-o").addClass("fa-circle");
-					$('#dtid'+data).removeClass("read").addClass("unread");		
-					noticount = parseInt(noticount) + parseInt("1");
-					$("#notifications-count").html(noticount).show();
-				}
-			}
-		});
-	}
+	// else {
+	// 	jQuery.ajax({
+	//         url: main_url,
+	//         dataType: "json",
+	//         method: "POST",
+	//         data: {
+	// 			action: 'notification_mark_as',
+	// 			instance_id: data,
+	// 			read: false
+ //            },
+	//         success: function(obj) {
+	//         	if(obj.status == "success"){
+	// 				$("#facircle" + data).removeClass("fa-circle-o").addClass("fa-circle");
+	// 				$('#dtid'+data).removeClass("read").addClass("unread");		
+	// 				noticount = parseInt(noticount) + parseInt("1");
+	// 				$("#notifications-count").html(noticount).show();
+	// 			}
+	// 		}
+	// 	});
+	// }
 }
 
 function loadmorenoti(data) {
@@ -10681,10 +10712,10 @@ function loadmorenoti(data) {
 			        	}
 
 			        	if(i < len) {
-		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
+		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
 		        		}
 		        		else {
-		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'"><span class="time-wrapper clearfix"><i class="mark-as fa pull-right ' + faclass + '" id="facircle' + val.instance_id + '" onclick="notistatuschange(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
+		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
 		        		}
 		        		$(".slimScrollDiv, #notifications").css("height","380px");
 
