@@ -7838,7 +7838,6 @@ function showcomments(sortby,sortdr,l)
 					}
 				}
 				else{
-					alert("else")
 					localStorage.submitcommentstatus = "";
 				}
 
