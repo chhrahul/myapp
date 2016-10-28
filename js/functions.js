@@ -7764,19 +7764,19 @@ function showcomments(sortby,sortdr,l)
 	jQuery(".uploadImgePreviews").html("");
 	jQuery("#frmfld_comment").val("");
 	if(localStorage.submitcommentstatus) {
-		alert("if")
+		// alert("if")
 		if(localStorage.submitcommentstatus == "1") {
-		alert("if if")
+		// alert("if if")
 			$(".success-status").removeClass("hide");
 			$(".error-status").removeClass("hide");
 			$(".error-status").addClass("hide");
 			localStorage.submitcommentstatus = "";
-			window.setTimeout(function () {
-			    closecommentbox();
-			}, 30000);
+			// window.setTimeout(function () {
+			//     closecommentbox();
+			// }, 30000);
 		}
 		else {
-		alert("if else")
+		// alert("if else")
 			$(".error-status").removeClass("hide");
 			$(".success-status").removeClass("hide");
 			$(".success-status").addClass("hide");
@@ -8438,6 +8438,7 @@ function submitcomment(instance_id) {
 				    		// console.log("length => " + imagesfinal.length)
 				    		var length = imagesfinal.length
 				    		if(length > 1) {
+				    			localStorage.submitcommentstatus = "1";
 				    			 addCommentImages();
 				    			// console.log("length is greater than one(1)");
 				    		}
@@ -8474,7 +8475,8 @@ function submitcomment(instance_id) {
 			},
 			success: function(resp) {
 				//alert(resp)
-				localStorage.resubmit_code = '';            
+				localStorage.resubmit_code = '';   
+				localStorage.submitcommentstatus = "1";         
 				// window.location.href="add_comments.html"
 				changetoaddcomments();
 			}
