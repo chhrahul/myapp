@@ -7069,6 +7069,31 @@ function showquiz()
             method: "GET",
             success: function(obj) {
                // console.log(JSON.stringify(obj));
+
+				// var aaaa = obj.answersStatuses;
+
+				// aaaa = aaaa.split(", "); 
+				// alert(aaaa);
+				// var len = aaaa.length;
+				// alert(aaaa + ' , ' + len)
+				// $(".questions-bar").html("");
+				// for(i=0; i<len; i++) {
+				// 	alert(aaaa[i]);
+				// 	if(aaaa[i] == "1)" {
+				// 		var liClass = '<li class="right-answer"></li>';
+				// 	}
+				// 	else if(aaaa[i] == "2") {
+				// 		var liClass = '<li class="wrong-answer"></li>';
+				// 	}					
+				// 	else if(aaaa[i] == "3") {
+				// 		var liClass = '<li class="active"></li>';
+				// 	}
+				// 	else {
+				// 		var liClass = '<li></li>';
+				// 	}
+				// 	$(".questions-bar").append(liClass);
+				// }
+
                $("#quiz_timer_icon").html('<i class="fa fa-clock-o"><span id="countdown_box"></span>')
                $.each(obj.breadcrumbs, function(key, val) {
 
@@ -7158,6 +7183,7 @@ function showquiz()
 	                       }  
 	                    }
 	                   
+
 	                    
 	                    if(obj.questionMultipleAnswers == 'true' || obj.questionMultipleAnswers == true)
 	                    {
@@ -7990,6 +8016,7 @@ function showcomments(sortby,sortdr,l)
 									}
 
 								}
+
 							}
 						});
 					}	                             
