@@ -7764,16 +7764,19 @@ function showcomments(sortby,sortdr,l)
 	jQuery(".uploadImgePreviews").html("");
 	jQuery("#frmfld_comment").val("");
 	if(localStorage.submitcommentstatus) {
+		alert("if")
 		if(localStorage.submitcommentstatus == "1") {
+		alert("if if")
 			$(".success-status").removeClass("hide");
 			$(".error-status").removeClass("hide");
 			$(".error-status").addClass("hide");
 			localStorage.submitcommentstatus = "";
 			window.setTimeout(function () {
 			    closecommentbox();
-			}, 100 * 100);
+			}, 10000);
 		}
 		else {
+		alert("if else")
 			$(".error-status").removeClass("hide");
 			$(".success-status").removeClass("hide");
 			$(".success-status").addClass("hide");
@@ -7781,6 +7784,7 @@ function showcomments(sortby,sortdr,l)
 		}
 	}
 	else{
+		alert("else")
 		localStorage.submitcommentstatus = "";
 	}
    jQuery(document).ready(function($) {
