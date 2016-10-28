@@ -6753,7 +6753,7 @@ function showvoting(sortby,sortdr,l)
                   	});
                     $('.voting-content-item > ul > li .voting-toggle-btn').on('click', function (e)
                     {
-                    	alert("hello");
+                    	// alert("hello");
                 		e.preventDefault();
                         
                         var btn = $(this);
@@ -6767,7 +6767,7 @@ function showvoting(sortby,sortdr,l)
                   }                  
                 $('#vote-items-filter').on('keyup', function () 
                 {
-                    	alert("hello");
+                    	// alert("hello");
                     var val = $(this).val().toLowerCase();
                     
                     $('.voting-content-item li').each(function () 
@@ -7726,7 +7726,8 @@ function sortcomments(s,r)
 
 	var l = 1;
 
-	showcomments(s,r,l)
+	showcomments(s,r,l);
+	$(".inner_comment_loop").html("<p>&nbsp;</p>");
 }
 
 function closeingcommentbox() {
@@ -7839,6 +7840,7 @@ function showcomments(sortby,sortdr,l)
             dataType: "json",
             method: "GET",
             success: function(obj) {
+            	$(".inner_comment_loop").html("");
             	// console.log(JSON.stringify(obj))
             	if(checkdefined(obj.commentInstances) == "yes") {
 					$(".questions-heading-title").show();
