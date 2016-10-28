@@ -7773,7 +7773,7 @@ function showcomments(sortby,sortdr,l)
 			localStorage.submitcommentstatus = "";
 			window.setTimeout(function () {
 			    closecommentbox();
-			}, 10000);
+			}, 30000);
 		}
 		else {
 		alert("if else")
