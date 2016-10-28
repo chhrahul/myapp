@@ -7726,8 +7726,9 @@ function sortcomments(s,r)
 
 	var l = 1;
 
-	showcomments(s,r,l);
-	$(".inner_comment_loop").html("<p>&nbsp;</p>");
+	// setTimeout(function() {
+        showcomments(s,r,l);
+    // }, 10000);
 }
 
 function closeingcommentbox() {
@@ -7796,11 +7797,11 @@ function showcomments(sortby,sortdr,l)
         $(".header").show();
 	    $(".dropdown-menu").show();
 	    $(".footertag").show();  
-
+	    // alert(checkdefined(sortby) + " , " + sortby);
 	    if(checkdefined(sortby) != 'yes') {
 			sortby = 'timestamp';
 		}
-
+		// alert(checkdefined(sortdr) + " , " + sortdr);
 		if(checkdefined(sortdr) != 'yes') {
 			sortdr = 'desc';
 	    } 
@@ -7834,8 +7835,9 @@ function showcomments(sortby,sortdr,l)
         var main_urld = localStorage.url + 'Add-comment/-/'+ localStorage.short_url +'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
         // console.log(main_urld);
-        alert(main_urld)
+        // alert(main_urld)
         localStorage.loadallcomments_url = main_urld;
+    setTimeout(function() {
         $.ajax({
             url: main_urld,
             dataType: "json",
@@ -7896,7 +7898,7 @@ function showcomments(sortby,sortdr,l)
 				});
 
 				$.each(obj.commentInstances, function(key, val) {
-
+					// alert(val.instance_id);
 					//alert(json.STRINGIFY(VAL));
 					var image_url = localStorage.url+'resources/gamification/img/avatar-placeholder.png';
 					if(checkdefined(val.image) == "yes")
@@ -7980,25 +7982,18 @@ function showcomments(sortby,sortdr,l)
 								if(checkdefined(res.hosted_vimeo_id) == 'yes') {
 									if(isIphone) {
 										if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
-											// alert("hd");
 											var videoUrl = "http:" + res.hosted_vimeo_link_hd;
 										}
 										else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
-											// alert("sd960");
 											var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
 										}
 										else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
-											// alert("sd640");
 											var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
 										}
 										else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
-											// alert("hls");
-											// console.log(res.hosted_vimeo_link_hls);
-
 											var videoUrl = "http" + res.hosted_vimeo_link_hls;
 										}
 										else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
-											// alert("mobile");
 											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
 										}
 										
@@ -8007,15 +8002,12 @@ function showcomments(sortby,sortdr,l)
 									else {										
 										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
 										
-										// var videoUrl = "http" + res.hosted_vimeo_link_hls;
-										// comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 									}
 
 								}
 							}
 						});
-					}
-	                             
+					}	                             
 	              
 					if(val.reply_to_comment_id == 0 || val.reply_to_comment_id == 'null' || val.reply_to_comment_id == null) {
 						$('.inner_comment_loop').append('<div id="comment_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"> </i> '+val.time_since+'</span></h3><div class="question-inner"><div><i class="fa fa-comment"></i></div><p>'+val.comments+' </p></div></div></div>'+comment_image+comment_video+'<div class="clearfix">'+delete_button+'<div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes"> '+val.likes+'</span> </div><div class="dislikes-count ">' + dislike_link + '</div><div class="reply-to-comment"><i class="fa fa-reply"></i><span class="replypostplaceholder"></span></div></div></div><div class="questions-filter-items reply-form clearfix hide"><div id="replyform-'+val.instance_id+'" class="has-file-upload"><div class="form-group fileupload c'+val.instance_id+'_files" data-role="fieldcontain"><i class="oc-icon-camera file-upload dz-clickable greencamera" onclick="showreplyimagebuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea c'+val.instance_id+'_comment"><textarea class="form-control textcomment" id="c'+val.instance_id+'_comment" name="comment" maxlength="4096" placeholder=""></textarea><span><i class="fa fa-comment"></i></span></div><div class="success-status hide"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit"><button type="submit" class="reply-sub" onclick="submitcomment('+val.instance_id+')" name="submit"></button><button type="submit" class="btn-danger reply-cancel" name="cancel"></button></div></div><div class="swiper-container swiper-container-horizontal customcommenttextarea"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadReplyImgePreviews"></div></div></div></div></div>');
@@ -8227,7 +8219,10 @@ function showcomments(sortby,sortdr,l)
               
             }
        }); 
-   });            
+	}, 10000);  
+   });   
+
+           
 }
 
 function commentpostbtn() {
