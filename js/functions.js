@@ -7756,37 +7756,6 @@ function closenotescommentbox() {
 //function to show comments
 function showcomments(sortby,sortdr,l)
 {
-	localStorage.imageURI = "";
-	localStorage.popUpObjectData = "";
-	localStorage.comment_id = "";
-	jQuery(".submit_com").show();
-	jQuery(".loading_send").hide();
-	jQuery(".uploadImgePreviews").html("");
-	jQuery("#frmfld_comment").val("");
-	if(localStorage.submitcommentstatus) {
-		// alert("if")
-		if(localStorage.submitcommentstatus == "1") {
-		// alert("if if")
-			$(".success-status").removeClass("hide");
-			$(".error-status").removeClass("hide");
-			$(".error-status").addClass("hide");
-			localStorage.submitcommentstatus = "";
-			// window.setTimeout(function () {
-			//     closecommentbox();
-			// }, 30000);
-		}
-		else {
-		// alert("if else")
-			$(".error-status").removeClass("hide");
-			$(".success-status").removeClass("hide");
-			$(".success-status").addClass("hide");
-			localStorage.submitcommentstatus = "";
-		}
-	}
-	else{
-		alert("else")
-		localStorage.submitcommentstatus = "";
-	}
    jQuery(document).ready(function($) {
    		$('#commentPrev').attr('onclick', 'changetoagendaitem()'); 
         if(l != 1)
@@ -7801,11 +7770,9 @@ function showcomments(sortby,sortdr,l)
         $(".header").show();
 	    $(".dropdown-menu").show();
 	    $(".footertag").show();  
-	    // alert(checkdefined(sortby) + " , " + sortby);
 	    if(checkdefined(sortby) != 'yes') {
 			sortby = 'timestamp';
 		}
-		// alert(checkdefined(sortdr) + " , " + sortdr);
 		if(checkdefined(sortdr) != 'yes') {
 			sortdr = 'desc';
 	    } 
@@ -7838,8 +7805,6 @@ function showcomments(sortby,sortdr,l)
         importfooter('Add-comment/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'comments');
         var main_urld = localStorage.url + 'Add-comment/-/'+ localStorage.short_url +'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
-        // console.log(main_urld);
-        // alert(main_urld)
         localStorage.loadallcomments_url = main_urld;
     setTimeout(function() {
         $.ajax({
@@ -7847,11 +7812,40 @@ function showcomments(sortby,sortdr,l)
             dataType: "json",
             method: "GET",
             success: function(obj) {
+
+            	localStorage.imageURI = "";
+				localStorage.popUpObjectData = "";
+				localStorage.comment_id = "";
+				jQuery(".submit_com").show();
+				jQuery(".loading_send").hide();
+				jQuery(".uploadImgePreviews").html("");
+				jQuery("#frmfld_comment").val("");
+				if(localStorage.submitcommentstatus) {
+					if(localStorage.submitcommentstatus == "1") {
+						$(".success-status").removeClass("hide");
+						$(".error-status").removeClass("hide");
+						$(".error-status").addClass("hide");
+						localStorage.submitcommentstatus = "";
+						window.setTimeout(function () {
+						    closecommentbox();
+						}, 30000);
+					}
+					else {
+						$(".error-status").removeClass("hide");
+						$(".success-status").removeClass("hide");
+						$(".success-status").addClass("hide");
+						localStorage.submitcommentstatus = "";
+					}
+				}
+				else{
+					alert("else")
+					localStorage.submitcommentstatus = "";
+				}
+
+
             	$(".inner_comment_loop").html("");
-            	// console.log(JSON.stringify(obj))
             	if(checkdefined(obj.commentInstances) == "yes") {
 					$(".questions-heading-title").show();
-					// console.log(obj.commentInstances[0].presentation_a_i_id)
 				}
 				else {
 					$(".questions-heading-title").hide();
@@ -7880,11 +7874,7 @@ function showcomments(sortby,sortdr,l)
 				}
 
 	            $('.questions-item-container').remove();
-	            // $(".close-btn-wrapper").click(function()
-	            // {
-	            //     $("#show-form-container").show();
-	            //     $(".questions-filter-items").fadeOut();
-	            // });
+
                 var label = '';
 				$.each(obj.breadcrumbs, function(key, val) {
 				    if (key == 0) {
@@ -7902,8 +7892,6 @@ function showcomments(sortby,sortdr,l)
 				});
 
 				$.each(obj.commentInstances, function(key, val) {
-					// alert(val.instance_id);
-					//alert(json.STRINGIFY(VAL));
 					var image_url = localStorage.url+'resources/gamification/img/avatar-placeholder.png';
 					if(checkdefined(val.image) == "yes")
 					{
@@ -7925,12 +7913,10 @@ function showcomments(sortby,sortdr,l)
 					{
 						if(val.event_user_id == localStorage.user_id) {
 							like_string = '<i class="fa fa-thumbs-up"></i>';
-							// dislike_link = '<span class="chkdislikes"></span>';  
 							dislike_link = '<i class="fa fa-thumbs-down"></i> ' + val.dislikes + '  <span class="chkdislikes"></span>';
 						}
 						else {
-							like_string = '<a class="liked-btn 1else" href="#" onclick="likedislikecomment('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>';
-							// dislike_link = '<span class="chkdislikes"></span>';  
+							like_string = '<a class="liked-btn 1else" href="#" onclick="likedislikecomment('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>'; 
 							dislike_link = '<i class="fa fa-thumbs-down" onclick="likedislikecomment('+val.instance_id+',0);"></i> ' + val.dislikes + '  <span class="chkdislikes"></span>';
 						}						
 					}
@@ -7959,12 +7945,9 @@ function showcomments(sortby,sortdr,l)
 					var delete_button = '';
 					if(val.event_user_id == localStorage.user_id)
 					{
-						// like_string = '<i class="fa fa-thumbs-up"></i>'; 
-						// dislike_link = '<span class="chkdislikes"></span>';
 						delete_button = '<div onclick="deletecomment('+val.instance_id+')" class="pull-right delete-comment"><i class="fa fa-times"></i><span class="delcommentpostplaceholder">Delete</span></div>';
 					}
 					var comment_image = '';
-					//alert(val.images.length);
 					if(checkdefined(val.images) == 'yes')
 					{
 						var i = "";
@@ -7980,7 +7963,6 @@ function showcomments(sortby,sortdr,l)
 					var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 
 					if(checkdefined(val.__videoItem) == 'yes') {
-						// console.log(val.__videoItem);
 						$.each(val.__videoItem, function(key, res) {
 							if(localStorage.url !== "https://beta.oceventmanager.com/") {
 								if(checkdefined(res.hosted_vimeo_id) == 'yes') {
@@ -8018,7 +8000,6 @@ function showcomments(sortby,sortdr,l)
 					}
 				});
         $.each(obj.commentInstances, function(key, val) {
-             // alert(val.instance_id)
               var image_url = localStorage.url+'resources/gamification/img/avatar-placeholder.png';
               if(checkdefined(val.image) == "yes")
               {
@@ -8038,12 +8019,12 @@ function showcomments(sortby,sortdr,l)
 				if(val.like == 1) {
 					if(val.event_user_id == localStorage.user_id) {
 						like_string = '<i class="fa fa-thumbs-up"></i>';
-						// dislike_link = '<span class="chkdislikes"></span>';  
+						
 						dislike_link = '<i class="fa fa-thumbs-down"></i> ' + val.dislikes + '  <span class="chkdislikes"></span>';
 					}
 					else {
 						like_string = '<a class="liked-btn 1else" href="#" onclick="likedislikecomment('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>';
-						// dislike_link = '<span class="chkdislikes"></span>';  
+						
 						dislike_link = '<i class="fa fa-thumbs-down" onclick="likedislikecomment('+val.instance_id+',0);"></i> ' + val.dislikes + '  <span class="chkdislikes"></span>';
 					}						
 				}
@@ -8070,25 +8051,18 @@ function showcomments(sortby,sortdr,l)
               var delete_button = '';
               if(val.event_user_id == localStorage.user_id)
               {
-                 // like_string = '<i class="fa fa-thumbs-up"></i>'; 
-                 // dislike_link = '<span class="chkdislikes"></span>';
                  delete_button = '<div onclick="deletecomment('+val.instance_id+')" class="pull-right delete-comment"><i class="fa fa-times"></i><span class="delcommentpostplaceholder">Delete</span></div>';
               }
               var comment_image = '';
               if(checkdefined(val.images) == 'yes')
 				{
 					var i = "";
-
-					// if(val.images.length > 1){
-						comment_image += '<div class="images-container clearfix">';
-						for(i=0; i<val.images.length; i++) {
-							comment_image += '<div class="image-container"><span data-mfp-src="'+localStorage.url+'resources/files/images/'+val.images[i].large+'" class="mfp-image"><img alt="" src="'+localStorage.url+'resources/files/images/'+val.images[i].small+'" class="resize-img" style="width:100%;height:100%;" onclick="commentimagespopupslider('+val.instance_id+','+i+');"></span></div>';
-						}
-						comment_image += '</div>';
-					// }
-					// else{
-				 //   		comment_image = '<div class="images-container clearfix"><div class="image-container"><span data-mfp-src="'+localStorage.url+'resources/files/images/'+val.images[0].large+'" class="mfp-image"><img alt="" src="'+localStorage.url+'resources/files/images/'+val.images[0].small+'" class="resize-img" style="width:100%;height:100%;" onclick="commentimagespopupslider('+val.instance_id+', 0);"></span></div></div>';
-				 //   	}
+					
+					comment_image += '<div class="images-container clearfix">';
+					for(i=0; i<val.images.length; i++) {
+						comment_image += '<div class="image-container"><span data-mfp-src="'+localStorage.url+'resources/files/images/'+val.images[i].large+'" class="mfp-image"><img alt="" src="'+localStorage.url+'resources/files/images/'+val.images[i].small+'" class="resize-img" style="width:100%;height:100%;" onclick="commentimagespopupslider('+val.instance_id+','+i+');"></span></div>';
+					}
+					comment_image += '</div>';					
 				}
               var comment_video = '';
               var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
@@ -8146,21 +8120,12 @@ function showcomments(sortby,sortdr,l)
               $('.reply-to-comment,.reply-cancel').on('click', function (e) 
               {
                   e.preventDefault();
-                  // alert('hi')
                   var container = $(this).parents('.questions-item-container');
                   container.find('.reply-form').toggleClass('hide');
                   $('#createdform').toggle();
                  
               });
-              // $('.commentpostplaceholder').on('click', function ()
-              // {
-              //    // alert('hi')
-              //     var container = $('.main-questions-form-container');
-              //     // Hide all other forms besides this one.
-              //     $('.questions-filter-items').not(container).slideUp();
-              //     // Hide main form container.
-              //     container.slideToggle();  
-              // });
+              
               if(l != 1)
               {
               db.transaction(function(tx) {
@@ -8223,7 +8188,7 @@ function showcomments(sortby,sortdr,l)
               
             }
        }); 
-	}, 10000);  
+	}, 5000);  
    });   
 
            
