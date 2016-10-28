@@ -1614,7 +1614,7 @@ function loadgamification() {
 	$("#tooltipster-409679").hide();
 	var css_url = localStorage.url+"resources/gamification/css/appearance.css.php?eid="+localStorage.event_id;
     $(".stylesheetDiv").html('<link rel="stylesheet" type="text/css" href="'+css_url+'">');
-	// alert("hello");
+	
 	loadUserImages();
     $(".login-page-container").hide();
     $(".user-profile-container").hide();
@@ -6104,7 +6104,7 @@ function onConfirmNote(buttonIndex) {
  	
         if(buttonIndex == '1')
         {
-            //alert('hello');
+            
             var main_url = localStorage.url + 'Add-note/-/'+localStorage.short_url+'-' + localStorage.event_id +'/delete/'+localStorage.noteid+'/?gvm_json=1';
 
             $.ajax({
@@ -6357,7 +6357,7 @@ function showseeker()
         var main_url = localStorage.url + 'seeker/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
         
          $('.prev').attr('onclick', 'gotoagenda("' + localStorage.agenda_id + '")');
-        // alert("hello");
+        
          
         $.ajax({
             url: main_url,
@@ -6736,7 +6736,7 @@ function showvoting(sortby,sortdr,l)
                                          
                     $('.voting-content-item > ul > li > a, .voting-content-item > ul > li a.cancel , .voting-content-item > ul > li a.voting-toggle-btn').on('click', function (e) 
                     {
-                    	// alert("hello");
+                    	
 						e.preventDefault();
 						var btn = $(this);
 						var votingContentWrapper = $('.voting-content-wrapper');
@@ -6753,7 +6753,7 @@ function showvoting(sortby,sortdr,l)
                   	});
                     $('.voting-content-item > ul > li .voting-toggle-btn').on('click', function (e)
                     {
-                    	// alert("hello");
+                    	
                 		e.preventDefault();
                         
                         var btn = $(this);
@@ -6767,7 +6767,7 @@ function showvoting(sortby,sortdr,l)
                   }                  
                 $('#vote-items-filter').on('keyup', function () 
                 {
-                    	// alert("hello");
+                    	
                     var val = $(this).val().toLowerCase();
                     
                     $('.voting-content-item li').each(function () 
@@ -7821,11 +7821,11 @@ function showcomments(sortby,sortdr,l)
 		}
 
 		if(sortdr == 'asc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
 		}
 
 		if(sortdr == 'desc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
 		}
 
                    
@@ -7834,6 +7834,7 @@ function showcomments(sortby,sortdr,l)
         var main_urld = localStorage.url + 'Add-comment/-/'+ localStorage.short_url +'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
         // console.log(main_urld);
+        alert(main_urld)
         localStorage.loadallcomments_url = main_urld;
         $.ajax({
             url: main_urld,
