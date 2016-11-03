@@ -955,7 +955,18 @@
             </ul>
         </div>
     </div>
-    <div class="seeker-container">
+    <div class="seeker-container"> 
+        <div class="seeker-bg-container" style="display:none;">
+            <div class="seeker-bg-overlay"></div>
+            <a class="msg-wrapper close-overlay" href="#" onclick="closeseekermzg();">
+                <div class="wrong-msg-container">
+                    <i class="fa fa-ban"></i>
+                    <h5>
+                        <p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p>
+                    </h5>
+                </div>
+            </a>
+        </div>
                         <div class="seeker-map-wrapper" align="center">
                                  
                     </div>
@@ -1686,6 +1697,7 @@
 
 
 <footer class="footertag" style="display: none;">
+    <div class="footer-widget" style="display:none"></div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 footer-menu">
@@ -1727,6 +1739,7 @@
                                 <div class="events-wrapper">
                     <i class="icon-oc-event-manager"></i>
                     <div class="events">
+                        <div class="eventsLoader" style="display:none"></div>
                         <p class="my-events-title">My networks</p>
                                                 
                                             </div>

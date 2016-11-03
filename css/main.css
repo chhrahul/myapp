@@ -10727,20 +10727,23 @@ ul {
   background-color: #fff;
 }
 .seeker-game-container .seeker-game-top-container .seeker-game-question-level ul.bordered li:after {
-  content: "";
-  position: absolute;
-  background: url(../img/green-border-seeker.png);
-  width: 32px;
-  height: 32px;
-  left: -3px;
-  top: -3px;
+    content: "";
+    position: absolute;
+    border: 2px solid #93be3e;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    left: -2px;
+    top: -2px;
 }
 .seeker-game-container .seeker-game-top-container .seeker-game-question-level ul.bordered li.active {
   background: #94be3e;
-  color: #fff;
+  color: #fff !important;
 }
 .seeker-game-container .seeker-game-top-container .seeker-game-question-level ul.bordered li.active:after {
-  background: url(../img/seeker-border.png);
+    border-color: #fff !important;
 }
 .seeker-game-container .seeker-container {
   margin-bottom: 5px;

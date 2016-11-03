@@ -5093,10 +5093,13 @@ function getLoggedInUser(id)
 
 function changecurrentevent(event_id,id)
 {                  
-    jQuery("footer .container").before('<div class="ui-widget-overlay"></div>');
-    jQuery(".my-events-title").before('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
-    jQuery(".ui-widget-overlay").show();
-    jQuery("#footerSlideContainer_loading").show();
+    // jQuery("footer .container").before('<div class="ui-widget-overlay"></div>');
+    jQuery(".footer-widget").html('<div class="ui-widget-overlay"></div>');
+    // jQuery(".my-events-title").before('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
+    jQuery(".eventsLoader").html('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
+    
+    jQuery(".ui-widget-overlay, .footer-widget").show();
+    jQuery("#footerSlideContainer_loading, .eventsLoader").show();
     
     var main_url = localStorage.url + 'api/index.php/main/changeEvent?gvm_json=1';
     jQuery.ajax({
@@ -6429,7 +6432,14 @@ function showseeker()
                      $('ul.bordered').append('<li '+classofcss+'>'+j+'</li>'); 
                      $(borderedj).html('<span>'+j+'</span>'); 
                   }  
-                    
+                  
+                  if(checkdefined(obj.currentFloormapInstance.floormap_image.__extra) == "yes") {
+                  	$(".single-seeker-container ul.bordered").show();
+                  }
+                  else {                  	
+                  	$(".single-seeker-container ul.bordered").hide();
+                  }
+
                   $('.seeker-description').html(''); 
                   
                   //if(checkdefined(obj.currentFloormapInstance.floormap_image) == 'yes')
@@ -6442,14 +6452,26 @@ function showseeker()
 	                  	 $('.seeker-map-wrapper').html("&nbsp;");
 	                  } 
 	                  $('.seeker-description').append(obj.currentFloormapInstance.description.value+'<div class="seeker-hint"></div>');
-	                  if(checkdefined(obj.currentFloormapInstance.hint) == 'yes')
+	                  
+	                  if(checkdefined(obj.currentFloormapInstance.hint) == 'yes' )
 	                  {
-	                    $('.seeker-hint').html(obj.currentFloormapInstance.hint.value);
+	                  	if(checkdefined(obj.form.formSettings.buttons_before) == 'yes') {
+	                   		$('.seeker-hint').html(obj.currentFloormapInstance.hint.value);
+	                  	}
+	                  	else {
+							$('.show-hint').hide();
+	                  	}
 	                  }
 	                  else
 	                  {
-	                      $('.show-hint').hide();
+	                    if(checkdefined(obj.form.formSettings.buttons_before) == 'yes') {
+	                   		$('.seeker-hint').html(obj.currentFloormapInstance.hint.value);
+	                  	}
+	                  	else {
+							$('.show-hint').hide();
+	                  	}
 	                  }
+
 	              }    
                   else {
                   	 $('.seeker-map-wrapper').html("&nbsp;");
@@ -6490,6 +6512,11 @@ function showseeker()
         });
 }
 
+function closeseekermzg() {
+	$(".seeker-bg-container").hide();
+	$('#frmfld_code').focus();
+}
+
 //function to submit answer for seeker
 function submitseekeranswer()
 {
@@ -6499,9 +6526,10 @@ function submitseekeranswer()
     var code = jQuery('#frmfld_code').val();
     if(checkdefined(code) != 'yes')
     {
+    	$(".seeker-bg-container").show();
         //alert('Please submit your answer!');
-        shownotification('Please submit your answer!',"Seeker");
-        $('#frmfld_code').focus();
+        // shownotification('Please submit your answer!',"Seeker");
+        // $('#frmfld_code').focus();
     }
     else
     {
@@ -6524,7 +6552,12 @@ function submitseekeranswer()
                 if(localStorage.correct_answer == code)
                 {
                   localStorage.correct_answer = '';
-        			 $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  	if(obj.countdown == "true" || obj.countdown == true) {
+                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  	}
+                  	else {
+                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  	}
          
                     var c = 5;
                     setInterval(function(){
@@ -6541,19 +6574,23 @@ function submitseekeranswer()
                 else
                 {
                  localStorage.correct_answer = '';
-        		 $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
-         
-              var c = 5;
-              setInterval(function(){
-          		c--;
-          		if(c>=0){
-          			$('#countdown').text(c);
-          		}
-                  if(c==0){
-                      //window.location.href="seeker.html"
-                      changetoseeker();
-                  }
-          	},1000);
+                 if(obj.countdown == "true" || obj.countdown == true) {
+                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                  		var c = 5;
+						setInterval(function(){
+							c--;
+							if(c>=0){
+								$('#countdown').text(c);
+							}
+							if(c==0){
+								//window.location.href="seeker.html"
+								changetoseeker();
+							}
+						},1000);
+                  	}
+                  	else {
+                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="closeseekermzg();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5></div></a>');
+                  	}  					
                 }
                 
                 //
@@ -7070,29 +7107,26 @@ function showquiz()
             success: function(obj) {
                // console.log(JSON.stringify(obj));
 
-				// var aaaa = obj.answersStatuses;
+				var answersStatuses = obj.answersStatuses;
 
-				// aaaa = aaaa.split(", "); 
-				// alert(aaaa);
-				// var len = aaaa.length;
-				// alert(aaaa + ' , ' + len)
-				// $(".questions-bar").html("");
-				// for(i=0; i<len; i++) {
-				// 	alert(aaaa[i]);
-				// 	if(aaaa[i] == "1)" {
-				// 		var liClass = '<li class="right-answer"></li>';
-				// 	}
-				// 	else if(aaaa[i] == "2") {
-				// 		var liClass = '<li class="wrong-answer"></li>';
-				// 	}					
-				// 	else if(aaaa[i] == "3") {
-				// 		var liClass = '<li class="active"></li>';
-				// 	}
-				// 	else {
-				// 		var liClass = '<li></li>';
-				// 	}
-				// 	$(".questions-bar").append(liClass);
-				// }
+				var len = answersStatuses.length;				
+				$(".questions-bar").html( "");
+				for(i=0; i<len; i++) {
+					
+					if(answersStatuses[i] == "1") {
+						var liClass = '<li class="right-answer"></li>';
+					}
+					else if(answersStatuses[i] == "2") {
+						var liClass = '<li class="wrong-answer"></li>';
+					}					
+					else if(answersStatuses[i] == "3") {
+						var liClass = '<li class="active"></li>';
+					}
+					else {
+						var liClass = '<li></li>';
+					}
+					$(".questions-bar").append(liClass);
+				}
 
                $("#quiz_timer_icon").html('<i class="fa fa-clock-o"><span id="countdown_box"></span>')
                $.each(obj.breadcrumbs, function(key, val) {
@@ -7838,7 +7872,7 @@ function showcomments(sortby,sortdr,l)
             dataType: "json",
             method: "GET",
             success: function(obj) {
-
+            	// alert(JSON.stringify(obj));
             	localStorage.imageURI = "";
 				localStorage.popUpObjectData = "";
 				localStorage.comment_id = "";
