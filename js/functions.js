@@ -3902,7 +3902,36 @@ function showcommonagendalist(obj) {
               time_str = '<div class="agenda-footer">&nbsp;<div class="meeting-location"><i class="fa fa-clock-o"></i> ' + val1.time + '</div></div>';
             }
 
-            $("#presentations-list").append('<div class="row"><div class="agenda-content"><div class="agenda-item col-xs-12"><a href="#" onclick="gotoagenda(' + val1.id + '); return false;"><div class="agenda-info">' + img_str + '<svg class="agenda-item-progress" version="1.1" xmlns="http://www.w3.org/2000/svg" data-duration="' + duration + '" data-eta="' + eta + '"><circle class="agenda-item-progress-bg" r="42.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="267.0353755551324" stroke-dashoffset="0"></circle><circle class="agenda-item-progress-eta" r="44.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="279.6017461694916" stroke-dashoffset="" style="stroke-dashoffset: ' + pct + ';"></circle></svg></div><div class="agenda-wrapper"><span class="agenda-slogan">' + val1.title + '</span><i class="fa fa-angle-right"></i><div class="agenda-person-info"><span class="name">' + val1.speaker_name + '</span></div></div></div></a>'+time_str+'</div></div></div>');
+           	if(val1.direct_access_module_href !== null) {
+				var inputString = val1.direct_access_module_href;
+	            if ( inputString.indexOf("Add-comment") > -1 ) {
+					var linktoval = "onclick=='changetoaddcomments()'; return false;";
+	            } 
+// 	            else if ( inputString.indexOf("agenda") > -1 ) {
+// 					var linktoval = "agenda";
+// 	            } 
+// 	            else if ( inputString.indexOf("sponsors") > -1 ) {
+// 					var linktoval = "sponsors";
+// 	            }
+// 	            else if ( inputString.indexOf("friend") > -1 ) {
+// 					var linktoval = "friends";
+// 	            }
+// 	            else if ( inputString.indexOf("points") > -1 ) {
+// 					var linktoval = "points";
+// 	            }
+// 	            else if ( inputString.indexOf("note") > -1 ) {
+// 					var linktoval = "note";
+// 	            }
+	            else {
+	            	var linktoval = 'onclick="gotoagenda(' + val1.id + '); return false;"';
+	            }
+            }
+            else {
+				var linktoval = 'onclick="gotoagenda(' + val1.id + '); return false;"';
+            }
+
+
+            $("#presentations-list").append('<div class="row"><div class="agenda-content"><div class="agenda-item col-xs-12"><a href="#" ' + linktoval + '><div class="agenda-info">' + img_str + '<svg class="agenda-item-progress" version="1.1" xmlns="http://www.w3.org/2000/svg" data-duration="' + duration + '" data-eta="' + eta + '"><circle class="agenda-item-progress-bg" r="42.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="267.0353755551324" stroke-dashoffset="0"></circle><circle class="agenda-item-progress-eta" r="44.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="279.6017461694916" stroke-dashoffset="" style="stroke-dashoffset: ' + pct + ';"></circle></svg></div><div class="agenda-wrapper"><span class="agenda-slogan">' + val1.title + '</span><i class="fa fa-angle-right"></i><div class="agenda-person-info"><span class="name">' + val1.speaker_name + '</span></div></div></div></a>'+time_str+'</div></div></div>');
         });
         // }
     });
@@ -6354,6 +6383,7 @@ function showseeker()
         $(".single-seeker-container").hide();
 		   $(".seeker-results-container").hide();
         jQuery(".loading_agenda_items").show();
+        $(".seeker-bg-container").hide();
           importfooter('seeker/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'seeker');
         
         
@@ -6434,10 +6464,10 @@ function showseeker()
                   }  
                   
                   if(checkdefined(obj.currentFloormapInstance.floormap_image.__extra) == "yes") {
-                  	$(".single-seeker-container ul.bordered").show();
+                  	$(".single-seeker-container ul.bordered").hide();
                   }
                   else {                  	
-                  	$(".single-seeker-container ul.bordered").hide();
+                  	$(".single-seeker-container ul.bordered").show();
                   }
 
                   $('.seeker-description').html(''); 
@@ -6457,6 +6487,7 @@ function showseeker()
 	                  {
 	                  	if(checkdefined(obj.form.formSettings.buttons_before) == 'yes') {
 	                   		$('.seeker-hint').html(obj.currentFloormapInstance.hint.value);
+	                   		$('.show-hint').show();
 	                  	}
 	                  	else {
 							$('.show-hint').hide();
@@ -6466,6 +6497,7 @@ function showseeker()
 	                  {
 	                    if(checkdefined(obj.form.formSettings.buttons_before) == 'yes') {
 	                   		$('.seeker-hint').html(obj.currentFloormapInstance.hint.value);
+	                   		$('.show-hint').show();
 	                  	}
 	                  	else {
 							$('.show-hint').hide();
@@ -6513,6 +6545,7 @@ function showseeker()
 }
 
 function closeseekermzg() {
+	$(".seeker-map-wrapper").hide();
 	$(".seeker-bg-container").hide();
 	$('#frmfld_code').focus();
 }
@@ -6552,11 +6585,15 @@ function submitseekeranswer()
                 if(localStorage.correct_answer == code)
                 {
                   localStorage.correct_answer = '';
-                  	if(obj.countdown == "true" || obj.countdown == true) {
-                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  	if(resp.countdown == "true" || resp.countdown == true) {
+                  		// $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper close-overlay" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').show();
                   	}
                   	else {
-                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  		// $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a href="#" onclick="changetoseeker();" class="msg-wrapper"><div class="right-msg-container"><i class="fa fa-check"></i><h4><p>You got the <strong>correct</strong> code!</p></h4><p>New task starts in <span id="countdown" class="hasCountdown">05</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper close-overlay" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').show();
                   	}
          
                     var c = 5;
@@ -6574,8 +6611,10 @@ function submitseekeranswer()
                 else
                 {
                  localStorage.correct_answer = '';
-                 if(obj.countdown == "true" || obj.countdown == true) {
-                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                 if(resp.countdown == "true" || resp.countdown == true) {
+                  		// $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper close-overlay" href="#" onclick="changetoseeker();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p></h5><p>New task starts in <span id="countdown" class="hasCountdown">5</span> seconds...</p></div></a>');
+                  		$('.seeker-bg-container').show();
                   		var c = 5;
 						setInterval(function(){
 							c--;
@@ -6589,7 +6628,8 @@ function submitseekeranswer()
 						},1000);
                   	}
                   	else {
-                  		$('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="closeseekermzg();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5></div></a>');
+                  		// $('.seeker-map-wrapper').html('<div class="seeker-bg-overlay"></div><a class="msg-wrapper" href="#" onclick="closeseekermzg();"><div class="wrong-msg-container"><i class="fa fa-ban"></i><h5><p>The entered code is <strong>incorrect</strong>. <br>Try again!</p></h5></div></a>');
+                  		$(".seeker-bg-container").show();
                   	}  					
                 }
                 
@@ -6687,6 +6727,7 @@ function showvoting(sortby,sortdr,l)
             success: function(obj) {
 				// console.log(JSON.stringify(obj));
                  // alert(obj.sortDir)
+				
                 localStorage.voteSessionId = obj.voteSessionId;
 				$.each(obj.breadcrumbs, function(key, val) {
 
@@ -6829,13 +6870,19 @@ function showvoting(sortby,sortdr,l)
                    $('.voting-closed-content-title').show(); 
                 }
                 else
-                {	if(obj.hideVoteCount == "1") {
+                {	if(obj.hideCounter == "1") {
 						$('.voting-end-content-title h3').hide();
 						$('.voting-closed-content-title h3').hide(); 
                 	}
                 	else {
 						$('.voting-end-content-title').show();
 						$('.voting-closed-content-title').hide();
+					}
+					if(obj.hideVoteCount == "1") {
+						$('.voting-item-count').hide();
+                	}
+                	else {
+						$('.voting-item-count').show();
 					}
 					if((obj.showOpensInTimer == true || obj.showOpensInTimer == 'true') && (obj.showClosesInTimer == false || obj.showClosesInTimer == 'false')) {
 						$('.voting-countdown').countdown({
@@ -7032,7 +7079,14 @@ function showvoting(sortby,sortdr,l)
               	}
 
               	$(".voting-page-container").show();
-              	$(".voting-filter-items").show();
+
+              	if(obj.hideSearch == "0") {
+					$(".voting-filter-items").show();
+				}
+				else {
+					$(".voting-filter-items").hide();
+				}
+
                 $(".loading_agenda_items").hide();
 
                 if(obj.enableVoteForwarding == true && checkdefined(obj.voteForwardingUser) !== "yes" && obj.forwardedEventUsers == ""/* && obj.isFinished == false */ && obj.enableOpenSearchDialog == true ) { 
@@ -8024,33 +8078,40 @@ function showcomments(sortby,sortdr,l)
 					if(checkdefined(val.__videoItem) == 'yes') {
 						$.each(val.__videoItem, function(key, res) {
 							if(localStorage.url !== "https://beta.oceventmanager.com/") {
-								if(checkdefined(res.hosted_vimeo_id) == 'yes') {
-									if(isIphone) {
-										if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
-											var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+								if (key == "\u0000VideoItem\u0000video" && res !== null) {
+									if(checkdefined(res.hosted_vimeo_id) == 'yes') {										
+										localStorage.vimeoId = res.hosted_vimeo_id;
+										if(isIphone) {
+											if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
+												var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
+												var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
+												var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
+												var videoUrl = "http" + res.hosted_vimeo_link_hls;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
+												var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+											}
+											
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 										}
-										else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
-											var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+										else {										
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';											
 										}
-										else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
-											var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
-										}
-										else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
-											var videoUrl = "http" + res.hosted_vimeo_link_hls;
-										}
-										else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
-											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
-										}
-										
-										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
-									}
-									else {										
-										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
-										
-									}
 
+									}
+									else {
+										localStorage.vimeoId = "";
+									}
 								}
-
+								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
+									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+								}
 							}
 						});
 					}	                             
@@ -8131,34 +8192,44 @@ function showcomments(sortby,sortdr,l)
               		if(checkdefined(val.__videoItem) == 'yes') {
 						$.each(val.__videoItem, function(key, res) {
 							if(localStorage.url !== "https://beta.oceventmanager.com/") {
-								if(checkdefined(res.hosted_vimeo_id) == 'yes') {
-									if(isIphone) {
-										if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
-											// alert("hd");
-											var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+								if (key == "\u0000VideoItem\u0000video" && res !== null) {
+									if(checkdefined(res.hosted_vimeo_id) == 'yes') {
+										localStorage.vimeoId = res.hosted_vimeo_id;
+										if(isIphone) {
+											if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
+												// alert("hd");
+												var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
+												// alert("sd960");
+												var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
+												// alert("sd640");
+												var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
+												// alert("hls");
+												var videoUrl = "http" + res.hosted_vimeo_link_hls;
+											}
+											else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
+												// alert("mobile");
+												var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+											}
+											
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 20px; background-color: #000;" controls></video></div></div>';
 										}
-										else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
-											// alert("sd960");
-											var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+										else {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
 										}
-										else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
-											// alert("sd640");
-											var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
-										}
-										else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
-											// alert("hls");
-											var videoUrl = "http" + res.hosted_vimeo_link_hls;
-										}
-										else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
-											// alert("mobile");
-											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
-										}
-										
-										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 20px; background-color: #000;" controls></video></div></div>';
 									}
 									else {
-										comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
+										localStorage.vimeoId = "";
 									}
+								}
+								
+								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
+									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
 								}
 							}
 						});
@@ -10130,7 +10201,7 @@ function loadUserImages() {
 			
 			var proimg = 'background-image:url(' + localStorage.profilelogo + ');';
             $(".main-img").attr("style", proimg);
-
+ 
             if (localStorage.profilelogotype == '1') {
                 $(".selfie_button").html('<button class="pic-remove" onclick="removeprofileimage();" type="button" name="remove_pic" value="1">Remove image</button>');
             }

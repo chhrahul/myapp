@@ -10977,13 +10977,16 @@ ul {
   padding-right: 1.5px;
 }
 .seeker-game-container .seeker-top-scores-container .seeker-scores-table table thead tr td .bordered span:after {
-  content: "";
-  position: absolute;
-  background: url(../img/green-border2.png);
-  width: 22px;
-  height: 22px;
-  left: -2px;
-  top: -2px;
+    content: "";
+    position: absolute;
+    border: 2px solid #94be3e;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    left: -3px;
+    top: -3px;
 }
 .seeker-game-container .seeker-top-scores-container .seeker-scores-table table thead tr td .bordered span.active {
   background: #94be3e;
@@ -12055,11 +12058,16 @@ ul {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
-.voting-page-container .voting-content-wrapper .voting-content-item ul li.opened .voting-confirm-wrapper,
+/*.voting-page-container .voting-content-wrapper .voting-content-item ul li.opened .voting-confirm-wrapper,
 .opened .friend-request-confirm-wrapper {
   height: 115px;
   padding: 10px;
   padding-top: 50px;
+}*/
+.voting-page-container .voting-content-wrapper .voting-content-item ul li.opened .voting-confirm-wrapper, .opened .friend-request-confirm-wrapper {
+    height: 100px;
+    padding: 10px;
+    padding-top: 40px;
 }
 .voting-page-container .voting-content-wrapper .voting-content-item ul li .voting-confirm-wrapper h4,
 .friend-request-confirm-wrapper h4 {
@@ -12843,7 +12851,7 @@ footer .footer-menu.footer-menu-open .footer-menu-opened {
   width: 80%;
   overflow-y: auto;
   z-index: 1000;
-  height: 350px;
+  max-height: 350px;
 }
 .hide-footer-labels footer .footer-menu.footer-menu-open .footer-menu-opened {
   bottom: 50px;
