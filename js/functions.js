@@ -8096,7 +8096,8 @@ function showcomments(sortby,sortdr,l)
 										localStorage.vimeoId = "";
 									}
 								}
-								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && localStorage.vimeoId !== null) {
+								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
+									localStorage.vimeoId = "";
 									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
 								}
 							}
@@ -8215,7 +8216,7 @@ function showcomments(sortby,sortdr,l)
 									}
 								}
 								
-								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && localStorage.vimeoId !== "" ) {
+								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
 									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
 								}
 							}
