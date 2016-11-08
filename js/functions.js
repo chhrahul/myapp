@@ -5057,7 +5057,7 @@ function loadcommonthings() {
 //                $('.events').html('<p class="my-events-title">My networks</p>');
             }
             $('.events').html("");
-            $('.events').append('<p class="my-events-title">My networks</p><p class="listactiveEvent"</p><div id="events-normal-container"></div><div class="hide" id="events-more-container"></div>');
+            $('.events').append('<div class="eventsLoader" style="display:none"></div><p class="my-events-title">My networks</p><p class="listactiveEvent"</p><div id="events-normal-container"></div><div class="hide" id="events-more-container"></div>');
             var sideMenuEventsLimit = localStorage.sideMenuEventsLimit;
             if(sideMenuEventsLimit == undefined || sideMenuEventsLimit == null || sideMenuEventsLimit == "") {
             	var sideMenuEventsLimit = "5";
