@@ -8097,7 +8097,6 @@ function showcomments(sortby,sortdr,l)
 									}
 								}
 								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
-									localStorage.vimeoId = "";
 									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
 								}
 							}
@@ -8762,6 +8761,7 @@ function changetoagenda(id)
 	$(".score-card-container").hide();
 	$(".agenda-item-container").hide();
 	$(".scannerDiv").hide();
+	$(".seeker-game-container").hide();
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
@@ -9967,7 +9967,7 @@ function commentimagespopupslider(commentId,imagePosition) {
 	        			var imgCounter = '<p>' + imageorigin + ' of ' + tot_img + '</p>';
 	        			var imagenumbers = parseInt(tot_img) - parseInt("1");
 
-						var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
+						var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:auto; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
 						// console.log('<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>')
 						
 						$('.commentpopup_image').html(popup_image);
@@ -10004,7 +10004,7 @@ function commentimagespopupslider(commentId,imagePosition) {
 		var imgCounter = '<p>' + imageorigin + ' of ' + tot_img + '</p>';
 		var imagenumbers = parseInt(tot_img) - parseInt("1");
 		var imageslider = obj[imagePosition].replace(/"/g,"");
-		var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+imageslider+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
+		var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+imageslider+'" style="width:auto; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
 		
 		$('.commentpopup_image').html(popup_image);
 		$(".mfp-preloader").hide();
@@ -10068,7 +10068,7 @@ function notesimagespopupslider(commentId,imagePosition) {
 	        			var imgCounter = '<p>' + imageorigin + ' of ' + tot_img + '</p>';
 	        			var imagenumbers = parseInt(tot_img) - parseInt("1");
 
-						var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
+						var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:auto; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
 						// console.log('<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+val.images[imagePosition].small+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>')
 						
 						$('.commentpopup_image').html(popup_image);
@@ -10105,7 +10105,7 @@ function notesimagespopupslider(commentId,imagePosition) {
 		var imgCounter = '<p>' + imageorigin + ' of ' + tot_img + '</p>';
 		var imagenumbers = parseInt(tot_img) - parseInt("1");
 		var imageslider = obj[imagePosition].replace(/"/g,"");
-		var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+imageslider+'" style="width:100%; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
+		var popup_image = '<img id="imgmfpimg" class="mfp-img" alt="" src="'+localStorage.url+'resources/files/images/'+imageslider+'" style="width:auto; height:100%; max-height:480px;" onload="swipepopimage();"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter" id="mfpCounter">' + imgCounter + '</div></div></figcaption>';
 		
 		$('.commentpopup_image').html(popup_image);
 		$(".mfp-preloader").hide();

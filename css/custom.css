@@ -1907,9 +1907,10 @@ body #fatimes {
     font-size: 24px !important;
 }
 .mfp-container.mfp-s-ready.mfp-image-holder {
-    overflow: auto;
+    overflow-x: hidden;
     display: inline-block;
     padding-top: 8em;
+    width: 99%;
 }
 #plid h5 {
     color: #fff;
