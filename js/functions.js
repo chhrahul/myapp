@@ -6906,23 +6906,7 @@ function showvoting(sortby,sortdr,l)
                       tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
                   var len = results.rows.length;                             
                       for (i = 0; i < len; i++) {  
-                        // if(results.rows.item(i).key_constant == 'votes')
-                        // {
-                        //     $('.question_counter').html(' '+unescape(results.rows.item(i).key_val));  
-                        //     $('.small-text').html("");
-                        // }
-                        // if(results.rows.item(i).key_constant == 'SortBy')
-                        // {
-                        //     $('.votes-sort span').html(unescape(results.rows.item(i).key_val)+': ');                     
-                        // }
-                        // if(results.rows.item(i).key_constant == 'sortByTitle')
-                        // {
-                        //     $('.tit_span_tag').html(unescape(results.rows.item(i).key_val));                     
-                        // }
-                        // if(results.rows.item(i).key_constant == 'sortByVotes')
-                        // {
-                        //     $('.vot_span_tag').html(unescape(results.rows.item(i).key_val));                     
-                        // }
+                        
                         if(results.rows.item(i).key_constant == 'filterItems')
                         {
                             $('#vote-items-filter').attr('placeholder',unescape(results.rows.item(i).key_val));                     
@@ -7930,11 +7914,13 @@ function showcomments(sortby,sortdr,l)
             	localStorage.imageURI = "";
 				localStorage.popUpObjectData = "";
 				localStorage.comment_id = "";
+
 				jQuery(".submit_com").show();
 				jQuery(".loading_send").hide();
 				jQuery(".uploadImgePreviews").html("");
 				jQuery("#frmfld_comment").val("");
 				if(localStorage.submitcommentstatus) {
+					$("#cpmaincomment").show();
 					if(localStorage.submitcommentstatus == "1") {
 						$(".success-status").removeClass("hide");
 						$(".error-status").removeClass("hide");
@@ -7942,13 +7928,16 @@ function showcomments(sortby,sortdr,l)
 						localStorage.submitcommentstatus = "";
 						window.setTimeout(function () {
 						    closecommentbox();
-						}, 30000);
+						}, 3000);
 					}
 					else {
 						$(".error-status").removeClass("hide");
 						$(".success-status").removeClass("hide");
 						$(".success-status").addClass("hide");
 						localStorage.submitcommentstatus = "";
+						window.setTimeout(function () {
+						    closecommentbox();
+						}, 3000);
 					}
 				}
 				else{
