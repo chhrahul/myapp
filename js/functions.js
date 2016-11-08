@@ -5052,10 +5052,6 @@ function loadcommonthings() {
         tx.executeSql("SELECT * FROM OCEVENTS_events", [], function(tx, results) {
             var len = results.rows.length;
             //alert(len)
-            if(len>0)
-            {
-//                $('.events').html('<p class="my-events-title">My networks</p>');
-            }
             $('.events').html("");
             $('.events').append('<div class="eventsLoader" style="display:none"></div><p class="my-events-title">My networks</p><p class="listactiveEvent"</p><div id="events-normal-container"></div><div class="hide" id="events-more-container"></div>');
             var sideMenuEventsLimit = localStorage.sideMenuEventsLimit;
@@ -5065,27 +5061,29 @@ function loadcommonthings() {
             var menuLimiter = 0;
             for (i = 0; i < len; i++) {                
                     
-                    var event_id = results.rows.item(i).event_id;
-                    var title = results.rows.item(i).title; 
-                    
-                    // console.log("event_id => " + event_id + " , menuLimiter=> " + menuLimiter + " , sideMenuEventsLimit => " + sideMenuEventsLimit);
-                    var current = '';
-                    if(localStorage.event_id == event_id)
-                    {
-                       current = 'active';
-                       $('.listactiveEvent').html('<a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a>')
-                    }
-                    else {
-                    	if(menuLimiter < sideMenuEventsLimit-1) {
-                    		$('#events-normal-container').append('<p><a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a></p>');
-                    	}
-                    	else {                    		
-                    		$('#events-more-container').append('<p><a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a></p>');
-                    	 }      
-                    	menuLimiter++;
-                    }                
-                }   
-                $('.events').append('<a onclick="showMoreEvents();" id="show-more-events-btn"><span class="text">Show more events</span><i class="fa fa-chevron-down"></i></a><a onclick="showFewerEvents();" id="show-fewer-events-btn" class="hide"><span class="text">Show fewer events</span><i class="fa fa-chevron-up"></i></a>'); 
+                var event_id = results.rows.item(i).event_id;
+                var title = results.rows.item(i).title; 
+                
+                // console.log("event_id => " + event_id + " , menuLimiter=> " + menuLimiter + " , sideMenuEventsLimit => " + sideMenuEventsLimit);
+                var current = '';
+                if(localStorage.event_id == event_id)
+                {
+                   current = 'active';
+                   $('.listactiveEvent').html('<a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a>')
+                }
+                else {
+                	if(menuLimiter < sideMenuEventsLimit-1) {
+                		$('#events-normal-container').append('<p><a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a></p>');
+                	}
+                	else {                    		
+                		$('#events-more-container').append('<p><a href="javascript:changecurrentevent('+event_id+', 1)" class="'+current+'">'+title+'</a></p>');
+					}      
+                	menuLimiter++;
+                }                
+            }   
+            if(len > "5") {
+            	$('.events').append('<a onclick="showMoreEvents();" id="show-more-events-btn"><span class="text">Show more events</span><i class="fa fa-chevron-down"></i></a><a onclick="showFewerEvents();" id="show-fewer-events-btn" class="hide"><span class="text">Show fewer events</span><i class="fa fa-chevron-up"></i></a>'); 
+            }
         });    
     });
 }
