@@ -174,18 +174,18 @@ var Log = function(bucket, tag){
   return function(message){
     if(typeof bucket != 'undefined')
     {
-      console.log(' '+bucket+':');
+      // console.log(' '+bucket+':');
     }
     if(typeof tag != 'undefined')
     {
-      console.log(' '+tag+':');
+      // console.log(' '+tag+':');
     }
     if(typeof message != 'object'){
-      console.log('       '+message);
+      // console.log('       '+message);
     }
     else
     {
-      console.log(message);
+      // console.log(message);
     }
   };
 }
@@ -226,18 +226,18 @@ var Log = function(bucket, tag){
   return function(message){
     if(typeof bucket != 'undefined')
     {
-      console.log(' '+bucket+':');
+      // console.log(' '+bucket+':');
     }
     if(typeof tag != 'undefined')
     {
-      console.log(' '+tag+':');
+      // console.log(' '+tag+':');
     }
     if(typeof message != 'object'){
-      console.log('       '+message);
+      // console.log('       '+message);
     }
     else
     {
-      console.log(message);
+      // console.log(message);
     }
   };
 }
@@ -310,7 +310,7 @@ var FileManager = function(){
 			function(fs){
 				var dont_repeat_inner = dont_repeat;
 				// get file handler
-				console.log(fs.root);
+				// console.log(fs.root);
 				fs.root.getFile(
 					full_file_path, 
 					{create: true, exclusive: false}, 
@@ -360,13 +360,13 @@ var FileManager = function(){
 		                encodeURI(url),
 		                sPath,
 		                function(theFile) {
-		                    console.log("download complete: " + theFile.toURI()); 
+		                    // console.log("download complete: " + theFile.toURI()); 
 		                    success(theFile);
 		                },
 		                function(error) {
-		                    console.log("download error source " + error.source);
-		                    console.log("download error target " + error.target);
-		                    console.log("upload error code: " + error.code);
+		                    // console.log("download error source " + error.source);
+		                    // console.log("download error target " + error.target);
+		                    // console.log("upload error code: " + error.code);
 		                    fail(error);
 		                }
 		            );
@@ -2150,7 +2150,7 @@ function onImageURISuccess(imageURI) {
 		$('.uploadImgePreviews').append('<div id="hideDiv'+len+'" class="template-upload swiper-slide fade in dz-preview dz-image-preview swiper-slide-active" style="width: 93.1px; margin-right: 5px;"><div class="dz-details"><div class="dz-filename"><span class="upldFileNm" data-dz-name=""></span></div><div data-dz-size="" class="dz-size"><strong></strong> </div><div class="preview"><img src = '+imageURI+' width="80" height="80" /></div></div><i data-dz-remove="" class="fa fa-times cancel" onclick="hidethumb('+len+');"></i></div>');
 	}
 
-	console.log(localStorage.imageURI);
+	// console.log(localStorage.imageURI);
 	localStorage.mime = 'image/jpeg';
 
 
@@ -2343,10 +2343,10 @@ function canceloptions(){
 function playvideo(videoUrl) {
     var options = {
         successCallback: function() {
-            console.log("Video was closed without error.");
+            // console.log("Video was closed without error.");
         },
         errorCallback: function(errMsg) {
-            console.log("Error! " + errMsg);
+            // console.log("Error! " + errMsg);
         }
     };
     window.plugins.streamingMedia.playVideo(videoUrl, options);
@@ -2638,11 +2638,17 @@ function submitrating()
 
 function submitagendacomment()
 {
-   var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/submit/comment?gvm_json=1';
-   var comm = $('.comment-input').val();
-  // alert(comm)
-   var status = 1; 
-    $.ajax({
+	var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/submit/comment?gvm_json=1';
+	var comm = $('.comment-input').val();
+	// alert(comm)
+	var status = 1; 
+	if(comm == "") {
+		$('.msg').html("There is no comment!"); 
+		$('.msg').addClass("text-danger");
+		$('.msg').removeClass("text-success");
+	}
+	else {
+    	$.ajax({
             url: main_url,
             dataType: "json",
             method: "POST",
@@ -2652,19 +2658,22 @@ function submitagendacomment()
               //$('.after-rating-container').removeClass('hidden');
               $('.comment-form').addClass('hidden');
               
-              db.transaction(function(tx) {
-                tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-                  var len = results.rows.length;                  
-                  for (i = 0; i < len; i++) {                    
-                    if(results.rows.item(i).key_constant == 'CommentPlacedMessage')
-                    {
-                        $('.msg').html(unescape(results.rows.item(i).key_val));                     
-                    }
-                  }
-                });
-              });                    
+				db.transaction(function(tx) {
+					tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+						var len = results.rows.length;                  
+						for (i = 0; i < len; i++) {                    
+							if(results.rows.item(i).key_constant == 'CommentPlacedMessage')
+							{
+								$('.msg').html(unescape(results.rows.item(i).key_val)); 
+								$('.msg').removeClass("text-danger");
+								$('.msg').addClass("text-success");                 
+							}
+						}
+					});
+				});                    
             }
-          });   
+		});  
+	} 
 }
 
 function rateme(id)
@@ -7753,7 +7762,7 @@ function submitquestion(instance_id)
 	var question = jQuery('#frmfld_question').val();
 	if(question == "" || question == null || question == undefined) {
 		shownotification('Please submit your Question!',"Questions");
-		console.log('Please submit your Question!',"Questions");
+		// console.log('Please submit your Question!',"Questions");
 	}
 	else {
 		var submit_form = 1;
@@ -7789,7 +7798,7 @@ function likedislikequestion(id,like) {
 		// var main_url = localStorage.url + 'Add-question/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/?action=like&gvm_json=1&like='+like+'&c_id='+id;
 		// alert(main_url);
 		var main_url = localStorage.url + 'modules/gamification/ajax/frontend_ws.php?XDEBUG_SESSION_START=PHPSTORM';
-		console.log("main_url => " + main_url + " , id => " + id + " , like => " + like);
+		// console.log("main_url => " + main_url + " , id => " + id + " , like => " + like);
 		$.ajax({
 			url: main_url,
 			dataType: "json",
@@ -7801,7 +7810,7 @@ function likedislikequestion(id,like) {
 				like: like
 			},
 			success: function(obj) {
-				console.log(JSON.stringify(obj));
+				// console.log(JSON.stringify(obj));
 				//window.location.href = 'add_questions.html';
 				changetoaddquestions();
 			}
@@ -8659,7 +8668,7 @@ function likedislikecomment(id,like) {
 		// var main_url = localStorage.url + 'Add-comment/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/?action=like&gvm_json=1&like='+like+'&c_id='+id;
 		// alert(main_url);
 		var main_url = localStorage.url + 'modules/gamification/ajax/frontend_ws.php?XDEBUG_SESSION_START=PHPSTORM';
-		console.log("main_url => " + main_url + " , id => " + id + " , like => " + like);
+		// console.log("main_url => " + main_url + " , id => " + id + " , like => " + like);
 		$.ajax({
 			url: main_url,
 			dataType: "json",
@@ -8671,7 +8680,7 @@ function likedislikecomment(id,like) {
 				like: like
 			},
 			success: function(obj) {
-				console.log(JSON.stringify(obj));
+				// console.log(JSON.stringify(obj));
 				// window.location.href = 'add_comments.html';
 				changetoaddcomments();
 			}
@@ -10396,7 +10405,7 @@ function loginscanner() {
 						hash: scannerhash
 					},
 					success: function(obj) {
-						console.log(JSON.stringify(obj));
+						// console.log(JSON.stringify(obj));
 						if(obj.status == "success") {							
 							$(".scaneventtitle").html(obj.p_data.event.title);
 							$(".scanpartnertitle").html(obj.p_data.title);
@@ -10408,14 +10417,14 @@ function loginscanner() {
 							getenteredusers();
 						}
 					},
-			        function (error) {
-			            alert("An error ocurred: " + error);
-			        }
+			        // function (error) {
+			        //     alert("An error ocurred: " + error);
+			        // }
 				});
 		},
-        function (error) {
-            alert("An error ocurred: " + error);
-        }
+        // function (error) {
+        //     alert("An error ocurred: " + error);
+        // }
 	});
 }
 
@@ -10832,7 +10841,7 @@ function multiimageupload() {
 			$(".main-questions-form-container").show();
 
 			for (var i = 0; i < results.length; i++) {
-	            console.log('Image URI: ' + results[i]);
+	            // console.log('Image URI: ' + results[i]);
 	            var newfname = results[i].substr(results[i].lastIndexOf('/') + 1);
 	            if(i == 0) {
 	            	localStorage.imageURI = results[i]
@@ -10842,10 +10851,10 @@ function multiimageupload() {
 	            }
 	            $('.uploadImgePreviews').append('<div id="hideDiv' + i + '" class="template-upload swiper-slide fade in dz-preview dz-image-preview swiper-slide-active" style="width: 93.1px; margin-right: 5px; display: block;"><div class="dz-details"><div class="dz-filename"><span class="upldFileNm" data-dz-name=""></span></div><div data-dz-size="" class="dz-size"><strong></strong> </div><div class="preview"><img src = ' + results[i] + ' width="80" height="80" /></div></div><i data-dz-remove="" class="fa fa-times cancel" onclick="hidethumb(' + i + ');"></i></div>');
 	        }
-	        console.log(localStorage.imageURI);		
+	        // console.log(localStorage.imageURI);		
 		}, 
 		function (error) {
-			console.log('Error: ' + error);
+			// console.log('Error: ' + error);
 		}, 
 		{
 			// maximumImagesCount: 5,
@@ -10866,7 +10875,7 @@ function multiimageuploadreply() {
 			$(".main-questions-form-container").show();
 
 			for (var i = 0; i < results.length; i++) {
-	            console.log('Image URI: ' + results[i]);
+	            // console.log('Image URI: ' + results[i]);
 	            var newfname = results[i].substr(results[i].lastIndexOf('/') + 1);
 	            if(i == 0) {
 	            	localStorage.imageURI = results[i]
@@ -10876,10 +10885,10 @@ function multiimageuploadreply() {
 	            }
 	            $('.uploadReplyImgePreviews').append('<div id="hideDiv' + i + '" class="template-upload swiper-slide fade in dz-preview dz-image-preview swiper-slide-active" style="width: 93.1px; margin-right: 5px; display: block;"><div class="dz-details"><div class="dz-filename"><span class="upldFileNm" data-dz-name=""></span></div><div data-dz-size="" class="dz-size"><strong></strong> </div><div class="preview"><img src = ' + results[i] + ' width="80" height="80" /></div></div><i data-dz-remove="" class="fa fa-times cancel" onclick="hidethumb(' + i + ');"></i></div>');
 	        }
-	        console.log(localStorage.imageURI);		
+	        // console.log(localStorage.imageURI);		
 		}, 
 		function (error) {
-			console.log('Error: ' + error);
+			// console.log('Error: ' + error);
 		}
 	);
 }
@@ -10895,7 +10904,7 @@ function multiimageuploadreplyinner() {
 			$(".main-questions-form-container").show();
 
 			for (var i = 0; i < results.length; i++) {
-	            console.log('Image URI: ' + results[i]);
+	            // console.log('Image URI: ' + results[i]);
 	            var newfname = results[i].substr(results[i].lastIndexOf('/') + 1);
 	            if(i == 0) {
 	            	localStorage.imageURI = results[i]
@@ -10905,10 +10914,10 @@ function multiimageuploadreplyinner() {
 	            }
 	            $('.uploadInnerReplyImgePreviews').append('<div id="hideDiv' + i + '" class="template-upload swiper-slide fade in dz-preview dz-image-preview swiper-slide-active" style="width: 93.1px; margin-right: 5px; display: block;"><div class="dz-details"><div class="dz-filename"><span class="upldFileNm" data-dz-name=""></span></div><div data-dz-size="" class="dz-size"><strong></strong> </div><div class="preview"><img src = ' + results[i] + ' width="80" height="80" /></div></div><i data-dz-remove="" class="fa fa-times cancel" onclick="hidethumb(' + i + ');"></i></div>');
 	        }
-	        console.log(localStorage.imageURI);		
+	        // console.log(localStorage.imageURI);		
 		}, 
 		function (error) {
-			console.log('Error: ' + error);
+			// console.log('Error: ' + error);
 		}
 	);
 }
