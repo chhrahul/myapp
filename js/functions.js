@@ -3817,6 +3817,7 @@ function loadallagenda() {
 		$('#agendamenuheader').attr('onclick', 'changetoallagenda();');
         
         $(".agenda-container").hide();
+       
         //showAgendaData();
         //http://www.oceventmanager.com/agenda/-/'+localStorage.short_url+'-100041/?ajax=1&all=1&gvm_json=1
         var main_url = localStorage.url + 'agenda/-/'+localStorage.short_url+'-' + localStorage.event_id + '/?ajax=1&all=1&gvm_json=1';
@@ -3844,7 +3845,7 @@ function loadallagenda() {
                  }
                });
             });
-                jQuery(".agenda-container").show();
+                jQuery(".agenda-menu-container").show();
                 jQuery(".loading_agenda_items").hide();
             }
         });
@@ -3903,7 +3904,7 @@ function loadagenda() {
 function showcommonagendalist(obj) {
 	$("#presentations-list").html('&nbsp');
 	$(".agenda-item-container").hide();
-
+	
     $.each(obj.data.presentations, function(key, val) {
         //if(val.group_title != null)
         // {
@@ -6976,6 +6977,11 @@ function showvoting(sortby,sortdr,l)
                         	$('.voting-closed-content-title h3 .fa-clock-o').html(' ');
                             $('.voting-closed-content-title h3 .votingStatus').html(unescape(results.rows.item(i).key_val));                     
                         }
+                        if(results.rows.item(i).key_constant == 'NotEnoughVoteWeight')
+                        {
+                        	$('.voting-closed-content-title h3 .fa-clock-o').html(' ');
+                            $('.voting-closed-content-title h3 .votingStatus').html(unescape(results.rows.item(i).key_val));                     
+                        }
                         if(results.rows.item(i).key_constant == 'voteItemConfirmation')
                         {
                             $('.voting-confirm-wrapper h4').html(unescape(results.rows.item(i).key_val));                     
@@ -7124,6 +7130,12 @@ function showvoting(sortby,sortdr,l)
 	              	$('#open-vote-forwarding-users-search-dialog').show();
 	              	$('.vote-forwarding-users').hide();
 				}
+				if(obj.showNotEnoughVoteWeight == true) {
+					$(".voting-closed-content-title").show();
+				}
+				else {
+					$(".voting-closed-content-title").hide();
+				}
                 
              }
           });
@@ -7252,7 +7264,6 @@ function showquiz()
                     {
                         score_card = unescape(results.rows.item(i).key_val);                     
                     }
-                    
                  }
                  $('.questionsdiv').hide();
                  if(obj.isMultipleAttempts == null) {
@@ -7818,7 +7829,7 @@ function submitquestion(instance_id)
 		jQuery(".loading_send").show(); 
 		var main_url = localStorage.url + 'Add-question/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/submit/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 		jQuery.ajax({
-			// url: main_url,
+			url: main_url,
 			dataType: "json",
 			method: "POST",
 			data: {
@@ -7827,6 +7838,7 @@ function submitquestion(instance_id)
 				question:question
 			},
 			success: function(resp) {
+				// console.log(JSON.stringify(resp));
 				localStorage.question_submit = "1";
 				localStorage.resubmit_code = '';
 				//window.location.href="add_questions.html"
