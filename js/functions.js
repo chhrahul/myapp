@@ -3813,7 +3813,7 @@ function loadallagenda() {
         jQuery(".loading_agenda_items").show();
         importfooter('agenda', 'agenda');
         
-        $('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoagenda(); return false;" data-type="all"><span>All</span><i class="fa fa-clock-o"></i></a></span>');
+        $('.see-all-wrapper').html('<span><a style="color: #fff;text-decoration: none;" class="seealls"  href="#" onclick="changetoagenda(); return false;" data-type="all"><span>Current</span><i class="fa fa-clock-o"></i></a></span>');
 		$('#agendamenuheader').attr('onclick', 'changetoallagenda();');
         
         $(".agenda-container").hide();
@@ -7976,6 +7976,13 @@ function showcomments(sortby,sortdr,l)
             method: "GET",
             success: function(obj) {
             	// alert(JSON.stringify(obj));
+
+            	if(obj.form.formSettings.max_files) {
+            		localStorage.maxfiles = obj.form.formSettings.max_files;
+            	}
+            	else {
+            		localStorage.maxfiles = "5";
+            	}
             	localStorage.imageURI = "";
 				localStorage.popUpObjectData = "";
 				localStorage.comment_id = "";
@@ -8132,39 +8139,45 @@ function showcomments(sortby,sortdr,l)
 					if(checkdefined(val.__videoItem) == 'yes') {
 						$.each(val.__videoItem, function(key, res) {
 							if(localStorage.url !== "https://beta.oceventmanager.com/") {
-								if (key == "\u0000VideoItem\u0000video" && res !== null) {
-									if(checkdefined(res.hosted_vimeo_id) == 'yes') {										
-										localStorage.vimeoId = res.hosted_vimeo_id;
-										if(isIphone) {
-											if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
-												var videoUrl = "http:" + res.hosted_vimeo_link_hd;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
-												var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
-												var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
-												var videoUrl = "http" + res.hosted_vimeo_link_hls;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
-												var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
-											}
-											
-											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
+								if (key == "\u0000VideoItem\u0000video" && res !== null) {										
+									localStorage.vimeoId = res.hosted_vimeo_id;
+									
+									if(isIphone) {
+										if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_hd;
 										}
-										else {										
-											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';											
+										else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
+											var videoUrl = "http" + res.hosted_vimeo_link_hls;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+										}
+										else {
+											var videoUrl = "";
 										}
 
+										if(videoUrl == "") {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+										}
+										else {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
+										}
 									}
-									else {
-										localStorage.vimeoId = "";
+									else {	
+										if(checkdefined(res.hosted_vimeo_link_hd) == 'no' && checkdefined(res.hosted_vimeo_link_sd960) == 'no' && checkdefined(res.hosted_vimeo_link_sd640) == 'no' && checkdefined(res.hosted_vimeo_link_hls) == 'no' && checkdefined(res.hosted_vimeo_link_mobile) == 'no') {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+										}
+										else {									
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';	
+										}										
 									}
-								}
-								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
-									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+
 								}
 							}
 						});
@@ -8246,44 +8259,44 @@ function showcomments(sortby,sortdr,l)
               		if(checkdefined(val.__videoItem) == 'yes') {
 						$.each(val.__videoItem, function(key, res) {
 							if(localStorage.url !== "https://beta.oceventmanager.com/") {
-								if (key == "\u0000VideoItem\u0000video" && res !== null) {
-									if(checkdefined(res.hosted_vimeo_id) == 'yes') {
-										localStorage.vimeoId = res.hosted_vimeo_id;
-										if(isIphone) {
-											if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
-												// alert("hd");
-												var videoUrl = "http:" + res.hosted_vimeo_link_hd;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
-												// alert("sd960");
-												var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
-												// alert("sd640");
-												var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
-												// alert("hls");
-												var videoUrl = "http" + res.hosted_vimeo_link_hls;
-											}
-											else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
-												// alert("mobile");
-												var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
-											}
-											
-											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 20px; background-color: #000;" controls></video></div></div>';
+								if (key == "\u0000VideoItem\u0000video" && res !== null) {										
+									localStorage.vimeoId = res.hosted_vimeo_id;									
+									if(isIphone) {
+										if(checkdefined(res.hosted_vimeo_link_hd) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_sd960) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_sd640) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_hls) == 'yes') {
+											var videoUrl = "http" + res.hosted_vimeo_link_hls;
+										}
+										else if(checkdefined(res.hosted_vimeo_link_mobile) == 'yes') {
+											var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
 										}
 										else {
-											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';
+											var videoUrl = "";
+										}
+
+										if(videoUrl == "") {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+										}
+										else {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>';
 										}
 									}
-									else {
-										localStorage.vimeoId = "";
+									else {	
+										if(checkdefined(res.hosted_vimeo_link_hd) == 'no' && checkdefined(res.hosted_vimeo_link_sd960) == 'no' && checkdefined(res.hosted_vimeo_link_sd640) == 'no' && checkdefined(res.hosted_vimeo_link_hls) == 'no' && checkdefined(res.hosted_vimeo_link_mobile) == 'no') {
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+										}
+										else {									
+											comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + res.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + res.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>';	
+										}										
 									}
-								}
-								
-								if (key == "\u0000VideoItem\u0000isCompleted" && res == false && checkdefined(localStorage.vimeoId) == "no") {
-									comment_video = '<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><img src="img/loader.gif"><p>We are processing the video for you ;-)</p></div></div>';
+
 								}
 							}
 						});
@@ -10915,8 +10928,8 @@ function multiimageupload() {
 			// console.log('Error: ' + error);
 		}, 
 		{
-			// maximumImagesCount: 5,
-			width: 300,
+			 maximumImagesCount: localStorage.maxfiles,
+			width: 500,
 			quality: 100
 		}
 	);

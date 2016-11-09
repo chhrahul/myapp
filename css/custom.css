@@ -2485,6 +2485,9 @@ div#pageone {
     display: inline-block !important;
 }
 .swiper-container.swiper-container-horizontal.customcommenttextarea {
-    height: 160px;
+    max-height: 160px;
     overflow: scroll;
+}
+.questions-container .questions-item-container .question-item-info .question-inner p {
+    word-wrap: break-word;
 }
