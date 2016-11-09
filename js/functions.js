@@ -2366,6 +2366,7 @@ function loadagendaitem() {
 
     jQuery(document).ready(function($) {  
         
+        $('.comment-input').val("");
         importfooter('View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'agenda-item');
 		var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '?gvm_json=1';
 
@@ -2552,13 +2553,13 @@ function loadagendaitem() {
 
                     	var ratinghtml = '<div id="innerstars"class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">';
                     	for(k = 1; k<=maxratin;k++)    	{
-                    		console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
+                    		// console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
                     		 if(k <= ratin ) {
-                    		 	console.log("if if");
+                    		 	// console.log("if if");
                 		 		ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                     		 }
                     		 else {
-                    		 	console.log("if else");
+                    		 	// console.log("if else");
                     		 	ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                     		 }
                 		}
@@ -2569,14 +2570,14 @@ function loadagendaitem() {
                     	$('#rate').show();
                     	var ratinghtml = '<div id="innerstars" class="item-interaction item-interaction-rate interaction-box" data-ratevalue="' + ratin + '" data-original-title="" title="">';
                     	for(k = 1; k<=maxratin;k++)    	{
-                    		console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
+                    		// console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
                     		 if(k <= ratin ) {
-                    		 	console.log("else if");
+                    		 	// console.log("else if");
                 		 		// ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                 		 		ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star active f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
                     		 }
                     		 else {
-                    		 	console.log("else else");
+                    		 	// console.log("else else");
                     		 	// ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                     		 	ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
                     		 }
@@ -2645,16 +2646,28 @@ function submitrating()
     var main_url = localStorage.url + 'View-presentation/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/submit/rating?gvm_json=1';
     $('#rate').hide();
     $.ajax({
-            url: main_url,
-            dataType: "json",
-            method: "POST",
-            data:{rate:localStorage.ratin},
-            success: function(data) {
-            //alert(data)
-              $('.after-rating-container').removeClass('hidden');
-              $('.comment-form').removeClass('hidden');
-            }
-          });    
+		url: main_url,
+		dataType: "json",
+		method: "POST",
+		data:{rate:localStorage.ratin},
+		success: function(data) {
+			console.log(data)
+			$('.after-rating-container').removeClass('hidden');
+			$('.comment-form').removeClass('hidden');
+
+			var ratinghtml = '<div id="innerstars"class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + localStorage.ratin + '" data-original-title="" title="">';
+			for(k = 1; k<=5;k++)    	{	        		
+				if(k <= localStorage.ratin ) {	        		 	
+					ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+				}
+				else {	        		 	
+					ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+				}
+			}
+			ratinghtml += '<div>';
+			$('.item-interactions').html(ratinghtml);
+		}
+	});    
 }
 
 function submitagendacomment()
@@ -2677,6 +2690,7 @@ function submitagendacomment()
             success: function(data) {
             //alert(data)
               //$('.after-rating-container').removeClass('hidden');
+              $('.comment-input').val("");
               $('.comment-form').addClass('hidden');
               
 				db.transaction(function(tx) {
