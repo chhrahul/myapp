@@ -2375,7 +2375,7 @@ function loadagendaitem() {
 		jQuery(".loading_agenda_items").show();
 		jQuery(".notes-agenda-container").hide();
 		jQuery(".list-agendalist-container").hide();
-
+		$('.after-rating-container').addClass("hidden"); 
         $('#agendamenuheader').attr('onclick', 'changetoagenda();');
 
         $.ajax({
@@ -2544,14 +2544,18 @@ function loadagendaitem() {
                 if (data.hasRating == true) {
                 	var ratin = data.ratevalue;
                     var maxratin = 5;
-                    // console.log("data.rating => " + data.rating);
+                    
                 	if(data.rating == "true" || data.rating == true) {
-                    	var ratinghtml = '<div class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">'
+
+                    	var ratinghtml = '<div id="innerstars"class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">';
                     	for(k = 1; k<=maxratin;k++)    	{
+                    		console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
                     		 if(k <= ratin ) {
+                    		 	console.log("if if");
                 		 		ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                     		 }
                     		 else {
+                    		 	console.log("if else");
                     		 	ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
                     		 }
                 		}
@@ -2559,7 +2563,23 @@ function loadagendaitem() {
                 		$('.item-interactions').html(ratinghtml);
                     }
                     else {
-                    	var ratinghtml = '<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="1" data-original-title="" title=""><a href="javascript:void(0)" onclick="rateme(1);" class="rate-star f1" data-rate="1"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(2);" class="rate-star f2" data-rate="2"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(3);" class="rate-star f3" data-rate="3"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(4);" class="rate-star f4" data-rate="4"><i class="fa fa-star"></i></a><a href="javascript:void(0)" onclick="rateme(5);" class="rate-star f5" data-rate="5"><i class="fa fa-star"></i></a></div>';
+                    	$('#rate').show();
+                    	var ratinghtml = '<div id="innerstars" class="item-interaction item-interaction-rate interaction-box" data-ratevalue="' + ratin + '" data-original-title="" title="">';
+                    	for(k = 1; k<=maxratin;k++)    	{
+                    		console.log("data.rating => " + data.rating + " , " + ratin + " , " + k);
+                    		 if(k <= ratin ) {
+                    		 	console.log("else if");
+                		 		// ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+                		 		ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+                    		 }
+                    		 else {
+                    		 	console.log("else else");
+                    		 	// ratinghtml += '<a href="#" class="rate-star" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
+                    		 	ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+                    		 }
+                		}
+                		ratinghtml += '<div>';
+                		$('.item-interactions').html(ratinghtml);                    	
                     }
                     $('.agenda-item-rating-container').show();
                     
@@ -2676,10 +2696,19 @@ function submitagendacomment()
 	} 
 }
 
-function rateme(id)
-{
-  //alert(id)
-  localStorage.ratin = id;
+function rateme(id) {
+	//alert(id)
+	localStorage.ratin = id;
+	var ratinghtml = "";
+	for(k = 1; k<=5; k++) {
+		if(k <= id ) {
+			ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star active f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+		}
+		else {
+			ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+		}
+	}	
+	$('#innerstars').html(ratinghtml);
 }
 
 //got to agenda item
