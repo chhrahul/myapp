@@ -7190,6 +7190,7 @@ function showquiz()
             method: "GET",
             success: function(obj) {
                // console.log(JSON.stringify(obj));
+               if(obj.answersStatuses) {
 
 				var answersStatuses = obj.answersStatuses;
 
@@ -7211,7 +7212,7 @@ function showquiz()
 					}
 					$(".questions-bar").append(liClass);
 				}
-
+			}
                $("#quiz_timer_icon").html('<i class="fa fa-clock-o"><span id="countdown_box"></span>')
                $.each(obj.breadcrumbs, function(key, val) {
 
@@ -7254,7 +7255,13 @@ function showquiz()
                     
                  }
                  $('.questionsdiv').hide();
-                    $('.quiz-header-title').after('<div class="quiz-results-wrapper"><div class="quiz-results"><h3 class="green-text">'+resultss+'</h3><p>'+obj.results+'</p><span class="score green-text">'+obj.quizPoints+'</span></div><div class="quiz-btn-wrapper"><a class="btn btn-primary" href="javascript:resetquiz();">'+tryagain+'</a><a class="btn btn-primary scoreboard"  href="javascript:gotoscorecard();">'+score_card+'</a></div></div>');
+                 if(obj.isMultipleAttempts == null) {
+                 	var showHideStyle = 'style="display:none;"';
+                 }
+                 else {
+                 	var showHideStyle = '';
+                 }
+                    $('.quiz-header-title').after('<div class="quiz-results-wrapper"><div class="quiz-results"><h3 class="green-text">'+resultss+'</h3><p>'+obj.results+'</p><span class="score green-text">'+obj.quizPoints+'</span></div><div class="quiz-btn-wrapper"><a class="btn btn-primary" href="javascript:resetquiz();" ' + showHideStyle + '>'+tryagain+'</a><a class="btn btn-primary scoreboard"  href="javascript:gotoscorecard();">'+score_card+'</a></div></div>');
               
            });
         });
