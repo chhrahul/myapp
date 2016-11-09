@@ -2573,7 +2573,7 @@ function loadagendaitem() {
                     		 if(k <= ratin ) {
                     		 	console.log("else if");
                 		 		// ratinghtml += '<a href="#" class="rate-star active" data-rate="' + k +'"><i class="fa fa-star"></i></a>';
-                		 		ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+                		 		ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star active f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
                     		 }
                     		 else {
                     		 	console.log("else else");
@@ -2590,11 +2590,11 @@ function loadagendaitem() {
                    // $('.item-interactions').html('<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="'+ratin+'" data-original-title="" title="">');
                    $('.item-interaction-rate').attr('data-ratevalue',ratin);
                     var str = '';
-                    // for(k = 1; k<=maxratin;k++) {
-                    //     if(k <= ratin ) {
-                    //       $('.f'+k).addClass('active');
-                    //     }           
-                    // }
+                    for(k = 1; k<=maxratin;k++) {
+                        if(k <= ratin ) {
+                          $('.f'+k).addClass('active');
+                        }           
+                    }
                 }
                 else {
 
