@@ -2546,6 +2546,9 @@ function loadagendaitem() {
                     var maxratin = 5;
                     
                 	if(data.rating == "true" || data.rating == true) {
+						if(data.displayComment == true) {
+							$('.after-rating-container, .after-rating-container .comment-form').removeClass('hidden');
+						}
 
                     	var ratinghtml = '<div id="innerstars"class="item-interaction item-interaction-rate interaction-box readonly" data-ratevalue="' + ratin + '" data-original-title="" title="">';
                     	for(k = 1; k<=maxratin;k++)    	{
@@ -2579,21 +2582,19 @@ function loadagendaitem() {
                     		 }
                 		}
                 		ratinghtml += '<div>';
-                		$('.item-interactions').html(ratinghtml);                    	
+                		$('.item-interactions').html(ratinghtml);  
+                		$('#rate').removeClass('hidden');                  	
                     }
                     $('.agenda-item-rating-container').show();
                     
                    // $('.item-interactions').html('<div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="'+ratin+'" data-original-title="" title="">');
                    $('.item-interaction-rate').attr('data-ratevalue',ratin);
                     var str = '';
-                    for(k = 1; k<=maxratin;k++) {
-                        if(k <= ratin ) {
-                          $('.f'+k).addClass('active');
-                        }           
-                    }
-					if(data.displayComment == true) {
-						$('#rate').removeClass('hidden'); 
-					}
+                    // for(k = 1; k<=maxratin;k++) {
+                    //     if(k <= ratin ) {
+                    //       $('.f'+k).addClass('active');
+                    //     }           
+                    // }
                 }
                 else {
 
@@ -2699,16 +2700,11 @@ function submitagendacomment()
 function rateme(id) {
 	//alert(id)
 	localStorage.ratin = id;
-	var ratinghtml = "";
 	for(k = 1; k<=5; k++) {
 		if(k <= id ) {
-			ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star active f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
+			$('.f'+k).addClass('active');
 		}
-		else {
-			ratinghtml += '<a href="javascript:void(0)" onclick="rateme(' + k + ');" class="rate-star f' + k + '" data-rate="' + k + '"><i class="fa fa-star"></i></a>';
-		}
-	}	
-	$('#innerstars').html(ratinghtml);
+	}		
 }
 
 //got to agenda item
