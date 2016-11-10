@@ -13,7 +13,12 @@ function loadMorePresentations()
     
     var presentationsList = $('#presentations-list');
 	var displayedElementsCount =  presentationsList.find('.agenda-item').length;
-    
+    if(presentationsCount) {
+       presentationsCount = presentationsCount;
+    }
+    else {
+        var  presentationsCount = "0";
+    }
 	if (displayedElementsCount < presentationsCount) {
 		presentationsLoading = true;
         

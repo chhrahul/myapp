@@ -2491,3 +2491,7 @@ div#pageone {
 .questions-container .questions-item-container .question-item-info .question-inner p {
     word-wrap: break-word;
 }
+.mfp-figure:after {
+    background: transparent !important;
+    box-shadow: none !important;
+}

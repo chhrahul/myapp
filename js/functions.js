@@ -10928,7 +10928,7 @@ function multiimageupload() {
 			// console.log('Error: ' + error);
 		}, 
 		{
-			 maximumImagesCount: localStorage.maxfiles,
+			maximumImagesCount: localStorage.maxfiles,
 			width: 500,
 			quality: 100
 		}
