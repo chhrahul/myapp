@@ -3935,7 +3935,7 @@ function showcommonagendalist(obj) {
             var c = Math.PI * 49.5 * 2;
             var pct = ((100 - progress) / 100) * c;
             pct = pct.toFixed(3) + 'px';
-            alert(pct);
+            // alert(pct);
             //54.5368
             //27.4450  
             var img_str = '';
@@ -3948,7 +3948,7 @@ function showcommonagendalist(obj) {
             var time_str = '';
             if(checkdefined(val1.time) == 'yes')
             {
-              time_str = '<div class="agenda-footer">&nbsp;<div class="meeting-location"><i class="fa fa-clock-o"></i> ' + val1.time + '</div></div>';
+				time_str = '<div class="agenda-footer">&nbsp;<div class="meeting-location"><i class="fa fa-clock-o"></i> ' + val1.time + '</div></div>';
             }
 
            	if(val1.direct_access_module_href !== null) {
