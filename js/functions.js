@@ -7569,8 +7569,8 @@ function showquestions(sortby,sortdr,l)
 			    closequestionbox();
 			}, 100 * 100);
 	}
-   	$('#questionPrev').attr('onclick', 'changetoagendaitem()'); 
-   		$(".votes-count").html('<i class="fa fa-question"></i><span class="green-text"></span><span class="question_counter"></span><span class="small-text"></span>');
+   		$('#questionPrev').attr('onclick', 'changetoagendaitem()'); 
+   		$(".votes-count").html('<i class="fa fa-question"></i><span class="green-text"></span><span class="question_counter"> Questions /</span><span class="small-text"></span>');
    		$("#frmfld_question").val("");
         if(l != 1)
         {
@@ -7584,12 +7584,10 @@ function showquestions(sortby,sortdr,l)
 	    $(".footertag").show();
 	    $(".submit_com").show();
 	    $(".loading_send").hide();  
-        if(checkdefined(sortby) != 'yes')
-        {
+        if(checkdefined(sortby) != 'yes') {
           sortby = 'timestamp';
         }
-        if(checkdefined(sortdr) != 'yes')
-        {
+        if(checkdefined(sortdr) != 'yes') {
           sortdr = 'desc';
         }
         
@@ -7610,11 +7608,11 @@ function showquestions(sortby,sortdr,l)
 		}
 
 		if(sortdr == 'asc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
 		}
 
 		if(sortdr == 'desc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
 		}
 
 
@@ -7622,6 +7620,7 @@ function showquestions(sortby,sortdr,l)
         importfooter('Add-question/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'q_and_a');
         var main_url = localStorage.url + 'Add-question/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
         // alert(main_url)
+    setTimeout(function() {
         $.ajax({
             url: main_url,
             dataType: "json",
@@ -7650,7 +7649,7 @@ function showquestions(sortby,sortdr,l)
                     }
                 });
               $('.votes-count .green-text').html(obj.countQuestionInstances);
-              $('.votes-count .small-text').html(obj.countAnswerInstances.answers);
+              $('.votes-count .small-text').html(obj.countAnswerInstances.answers + " answers");
               
               
                  localStorage.resubmit_code = obj.qForm.noResubmitCode;
@@ -7749,7 +7748,7 @@ function showquestions(sortby,sortdr,l)
                     }
                      if(results.rows.item(i).key_constant == 'addQuestionAnswers')
                     {
-                        $('.small-text').append(' '+unescape(results.rows.item(i).key_val));                  
+                        // $('.small-text').append(' '+unescape(results.rows.item(i).key_val));                  
                     }
                     if(results.rows.item(i).key_constant == 'writeQuestion')
                     {
@@ -7786,6 +7785,7 @@ function showquestions(sortby,sortdr,l)
 
             }
        }); 
+	}, 5000);
    });             
 }
 
@@ -7909,6 +7909,7 @@ function showcomments(sortby,sortdr,l)
 {
    jQuery(document).ready(function($) {
    		$('#commentPrev').attr('onclick', 'changetoagendaitem()'); 
+   		$('.add-comments-container #accvotescount').html('<i class="fa fa-comment"></i><span class="green-text">0</span><span class="comment_counter"></span><span class="comment_counter_text"></span> ');
         if(l != 1)
         {
           loadcommonthings(); 
