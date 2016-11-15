@@ -3902,7 +3902,9 @@ function loadagenda() {
 
 //function to show common agenda list
 function showcommonagendalist(obj) {
-	$("#presentations-list").html('&nbsp');
+	// console.log(obj.data.page_title)
+	$('.header-title h1').html(obj.data.page_title);
+	$("#presentations-list").html('');
 	$(".agenda-item-container").hide();
 	
     $.each(obj.data.presentations, function(key, val) {
@@ -3968,7 +3970,7 @@ function showcommonagendalist(obj) {
             // $("#presentations-list").append('<div class="row"><div class="agenda-content"><div class="agenda-item col-xs-12"><a href="#" ' + linktoval + '><div class="agenda-info">' + img_str + '<svg class="agenda-item-progress" version="1.1" xmlns="http://www.w3.org/2000/svg" data-duration="' + duration + '" data-eta="' + eta + '"><circle class="agenda-item-progress-bg" r="42.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="298.45130209103036" stroke-dashoffset="0"></circle><circle class="agenda-item-progress-eta" r="44.5" cx="50%" cy="50%" fill="transparent" stroke-dasharray="305.01767270538954" stroke-dashoffset="" style="stroke-dashoffset: ' + pct + ';"></circle></svg></div><div class="agenda-wrapper"><span class="agenda-slogan">' + val1.title + '</span><i class="fa fa-angle-right"></i><div class="agenda-person-info"><span class="name">' + val1.speaker_name + '</span></div></div></div></a>'+time_str+'</div></div></div>');
         });
 		setTimeout(function() {
-				$("#presentations-list").html(circle);
+			$("#presentations-list").append(circle);
         }, 5000);  
     });
 }
