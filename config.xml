@@ -29,7 +29,7 @@
 <!--splash src="icons/screen.png" gap:platform="android" /-->
 
 <!--icon src="icons/OCEM4-Android_57.png" gap:platform="android" /-->
-<plugin name="cordova-plugin-camera" source="https://github.com/apache/cordova-plugin-camera.git" />
+<plugin name="cordova-plugin-camera" source="git" />
 <gap:plugin name="cordova-plugin-file" source="pgb"  />
 <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
   <param name="URL_SCHEME" value="live" />
