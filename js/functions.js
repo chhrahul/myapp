@@ -3908,14 +3908,15 @@ function showcommonagendalist(obj) {
 	$(".agenda-item-container").hide();
 	
     $.each(obj.data.presentations, function(key, val) {
+    	 var circle = "";
         //if(val.group_title != null)
         // {
         var group_title = '';
         if (checkdefined(val.group_title) == 'yes') {
-            circle = '<div class="row"><div class="date-wrapper "><div class="date"><p>' + val.group_title + '</p></div></div></div>';
+            circle += '<div class="row"><div class="date-wrapper "><div class="date"><p>' + val.group_title + '</p></div></div></div>';
             group_title = val.group_title;
         }
-        var circle = "";
+       
         $.each(val.items, function(key1, val1) {
 	        if(checkdefined(val1.direct_access_module_href) == 'yes')
 	        {
