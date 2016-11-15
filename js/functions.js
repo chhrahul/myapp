@@ -3935,7 +3935,7 @@ function showcommonagendalist(obj) {
             var c = Math.PI * 49.5 * 2;
             var pct = ((100 - progress) / 100) * c;
             pct = pct.toFixed(3) + 'px';
-            // alert(pct);
+             alert(pct);
             //54.5368
             //27.4450  
             var img_str = '';
