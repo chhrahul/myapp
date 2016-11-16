@@ -7569,6 +7569,11 @@ function showquestions(sortby,sortdr,l)
 			    closequestionbox();
 			}, 100 * 100);
 	}
+	else {
+		$(".success-status").addClass("hide");
+		$(".error-status").addClass("hide");
+		closequestionbox();
+	}
    		$('#questionPrev').attr('onclick', 'changetoagendaitem()'); 
    		$(".votes-count").html('<i class="fa fa-question"></i><span class="green-text"></span><span class="question_counter"> Questions /</span><span class="small-text"></span>');
    		$("#frmfld_question").val("");
