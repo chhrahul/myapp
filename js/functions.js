@@ -1394,7 +1394,7 @@ var fbLoginSuccess = function() {
 
 
 var login = function() {
-    alert('here');
+    // alert('here');
     jQuery(document).ready(function($) {
 
         if (!window.cordova) {
