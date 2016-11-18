@@ -1740,11 +1740,25 @@ function loadgamification() {
                 var iframeSrcUrl = results.rows.item(0).iframe_url + "&isApp=1";
                 iframeSrcUrl = iframeSrcUrl.replace("http://_", "http://");
 
-        
+                var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
                
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
-				
-				var thisIframesHeight = window.parent.$("#homepage-content").height();
+
+                // var thisIframesHeight = window.parent.$("#homepage-content").height();
+
+                // if (thisIframesHeight > 550) {
+                // 	var welHeight = (parseInt(thisIframesHeight) + parseInt(10)) + "px";  
+                // 	var welHeight = thisIframesHeight + "px";  
+                // }   
+                // else {
+                // 	var welHeight = "550px";
+                // }           
+                // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+                // $("#homepage-content").attr("src", iframeSrcUrl);
+                // $("#homepage-content").show().css("height", welHeight);
+                // $('.welcome-container').html("");
+
+                var thisIframesHeight = window.parent.$("#homepage-content").height();
 
                 if (thisIframesHeight > 550) {
                 	var welHeight = (parseInt(thisIframesHeight) + parseInt(10)) + "px";  
@@ -1757,21 +1771,7 @@ function loadgamification() {
                 // var windowheight = $( window ).height();
                 // alert(documentheight + " , " + windowheight);
                 
-                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + " !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
-                // var thisIframesHeight = window.parent.$("#homepage-content").height();
-
-                // if (thisIframesHeight > 550) {
-                // 	var welHeight = (parseInt(thisIframesHeight) + parseInt(10)) + "px";  
-                // 	var welHeight = thisIframesHeight + "px";  
-                // }   
-                // else {
-                // 	var welHeight = "550px";
-                // }           
-                // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + " !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
-				// $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
-                // $("#homepage-content").attr("src", iframeSrcUrl);
-                // $("#homepage-content").css("height", welHeight);
-                // $('.welcome-container').css("height", welHeight);
+                $(".weltempdiv").html("<style> #homepage-content { height: " + welHeight + " !important; padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; }");
 
                 //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
