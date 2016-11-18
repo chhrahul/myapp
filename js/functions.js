@@ -1770,7 +1770,7 @@ function loadgamification() {
                 // }           
                 // var documentheight = $( document ).height();
                 // var windowheight = $( window ).height();
-                // alert(documentheight + " , " + windowheight);
+                 alert(thisIframesHeight + " , " + welHeight);
                 
                 $(".weltempdiv").html("<style> #homepage-content { height: " + welHeight + " !important;}");
 
