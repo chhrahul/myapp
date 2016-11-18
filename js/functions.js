@@ -1746,17 +1746,18 @@ function loadgamification() {
 
                 // var thisIframesHeight = window.parent.$("#homepage-content").height();
 
-                // if (thisIframesHeight > 550) {
-                // 	var welHeight = (parseInt(thisIframesHeight) + parseInt(10)) + "px";  
-                // 	var welHeight = thisIframesHeight + "px";  
-                // }   
-                // else {
-                // 	var welHeight = "550px";
-                // }           
-                // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
-                // $("#homepage-content").attr("src", iframeSrcUrl);
-                // $("#homepage-content").show().css("height", welHeight);
-                // $('.welcome-container').html("");
+                if (thisIframesHeight > 550) {
+                	var welHeight = (parseInt(thisIframesHeight) + parseInt(10)) + "px";  
+                	var welHeight = thisIframesHeight + "px";  
+                }   
+                else {
+                	var welHeight = "550px";
+                }           
+                $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+				$(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
+                $("#homepage-content").attr("src", iframeSrcUrl);
+                $("#homepage-content").show().css("height", welHeight);
+                $('.welcome-container').html("");
 
                 //alert(len)
                 if(checkdefined(localStorage.menu) == 'yes')
