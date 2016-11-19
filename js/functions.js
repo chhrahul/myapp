@@ -1753,7 +1753,7 @@ function loadgamification() {
                 else {
                 	var welHeight = "550px";
                 } 
-                var welHeight = "570px";          
+                // var welHeight = "570px";          
                 // $(".weltempdiv").html("<style> .welcome-container { height: " + welHeight + "px !important; position: fixed !important; margin: -3px 0 0 !important; padding: 0; overflow: scroll !important; display: inline-flex !important; } #homepage-content { padding-top: 0 !important; padding-bottom: 138px !important; overflow: scroll !important; } </style>");
                 // $("#homepage-content").attr("src", iframeSrcUrl);
                 // $("#homepage-content").show().css("height", welHeight);
@@ -1770,7 +1770,7 @@ function loadgamification() {
                 // }           
                 // var documentheight = $( document ).height();
                 // var windowheight = $( window ).height();
-                 alert(thisIframesHeight + " , " + welHeight);
+                 // alert(thisIframesHeight + " , " + welHeight);
                 
                 $(".weltempdiv").html("<style> #homepage-content { height: " + welHeight + " !important;}");
 
@@ -4383,8 +4383,51 @@ function sendRequest(player_code) {
     });
 }
 
-function showcommoncontacts(obj,checkhide) {
+// $("#friends-content-container").scroll(function(e) {
+// 	var elem = $(e.currentTarget);
+//     if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+//     	// var data = localStorage.notilen;
+//     	// loadmorenoti(data);
+//     	alert(" 2 " + elem)
+//     }
+//  alert(" 1 " + elem)
+// });
+function getAjaxMoreUsers() {
+	window.onscroll = function(ev) {	
+	    if (window.innerHeight + window.scrollY == document.body.scrollHeight) {
+			var main_url = localStorage.url + localStorage.getMoreUsers + "/?gvm_json=1";	 
+			var lastLetter = localStorage.lastLetter       
+	        if(localStorage.getMoreUsers == null || localStorage.getMoreUsers == "null" || localStorage.getMoreUsers == undefined || localStorage.getMoreUsers == "") {
+	        	$(".contactloader").hide();
+	        }
+	        else {
+	        	$(".contactloader").show();
+		        $.ajax({
+					url: main_url,
+					dataType: "json",
+					method: "POST",
+					data: {
+		                is_ajax: 1, 
+		                last_letter: lastLetter, 
+		                load_more: 1
+		            },
+	        		success: function(obj) {
+	        			if(localStorage.loadcontacts == "1") {
+	        				showcommoncontacts(obj, "yes");
+	        			}
+	        			else {
+	        				$(".contactloader").hide();
+	        			}
+	        		}
+		        });
+		    }
+	    }
+	};
+}
+
+function showcommoncontacts(obj,checkhide,nextfrnd) {
 	// console.log(obj, + " ,,,,,,,,," +checkhide)
+	localStorage.getMoreUsers = obj.nextPageLink;
     var icon_class = '';
     var link = '';
     var team = '';
@@ -4393,11 +4436,12 @@ function showcommoncontacts(obj,checkhide) {
     if(checkhide != 'yes')
     {
        $(".all_conts").html('&nbsp');
+       $('.friends-requests-container').html("");
     }                                
     // alert(JSON.stringify(obj.eventUserFriends));
     // alert(JSON.stringify(obj.receivedFriendsRequests));
     // alert(JSON.stringify(obj));
-    $('.friends-requests-container').html("");
+    
     var ficon_class = '';
     var flink = '';
     var fteam = '';
@@ -4422,11 +4466,16 @@ function showcommoncontacts(obj,checkhide) {
             // alert(val.first_name[0].toUpperCase());
             if(checkdefined(val.first_name) == 'yes')
             {
+            	
                 if (ffirst_letter != val.first_name[0].toUpperCase()) {
-                    fdivider = '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
+                	if(localStorage.lastLetter !== val.first_name[0].toUpperCase()) {
+                		fdivider = '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
+                	}
                 }
     
                 ffirst_letter = val.first_name[0].toUpperCase();
+                localStorage.lastLetter = val.first_name[0].toUpperCase();
+                
             }
 
             if (checkdefined(val.team) == 'yes') {
@@ -4450,65 +4499,59 @@ function showcommoncontacts(obj,checkhide) {
     });
     } 
       
-    if(checkdefined(obj.eventUserFriends) == 'yes')
-     {
-    $.each(obj.eventUserFriends, function(key, val) {
-        icon_class = '';
-        link = '';
-        team = '';
-        divider = '';
-        //alert(val.fName)
-        //alert(val.first_name)
-        if(checkdefined(val.first_name) == 'yes') {
-            if (first_letter != val.first_name[0].toUpperCase()) {
-                //alert(first_letter)
-                //alert(val.fName[0].toUpperCase())
-                divider = '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
-            }
-    
-            first_letter = val.first_name[0].toUpperCase();
-        
-            if(checkhide != 'yes')
-            {
-              if (key == 0 && val.first_name[0] != 'A') {
-                  divider = '<div class="friends-item-title"> </div>';
-              }
-            }
-        }
-        if (checkdefined(val.team) == 'yes') {
-            team = '&lt;' + val.team + '&gt;';
-        }
-        var fullname = '';
-        if(checkdefined(val.fullName) == 'yes')
-        {
-           fullname = val.fullName;
-        }   
-		// console.log("val.is_friend => " + val.is_friend + " , val.status => " + val.status + " , fullname => " + fullname + " , obj.enableFriendsRequests => " + obj.enableFriendsRequests);
-        if (val.is_friend == 1 && val.status == 1) {
-            icon_class = 'pending';
-            link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-replay"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="waiting"></h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request waitingno">No</a></div></div>';
-        }
-        if (val.is_friend == 1 && val.status == 2) {
-            link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-nav-forward"></i></span></a></div>';
-        }
-        if (val.is_friend == 0 && obj.enableFriendsRequests == true) {
-            link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="sendreq"></h4><div class="confirm-btn-wrapper"><a href="" class="danger cancel sendreqno"></a><a href="#" onclick=sendRequest("' + val.player_code + '") class="success send-friend-request sendreqyes"></a></div></div>';
-        }
-
-        if (val.is_friend == 0 && obj.enableFriendsRequests != true) {
-            link = '<div class="friends-item"><a href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="gicon-friends"></i></span></a></div> ';
-        }
-
-        $('.all_conts').append(divider + '<div class="friends-item-wrapper ' + icon_class + '">  ' + link + '  </div>');
-        $(".loading_agenda_items").hide();
-       // $(".add-friends-container").show();
-       $(".contacts-container").show();
-       $(".sendreqno").html("No");
-       $(".sendreqyes").html("Yes");
-        
-        // alert(divider+'<div class="friends-item-wrapper '+icon_class+'">  '+link+'  </div>')
-    });
-    db.transaction(function(tx) {
+    if(checkdefined(obj.eventUserFriends) == 'yes') {
+	    $.each(obj.eventUserFriends, function(key, val) {
+	        icon_class = '';
+	        link = '';
+	        team = '';
+	        divider = '';
+	        if(checkdefined(val.first_name) == 'yes') {
+	            if (first_letter != val.first_name[0].toUpperCase()) {
+                	if(localStorage.lastLetter !== val.first_name[0].toUpperCase()) {
+	                	divider = '<div class="friends-item-title"> ' + val.first_name[0].toUpperCase() + ' </div>';
+	                }
+	                localStorage.lastLetter = val.first_name[0].toUpperCase();
+	            }
+	    
+	            first_letter = val.first_name[0].toUpperCase();
+	        
+	            if(checkhide != 'yes')
+	            {
+	              if (key == 0 && val.first_name[0] != 'A') {
+	                  divider = '<div class="friends-item-title"> </div>';
+	              }
+	            }
+	        }
+	        if (checkdefined(val.team) == 'yes') {
+	            team = '&lt;' + val.team + '&gt;';
+	        }
+	        var fullname = '';
+	        if(checkdefined(val.fullName) == 'yes')
+	        {
+	           fullname = val.fullName;
+	        }   
+	        if (val.is_friend == 1 && val.status == 1) {
+	            icon_class = 'pending';
+	            link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-replay"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="waiting"></h4><div class="confirm-btn-wrapper"><a href="#" onclick=cancelRequest("' + val.player_code + '") class="danger cancel-friend-request waitingno">No</a></div></div>';
+	        }
+	        if (val.is_friend == 1 && val.status == 2) {
+	            link = '<div class="friends-item"><a onclick="viewfriend(' + val.event_user_id + ')" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-nav-forward"></i></span></a></div>';
+	        }
+	        if (val.is_friend == 0 && obj.enableFriendsRequests == true) {
+	            link = '<div class="friends-item"><a class="toggle-friend-request-confirmation" href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="oc-icon-friends"></i></span></a></div> <div class="friend-request-confirm-wrapper"><h4 class="sendreq"></h4><div class="confirm-btn-wrapper"><a href="" class="danger cancel sendreqno"></a><a href="#" onclick=sendRequest("' + val.player_code + '") class="success send-friend-request sendreqyes"></a></div></div>';
+	        }
+	        if (val.is_friend == 0 && obj.enableFriendsRequests != true) {
+	            link = '<div class="friends-item"><a href="#"><div class="friends-item-img" style="background-image: url(' + val.image + ');"></div><h2> ' + fullname + '</h2><h6>' + team + '</h6><span><i class="gicon-friends"></i></span></a></div> ';
+	        }
+	        $('.all_conts').append(divider + '<div class="friends-item-wrapper ' + icon_class + '">  ' + link + '  </div>');
+	        $(".loading_agenda_items").hide();
+	       $(".contacts-container").show();
+	       $(".sendreqno").html("No");
+	       $(".sendreqyes").html("Yes");
+	       $('.contactloader').hide();
+	        
+	    });
+   		db.transaction(function(tx) {
                   tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
                   var len = results.rows.length;                  
                   for (i = 0; i < len; i++) {
@@ -4552,10 +4595,7 @@ function showcommoncontacts(obj,checkhide) {
                         //$('.waitingno').html(unescape(results.rows.item(i).key_val));
                         $('.sendreqyes').html(unescape(results.rows.item(i).key_val));
                                              
-                      }  
-                      
-                       
-                                      
+                      }             
                  }
               });  
           });
@@ -4622,6 +4662,8 @@ function showcommoncontacts(obj,checkhide) {
 
 //function to load contacts
 function loadcontacts() {
+	localStorage.loadcontacts = "1";
+	getAjaxMoreUsers();
     jQuery(document).ready(function($) {
         //loadcommonthings();
          isLoggedIn();
@@ -4650,6 +4692,7 @@ function loadcontacts() {
 
 //function to load your friends
 function loadyourcontacts() {
+	localStorage.loadcontacts = "0";
     jQuery(document).ready(function($) {
         // loadcommonthings(); 
         isLoggedIn();

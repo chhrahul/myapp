@@ -2495,3 +2495,10 @@ div#pageone {
     background: transparent !important;
     box-shadow: none !important;
 }
+.loader.contactloader {
+    background: transparent;
+}
+.loading_agenda_items.main-container img {
+    display: block;
+    margin-top: 10%;
+}
