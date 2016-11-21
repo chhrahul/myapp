@@ -6772,6 +6772,14 @@ function showvoting(sortby,sortdr,l)
         {
           sortdr = 'asc';
         }
+
+        if(localStorage.votedone == "1") {
+        	$(".voting-success-message").show();
+        	localStorage.votedone = "0";
+        }
+        else {
+        	$(".voting-success-message").hide();
+        }
         
  		jQuery(".loading_agenda_items").show();
 
@@ -7215,6 +7223,7 @@ function givevote(instance_id)
         success: function(obj) {
           //window.location.href='voting.html';
           changetovoting();
+          localStorage.votedone = "1";
         }
     });
 }
