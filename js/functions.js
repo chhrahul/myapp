@@ -6869,7 +6869,7 @@ function showvoting(sortby,sortdr,l)
 							classcss = 'style="background-color:#2c3139"';
 						}
 						if(val.is_disabled == false && val.class == "active") {
-							classcss = 'style="background-color:#2c3139;opacity:0.3;"';
+							classcss = 'style="background-color:#2c3139;opacity:0.6;"';
 						}
 
 						if(val.is_disabled == true) {
@@ -6978,7 +6978,7 @@ function showvoting(sortby,sortdr,l)
                 	}
                 	else {
 						$('.voting-end-content-title').show();
-						$('.voting-closed-content-title').hide();
+						$('.voting-closed-content-title').show();
 					}
 					if(obj.hideVoteCount == "1") {
 						$('.voting-item-count').hide();
@@ -6987,6 +6987,7 @@ function showvoting(sortby,sortdr,l)
 						$('.voting-item-count').show();
 					}
 					if((obj.showOpensInTimer == true || obj.showOpensInTimer == 'true') && (obj.showClosesInTimer == false || obj.showClosesInTimer == 'false')) {
+						
 						$('.voting-countdown').countdown({
 							until: +obj.opensInTime,
 							onExpiry: refreshPresentationPage, 
@@ -7013,26 +7014,42 @@ function showvoting(sortby,sortdr,l)
                         {
                             $('#vote-items-filter').attr('placeholder',unescape(results.rows.item(i).key_val));                     
                         }
-                        if((obj.showOpensInTimer == true || obj.showOpensInTimer == 'true') && (obj.showClosesInTimer == false || obj.showClosesInTimer == 'false')) {
+                        if(obj.showOpensInTimer == true || obj.showOpensInTimer == 'true') {
 							if(results.rows.item(i).key_constant == 'votingOpensIn')
 	                        {
+	                        	$('.voting-end-content-title').show();
+								// $('.voting-end-content-title h3 .votingClosesIn').show();
+								// $('.voting-countdown.hasCountdown').show();
+	                        	$('.voting-end-content-title h3 .fa-clock-o').html(' ');
+	                            $('.voting-end-content-title h3 .votingClosesIn').html(' '+unescape(results.rows.item(i).key_val));                     
+	                        }
+						}
+						// else if(obj.showOpensInTimer == false || obj.showOpensInTimer == 'false'){
+						// 	$('.voting-end-content-title').hide();
+						// 	// $('.voting-end-content-title h3 .votingClosesIn').hide();
+						// 	// $('.voting-countdown.hasCountdown').hide();
+						// }
+						else if(obj.showClosesInTimer == true || obj.showClosesInTimer == 'true'){
+							if(results.rows.item(i).key_constant == 'votingClosesIn')
+	                        {
+	                        	$('.voting-end-content-title').show();
+								// $('.voting-end-content-title h3 .votingClosesIn').show();
+								// $('.voting-countdown.hasCountdown').show();
 	                        	$('.voting-end-content-title h3 .fa-clock-o').html(' ');
 	                            $('.voting-end-content-title h3 .votingClosesIn').html(' '+unescape(results.rows.item(i).key_val));                     
 	                        }
 						}
 						else {
-							if(results.rows.item(i).key_constant == 'votingClosesIn')
-	                        {
-	                        	$('.voting-end-content-title h3 .fa-clock-o').html(' ');
-	                            $('.voting-end-content-title h3 .votingClosesIn').html(' '+unescape(results.rows.item(i).key_val));                     
-	                        }
+							$('.voting-end-content-title').hide();
+							// $('.voting-end-content-title h3 .votingClosesIn').hide();
+							// $('.voting-countdown.hasCountdown').hide();
 						}
-                        if(results.rows.item(i).key_constant == 'votingFinished')
+                        if(results.rows.item(i).key_constant == 'votingFinished' && obj.isFinished == true)
                         {
                         	$('.voting-closed-content-title h3 .fa-clock-o').html(' ');
                             $('.voting-closed-content-title h3 .votingStatus').html(unescape(results.rows.item(i).key_val));                     
                         }
-                        if(results.rows.item(i).key_constant == 'NotEnoughVoteWeight')
+                        if(results.rows.item(i).key_constant == 'NotEnoughVoteWeight' && obj.showNotEnoughVoteWeight == true)
                         {
                         	$('.voting-closed-content-title h3 .fa-clock-o').html(' ');
                             $('.voting-closed-content-title h3 .votingStatus').html(unescape(results.rows.item(i).key_val));                     
@@ -7189,7 +7206,9 @@ function showvoting(sortby,sortdr,l)
 					$(".voting-closed-content-title").show();
 				}
 				else {
+					if(obj.isFinished == 'false' || obj.isFinished == false) {
 					$(".voting-closed-content-title").hide();
+				}
 				}
                 
              }
@@ -9874,8 +9893,14 @@ function openvoteforwardialog() {
 				if(results.rows.item(i).key_constant == 'yes') {
 					var yesbttn = unescape(results.rows.item(i).key_val);                     
 				}
+				else {
+					var yesbttn = "YES"; 
+				}
 				if(results.rows.item(i).key_constant == 'no') {
 					var nobttn = unescape(results.rows.item(i).key_val);                     
+				}
+				else {
+					var nobttn = "NO";
 				}
 				if(results.rows.item(i).key_constant == 'voteForwardingConfirmationDesc') {
 					var vfcd = unescape(results.rows.item(i).key_val);                     
