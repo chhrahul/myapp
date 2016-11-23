@@ -4425,6 +4425,38 @@ function getAjaxMoreUsers() {
 	};
 }
 
+function addFriendbyCode() {
+	var code = $("#user-code").val();
+	
+	if(code == "" || code == null || code == undefined) {
+		shownotification('Please enter code!',"Friends");b
+	}
+	else {
+		// $(".add-friends-container").hide();
+		// $(".loading_cancel").show();
+		var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends/q-adr?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+
+		$.ajax({
+			url: main_url,
+			dataType: "json",
+			method: "GET",
+			data: {
+				add_friend: 1, 
+				user_code: code
+			},
+			success: function(obj) {
+				// console.log(JSON.stringify(obj));
+				showcommoncontacts(obj);
+				// $('.form-container').prepend('<div class="alert alert-success">Contact request canceled</div>');
+				$(".add-friends-container").show();
+				$(".loading_cancel").hide();
+				$(".alert-success").fadeOut(10000);
+			}
+
+		});
+	}
+}
+
 function showcommoncontacts(obj,checkhide,nextfrnd) {
 	// console.log(obj, + " ,,,,,,,,," +checkhide)
 	localStorage.getMoreUsers = obj.nextPageLink;
@@ -4498,6 +4530,19 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
         }
     });
     } 
+
+    if(obj.playerCode) { 
+    	$(".player-code-wrapper.addContactId").show();
+		$(".player-code-input-wrapper.addContactId").show();
+		$(".add-btn-wrapper.addContactId").show();
+  	
+    	$(".player-code-wrapper.addContactId .green-text").html(obj.playerCode);
+    }
+    else {
+		$(".player-code-wrapper.addContactId").hide();
+		$(".player-code-input-wrapper.addContactId").hide();
+		$(".add-btn-wrapper.addContactId").hide();
+    }
       
     if(checkdefined(obj.eventUserFriends) == 'yes') {
 	    $.each(obj.eventUserFriends, function(key, val) {
@@ -4515,12 +4560,12 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
 	    
 	            first_letter = val.first_name[0].toUpperCase();
 	        
-	            if(checkhide != 'yes')
-	            {
-	              if (key == 0 && val.first_name[0] != 'A') {
-	                  divider = '<div class="friends-item-title"> </div>';
-	              }
-	            }
+	            // if(checkhidefirst_letter != 'yes')
+	            // {
+	            //   if (key == 0 && val.first_name[0] != 'A') {
+	            //       divider = '<div class="friends-item-title"> </div>';
+	            //   }
+	            // }
 	        }
 	        if (checkdefined(val.team) == 'yes') {
 	            team = '&lt;' + val.team + '&gt;';
@@ -4574,7 +4619,13 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
                       if(results.rows.item(i).key_constant == 'YourFriends')
                       {
                         $('.show-friends-btn').html(unescape(results.rows.item(i).key_val));
-                        $('.show-friends-btn').attr('onclick', 'changetoyourcontacts();');                    
+                        $('.show-friends-btn').attr('onclick', 'changetoyourcontacts();');  
+						if(obj.viewFriends == false || obj.viewFriends == "false") {
+							$("a.show-friends-btn.ui-link").css("display","inline-block");
+						}     
+						else {
+							$("a.show-friends-btn.ui-link").css("display","none");
+						}            
                       } 
                       if(results.rows.item(i).key_constant == 'pendingOutgoingFriendRequestDesc')
                       {
@@ -4624,7 +4675,13 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
                       } 
                       if(results.rows.item(i).key_constant == 'YourFriends')
                       {
-                        $('.show-friends-btn').html(unescape(results.rows.item(i).key_val));                     
+                        $('.show-friends-btn').html(unescape(results.rows.item(i).key_val));  
+                        if(obj.viewFriends == false || obj.viewFriends == "false") {
+							$("a.show-friends-btn.ui-link").css("display","inline-block");
+						}      
+						else {
+							$("a.show-friends-btn.ui-link").css("display","none");
+						}                      
                       } 
                       if(results.rows.item(i).key_constant == 'pendingOutgoingFriendRequestDesc')
                       {
@@ -4655,7 +4712,8 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
           $(".loading_agenda_items").hide();
       	  //$(".add-friends-container").show();
       	  $(".contacts-container").show();
-      	  $("a.show-friends-btn.ui-link").css("display","inline-block");
+      	  // $("a.show-friends-btn.ui-link").css("display","inline-block");
+
     }
 
 }
@@ -6827,9 +6885,6 @@ function showvoting(sortby,sortdr,l)
             dataType: "json",
             method: "GET",
             success: function(obj) {
-				// console.log(JSON.stringify(obj));
-                 // alert(obj.sortDir)
-				
                 localStorage.voteSessionId = obj.voteSessionId;
 				$.each(obj.breadcrumbs, function(key, val) {
 
@@ -7018,31 +7073,20 @@ function showvoting(sortby,sortdr,l)
 							if(results.rows.item(i).key_constant == 'votingOpensIn')
 	                        {
 	                        	$('.voting-end-content-title').show();
-								// $('.voting-end-content-title h3 .votingClosesIn').show();
-								// $('.voting-countdown.hasCountdown').show();
 	                        	$('.voting-end-content-title h3 .fa-clock-o').html(' ');
 	                            $('.voting-end-content-title h3 .votingClosesIn').html(' '+unescape(results.rows.item(i).key_val));                     
 	                        }
 						}
-						// else if(obj.showOpensInTimer == false || obj.showOpensInTimer == 'false'){
-						// 	$('.voting-end-content-title').hide();
-						// 	// $('.voting-end-content-title h3 .votingClosesIn').hide();
-						// 	// $('.voting-countdown.hasCountdown').hide();
-						// }
 						else if(obj.showClosesInTimer == true || obj.showClosesInTimer == 'true'){
 							if(results.rows.item(i).key_constant == 'votingClosesIn')
 	                        {
 	                        	$('.voting-end-content-title').show();
-								// $('.voting-end-content-title h3 .votingClosesIn').show();
-								// $('.voting-countdown.hasCountdown').show();
 	                        	$('.voting-end-content-title h3 .fa-clock-o').html(' ');
 	                            $('.voting-end-content-title h3 .votingClosesIn').html(' '+unescape(results.rows.item(i).key_val));                     
 	                        }
 						}
 						else {
 							$('.voting-end-content-title').hide();
-							// $('.voting-end-content-title h3 .votingClosesIn').hide();
-							// $('.voting-countdown.hasCountdown').hide();
 						}
                         if(results.rows.item(i).key_constant == 'votingFinished' && obj.isFinished == true)
                         {
@@ -7105,7 +7149,6 @@ function showvoting(sortby,sortdr,l)
               });
               }
 
-              	// alert(JSON.stringify(obj.forwardedEventUsers));
               	if(checkdefined(obj.forwardedEventUsers) == "yes") {
 
               		$('.vote-forwarding-users').html('&nbsp;');
@@ -7113,7 +7156,6 @@ function showvoting(sortby,sortdr,l)
               		if (checkdefined(obj.eventUser.image) == 'yes') {
 						var eventUserImage = localStorage.url + obj.eventUser.image;
 					}
-					// /Add-vote/-/OCintranet-100041/290/forwarded/101221
 
 					if(localStorage.voteforwarderid == "") {
 						if(obj.userVote == "") {
@@ -7173,8 +7215,6 @@ function showvoting(sortby,sortdr,l)
               	}
               	
               	if(checkdefined(obj.voteForwardingUser) == "yes") {
-              		// alert(localStorage.user_id);
-              		// alert(obj.voteForwardingUser.event_user_id);
               		if(localStorage.user_id != obj.voteForwardingUser.event_user_id){
               			localStorage.forwardedVoteUserId = obj.voteForwardingUser.event_user_id
 		          		var forwardVoteReceiptantImage= localStorage.url + obj.voteForwardingUser.image;
@@ -7214,9 +7254,7 @@ function showvoting(sortby,sortdr,l)
              }
           });
         }, 1000); 
-	});     
-
-                       
+	});                            
 }
 
 
@@ -11295,3 +11333,5 @@ function urlClickFn(url) {
 		alert(event.url); 
 	});	
 }
+
+

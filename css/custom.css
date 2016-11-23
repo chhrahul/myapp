@@ -2482,7 +2482,7 @@ div#pageone {
     padding-top: 25px;
 }
 .container.main-container.add-friends-container.contacts-container a.show-friends-btn.ui-link {
-    display: inline-block !important;
+    /*display: inline-block !important;*/
 }
 .swiper-container.swiper-container-horizontal.customcommenttextarea {
     max-height: 160px;
