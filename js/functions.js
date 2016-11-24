@@ -4432,7 +4432,7 @@ function addFriendbyCode() {
 		shownotification('Please enter code!',"Friends");
 	}
 	else {
-		$(".add-friends-container").hide();
+		$(".contacts-container").hide();
 		$(".loading_cancel").show();
 		var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends/q-adr?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
@@ -4450,7 +4450,8 @@ function addFriendbyCode() {
 				var objType = JSON.parse(objMessages).type;
 				showcommoncontacts(obj);
 				$('.form-container').prepend('<div class="alert alert-status ' + objType + '">' + objMessage + '</div>');
-				$(".add-friends-container").show();
+				$(".view-friend-container").hide();
+				$(".contacts-container").show();
 				$(".loading_cancel").hide();
 				$(".alert-status").fadeOut(10000);
 			}
