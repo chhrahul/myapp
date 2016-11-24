@@ -47,7 +47,6 @@
         <splash src="icons/screen_640x960.png" density="land-ldpi"/>
         <splash src="icons/screen_640x960.png" density="land-mdpi"/>
         <splash src="icons/screen_640x960.png" density="land-xhdpi"/>
-
         <splash src="icons/screen_640x960.png" density="port-hdpi"/>
         <splash src="icons/screen_640x960.png" density="port-ldpi"/>
         <splash src="icons/screen_640x960.png" density="port-mdpi"/>

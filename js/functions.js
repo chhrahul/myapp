@@ -4432,25 +4432,27 @@ function addFriendbyCode() {
 		shownotification('Please enter code!',"Friends");b
 	}
 	else {
-		// $(".add-friends-container").hide();
-		// $(".loading_cancel").show();
+		$(".add-friends-container").hide();
+		$(".loading_cancel").show();
 		var main_url = localStorage.url + 'user-add-friend/-/'+localStorage.short_url+'-' + localStorage.event_id + '/friends/q-adr?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
 		$.ajax({
 			url: main_url,
 			dataType: "json",
-			method: "GET",
+			method: "POST",
 			data: {
 				add_friend: 1, 
 				user_code: code
 			},
 			success: function(obj) {
-				// console.log(JSON.stringify(obj));
+				var objMessages = JSON.stringify(obj._messages).replace(/[\[\]']+/g, '');
+				var objMessage = JSON.parse(objMessages).message;
+				var objType = JSON.parse(objMessages).type;
 				showcommoncontacts(obj);
-				// $('.form-container').prepend('<div class="alert alert-success">Contact request canceled</div>');
+				$('.form-container').prepend('<div class="alert alert-status ' + objType + '">' + objMessage + '</div>');
 				$(".add-friends-container").show();
 				$(".loading_cancel").hide();
-				$(".alert-success").fadeOut(10000);
+				$(".alert-status").fadeOut(10000);
 			}
 
 		});
