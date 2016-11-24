@@ -4536,9 +4536,9 @@ function showcommoncontacts(obj,checkhide,nextfrnd) {
     if(obj.playerCode) { 
     	$(".player-code-wrapper.addContactId").show();
 		$(".player-code-input-wrapper.addContactId").show();
-		$(".add-btn-wrapper.addContactId").show();
-  	
+		$(".add-btn-wrapper.addContactId").show();  	
     	$(".player-code-wrapper.addContactId .green-text").html(obj.playerCode);
+    	$("#user-code").val('');
     }
     else {
 		$(".player-code-wrapper.addContactId").hide();
