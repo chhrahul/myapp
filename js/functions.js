@@ -4429,7 +4429,7 @@ function addFriendbyCode() {
 	var code = $("#user-code").val();
 	
 	if(code == "" || code == null || code == undefined) {
-		shownotification('Please enter code!',"Friends");b
+		shownotification('Please enter code!',"Friends");
 	}
 	else {
 		$(".add-friends-container").hide();
