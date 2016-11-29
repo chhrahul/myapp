@@ -1613,9 +1613,9 @@ function loadgamification() {
 
 	$("#tooltipster-409679").hide();
 	var css_url = localStorage.url+"resources/gamification/css/appearance.css.php?eid="+localStorage.event_id;
-	var fonts_url = localStorage.url+"oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812";
+	// var fonts_url = localStorage.url+"oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812";
     $(".stylesheetDiv").html('<link rel="stylesheet" type="text/css" href="'+css_url+'">');
-    $(".fontsDiv").html('<link rel="stylesheet" type="text/css" href="'+fonts_url+'">');
+    // $(".fontsDiv").html('<link rel="stylesheet" type="text/css" href="'+fonts_url+'">');
 	
 	loadUserImages();
     $(".login-page-container").hide();
