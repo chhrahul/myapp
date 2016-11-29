@@ -7488,6 +7488,7 @@ function showquiz() {
 									}
 
 									$('#quiz-video-container').html('<div class="video-player-wrapper" ><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div>');
+									$('#quiz-video-container').css("margin-bottom", "40px");
 								}
 								else {						
 									$('#quiz-video-container').html('<div class="video-player-wrapper" ><iframe id="videoPlayer-' + val.__extra.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + val.__extra.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>');					
