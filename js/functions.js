@@ -7470,7 +7470,35 @@ function showquiz()
                     if(checkdefined(val.__extra.large_file_name) == 'yes')
                     {
                     	// console.log("quiz image url => " + localStorage.url+'resources/files/images/'+val.__extra.large_file_name);
-                      $('.quiz-image-container').html('<img src="'+localStorage.url+'resources/files/images/'+val.__extra.large_file_name+'" class="img-responsive" />')
+                      $('.quiz-image-container').html('<img src="'+localStorage.url+'resources/files/images/'+val.__extra.large_file_name+'" class="img-responsive" />');
+                    }
+                    else if(checkdefined(val.__extra.hosted_vimeo_id) == 'yes') {
+                    	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+                    	if(isIphone) {
+							if(checkdefined(val.__extra.hosted_vimeo_link_hd) == 'yes') {
+								var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+							}
+							else if(checkdefined(val.__extra.hosted_vimeo_link_sd960) == 'yes') {
+								var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+							}
+							else if(checkdefined(val.__extra.hosted_vimeo_link_sd640) == 'yes') {
+								var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+							}
+							else if(checkdefined(val.__extra.hosted_vimeo_link_hls) == 'yes') {
+								var videoUrl = "http" + res.hosted_vimeo_link_hls;
+							}
+							else if(checkdefined(val.__extra.hosted_vimeo_link_mobile) == 'yes') {
+								var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+							}
+							else {
+								var videoUrl = "";
+							}
+
+							$('.quiz-image-container').html('<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper" style="display: inline-flex; height: 100%; padding: 0px;"><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div></div>');
+						}
+						else {						
+							$('.quiz-image-container').html('<div style="width:100%;padding:20px 0;margin:0 auto;" align="center"><div class="video-player-wrapper"><iframe id="videoPlayer-' + val.__extra.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + val.__extra.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div>');					
+						}
                     }
                   }
                 
