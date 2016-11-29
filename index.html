@@ -76,7 +76,7 @@
     <body onload="createTables();">
         <div class="cssdivs">
             <div class="fontsDiv">
-                <link rel="stylesheet" href="https://www.oceventmanager.com/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812">
+                <link rel="stylesheet" href="https://experience.live/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812">
             </div>
             <div class="stylesheetDiv"></div>
             <div class="tempdiv"></div>
@@ -1085,61 +1085,46 @@
 
 
 <div class="container main-container quiz-container" style="display: none;">
-<div class="quiz-header-title row">
+    <div class="quiz-header-title row">
         <p class="presentation-item-header">
-      
-<a id="quizPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
-
-<span class="breadcrumbs">
-<a href="#" onclick="changetoagendaitem(); return false;"></a> / 
-<span class="green-text" onclick="changetoaddquiz(); return false;"></span></span>    </p>
+            <a id="quizPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+            <span class="breadcrumbs">
+                <a href="#" onclick="changetoagendaitem(); return false;"></a> / 
+                <span class="green-text" onclick="changetoaddquiz(); return false;"></span>
+            </span>    
+        </p>
     </div>
     <div class="questionsdiv">
-    <div class="quiz-timer-container row">
-        <span class="quiz-icon-wrapper">
-            <i class="icon-quiz"></i>
-        </span>
-        <span class="quiz-number">
-                    </span>
-        
-                <span class="timer-icon" id="quiz_timer_icon">
-            <i class="fa fa-clock-o"></i>
-            <span id="countdown_box">1787</span>
-        </span>
-        
-        <span class="quiz-questions">
-            <ul class="questions-bar">
-                                                        <li class="active"></li>
-                                                </ul>
-        </span> 
+        <div class="quiz-timer-container row">
+            <span class="quiz-icon-wrapper">
+                <i class="icon-quiz"></i>
+            </span>
+            <span class="quiz-number"></span>        
+            <span class="timer-icon" id="quiz_timer_icon">
+                <i class="fa fa-clock-o"></i>
+                <span id="countdown_box">1787</span>
+            </span>        
+            <span class="quiz-questions">
+                <ul class="questions-bar">
+                    <li class="active"></li>
+                </ul>
+            </span> 
+        </div>
+        <div class="quiz-question-container">
+            <div class="quiz-with-video" id="quiz-video-container" style="display:none;"></div>
+            <div class="quiz-image-container" style="display:none;"></div> 
+            <div class="quiz-question"></div>
+            <h4></h4>
+        </div>
+        <div id="quiz_form" action="" method="post">
+            <div class="quiz-answer-container"></div>
+            <div class="quiz-btn-wrapper"></div>
+        </div>
+        <div class="quiz-btn-wrapper hidden" id="showformanswers">
+            <button id="show_questions_btn" class="btn btn-primary">Show answers</button>
+        </div>
     </div>
-    <div class="quiz-question-container">
-        <div class="quiz-with-video" id="quiz-video-container" style="display:none;"></div>
-        <div class="quiz-image-container" style="display:none;"></div> 
-        <div class="quiz-question"></div>
-        <h4></h4>
-    </div>
-    <div id="quiz_form" action="" method="post">
-       
-                   
-                    
-       
-              
-                <div class="quiz-answer-container">
-                                   
-                    </div>
-                <div class="quiz-btn-wrapper">
-                        
-            
-                        
-                    </div>
-    </div>
-    <div class="quiz-btn-wrapper hidden" id="showformanswers">
-        <button id="show_questions_btn" class="btn btn-primary">Show answers</button>
-    </div>
-
-    </div>
-    </div>
+</div>
 <!-- Quiz Container Ends --><!-- Vote Container Start -->
     
  <div class="container main-container voting-page-container" style="display: none;">
