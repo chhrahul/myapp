@@ -20,7 +20,7 @@
         <script type="text/javascript" src="js/LaunchMyApp.js"></script>
          <meta name="apple-touch-fullscreen" content="yes">
             <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic">
-            <link rel="stylesheet" href="https://experience.live/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812">
+            <!--link rel="stylesheet" href="https://experience.live/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812"-->
             <link rel="stylesheet" href="css/auto.css">      
             <link rel="stylesheet" href="css/main.css">
             <link rel="stylesheet" href="css/custom.css">
@@ -42,24 +42,18 @@
             <link rel="stylesheet" href="css/tooltipster-sideTip-borderless.min.css">
 
             <script type="text/javascript"> 
-                document.addEventListener("deviceready", onDeviceReady, false);
-                
+                document.addEventListener("deviceready", onDeviceReady, false);                
                 
                 function onDeviceReady() {
-                  jQuery(document).ready(function($)
-                  {
-                    if(localStorage.user_id != '' && localStorage.user_id != undefined && localStorage.user_id != null)
-                    {                    
-                        loadgamification();
-                    }
-                  });
+                    jQuery(document).ready(function($) {
+                        if(localStorage.user_id != '' && localStorage.user_id != undefined && localStorage.user_id != null) {                    
+                            loadgamification();
+                        }
+                    });
                 }
 
-                function handleOpenURL(url) {
-                  
-                    if(localStorage.user_id == '' || localStorage.user_id == undefined || localStorage.user_id == null)
-                    {    
-
+                function handleOpenURL(url) {                  
+                    if(localStorage.user_id == '' || localStorage.user_id == undefined || localStorage.user_id == null) {    
                         var surl = url.split('/?')[1];
                         var sp = surl.split("&");
                         var username = sp[0].replace("e=", "");
@@ -73,19 +67,17 @@
                             autologinme();  
                         }
                      } 
-                     else{
-
-                     }
                 }
 
                 var localLink = '/';
-                var GHomepageLink = "index.html";    
-        
-            </script>
-           
+                var GHomepageLink = "index.html";           
+            </script>           
       </head>
     <body onload="createTables();">
         <div class="cssdivs">
+            <div class="fontsDiv">
+                <link rel="stylesheet" href="https://www.oceventmanager.com/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812">
+            </div>
             <div class="stylesheetDiv"></div>
             <div class="tempdiv"></div>
             <div class="weltempdiv"></div>
