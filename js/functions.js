@@ -1740,8 +1740,7 @@ function loadgamification() {
                 var iframeSrcUrl = results.rows.item(0).iframe_url + "&isApp=1";
                 iframeSrcUrl = iframeSrcUrl.replace("http://_", "http://");
 
-                var iframeSrcUrlTest = "http://ektalehar.com/projects/oce/links.html";
-               
+                           
                 $(".welcome-container").html('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src=' + iframeSrcUrl + ' name="homepage-content" id="homepage-content" />');
 
                 var thisIframesHeight = window.parent.$("#homepage-content").height();
@@ -9635,7 +9634,7 @@ function loadkeywords() {
 	$(".form-container").hide();
 	$(".hideloginbox").hide();
 	
-	var main_urld = "http://www.oceventmanager.com/api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM";
+	var main_urld = "https://experience.live/api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM";
 	jQuery.ajax({
 		url: main_urld,
 		dataType: "json",
@@ -10381,12 +10380,12 @@ function loadUserImages() {
 						localStorage.profilelogo = imgSrc;
 					}
 					else{
-						localStorage.profilelogo = '"http://oceventmanager.com/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png"';
+						localStorage.profilelogo = '"https://experience.live/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png"';
 					}
 				}
 			}
 			else {
-				localStorage.profilelogo = '"http://oceventmanager.com/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png"';
+				localStorage.profilelogo = '"https://experience.live/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png"';
 				localStorage.profilelogotype = "0";
 			}
 			var url = 'url(' + localStorage.profilelogo + ')';
@@ -10574,13 +10573,11 @@ function loginscanner() {
 	$("#scanner_submit").hide();
 	$(".loadingscanner").show();
 
-	// localStorage.scanner_liveurl = "https://" + $("#scanner_liveurl").val().replace("http://","").replace("https://","") + "/";
 	var username = $("#scanner_username").val();
 	var password = md5($("#scanner_password").val());
 	var salt = "R#F#GHJ^Hv098jv89j";
 	var scannerhash = md5(salt + username + password);
 
-	// var mainurl = localStorage.scanner_liveurl + 'modules/event/ajax/frontend_ws.php';
 	var mainurl = localStorage.url + 'modules/event/ajax/frontend_ws.php';
 
 	jQuery.ajax({
