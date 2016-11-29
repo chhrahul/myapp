@@ -7296,10 +7296,9 @@ function add_quiz()
     changetoaddquiz();
 }
 //function to show quiz
-function showquiz()
-{
+function showquiz() {
 	$('#quizPrev').attr('onclick', 'changetoagendaitem()'); 
-     jQuery(document).ready(function($) {
+	jQuery(document).ready(function($) {
         loadcommonthings(); 
         isLoggedIn();
         $(".quiz-container").hide();
@@ -7313,226 +7312,203 @@ function showquiz()
         importfooter('Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'quiz');
         var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
 		// alert(main_url);
-        $.ajax({
+    	$.ajax({
             url: main_url,
             dataType: "json",
             method: "GET",
             success: function(obj) {
-               // console.log(JSON.stringify(obj));
-               if(obj.answersStatuses) {
+				// console.log(JSON.stringify(obj));
+				if(obj.answersStatuses) {
 
-				var answersStatuses = obj.answersStatuses;
+					var answersStatuses = obj.answersStatuses;
 
-				var len = answersStatuses.length;				
-				$(".questions-bar").html( "");
-				for(i=0; i<len; i++) {
-					
-					if(answersStatuses[i] == "1") {
-						var liClass = '<li class="right-answer"></li>';
+					var len = answersStatuses.length;				
+					$(".questions-bar").html( "");
+					for(i=0; i<len; i++) {							
+						if(answersStatuses[i] == "1") {
+							var liClass = '<li class="right-answer"></li>';
+						}
+						else if(answersStatuses[i] == "2") {
+							var liClass = '<li class="wrong-answer"></li>';
+						}					
+						else if(answersStatuses[i] == "3") {
+							var liClass = '<li class="active"></li>';
+						}
+						else {
+							var liClass = '<li></li>';
+						}
+						$(".questions-bar").append(liClass);
 					}
-					else if(answersStatuses[i] == "2") {
-						var liClass = '<li class="wrong-answer"></li>';
-					}					
-					else if(answersStatuses[i] == "3") {
-						var liClass = '<li class="active"></li>';
-					}
-					else {
-						var liClass = '<li></li>';
-					}
-					$(".questions-bar").append(liClass);
 				}
-			}
-               $("#quiz_timer_icon").html('<i class="fa fa-clock-o"><span id="countdown_box"></span>')
-               $.each(obj.breadcrumbs, function(key, val) {
-
+				$("#quiz_timer_icon").html('<i class="fa fa-clock-o"><span id="countdown_box"></span>')
+				$.each(obj.breadcrumbs, function(key, val) {
                     if (key == 0) {
                         $(".breadcrumbs a").html(val.text)
                     }
-                    if (key == 1) {
+					if (key == 1) {
                         $(".breadcrumbs .green-text").html(val.text);
                     }
-                });
-               // alert(obj.disableCountdown);
-               // alert(JSON.stringify(disableCountdown));
-               	if(obj.disableCountdown == "1") {
-               		$("#quiz_timer_icon").hide();
-               	}
-                if(checkdefined(obj.results) == 'yes')
-                {
+            	});
+				// alert(obj.disableCountdown);
+				// alert(JSON.stringify(disableCountdown));
+				if(obj.disableCountdown == "1") {
+					$("#quiz_timer_icon").hide();
+				}
+				if(checkdefined(obj.results) == 'yes') {
+					$("#quiz_timer_icon").show();
+					db.transaction(function(tx) {
+						tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+							var len = results.rows.length;  
+							var tryagain = ''; 
+							var resultss = '' ; 
+							var score_card = '';   
 
-               		$("#quiz_timer_icon").show();
-                     db.transaction(function(tx) {
-                      tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-                  var len = results.rows.length;  
-                  var tryagain = ''; 
-                  var resultss = '' ; 
-                  var score_card = '';   
-
-                  for (i = 0; i < len; i++) {                    
-                    if(results.rows.item(i).key_constant == 'quizMenuStartQuizTryAgain')
-                    {
-                        tryagain = unescape(results.rows.item(i).key_val);                     
-                    }
-                    if(results.rows.item(i).key_constant == 'quizResults')
-                    {
-                        resultss = unescape(results.rows.item(i).key_val);                     
-                    }
-                    if(results.rows.item(i).key_constant == 'seeScoreboard')
-                    {
-                        score_card = unescape(results.rows.item(i).key_val);                     
-                    }
-                 }
-                 $('.questionsdiv').hide();
-                 if(obj.isMultipleAttempts == null) {
-                 	var showHideStyle = 'style="display:none;"';
-                 }
-                 else {
-                 	var showHideStyle = '';
-                 }
-                    $('.quiz-header-title').after('<div class="quiz-results-wrapper"><div class="quiz-results"><h3 class="green-text">'+resultss+'</h3><p>'+obj.results+'</p><span class="score green-text">'+obj.quizPoints+'</span></div><div class="quiz-btn-wrapper"><a class="btn btn-primary" href="javascript:resetquiz();" ' + showHideStyle + '>'+tryagain+'</a><a class="btn btn-primary scoreboard"  href="javascript:gotoscorecard();">'+score_card+'</a></div></div>');
-              
-           });
-        });
-                      }
-                else
-                { 
-                $('.questionsdiv').show();
-                $('.quiz-number').html(obj.questionNumber+' / '+obj.numQuestions);
-                $('.quiz-question').html(obj.question.question);
-                //alert(obj.question.answers);
-                var arr = obj.question.answers.split('\r\n');
-                
-                $('.quiz-answer-container').html('');
-                for(i=0; i < arr.length; i++)
-                {
-                	if(arr[i] != "") {
-	                    var label_class='';
-	                    var value = i + 1;
-	                    var dis = '';
-	                    
-	                    if(checkdefined(obj.correctAnswerPositions) == 'yes')
-	                    {
-	                       label_class = 'disabled';
-	                       dis = 'disabled';
-	                       var sp = obj.correctAnswerPositions.length;
-	                       //alert(sp)
-	                       if(sp == 1)
-	                       {                       
-	                         if(obj.correctAnswerPositions == value)
-	                         {
-	                            label_class = 'correct-answer disabled';
-	                         } 
-	                       }
-	                       if(sp > 1)
-	                       {
-	                          for(j = 0; j < sp; j++){
-	                            if(value == obj.correctAnswerPositions[j])
-	                            {
-	                               label_class = 'correct-answer disabled';
-	                               //alert(obj.correctAnswerPositions[j])
-	                            }
-	                            //document.write("<br /> Element " + i + " = " + obj.correctAnswerPositions[i]); 
-	                          }
-	                       }  
-	                    }
-	                   
-
-	                    
-	                    if(obj.questionMultipleAnswers == 'true' || obj.questionMultipleAnswers == true)
-	                    {
-	                        var radio_button = '<label class="'+label_class+'"><div class="poeng-options"><input type="checkbox" class="ipt_quiz_a"  name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
-	                        $('.quiz-btn-wrapper').html('<button class="btn btn-primary nxt_q" type="button" onclick="submitmultipleanswers('+obj.question.instance_id+')" name="next_question" value="1"></button>');  
-	                    }
-	                    else
-	                    {
-	                        var radio_button = '<label class="'+label_class+'"><div class="poeng-options"><input '+dis+' type="radio" class="ipt_quiz_a" onclick="submitanswer('+obj.question.instance_id+','+value+')" name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
-	                    }
-	                    if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber != obj.numQuestions)
-		                {
-		                   $('.quiz-btn-wrapper').html('<button class="btn btn-primary next_q" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
-		                }
-	                   if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber == obj.numQuestions)
-		                {
-		                   $('.quiz-btn-wrapper').html('<button class="btn btn-primary res_p" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
-		                }  
-	                    
-	                     //alert(radio_button)
-	                    $('.quiz-answer-container').append(radio_button);
-	                    //alert(arr[i]);
-                	}
-                }
-                var timer = Number(obj.question.question_time+'000');
-                quizInit(timer);
-                // console.log(JSON.stringify(obj));
-                $.each( obj.questionData, function( key, val ) {
-					if(checkdefined(val.__extra) == 'yes') {
-						if(checkdefined(val.__extra.large_file_name) == 'yes') {
-							$('.quiz-image-container').show()
-							$('#quiz-video-container').hide();
-							$('.quiz-image-container').html('<img src="'+localStorage.url+'resources/files/images/'+val.__extra.large_file_name+'" class="img-responsive" />');
-						}
-						else if(checkdefined(val.__extra.hosted_vimeo_id) == 'yes') {
-							$('.quiz-image-container').hide()
-							$('#quiz-video-container').show();
-							var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
-							if(isIphone) {
-								if(checkdefined(val.__extra.hosted_vimeo_link_hd) == 'yes') {
-									var videoUrl = "http:" + res.hosted_vimeo_link_hd;
-								}
-								else if(checkdefined(val.__extra.hosted_vimeo_link_sd960) == 'yes') {
-									var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
-								}
-								else if(checkdefined(val.__extra.hosted_vimeo_link_sd640) == 'yes') {
-									var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
-								}
-								else if(checkdefined(val.__extra.hosted_vimeo_link_hls) == 'yes') {
-									var videoUrl = "http" + res.hosted_vimeo_link_hls;
-								}
-								else if(checkdefined(val.__extra.hosted_vimeo_link_mobile) == 'yes') {
-									var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
-								}
-								else {
-									var videoUrl = "";
-								}
-
-								$('#quiz-video-container').html('<div class="video-player-wrapper" ><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div>');
+							for (i = 0; i < len; i++) {                    
+			                    if(results.rows.item(i).key_constant == 'quizMenuStartQuizTryAgain')
+			                    {
+			                        tryagain = unescape(results.rows.item(i).key_val);                     
+			                    }
+			                    if(results.rows.item(i).key_constant == 'quizResults')
+			                    {
+			                        resultss = unescape(results.rows.item(i).key_val);                     
+			                    }
+			                    if(results.rows.item(i).key_constant == 'seeScoreboard')
+			                    {
+			                        score_card = unescape(results.rows.item(i).key_val);                     
+			                    }
 							}
-							else {						
-								$('#quiz-video-container').html('<div class="video-player-wrapper" ><iframe id="videoPlayer-' + val.__extra.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + val.__extra.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>');					
+         					$('.questionsdiv').hide();
+							if(obj.isMultipleAttempts == null) {
+								var showHideStyle = 'style="display:none;"';
 							}
-						}
-						else {
-							$('.quiz-image-container').hide()
-							$('#quiz-video-container').hide();
-						}
-					}                
-                });
-                }
-                db.transaction(function(tx) {
-                      tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-                  var len = results.rows.length;                             
-                      for (i = 0; i < len; i++) {  
-                        if(results.rows.item(i).key_constant == 'QuizSubmitAnswer')
-                        {
-                            $('.nxt_q').html(unescape(results.rows.item(i).key_val));                     
-                        }
-                        if(results.rows.item(i).key_constant == 'quizNextQuestionquizNextQuestion')
-                        {
-                            $('.next_q').html(unescape(results.rows.item(i).key_val));                     
-                        }
-                        if(results.rows.item(i).key_constant == 'quizGoToResultsPage')
-                        {
-                            $('.res_p').html(unescape(results.rows.item(i).key_val));                     
-                        }
-                         
-                      }                 
-                  });
-              });
+							else {
+								var showHideStyle = '';
+							}
+            				$('.quiz-header-title').after('<div class="quiz-results-wrapper"><div class="quiz-results"><h3 class="green-text">'+resultss+'</h3><p>'+obj.results+'</p><span class="score green-text">'+obj.quizPoints+'</span></div><div class="quiz-btn-wrapper"><a class="btn btn-primary" href="javascript:resetquiz();" ' + showHideStyle + '>'+tryagain+'</a><a class="btn btn-primary scoreboard"  href="javascript:gotoscorecard();">'+score_card+'</a></div></div>');              
+   						});
+					});
+				}
+                else { 
+	                $('.questionsdiv').show();
+	                $('.quiz-number').html(obj.questionNumber+' / '+obj.numQuestions);
+	                $('.quiz-question').html(obj.question.question);
+	                //alert(obj.question.answers);
+	                var arr = obj.question.answers.split('\r\n');
+		                
+	                $('.quiz-answer-container').html('');
+	                for(i=0; i < arr.length; i++) {
+	                	if(arr[i] != "") {
+		                    var label_class='';
+		                    var value = i + 1;
+		                    var dis = '';
+                    
+		                    if(checkdefined(obj.correctAnswerPositions) == 'yes') {
+								label_class = 'disabled';
+								dis = 'disabled';
+								var sp = obj.correctAnswerPositions.length;
+								//alert(sp)
+								if(sp == 1) {                       
+									if(obj.correctAnswerPositions == value) {
+										label_class = 'correct-answer disabled';
+									} 
+								}
+                       			if(sp > 1 ){
+	                          		for(j = 0; j < sp; j++) {
+			                            if(value == obj.correctAnswerPositions[j]) {
+			                               label_class = 'correct-answer disabled';
+			                               //alert(obj.correctAnswerPositions[j])
+			                            }
+		                            //document.write("<br /> Element " + i + " = " + obj.correctAnswerPositions[i]); 
+		                          	}
+		                      	}  
+                    		}
+	                    
+							if(obj.questionMultipleAnswers == 'true' || obj.questionMultipleAnswers == true){
+								var radio_button = '<label class="'+label_class+'"><div class="poeng-options"><input type="checkbox" class="ipt_quiz_a"  name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
+								$('.quiz-btn-wrapper').html('<button class="btn btn-primary nxt_q" type="button" onclick="submitmultipleanswers('+obj.question.instance_id+')" name="next_question" value="1"></button>');  
+							}
+							else{
+								var radio_button = '<label class="'+label_class+'"><div class="poeng-options"><input '+dis+' type="radio" class="ipt_quiz_a" onclick="submitanswer('+obj.question.instance_id+','+value+')" name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
+							}
+							if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber != obj.numQuestions) {
+								$('.quiz-btn-wrapper').html('<button class="btn btn-primary next_q" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
+							}
+							if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber == obj.numQuestions) {
+								$('.quiz-btn-wrapper').html('<button class="btn btn-primary res_p" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
+							} 
+							//alert(radio_button)
+							$('.quiz-answer-container').append(radio_button);
+							//alert(arr[i]);
+                		}
+               		}
+	                var timer = Number(obj.question.question_time+'000');
+	                quizInit(timer);
+	                // console.log(JSON.stringify(obj));
+	                $.each( obj.questionData, function( key, val ) {
+						if(checkdefined(val.__extra) == 'yes') {
+							if(checkdefined(val.__extra.large_file_name) == 'yes') {
+								$('.quiz-image-container').show()
+								$('#quiz-video-container').hide();
+								$('.quiz-image-container').html('<img src="'+localStorage.url+'resources/files/images/'+val.__extra.large_file_name+'" class="img-responsive" />');
+							}
+							else if(checkdefined(val.__extra.hosted_vimeo_id) == 'yes') {
+								$('.quiz-image-container').hide()
+								$('#quiz-video-container').show();
+								var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
+								if(isIphone) {
+									if(checkdefined(val.__extra.hosted_vimeo_link_hd) == 'yes') {
+										var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+									}
+									else if(checkdefined(val.__extra.hosted_vimeo_link_sd960) == 'yes') {
+										var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+									}
+									else if(checkdefined(val.__extra.hosted_vimeo_link_sd640) == 'yes') {
+										var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+									}
+									else if(checkdefined(val.__extra.hosted_vimeo_link_hls) == 'yes') {
+										var videoUrl = "http" + res.hosted_vimeo_link_hls;
+									}
+									else if(checkdefined(val.__extra.hosted_vimeo_link_mobile) == 'yes') {
+										var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+									}
+									else {
+										var videoUrl = "";
+									}
+
+									$('#quiz-video-container').html('<div class="video-player-wrapper" ><video src="' + videoUrl + '" webkit-playsinline style="width: 100%; height: 180px; background-color: #000;" controls></video></div>');
+								}
+								else {						
+									$('#quiz-video-container').html('<div class="video-player-wrapper" ><iframe id="videoPlayer-' + val.__extra.hosted_vimeo_id + '" class="videoVimeoPlayer" src="https://player.vimeo.com/video/' + val.__extra.hosted_vimeo_id + '?api=1" frameborder="0" title="" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>');					
+								}
+							}
+							else {
+								$('.quiz-image-container').hide()
+								$('#quiz-video-container').hide();
+							}
+						}                
+            		});
+            	}
+            	db.transaction(function(tx) {
+					tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+              			var len = results.rows.length;                             
+						for (i = 0; i < len; i++) {  
+							if(results.rows.item(i).key_constant == 'QuizSubmitAnswer') {
+								$('.nxt_q').html(unescape(results.rows.item(i).key_val));                     
+							}
+							if(results.rows.item(i).key_constant == 'quizNextQuestionquizNextQuestion') {
+								$('.next_q').html(unescape(results.rows.item(i).key_val));                     
+							}
+							if(results.rows.item(i).key_constant == 'quizGoToResultsPage') {
+								$('.res_p').html(unescape(results.rows.item(i).key_val));                     
+							}
+						}                 
+              		});
+          		});
                $(".quiz-container").show(); 
                $(".loading_agenda_items").hide();  
-            }
-           });
-      });      
+        	}
+		});
+	});      
 }
 
 //function to go to score card
