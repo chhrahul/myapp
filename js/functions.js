@@ -7436,6 +7436,9 @@ function showquiz() {
 							if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber == obj.numQuestions) {
 								$('.quiz-btn-wrapper').html('<button class="btn btn-primary res_p" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
 							} 
+							if((obj.isAnswered == 'false' || obj.isAnswered == false) && obj.questionNumber == "1") {
+								$('.quiz-btn-wrapper').html(''); 
+							} 
 							//alert(radio_button)
 							$('.quiz-answer-container').append(radio_button);
 							//alert(arr[i]);
@@ -7444,6 +7447,15 @@ function showquiz() {
 	                var timer = Number(obj.question.question_time+'000');
 	                quizInit(timer);
 	                // console.log(JSON.stringify(obj));
+	                if(obj.hideForm) {
+						$('#showformanswers').html('<button id="show_questions_btn" class="btn btn-primary" onclick="showoptions();">Show answers</button>');
+	                	$('#showformanswers').removeClass("hidden");
+	                	$('#quiz_form').hide();
+	                }
+	                else {
+	                	$('#quiz_form').show();
+	                	$('#showformanswers').addClass("hidden");
+	                }
 	                $.each( obj.questionData, function( key, val ) {
 						if(checkdefined(val.__extra) == 'yes') {
 							if(checkdefined(val.__extra.large_file_name) == 'yes') {
@@ -7509,6 +7521,11 @@ function showquiz() {
         	}
 		});
 	});      
+}
+
+function showoptions() {
+	$('#showformanswers').addClass("hidden");
+	$('#quiz_form').show();
 }
 
 //function to go to score card
