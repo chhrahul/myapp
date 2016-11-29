@@ -7412,7 +7412,7 @@ function showquiz() {
 										label_class = 'correct-answer disabled';
 									} 
 								}
-                       			if(sp > 1 ){
+                       			if(sp > 1 ) {
 	                          		for(j = 0; j < sp; j++) {
 			                            if(value == obj.correctAnswerPositions[j]) {
 			                               label_class = 'correct-answer disabled';
@@ -7457,19 +7457,19 @@ function showquiz() {
 								var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 								if(isIphone) {
 									if(checkdefined(val.__extra.hosted_vimeo_link_hd) == 'yes') {
-										var videoUrl = "http:" + res.hosted_vimeo_link_hd;
+										var videoUrl = "http:" + val.__extra.hosted_vimeo_link_hd;
 									}
 									else if(checkdefined(val.__extra.hosted_vimeo_link_sd960) == 'yes') {
-										var videoUrl = "http:" + res.hosted_vimeo_link_sd960;
+										var videoUrl = "http:" + val.__extra.hosted_vimeo_link_sd960;
 									}
 									else if(checkdefined(val.__extra.hosted_vimeo_link_sd640) == 'yes') {
-										var videoUrl = "http:" + res.hosted_vimeo_link_sd640;
+										var videoUrl = "http:" + val.__extra.hosted_vimeo_link_sd640;
 									}
 									else if(checkdefined(val.__extra.hosted_vimeo_link_hls) == 'yes') {
-										var videoUrl = "http" + res.hosted_vimeo_link_hls;
+										var videoUrl = "http:" + val.__extra.hosted_vimeo_link_hls;
 									}
 									else if(checkdefined(val.__extra.hosted_vimeo_link_mobile) == 'yes') {
-										var videoUrl = "http:" + res.hosted_vimeo_link_mobile;
+										var videoUrl = "http:" + val.__extra.hosted_vimeo_link_mobile;
 									}
 									else {
 										var videoUrl = "";
