@@ -5891,9 +5891,9 @@ function showfooter(active) {
 					onclickfn = '';
 
                     
-                    if (name == 'home') {
-                    	onclickfn = 'onclick="changetogamification(); return false;"';
-                    }
+                    // if (name == 'home') {
+                    // 	onclickfn = 'onclick="changetogamification(); return false;"';
+                    // }
 					if (name == 'agenda') {
                       onclickfn = 'onclick="changetoagenda(); return false;"';
                     }
