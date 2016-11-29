@@ -7299,6 +7299,7 @@ function add_quiz()
 function showquiz() {
 	$('#quizPrev').attr('onclick', 'changetoagendaitem()'); 
 	jQuery(document).ready(function($) {
+		$(".loadingquiz").hide();
         loadcommonthings(); 
         isLoggedIn();
         $(".quiz-container").hide();
@@ -7437,6 +7438,9 @@ function showquiz() {
 								$('.quiz-btn-wrapper').html('<button class="btn btn-primary res_p" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
 							} 
 							if((obj.isAnswered == 'false' || obj.isAnswered == false) && obj.questionNumber == "1") {
+								$('.quiz-btn-wrapper').html(''); 
+							} 
+							if((obj.isAnswered == 'false' || obj.isAnswered == false) && (obj.questionMultipleAnswers == 'false' || obj.questionMultipleAnswers == false)) {
 								$('.quiz-btn-wrapper').html(''); 
 							} 
 							//alert(radio_button)
@@ -7619,59 +7623,60 @@ function resetquiz()
 }
 
 //function to submit multiple answers
-function submitmultipleanswers(question_id)
-{
-    //alert(question_id)
-    var arr = [];
-    jQuery('input:checkbox:checked').each(function() {        
-         //checkboxes += 'answer_position[]:'+jQuery(this).val();
-          arr.push(jQuery(this).val());
-          
-    });
-   // alert(checkboxes);
-    
-    var countdown_box = Number(jQuery('#countdown_box').html()+'000');
-    var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
+function submitmultipleanswers(question_id) {
+	$(".loadingquiz").show();
+	$(".btn.btn-primary").hide();
+	//alert(question_id)
+	var arr = [];
+	jQuery('input:checkbox:checked').each(function() {        
+		//checkboxes += 'answer_position[]:'+jQuery(this).val();
+		arr.push(jQuery(this).val());
+	});
+	// alert(checkboxes);
 
-        jQuery.ajax({
-            url: main_url,
-            dataType: "json",
-            method: "POST",
-            data: {
-              submit_answer: 1,
-              question_id:question_id, 
-              answer_position: arr,            
-              countdown:countdown_box,
-              //checkboxes
-          },
-            success: function(obj) {
-              // window.location.href='add_quiz.html';
-              changetoaddquiz();
-            }
-            });
+	var countdown_box = Number(jQuery('#countdown_box').html()+'000');
+	var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
+
+	jQuery.ajax({
+		url: main_url,
+		dataType: "json",
+		method: "POST",
+		data: {
+			submit_answer: 1,
+			question_id:question_id, 
+			answer_position: arr,            
+			countdown:countdown_box,
+			//checkboxes
+		},
+		success: function(obj) {
+			// window.location.href='add_quiz.html';
+			changetoaddquiz();
+		}
+	});
 }
 
 //function to submit answer
-function submitanswer(question_id,answer)
-{
-  var countdown_box = Number($('#countdown_box').html()+'000');
-  var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
+function submitanswer(question_id,answer) {
+	$(".loadingquiz").show();
+	$(".btn.btn-primary").hide();
+	var countdown_box = Number($('#countdown_box').html()+'000');
+	var main_url = localStorage.url + 'Quiz/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/?gvm_json=1';
 
-        $.ajax({
-            url: main_url,
-            dataType: "json",
-            method: "POST",
-            data: {
-              submit_answer: 1,
-              question_id:question_id,
-              answer_position:answer,
-              countdown:countdown_box
-          },
-            success: function(obj) {
-              // window.location.href='add_quiz.html';
-              changetoaddquiz();
-            }
-            });
+	$.ajax({
+		url: main_url,
+		dataType: "json",
+		method: "POST",
+		data: {
+			submit_answer: 1,
+			question_id:question_id,
+			answer_position:answer,
+			countdown:countdown_box
+		},
+		success: function(obj) {
+			// window.location.href='add_quiz.html';
+			changetoaddquiz();
+		}
+	});
 }
 
 //function to go to next question

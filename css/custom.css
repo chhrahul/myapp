@@ -2502,3 +2502,7 @@ div#pageone {
     display: block;
     margin-top: 10%;
 }
+.loadingquiz {
+    width: 100%;
+    text-align: center;
+}
