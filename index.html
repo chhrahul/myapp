@@ -83,9 +83,8 @@
             <div class="weltempdiv"></div>
             <div class="pusherscript"></div>
         </div>
-      <!-- Image popup slider -->
-        <div class="mfp-bg mfp-ready" style="display:none;"></div>
-        
+<!-- Image popup slider -->
+        <div class="mfp-bg mfp-ready" style="display:none;"></div>        
         <div ata-role="page" id="pageone" class="mfp-wrap mfp-gallery mfp-close-btn-in mfp-auto-cursor mfp-ready" tabindex="-1" style="overflow-x: hidden; overflow-y: auto; display: none;" >
             <div class="mfp-container mfp-s-ready mfp-image-holder">
                 <div class="mfp-content">
@@ -110,339 +109,339 @@
         </div>
 <!-- Image popup slider --> 
         <div class="main-wrapper">
-<div class="container login-page-container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="container logo-wrapper" id="mainLogo"></div>
-            <span class="gamification text-center">Engagement</span>
-            
-        <div align="center" class="loading_index_items" >
-            <br />
-            <img src="img/loading.gif" />
-            <br />
-            <p > loading app ...</p>
-            <br />
-        </div> 
-    <div align="center" class="loading_autologin_items" style="display:none;">
-      <br />
-      <img src="img/loading.gif" />
-      <br />
-      <p style="color: #fff; letter-spacing: 5px; text-transform: lowercase;"> loading app ...</p>
-      <br />
-    </div> 
-    <div id="select_url">
-      <form class="form-container" onsubmit="searchurl(); return false;">
-        <div class="login-wrapper"> 
-          <div class="form-group">
-             <div class="url-dialog-input">
-              <div class="search-wrapper urlSearch">
-                <p>
-                  Find your provider
-                </p>
-                <i class="fafasearch" id="fasearch" onclick="searchurl();">a</i>
-                <i class="fafatimes" id="fatimes" onclick="clearsearchurl();">a</i>
-                <input type="text" placeholder="Company or event" class="searchUrl" value="" onkeyup="searchurl();" >                 
-              </div>
-              <ul class="urls-list" style="display:none;"> </ul>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+            <div class="container login-page-container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="container logo-wrapper" id="mainLogo"></div>
+                        <span class="gamification text-center">Engagement</span>
+                        
+                    <div align="center" class="loading_index_items" >
+                        <br />
+                        <img src="img/loading.gif" />
+                        <br />
+                        <p > loading app ...</p>
+                        <br />
+                    </div> 
+                <div align="center" class="loading_autologin_items" style="display:none;">
+                  <br />
+                  <img src="img/loading.gif" />
+                  <br />
+                  <p style="color: #fff; letter-spacing: 5px; text-transform: lowercase;"> loading app ...</p>
+                  <br />
+                </div> 
+                <div id="select_url">
+                  <form class="form-container" onsubmit="searchurl(); return false;">
+                    <div class="login-wrapper"> 
+                      <div class="form-group">
+                         <div class="url-dialog-input">
+                          <div class="search-wrapper urlSearch">
+                            <p>
+                              Find your provider
+                            </p>
+                            <i class="fafasearch" id="fasearch" onclick="searchurl();">a</i>
+                            <i class="fafatimes" id="fatimes" onclick="clearsearchurl();">a</i>
+                            <input type="text" placeholder="Company or event" class="searchUrl" value="" onkeyup="searchurl();" >                 
+                          </div>
+                          <ul class="urls-list" style="display:none;"> </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
 
-    <div id="autologinbox" style="display: none;">
-      <div id="urlselected">
-        <form class="form-container">
-          <div class="login-wrapper"> 
-            <div class="form-group">
-             <div class="url-selected-data">
-                <h1 id="selectedurlname">
+                <div id="autologinbox" style="display: none;">
+                  <div id="urlselected">
+                    <form class="form-container">
+                      <div class="login-wrapper"> 
+                        <div class="form-group">
+                         <div class="url-selected-data">
+                            <h1 id="selectedurlname">
+                              
+                            </h1>                
+                            <i class="fafacogs" id="fareset" onclick="resetUrl();">a</i>
+                            <p class="byselected">By: One Communication</p>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>       
+                        <div id="loginFacebookBox" class="hideloginbox show-5">
+                            <form class="form-container">
+                                
+                      <div class="login-type">
+                       
+                             <div class="form-group">
+                                        <a id="login_button" href="#" title="Login with credentials">
+                                            <i class="icon-edit"></i>
+                                            Login with credentials                          
+                          </a>
+                                    </div>
+                                        <div class="form-group">
+                                            <a href="#" id="fblogin" class="fblogin" onclick="login();" title="Login via Facebook">
+                                                <i class="fa fa-facebook"></i>
+                                                Login via Facebook                              </a>
+                              <img src="img/loading.gif" class="loading_fblogin">
+                                        </div>
+                                                        </div>
+                            </form>
+                        </div>    
+                </div>
                   
-                </h1>                
-                <i class="fafacogs" id="fareset" onclick="resetUrl();">a</i>
-                <p class="byselected">By: One Communication</p>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>       
-            <div id="loginFacebookBox" class="hideloginbox show-5">
-                <form class="form-container">
-                    
-          <div class="login-type">
-           
-                 <div class="form-group">
-                            <a id="login_button" href="#" title="Login with credentials">
-                                <i class="icon-edit"></i>
-                                Login with credentials                          
-              </a>
+                        <div id="loginBox" class="hide-element">
+                            <form class="form-container" name="user_login" method="post" action="" id="user_login">
+                                <div class="login-wrapper">
+                      
+                                 <div class="form-group">
+                                        <i class="icon-mail"></i>                                                   
+                                        <input class="form-control" type="text" name="email" id="fld_l_email" value="" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="icon-lock"></i>
+                                        <input class="form-control" type="password" name="password" value="" id="fld_l_password" placeholder="Password">
+                                    </div>
+                                    <div class="btn-wrapper login-page-button">
+                                        <button type="submit" id="login_submit" onclick="loginme();" class="btn">Login</button>
+                          <img src="img/loading.gif" class="loading"> <br />
+                                        <div><a id="reset_button" href="#" title="Forgot password">Forgot password</a></div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                            <div class="form-group">
-                                <a href="#" id="fblogin" class="fblogin" onclick="login();" title="Login via Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                    Login via Facebook                              </a>
-                  <img src="img/loading.gif" class="loading_fblogin">
-                            </div>
-                                            </div>
-                </form>
-            </div>    
-    </div>
-      
-            <div id="loginBox" class="hide-element">
-                <form class="form-container" name="user_login" method="post" action="" id="user_login">
-                    <div class="login-wrapper">
-          
-                     <div class="form-group">
-                            <i class="icon-mail"></i>                                                   
-                            <input class="form-control" type="text" name="email" id="fld_l_email" value="" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <i class="icon-lock"></i>
-                            <input class="form-control" type="password" name="password" value="" id="fld_l_password" placeholder="Password">
-                        </div>
-                        <div class="btn-wrapper login-page-button">
-                            <button type="submit" id="login_submit" onclick="loginme();" class="btn">Login</button>
-              <img src="img/loading.gif" class="loading"> <br />
-                            <div><a id="reset_button" href="#" title="Forgot password">Forgot password</a></div>
+                        <div id="resetPasswordBox" class="hide-element">
+                            <form class="form-container" name="reset_password" method="post" action="" id="reset_password">
+                                <div class="recover-password-wrapper">
+                                    <p id="rpw_desc">Enter your e-mail and we will send you a new password to your registred mobile number</p>
+                                    <div class="form-group">
+                                        <i class="icon-mail"></i>
+                                        <input class="form-control" type="text" name="email_sms_reset" id="fld_rp_email" placeholder="Email">
+                                    </div>
+                                    <div class="btn-wrapper login-page-button">
+                                        <button id="resetpasswordbtn" type="button" onclick="resetpassword();" class="btn">Reset password</button>
+                                        <div><a id="back_button" class="button" href="#" title="Go back">Go back</a></div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div id="resetPasswordBox" class="hide-element">
-                <form class="form-container" name="reset_password" method="post" action="" id="reset_password">
-                    <div class="recover-password-wrapper">
-                        <p id="rpw_desc">Enter your e-mail and we will send you a new password to your registred mobile number</p>
-                        <div class="form-group">
-                            <i class="icon-mail"></i>
-                            <input class="form-control" type="text" name="email_sms_reset" id="fld_rp_email" placeholder="Email">
-                        </div>
-                        <div class="btn-wrapper login-page-button">
-                            <button id="resetpasswordbtn" type="button" onclick="resetpassword();" class="btn">Reset password</button>
-                            <div><a id="back_button" class="button" href="#" title="Go back">Go back</a></div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>                                                            
+                </div>
+            </div>                                                            
 
 
 <!-- Other Divs --><!-- Header Starts -->  
-<header class="header" style="display: none;">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-1 header-dropdown-menu-wrapper">
-                <a class="dropdown-btn" href="javascript:return false;" >
-                    <div class="menu">
-                        <i class="menu-icon">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </i>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xs-3 header-cup">
-                <a id="top-scores-link" href="#" onclick="gotopoints(1);">
-                    <i class="fa fa-trophy"> <span>#</span> 10</i>
-                </a>
-                <div id="notification-icon-wrapper" class="tooltipstered" onclick="tooltipnoti();">
-                    <i class="oc-icon-notification"></i>                  
-                    <span id="notifications-count" style="display:none;">0</span>
-                </div>
-            </div>
-                        <div class="col-xs-4 clearfix">
-                <div class="header-logo-container">
-                    <a href="index.html" onclick="loadgamification(); return false;">
-                                                    <img class="logo_inner" src="img/logo_inner.png">
-                                            </a>
-                </div>
-            </div>
-            <div class="col-xs-4 header-login-wrapper">
-                                    <a href="#" onclick="changetoprofile(); return false;">
-                        <div class="log-info">
-                            <p>
-                                                            </p>
+    <header class="header" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-1 header-dropdown-menu-wrapper">
+                    <a class="dropdown-btn" href="javascript:return false;" >
+                        <div class="menu">
+                            <i class="menu-icon">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </i>
                         </div>
-                        <div class="img-wrapper" id="profile_pic" style=""></div>
                     </a>
+                </div>
+                <div class="col-xs-3 header-cup">
+                    <a id="top-scores-link" href="#" onclick="gotopoints(1);">
+                        <i class="fa fa-trophy"> <span>#</span> 10</i>
+                    </a>
+                    <div id="notification-icon-wrapper" class="tooltipstered" onclick="tooltipnoti();">
+                        <i class="oc-icon-notification"></i>                  
+                        <span id="notifications-count" style="display:none;">0</span>
+                    </div>
+                </div>
+                            <div class="col-xs-4 clearfix">
+                    <div class="header-logo-container">
+                        <a href="index.html" onclick="loadgamification(); return false;">
+                                                        <img class="logo_inner" src="img/logo_inner.png">
+                                                </a>
+                    </div>
+                </div>
+                <div class="col-xs-4 header-login-wrapper">
+                                        <a href="#" onclick="changetoprofile(); return false;">
+                            <div class="log-info">
+                                <p>
+                                                                </p>
                             </div>
+                            <div class="img-wrapper" id="profile_pic" style=""></div>
+                        </a>
+                                </div>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
 
 <!-- Header Ends --><!-- Loading Agenda Container Starts -->
 
 
-<div align="center" class="container loading_agenda_items main-container" style="display: none;">
-       <br />
-        <img src="img/loading.gif" />
-        <br />
-        
-</div> 
+    <div align="center" class="container loading_agenda_items main-container" style="display: none;">
+           <br />
+            <img src="img/loading.gif" />
+            <br />
+            
+    </div> 
 
 <!-- Loading Agenda Container Ends --><!-- Welcome Container Ends -->
 
-<div class="container main-container welcome-container" style="display: none;">
-  <div class="row">
-          <div class="welcome-slider video">
-                   
-        <img class="main_banner_image" src="">
-      </div>
-        <div class="col-xs-12">
-      <div class="welcome-title">
-        <h1></h1>
-      </div>
-      <p>&nbsp;</p>
-      <div class="welcome-content">
-      
+    <div class="container main-container welcome-container" style="display: none;">
+      <div class="row">
+              <div class="welcome-slider video">
+                       
+            <img class="main_banner_image" src="">
+          </div>
+            <div class="col-xs-12">
+          <div class="welcome-title">
+            <h1></h1>
+          </div>
+          <p>&nbsp;</p>
+          <div class="welcome-content">
+          
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 <!-- Welcome Container Ends --><!-- Profile Container Start -->
 
-<div class="container main-container user-profile-container" style="display: none;">
-  <div class="header-title row" onclick="changetoprofile(); return false;">
-    <p>
-        <a class="nav-arrow prev" href="#" title="Forrige" style="display: none;">
-            <i class="fa fa-angle-left" style="display: none;"></i>
-        </a>
-        <span class="breadcrumbs">
-            <span class="green-text" onclick="changetoprofile()">Profile</span>
-        </span>
-        <a class="nav-arrow next" href="#" title="Neste" style="display: none;">
-            <i class="fa fa-angle-right" style="display: none;"></i>
-        </a>
-    </p>
-  </div>
-  <div class="user-profile-add-container ">
-    <div class="main-img-wrapper">
-      <div class="main-img" style="background-image: url('');"></div>
-    </div>
-        <div class="imageaddedremoved"></div>
-        
-        <form enctype="multipart/form-data" method="post" action="">
-                                   <div class="selfie_button">
-                                    <div class="pic-upload selfie_capture">
-                
-                <button class="addselfie" onclick="showbuttons();" type="button" name="addselfie" value="1">Add</button>
-                          
-                            </div>
-                <div class="pic-upload hidden_button" style="display:none;">
-                <input type="button" value="Choose a Photo"  onclick="getPhoto(pictureSource.PHOTOLIBRARY);">
-                
-                Choose a Photo          </div>
-                <div class="pic-upload hidden_button" style="display:none;">
-                <input type="button" value="Take a Photo"  onclick="capturePhoto();">
-                
-               Take a Photo          </div>
-                </div>
-                    </form>
-                    <div id="plid">
-                    <h5>Your player ID</h5>
-                    <h2 class="player_code"></h2>
+    <div class="container main-container user-profile-container" style="display: none;">
+      <div class="header-title row" onclick="changetoprofile(); return false;">
+        <p>
+            <a class="nav-arrow prev" href="#" title="Forrige" style="display: none;">
+                <i class="fa fa-angle-left" style="display: none;"></i>
+            </a>
+            <span class="breadcrumbs">
+                <span class="green-text" onclick="changetoprofile()">Profile</span>
+            </span>
+            <a class="nav-arrow next" href="#" title="Neste" style="display: none;">
+                <i class="fa fa-angle-right" style="display: none;"></i>
+            </a>
+        </p>
+      </div>
+      <div class="user-profile-add-container ">
+        <div class="main-img-wrapper">
+          <div class="main-img" style="background-image: url('');"></div>
+        </div>
+            <div class="imageaddedremoved"></div>
+            
+            <form enctype="multipart/form-data" method="post" action="">
+                                       <div class="selfie_button">
+                                        <div class="pic-upload selfie_capture">
+                    
+                    <button class="addselfie" onclick="showbuttons();" type="button" name="addselfie" value="1">Add</button>
+                              
+                                </div>
+                    <div class="pic-upload hidden_button" style="display:none;">
+                    <input type="button" value="Choose a Photo"  onclick="getPhoto(pictureSource.PHOTOLIBRARY);">
+                    
+                    Choose a Photo          </div>
+                    <div class="pic-upload hidden_button" style="display:none;">
+                    <input type="button" value="Take a Photo"  onclick="capturePhoto();">
+                    
+                   Take a Photo          </div>
                     </div>
-          </div>
-      
+                        </form>
+                        <div id="plid">
+                        <h5>Your player ID</h5>
+                        <h2 class="player_code"></h2>
+                        </div>
+              </div>
           
-      <div class="success_message">
-      <div class="isa_success">
-     <i class="fa fa-check"></i>
-     Profile Edited Successfully!
-     <input type="hidden" id="edited_success">
-</div>
-      </div>    
-  <div class="user-info row">
-
-        <div class="user-info-panel show_info_user">
-            <dl class="dl-horizontal">
-                                <dt class="all_username">Username</dt>
-                <dd class="myname"></dd>
-                
-                                <dt class="all_email">Email</dt>
-                <dd class="myemail"></dd>
-                
-                                <dt class="all_mobile">Mobile</dt>
-                <dd class="mymobile"></dd>
-                
-                                <dt class="all_gender"></dt>
-                <dd class="mygender"></dd>
-                            </dl>
-            <div class="btns-wrapper">
-                <a class="btn user-info-edit-btn" href="#"></a>
-            </div>
-        </div>
-
-        <div class="user-info-edit-form edit_info_user user-info-panel hidden">
-                        <dl class="dl-horizontal clearfix">
-                <dt id="all_fname">
-                    First Name                </dt>
-                <dd>
-                    <input class="form-control" id="fname_edit" type="text" name="data[fName]" value="">
-                </dd>
-                <dt id="all_lname">
-                    Last Name                </dt>
-                <dd>
-                    <input class="form-control" id="lname_edit" type="text" name="data[lName]" value="">
-                </dd>
-                <dt id="all_email">
-                    Email                </dt>
-                <dd>
-                    <input class="form-control" id="email_edit" type="text" name="data[eMail]" value="">
-                </dd>
-                <dt id="all_remail">
-                    Repeat email                </dt>
-                <dd>
-                    <input class="form-control" id="emailrepeat_edit" type="text" name="data[email_repeat]" value="">
-                </dd>
-                <dt id="all_mobile">
-                    Mobile                </dt>
-                <dd>
-                    <input class="form-control" id="mobile_edit" type="text" name="data[mobile]" value="">
-                </dd>
-                <dt id="all_pwd">
-                    SetNewPassword                </dt>
-                <dd>
-                    <input class="form-control" id="pwd_edit" type="password" name="data[password]">
-                </dd>
-                <dt id="all_rpwd">
-                    RepeatNewPassword                </dt>
-                <dd>
-                    <input class="form-control" id="pwdrepeat_edit" type="password" name="data[password_repeat]">
-                </dd>
-            </dl>
-            <div class="btns-wrapper">
-                <button class="btn user-info-save-btn" onclick="return saveprofile();" type="button" name="save_details" value="1">Save</button>
-                <a class="btn user-info-cancel-btn" href="#">Cancel</a>
-            </div>
-        </div>
-  
-  </div>
-      <div class="user-facebook-link row facebook-link" style="display:none;">
-            <h4></h4>
-        <div class="facebook-description">
-                   </div>
-    <div class="facebook-btn-wrapper">
-      <a href="#" onclick="linkwithfacebook();">
-                <i class="fa fa-facebook fbs"></i><span class="linkfb"></span>            </a>
+              
+          <div class="success_message">
+          <div class="isa_success">
+         <i class="fa fa-check"></i>
+         Profile Edited Successfully!
+         <input type="hidden" id="edited_success">
     </div>
-  </div>
-  <div class="user-facebook-link row" id="unlinkfacebook" style="display:none;">
-  
+          </div>    
+      <div class="user-info row">
+
+            <div class="user-info-panel show_info_user">
+                <dl class="dl-horizontal">
+                                    <dt class="all_username">Username</dt>
+                    <dd class="myname"></dd>
+                    
+                                    <dt class="all_email">Email</dt>
+                    <dd class="myemail"></dd>
+                    
+                                    <dt class="all_mobile">Mobile</dt>
+                    <dd class="mymobile"></dd>
+                    
+                                    <dt class="all_gender"></dt>
+                    <dd class="mygender"></dd>
+                                </dl>
+                <div class="btns-wrapper">
+                    <a class="btn user-info-edit-btn" href="#"></a>
+                </div>
+            </div>
+
+            <div class="user-info-edit-form edit_info_user user-info-panel hidden">
+                            <dl class="dl-horizontal clearfix">
+                    <dt id="all_fname">
+                        First Name                </dt>
+                    <dd>
+                        <input class="form-control" id="fname_edit" type="text" name="data[fName]" value="">
+                    </dd>
+                    <dt id="all_lname">
+                        Last Name                </dt>
+                    <dd>
+                        <input class="form-control" id="lname_edit" type="text" name="data[lName]" value="">
+                    </dd>
+                    <dt id="all_email">
+                        Email                </dt>
+                    <dd>
+                        <input class="form-control" id="email_edit" type="text" name="data[eMail]" value="">
+                    </dd>
+                    <dt id="all_remail">
+                        Repeat email                </dt>
+                    <dd>
+                        <input class="form-control" id="emailrepeat_edit" type="text" name="data[email_repeat]" value="">
+                    </dd>
+                    <dt id="all_mobile">
+                        Mobile                </dt>
+                    <dd>
+                        <input class="form-control" id="mobile_edit" type="text" name="data[mobile]" value="">
+                    </dd>
+                    <dt id="all_pwd">
+                        SetNewPassword                </dt>
+                    <dd>
+                        <input class="form-control" id="pwd_edit" type="password" name="data[password]">
+                    </dd>
+                    <dt id="all_rpwd">
+                        RepeatNewPassword                </dt>
+                    <dd>
+                        <input class="form-control" id="pwdrepeat_edit" type="password" name="data[password_repeat]">
+                    </dd>
+                </dl>
+                <div class="btns-wrapper">
+                    <button class="btn user-info-save-btn" onclick="return saveprofile();" type="button" name="save_details" value="1">Save</button>
+                    <a class="btn user-info-cancel-btn" href="#">Cancel</a>
+                </div>
+            </div>
+      
+      </div>
+          <div class="user-facebook-link row facebook-link" style="display:none;">
+                <h4></h4>
+            <div class="facebook-description">
+                       </div>
         <div class="facebook-btn-wrapper">
-      <a href="#" onclick="unlinkwithfacebook();">
-                <i class="fa fa-facebook"></i> Unlink your account from Facebook            </a>
-    </div>
-  </div>
-          <dl class="qa-list row">
-                               
-                        </dl>
-    </div>
-   <!-- Profile Container Ends --><!-- Agenda List Container Start -->
+          <a href="#" onclick="linkwithfacebook();">
+                    <i class="fa fa-facebook fbs"></i><span class="linkfb"></span>            </a>
+        </div>
+      </div>
+      <div class="user-facebook-link row" id="unlinkfacebook" style="display:none;">
+      
+            <div class="facebook-btn-wrapper">
+          <a href="#" onclick="unlinkwithfacebook();">
+                    <i class="fa fa-facebook"></i> Unlink your account from Facebook            </a>
+        </div>
+      </div>
+              <dl class="qa-list row">
+                                   
+                            </dl>
+        </div>
+<!-- Profile Container Ends --><!-- Agenda List Container Start -->
     
     <div class="container main-container agenda-container list-agendalist-container agenda-menu-container" style="display: none;">
         <div class="row">
@@ -507,7 +506,7 @@
                         </div>
       </div>
 
-      <!-- Agenda List Container Ends --><!-- Ticketing Container Start -->
+<!-- Agenda List Container Ends --><!-- Ticketing Container Start -->
       
        <div class="container main-container ticketing-container" style="display:none;">
         <div class="row">
@@ -527,7 +526,7 @@
       </div>
       
 
-      <!-- Ticketing Container Ends --><!-- Leaderboard Container Start -->
+<!-- Ticketing Container Ends --><!-- Leaderboard Container Start -->
 
       <div class="container main-container leaderboards-container yourscores-leaderboards-container" style="display: none;">
         <div class="header-title row">
@@ -560,7 +559,7 @@
             </div>
         </div> 
         
-        <!-- Leaderboard Container Ends --><!-- First Container starts -->
+<!-- Leaderboard Container Ends --><!-- First Container starts -->
 
         <div class="container main-container leaderboards-container first-container" style="display: none;">
             <div class="header-title row">
@@ -580,7 +579,7 @@
             </div>
             </div>
         </div>
-        <!-- First Container Ends --><!-- teamscore Container Start -->
+<!-- First Container Ends --><!-- teamscore Container Start -->
 
 
         <div class="container main-container leaderboards-container teamscores-leaderboards-container" style="display: none;">
@@ -614,49 +613,49 @@
           </div>
       </div> 
 
-      <!-- teamscore Container Ends --><!-- Leaderboard last Container Start -->
+<!-- teamscore Container Ends --><!-- Leaderboard last Container Start -->
 
-<div class="container main-container leaderboards-container last-container" style="display: none;">
-        <div class="subheader-grey row"></div>
-    <div class="user-points-table-container row">
-        <table class="user-points-table-title">
-    <tbody><tr>
-        <th class="col-xs-4">
-            <a href="#" onclick="changetopoints(); return false;" class="active yourscores">
+    <div class="container main-container leaderboards-container last-container" style="display: none;">
+            <div class="subheader-grey row"></div>
+        <div class="user-points-table-container row">
+            <table class="user-points-table-title">
+        <tbody><tr>
+            <th class="col-xs-4">
+                <a href="#" onclick="changetopoints(); return false;" class="active yourscores">
+                                </a>
+            </th>
+                    <th class="col-xs-4">
+                <a href="#" onclick="changetoteampoints(); return false;" class="teamscores">
+                                </a>
+            </th>
+            <th class="col-xs-4">
+                <a href="#" onclick="changetoyourpoints(); return false;" class="yourteam">
                             </a>
-        </th>
-                <th class="col-xs-4">
-            <a href="#" onclick="changetoteampoints(); return false;" class="teamscores">
-                            </a>
-        </th>
-        <th class="col-xs-4">
-            <a href="#" onclick="changetoyourpoints(); return false;" class="yourteam">
-                        </a>
-        </th>
-            </tr>
-</tbody></table>        <div class="user-points-table">
-            <table class="table table-striped">
-                
-                <tbody>
-                      <tr class="active">
-                        <td>
-                            <a href="#">
-                                <span class="num">2.</span>
-                                <span class="icon">
-                                    <i class="social-icon"></i>                                </span>
-                                Bonus                            </a>
-                        </td>
-                        <td class="point">
-                            <a href="#">
-                                80000                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                  </tbody>
-            </table>
+            </th>
+                </tr>
+    </tbody></table>        <div class="user-points-table">
+                <table class="table table-striped">
+                    
+                    <tbody>
+                          <tr class="active">
+                            <td>
+                                <a href="#">
+                                    <span class="num">2.</span>
+                                    <span class="icon">
+                                        <i class="social-icon"></i>                                </span>
+                                    Bonus                            </a>
+                            </td>
+                            <td class="point">
+                                <a href="#">
+                                    80000                                <i class="fa fa-angle-right"></i>
+                                </a>
+                            </td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Leaderboard last Container Ends --><!-- yourteamscore Container Start -->
 
@@ -681,7 +680,7 @@
                               </a>
             </th>
                 </tr>
-    </tbody></table>        <div class="user-points-table">
+        </tbody></table>        <div class="user-points-table">
                 <table class="table table-striped">
                     <tbody>
                                        
@@ -691,7 +690,7 @@
         </div>
     </div> 
 
-    <!-- yourteamscore Container Ends --><!-- add-friends Container Start -->
+<!-- yourteamscore Container Ends --><!-- add-friends Container Start -->
 
         
         <div class="container main-container add-friends-container contacts-container" style="display: none;">
@@ -753,7 +752,7 @@
             
         </div>
 
-        <!-- add-friends Container Ends --><!-- Notes Container Start -->
+<!-- add-friends Container Ends --><!-- Notes Container Start -->
 
 
         
@@ -831,731 +830,728 @@
          <div id="footerSlideContainer"></div> 
         </div>  
 
-        <!-- Notes Container Ends --><!-- add-comments Container Start -->
+<!-- Notes Container Ends --><!-- add-comments Container Start -->
 
         
         <div class="container main-container questions-container add-comments-container" style="display: none;">
-  <div class="header-title row">
-    <p class="presentation-item-header">
-      
-<a id="commentPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+      <div class="header-title row">
+        <p class="presentation-item-header">
+          
+    <a id="commentPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
 
-<span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> /
-<span class="green-text" onclick="changetoaddcomments(); return false;"></span></span>    </p>
-  </div>
-      <div class="questions-heading-title row">
-      <div class="votes-count col-xs-6" id="accvotescount">
-        <i class="fa fa-comment"></i>
-          <span class="green-text">0</span> 
-            <span class="comment_counter"></span>
-            <span class="comment_counter_text"></span>    
+    <span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> /
+    <span class="green-text" onclick="changetoaddcomments(); return false;"></span></span>    </p>
       </div>
-      <div class="votes-sort col-xs-6">
-        <span>Sort by:</span>
-                <a class="active sortbytime" id="accsortbytime" href="#" onclick="sortcomments('timestamp','desc');">
-                                        <i class="fa fa-caret-up time_s"></i> 
-                                                        </a>
-                <a href="#" id="accsortbylikes"class="sortbylikes" onclick="sortcomments('likes','asc');">
-                                        <i class="fa fa-caret-up like_s"></i> 
-                                                        </a>
-      </div>
-    </div>
-                     <div class="comment_loop">
-                       <div id="inner_comment_loop" class="inner_comment_loop"> </div>
-                     <div id="show-form-container" onclick="commentpostbtn();" ondragstart="return false" onselectstart="return false">
+          <div class="questions-heading-title row">
+          <div class="votes-count col-xs-6" id="accvotescount">
             <i class="fa fa-comment"></i>
-            <span class="commentpostplaceholder" ></span>
-                    </div>
-                     <div id="cpmaincomment" class="questions-filter-items main-questions-form-container" style="display:none;">
-    
-<div class="has-file-upload" id="createdform">
-<div class="close-btn-wrapper" onclick="closeingcommentbox();">
-    <i class="fa fa-times close-btn"></i>
-</div>
-<div class="form-group fileupload frmfld_files" data-role="fieldcontain">
-<i class="gicon-camera file-upload" onclick="showimagebuttons();">
-</i></div>
-<div class="form-group textarea frmfld_comment" data-role="fieldcontain">
-<textarea placeholder="Participate, write a post" maxlength="4096" name="comment" id="frmfld_comment" class="form-control">
-</textarea>
-<span><i class="fa fa-comment"></i></span></div>
-<div class="form-group hidden frmfld_presentation_id" data-role="fieldcontain">
-  <input type="hidden" value="142" name="presentation_id" id="frmfld_presentation_id">
-</div>
-<div class="success-status hide">
-    <div class="success-icon-wrapper">
-        <i class="icon-check"></i>
-    </div>
-    <p></p><p><strong>Your <em>comment</em> <span style="">has</span> been sent to the moderator for approval.&nbsp;</strong><br><strong>Thank you for your participation.</strong></p>
-</div>
-
-<div class="error-status hide">
-    <div class="error-icon-wrapper">
-        <i class="fa fa-ban"></i>
-    </div>
-    <p></p><p>Something went wrong...<br>Your comments are limited to one per every 4 seconds.</p><p></p>
-</div>
-
-<div class="clearfix">
-        <div class="frm_field submit" data-role="fieldcontain">
-            <button name="capture_image" style="display:none;" class="captureimage" onclick="captureImage();" type="button">Take a photo</button>
-            <button name="upload_image" style="display:none;" class="uploadimage" onclick="uploadImage(pictureSource.PHOTOLIBRARY);" type="button">Choose a Photo</button>
-            
-            <button name="submit" onclick="submitcomment();" class="submit_com" type="submit">Send</button>
+              <span class="green-text">0</span> 
+                <span class="comment_counter"></span>
+                <span class="comment_counter_text"></span>    
+          </div>
+          <div class="votes-sort col-xs-6">
+            <span>Sort by:</span>
+                    <a class="active sortbytime" id="accsortbytime" href="#" onclick="sortcomments('timestamp','desc');">
+                                            <i class="fa fa-caret-up time_s"></i> 
+                                                            </a>
+                    <a href="#" id="accsortbylikes"class="sortbylikes" onclick="sortcomments('likes','asc');">
+                                            <i class="fa fa-caret-up like_s"></i> 
+                                                            </a>
+          </div>
+        </div>
+                         <div class="comment_loop">
+                           <div id="inner_comment_loop" class="inner_comment_loop"> </div>
+                         <div id="show-form-container" onclick="commentpostbtn();" ondragstart="return false" onselectstart="return false">
+                <i class="fa fa-comment"></i>
+                <span class="commentpostplaceholder" ></span>
+                        </div>
+                         <div id="cpmaincomment" class="questions-filter-items main-questions-form-container" style="display:none;">
         
-        </div>
-        <img src="img/loading.gif" class="loading_send" style="display:none" />
+    <div class="has-file-upload" id="createdform">
+    <div class="close-btn-wrapper" onclick="closeingcommentbox();">
+        <i class="fa fa-times close-btn"></i>
     </div>
-  
-    <div class="swiper-container swiper-container-horizontal customcommenttextarea">
-        <div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadImgePreviews">
+    <div class="form-group fileupload frmfld_files" data-role="fieldcontain">
+    <i class="gicon-camera file-upload" onclick="showimagebuttons();">
+    </i></div>
+    <div class="form-group textarea frmfld_comment" data-role="fieldcontain">
+    <textarea placeholder="Participate, write a post" maxlength="4096" name="comment" id="frmfld_comment" class="form-control">
+    </textarea>
+    <span><i class="fa fa-comment"></i></span></div>
+    <div class="form-group hidden frmfld_presentation_id" data-role="fieldcontain">
+      <input type="hidden" value="142" name="presentation_id" id="frmfld_presentation_id">
+    </div>
+    <div class="success-status hide">
+        <div class="success-icon-wrapper">
+            <i class="icon-check"></i>
         </div>
+        <p></p><p><strong>Your <em>comment</em> <span style="">has</span> been sent to the moderator for approval.&nbsp;</strong><br><strong>Thank you for your participation.</strong></p>
     </div>
 
-</div>
-  </div>                   
-                    
-    </div>    
-     <div class="ui-widget-overlay"></div>
- 
- <div id="footerSlideContainer"></div>  
-  <div id="footerSlideContainerbuttn"></div>  
-</div>
+    <div class="error-status hide">
+        <div class="error-icon-wrapper">
+            <i class="fa fa-ban"></i>
+        </div>
+        <p></p><p>Something went wrong...<br>Your comments are limited to one per every 4 seconds.</p><p></p>
+    </div>
+
+    <div class="clearfix">
+            <div class="frm_field submit" data-role="fieldcontain">
+                <button name="capture_image" style="display:none;" class="captureimage" onclick="captureImage();" type="button">Take a photo</button>
+                <button name="upload_image" style="display:none;" class="uploadimage" onclick="uploadImage(pictureSource.PHOTOLIBRARY);" type="button">Choose a Photo</button>
+                
+                <button name="submit" onclick="submitcomment();" class="submit_com" type="submit">Send</button>
+            
+            </div>
+            <img src="img/loading.gif" class="loading_send" style="display:none" />
+        </div>
+      
+        <div class="swiper-container swiper-container-horizontal customcommenttextarea">
+            <div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadImgePreviews">
+            </div>
+        </div>
+
+    </div>
+      </div>                   
+                        
+        </div>    
+         <div class="ui-widget-overlay"></div>
+     
+     <div id="footerSlideContainer"></div>  
+      <div id="footerSlideContainerbuttn"></div>  
+    </div>
 
 <!-- add-comments Container Ends --><!-- Seeker Game Container Start -->
 
+    <div class="container main-container seeker-game-container single-seeker-container" style="display: none;">
+      <div class="header-title row">
+        <p class="presentation-item-header">
+          
+    <a id="seekerPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
 
-<div class="container main-container seeker-game-container single-seeker-container" style="display: none;">
-  <div class="header-title row">
-    <p class="presentation-item-header">
-      
-<a id="seekerPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
-
-<span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetoseeker(); return false;"></span></span>    </p>
-  </div>
-    <div class="seeker-game-top-container row">
-        <div class="seek-questions col-xs-4">
-            <i class="map-icon"></i>
-            <span class="green-text oneof"></span>
-            / <span class="totalof"></span>        </div>
-        <div class="seeker-game-question-level col-xs-8">
-            <ul class="bordered">
-                
-            </ul>
-        </div>
-    </div>
-    <div class="seeker-container"> 
-        <div class="seeker-bg-container" style="display:none;">
-            <div class="seeker-bg-overlay"></div>
-            <a class="msg-wrapper close-overlay" href="#" onclick="closeseekermzg();">
-                <div class="wrong-msg-container">
-                    <i class="fa fa-ban"></i>
-                    <h5>
-                        <p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p>
-                    </h5>
-                </div>
-            </a>
-        </div>
-                        <div class="seeker-map-wrapper" align="center">
-                                 
-                    </div>
-        <div class="seeker-description">
-                       <div class="seeker-hint"></div>
-        </div>
-        
-
-
-<div data-role="fieldcontain" class="form-group textfield seeker-answer-wrapper frmfld_code" id="seekerinputfield">
-<input type="text" class="form-control" id="frmfld_code" name="code" maxlength="180" value="" placeholder="Answer">
-</div>
-<div class="success-status hide">
-    <div class="success-icon-wrapper">
-        <i class="icon-check"></i>
-    </div>
-    <p></p>
-</div>
-
-<div class="error-status hide">
-    <div class="error-icon-wrapper">
-        <i class="fa fa-ban"></i>
-    </div>
-    <p></p>
-</div>
-
-<div class="clearfix">
-        <div data-role="fieldcontain" class="frm_field submit btn-wrapper">
-    <button type="button" class="btn btn-default show-hint" name="show_hint">
-                    SeekerShowHint                
-                    </button>
-    <button type="submit" onclick="submitseekeranswer();" class="btn btn-primary submit_com" name="submit">Submit</button>
-    <img class="loading_send" style="display:none" src="img/loading.gif">
+    <span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetoseeker(); return false;"></span></span>    </p>
+      </div>
+        <div class="seeker-game-top-container row">
+            <div class="seek-questions col-xs-4">
+                <i class="map-icon"></i>
+                <span class="green-text oneof"></span>
+                / <span class="totalof"></span>        </div>
+            <div class="seeker-game-question-level col-xs-8">
+                <ul class="bordered">
+                    
+                </ul>
             </div>
-    
+        </div>
+        <div class="seeker-container"> 
+            <div class="seeker-bg-container" style="display:none;">
+                <div class="seeker-bg-overlay"></div>
+                <a class="msg-wrapper close-overlay" href="#" onclick="closeseekermzg();">
+                    <div class="wrong-msg-container">
+                        <i class="fa fa-ban"></i>
+                        <h5>
+                            <p>The entered answer is <strong>incorrect</strong>. <br>Try again!</p>
+                        </h5>
+                    </div>
+                </a>
+            </div>
+                            <div class="seeker-map-wrapper" align="center">
+                                     
+                        </div>
+            <div class="seeker-description">
+                           <div class="seeker-hint"></div>
+            </div>
+            
+    <div data-role="fieldcontain" class="form-group textfield seeker-answer-wrapper frmfld_code" id="seekerinputfield">
+    <input type="text" class="form-control" id="frmfld_code" name="code" maxlength="180" value="" placeholder="Answer">
+    </div>
+    <div class="success-status hide">
+        <div class="success-icon-wrapper">
+            <i class="icon-check"></i>
+        </div>
+        <p></p>
     </div>
 
-
-
+    <div class="error-status hide">
+        <div class="error-icon-wrapper">
+            <i class="fa fa-ban"></i>
+        </div>
+        <p></p>
     </div>
-</div>
+
+    <div class="clearfix">
+            <div data-role="fieldcontain" class="frm_field submit btn-wrapper">
+        <button type="button" class="btn btn-default show-hint" name="show_hint">
+                        SeekerShowHint                
+                        </button>
+        <button type="submit" onclick="submitseekeranswer();" class="btn btn-primary submit_com" name="submit">Submit</button>
+        <img class="loading_send" style="display:none" src="img/loading.gif">
+                </div>
+        
+        </div>
+
+
+
+        </div>
+    </div>
 
 <!-- Seeker Game Container Ends --><!-- Add Question Container Start -->
     
-<div class="container main-container questions-container add-questions-container" style="display: none;">
-  <div class="header-title row">
-    <p class="presentation-item-header">
-      
-<a id="questionPrev" class="nav-arrow prev" href="#" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+    <div class="container main-container questions-container add-questions-container" style="display: none;">
+      <div class="header-title row">
+        <p class="presentation-item-header">
+          
+    <a id="questionPrev" class="nav-arrow prev" href="#" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
 
-<span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / 
-<span class="green-text" onclick="changetoaddquestions(); return false;"></span></span>   </p>
-  </div>
-      <div class="questions-heading-title row">
-      <div class="votes-count col-xs-6">
-        <i class="fa fa-question"></i>
-                <span class="green-text">3</span> 
-                <span class="question_counter"></span>
-                <span class="small-text">2 
-                </span>
+    <span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / 
+    <span class="green-text" onclick="changetoaddquestions(); return false;"></span></span>   </p>
       </div>
-      <div class="votes-sort col-xs-6">
-        <span>Sort by:</span>
-                <a class="active sortbytime" href="#" onclick="sortquestions('timestamp','desc');">
-                                        <i class="fa fa-caret-up time_s"></i> 
-                                                        </a>
-                <a href="#" class="sortbylikes" onclick="sortquestions('likes','asc');">
-                                        <i class="fa fa-caret-up like_s"></i> 
-                                                     </a>
-      </div>
-    </div>
-                     <div class="comment_loop">
-                        <div class="inner_comment_loop"> </div>
-                      <div id="show-form-container"  onclick="questionpostbtn();" ondragstart="return false" onselectstart="return false">
-      <i class="fa fa-comment"></i>      
-            <span class="questionspostplaceholder"></span>
+          <div class="questions-heading-title row">
+          <div class="votes-count col-xs-6">
+            <i class="fa fa-question"></i>
+                    <span class="green-text">3</span> 
+                    <span class="question_counter"></span>
+                    <span class="small-text">2 
+                    </span>
           </div>
-                     <div class="questions-filter-items main-questions-form-container" style="display: none;" id="cpmainquestion">
-    
-<div id="createdform">
-<div class="close-btn-wrapper" onclick="closeingcommentbox();">
-    <i class="fa fa-times close-btn"></i>
-</div>
-<div data-role="fieldcontain" class="form-group textarea frmfld_question">
-<textarea class="form-control add_question_textarea" id="frmfld_question" name="question" maxlength="4096" placeholder=""></textarea>
-<span>
-<i class="fa fa-question"></i>
-</span></div>
-<div class="form-group hidden frmfld_presentation_id" data-role="fieldcontain">
-  <input type="hidden" value="142" name="presentation_id" id="frmfld_presentation_id">
-</div>
-<div class="success-status hide">
-    <div class="success-icon-wrapper">
-        <i class="icon-check"></i>
-    </div>
-    <p></p>
-    <p>Your question has been sent to the moderator for approval. <br>Thank you for your participation.</p>
-</div>
-
-<div class="error-status hide">
-    <div class="error-icon-wrapper">
-        <i class="fa fa-ban"></i>
-    </div>
-    <p></p>
-</div>
-
-<div class="clearfix">
-        <div class="frm_field submit" data-role="fieldcontain">
-        <button name="submit" onclick="submitquestion();" class="submit_com" type="submit"></button>
-        <button name="submits" class="loading_send" style="display:none" type="submit">Sending...</button>
+          <div class="votes-sort col-xs-6">
+            <span>Sort by:</span>
+                    <a class="active sortbytime" href="#" onclick="sortquestions('timestamp','desc');">
+                                            <i class="fa fa-caret-up time_s"></i> 
+                                                            </a>
+                    <a href="#" class="sortbylikes" onclick="sortquestions('likes','asc');">
+                                            <i class="fa fa-caret-up like_s"></i> 
+                                                         </a>
+          </div>
         </div>
- 
+                         <div class="comment_loop">
+                            <div class="inner_comment_loop"> </div>
+                          <div id="show-form-container"  onclick="questionpostbtn();" ondragstart="return false" onselectstart="return false">
+          <i class="fa fa-comment"></i>      
+                <span class="questionspostplaceholder"></span>
+              </div>
+                         <div class="questions-filter-items main-questions-form-container" style="display: none;" id="cpmainquestion">
+        
+    <div id="createdform">
+    <div class="close-btn-wrapper" onclick="closeingcommentbox();">
+        <i class="fa fa-times close-btn"></i>
     </div>
-    <div class="swiper-container swiper-container-horizontal customcommenttextarea">
-    <div class="files swiper-wrapper">
+    <div data-role="fieldcontain" class="form-group textarea frmfld_question">
+    <textarea class="form-control add_question_textarea" id="frmfld_question" name="question" maxlength="4096" placeholder=""></textarea>
+    <span>
+    <i class="fa fa-question"></i>
+    </span></div>
+    <div class="form-group hidden frmfld_presentation_id" data-role="fieldcontain">
+      <input type="hidden" value="142" name="presentation_id" id="frmfld_presentation_id">
     </div>
-</div>
+    <div class="success-status hide">
+        <div class="success-icon-wrapper">
+            <i class="icon-check"></i>
+        </div>
+        <p></p>
+        <p>Your question has been sent to the moderator for approval. <br>Thank you for your participation.</p>
+    </div>
 
-</div>
-  </div>                   
-                    
-    </div>    
-       
-</div>
+    <div class="error-status hide">
+        <div class="error-icon-wrapper">
+            <i class="fa fa-ban"></i>
+        </div>
+        <p></p>
+    </div>
+
+    <div class="clearfix">
+            <div class="frm_field submit" data-role="fieldcontain">
+            <button name="submit" onclick="submitquestion();" class="submit_com" type="submit"></button>
+            <button name="submits" class="loading_send" style="display:none" type="submit">Sending...</button>
+            </div>
+     
+        </div>
+        <div class="swiper-container swiper-container-horizontal customcommenttextarea">
+        <div class="files swiper-wrapper">
+        </div>
+    </div>
+
+    </div>
+      </div>                   
+                        
+        </div>    
+           
+    </div>
 
 <!-- Add Question Container Ends --><!-- Quiz Container Start -->
 
 
-<div class="container main-container quiz-container" style="display: none;">
-    <div class="quiz-header-title row">
-        <p class="presentation-item-header">
-            <a id="quizPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
-            <span class="breadcrumbs">
-                <a href="#" onclick="changetoagendaitem(); return false;"></a> / 
-                <span class="green-text" onclick="changetoaddquiz(); return false;"></span>
-            </span>    
-        </p>
-    </div>
-    <div class="questionsdiv">
-        <div class="quiz-timer-container row">
-            <span class="quiz-icon-wrapper">
-                <i class="icon-quiz"></i>
-            </span>
-            <span class="quiz-number"></span>        
-            <span class="timer-icon" id="quiz_timer_icon">
-                <i class="fa fa-clock-o"></i>
-                <span id="countdown_box">1787</span>
-            </span>        
-            <span class="quiz-questions">
-                <ul class="questions-bar">
-                    <li class="active"></li>
-                </ul>
-            </span> 
+    <div class="container main-container quiz-container" style="display: none;">
+        <div class="quiz-header-title row">
+            <p class="presentation-item-header">
+                <a id="quizPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+                <span class="breadcrumbs">
+                    <a href="#" onclick="changetoagendaitem(); return false;"></a> / 
+                    <span class="green-text" onclick="changetoaddquiz(); return false;"></span>
+                </span>    
+            </p>
         </div>
-        <div class="quiz-question-container">
-            <div class="quiz-with-video" id="quiz-video-container" style="display:none;"></div>
-            <div class="quiz-image-container" style="display:none;"></div> 
-            <div class="quiz-question"></div>
-            <h4></h4>
-        </div>
-        <div id="quiz_form" action="" method="post">
-            <div class="quiz-answer-container"></div>
-            <div class="quiz-btn-wrapper"></div>
-            <div class="loadingquiz" style="display:none;">
-                <img src="img/ajax-loader.gif" />
+        <div class="questionsdiv">
+            <div class="quiz-timer-container row">
+                <span class="quiz-icon-wrapper">
+                    <i class="icon-quiz"></i>
+                </span>
+                <span class="quiz-number"></span>        
+                <span class="timer-icon" id="quiz_timer_icon">
+                    <i class="fa fa-clock-o"></i>
+                    <span id="countdown_box">1787</span>
+                </span>        
+                <span class="quiz-questions">
+                    <ul class="questions-bar">
+                        <li class="active"></li>
+                    </ul>
+                </span> 
             </div>
-        </div>        
-        
-        <div class="quiz-btn-wrapper hidden" id="showformanswers">
-            <button id="show_questions_btn" class="btn btn-primary">Show answers</button>
+            <div class="quiz-question-container">
+                <div class="quiz-with-video" id="quiz-video-container" style="display:none;"></div>
+                <div class="quiz-image-container" style="display:none;"></div> 
+                <div class="quiz-question"></div>
+                <h4></h4>
+            </div>
+            <div id="quiz_form" action="" method="post">
+                <div class="quiz-answer-container"></div>
+                <div class="quiz-btn-wrapper"></div>
+                <div class="loadingquiz" style="display:none;">
+                    <img src="img/ajax-loader.gif" />
+                </div>
+            </div>        
+            
+            <div class="quiz-btn-wrapper hidden" id="showformanswers">
+                <button id="show_questions_btn" class="btn btn-primary">Show answers</button>
+            </div>
         </div>
     </div>
-</div>
 <!-- Quiz Container Ends --><!-- Vote Container Start -->
     
- <div class="container main-container voting-page-container" style="display: none;">
-  <div class="header-title row">
-        <p class="presentation-item-header">
-      
-<a id="votingPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+     <div class="container main-container voting-page-container" style="display: none;">
+      <div class="header-title row">
+            <p class="presentation-item-header">
+          
+    <a id="votingPrev" class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
 
-<span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetovoting(); return false;"></span></span>    </p>
-    </div>
-
-    <div class="vote-forwarding-users" style="display: none;">
-        <div class="vote-forwarding-user">
-            <a class="image" href="/Add-vote/-/OCintranet-100041/290/" style="background-image:url('/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png')"></a>
-            <span class="name">You</span>
+    <span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetovoting(); return false;"></span></span>    </p>
         </div>
-        <div class="vote-forwarding-user">
-            <a class="image checked" href="/Add-vote/-/OCintranet-100041/290/forwarded/101221" style="background-image:url('/resources/files/event/images/thumb_1462550041.jpg')"></a>
-            <span class="name">adrian onecom</span>
-        </div>
-    </div>
 
-  <div class="votes-heading-title row">
-    <div class="votes-count col-xs-5">
-      <i class="icon-voting"></i>
-            <span class="green-text"></span>
-            <span class="green-text-text" style="margin-left: 0px;"></span>
+        <div class="vote-forwarding-users" style="display: none;">
+            <div class="vote-forwarding-user">
+                <a class="image" href="/Add-vote/-/OCintranet-100041/290/" style="background-image:url('/oc-publisher-framework/beta/resources/gamification/images/mobile/default-user-image.png')"></a>
+                <span class="name">You</span>
+            </div>
+            <div class="vote-forwarding-user">
+                <a class="image checked" href="/Add-vote/-/OCintranet-100041/290/forwarded/101221" style="background-image:url('/resources/files/event/images/thumb_1462550041.jpg')"></a>
+                <span class="name">adrian onecom</span>
+            </div>
+        </div>
+
+      <div class="votes-heading-title row">
+        <div class="votes-count col-xs-5">
+          <i class="icon-voting"></i>
+                <span class="green-text"></span>
+                <span class="green-text-text" style="margin-left: 0px;"></span>
+                    </div>
+        <div class="votes-sort col-xs-7">
+          <span></span>
+          <a class="active sortbytime" href="#" onclick="sortvoting('title_value','desc')">
+                                    <i class="fa fa-caret-up tit_s time_s"></i> 
+                                    <span class="tit_span_tag"></span>
+                                                </a>
+          <a href="#" class="sortbylikes" onclick="sortvoting('votes_count','asc')">
+                                    <i class="fa fa-caret-up vot_s like_s"></i> 
+                                    <span class="vot_span_tag"></span>
+                                                </a>
+        </div>
+      </div>
+        
+      <div class="voting-content-wrapper">
+                    
+                <div class="voting-end-content-title">
+          <h3>
+                    <i class="fa fa-clock-o"></i> 
+                    <span class="votingClosesIn"></span>
+                      <span class="voting-countdown"></span>
+                </h3>
+        </div>
+            <button class="btn btn-primary" type="button" id="open-vote-forwarding-users-search-dialog" style="display:none;" onclick="openvoteforwardialog();">vote forward</button>
+            <div id="voteForwardingControls" class="vote-forwarding-controls" style="display: none;">
+
+              <div class="vote-author">
+                <span class="forwardVoteReceiptantName"> adrian                        outlook </span>
+                <span class="forwardVoteStaus">Er tildelt å stemme på dine vegne</span>                                           
+              </div>          
+              <div class="img-wrapper" id="forwardVoteReceiptantImage" ></div>
+            </div>
+           <div class="voting-closed-content-title">
+          <h3>
+                    <i class="fa fa-clock-o"></i> 
+                    <span class="votingStatus"></span>
+                               </h3>
+        </div>         
+            <div class="alert alert-success voting-success-message" style="display:none;">
+                <p>
+                    Your vote has been sent. 
+                    <br>
+                    Thank you for your participation.
+                </p>
+            </div>        
+                    
+                <div class="voting-content-item">
+          <ul>
+                            <li>
+              <a href="">
+                                        
+                <h4 class="vote-item-title">Dorin</h4>
+                <p class="vote-item-subtitle"></p>
+                <div class="voting-item-count">
+                                <i class="icon-voting"></i>  
+                                0                            votes                        </div>
+              </a>
+                                  <div class="voting-confirm-wrapper">
+                <h4>Give your vote!</h4>
+                <div class="confirm-btn-wrapper">
+                  <a href="" class="cancel">Cancel</a>
+                  <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/140" class="voting-toggle-btn">Yes</a>
                 </div>
-    <div class="votes-sort col-xs-7">
-      <span></span>
-      <a class="active sortbytime" href="#" onclick="sortvoting('title_value','desc')">
-                                <i class="fa fa-caret-up tit_s time_s"></i> 
-                                <span class="tit_span_tag"></span>
-                                            </a>
-      <a href="#" class="sortbylikes" onclick="sortvoting('votes_count','asc')">
-                                <i class="fa fa-caret-up vot_s like_s"></i> 
-                                <span class="vot_span_tag"></span>
-                                            </a>
-    </div>
-  </div>
-    
-  <div class="voting-content-wrapper">
-                
-            <div class="voting-end-content-title">
-      <h3>
-                <i class="fa fa-clock-o"></i> 
-                <span class="votingClosesIn"></span>
-                  <span class="voting-countdown"></span>
-            </h3>
-    </div>
-        <button class="btn btn-primary" type="button" id="open-vote-forwarding-users-search-dialog" style="display:none;" onclick="openvoteforwardialog();">vote forward</button>
-        <div id="voteForwardingControls" class="vote-forwarding-controls" style="display: none;">
-
-          <div class="vote-author">
-            <span class="forwardVoteReceiptantName"> adrian                        outlook </span>
-            <span class="forwardVoteStaus">Er tildelt å stemme på dine vegne</span>                                           
-          </div>          
-          <div class="img-wrapper" id="forwardVoteReceiptantImage" ></div>
+              </div>
+                                </li>
+                            <li class="">
+              <a href="">
+                                        
+                <h4 class="vote-item-title">Felix</h4>
+                <p class="vote-item-subtitle"></p>
+                <div class="voting-item-count">
+                                <i class="icon-voting"></i>  
+                                0                            votes                        </div>
+              </a>
+                                  <div class="voting-confirm-wrapper">
+                <h4>Give your vote!</h4>
+                <div class="confirm-btn-wrapper">
+                  <a href="" class="cancel">Cancel</a>
+                  <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/141" class="voting-toggle-btn">Yes</a>
+                </div>
+              </div>
+                                </li>
+                            <li class="">
+              <a href="">
+                                        
+                <h4 class="vote-item-title">Marian</h4>
+                <p class="vote-item-subtitle"></p>
+                <div class="voting-item-count">
+                                <i class="icon-voting"></i>  
+                                1                            votes                        </div>
+              </a>
+                                  <div class="voting-confirm-wrapper">
+                <h4>Give your vote!</h4>
+                <div class="confirm-btn-wrapper">
+                  <a href="" class="cancel">Cancel</a>
+                  <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/136" class="voting-toggle-btn">Yes</a>
+                </div>
+              </div>
+                                </li>
+                          </ul>
         </div>
-       <div class="voting-closed-content-title">
-      <h3>
-                <i class="fa fa-clock-o"></i> 
-                <span class="votingStatus"></span>
-                           </h3>
-    </div>         
-        <div class="alert alert-success voting-success-message" style="display:none;">
-            <p>
-                Your vote has been sent. 
-                <br>
-                Thank you for your participation.
-            </p>
-        </div>        
-                
-            <div class="voting-content-item">
-      <ul>
-                        <li>
-          <a href="">
-                                    
-            <h4 class="vote-item-title">Dorin</h4>
-            <p class="vote-item-subtitle"></p>
-            <div class="voting-item-count">
-                            <i class="icon-voting"></i>  
-                            0                            votes                        </div>
-          </a>
-                              <div class="voting-confirm-wrapper">
-            <h4>Give your vote!</h4>
-            <div class="confirm-btn-wrapper">
-              <a href="" class="cancel">Cancel</a>
-              <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/140" class="voting-toggle-btn">Yes</a>
-            </div>
-          </div>
-                            </li>
-                        <li class="">
-          <a href="">
-                                    
-            <h4 class="vote-item-title">Felix</h4>
-            <p class="vote-item-subtitle"></p>
-            <div class="voting-item-count">
-                            <i class="icon-voting"></i>  
-                            0                            votes                        </div>
-          </a>
-                              <div class="voting-confirm-wrapper">
-            <h4>Give your vote!</h4>
-            <div class="confirm-btn-wrapper">
-              <a href="" class="cancel">Cancel</a>
-              <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/141" class="voting-toggle-btn">Yes</a>
-            </div>
-          </div>
-                            </li>
-                        <li class="">
-          <a href="">
-                                    
-            <h4 class="vote-item-title">Marian</h4>
-            <p class="vote-item-subtitle"></p>
-            <div class="voting-item-count">
-                            <i class="icon-voting"></i>  
-                            1                            votes                        </div>
-          </a>
-                              <div class="voting-confirm-wrapper">
-            <h4>Give your vote!</h4>
-            <div class="confirm-btn-wrapper">
-              <a href="" class="cancel">Cancel</a>
-              <a href="http://oceventmanager.com/Add-vote/-/OCintranet-100041/163/136" class="voting-toggle-btn">Yes</a>
-            </div>
-          </div>
-                            </li>
-                      </ul>
+              </div>
+      <div class="voting-filter-items" style="display: none;">
+        <div class="form-group">
+          <input id="vote-items-filter" type="text" class="form-control" placeholder="">
+          <span><i class="fa fa-search"></i></span>
+        </div>
+        </div>
     </div>
-          </div>
-  <div class="voting-filter-items" style="display: none;">
-    <div class="form-group">
-      <input id="vote-items-filter" type="text" class="form-control" placeholder="">
-      <span><i class="fa fa-search"></i></span>
-    </div>
-    </div>
-</div>
 
 <!-- Vote Container End --><!-- View Friend container Start -->
 
-<div class="container main-container add-friends-container view-friend-container" style="display: none;">
-    <div class="header-title header-title2 row ">
-        <p>
-            <a class="prev" onclick="viewfriend(25);" href="#" title="previous friend">
-                <i class="fa fa-angle-left"></i>
-            </a>
+    <div class="container main-container add-friends-container view-friend-container" style="display: none;">
+        <div class="header-title header-title2 row ">
+            <p>
+                <a class="prev" onclick="viewfriend(25);" href="#" title="previous friend">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                            
+                <span class="breadcrumbs"><a href="#" onclick="changetocontacts(); return false;"></a> / <span class="green-text" onclick="changetoviewfriend(); return false;"></span></span>            
+                <a class="next" onclick="viewfriend(26);" href="#" title="next friend">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                        </p>
+        </div>
                         
-            <span class="breadcrumbs"><a href="#" onclick="changetocontacts(); return false;"></a> / <span class="green-text" onclick="changetoviewfriend(); return false;"></span></span>            
-            <a class="next" onclick="viewfriend(26);" href="#" title="next friend">
-                <i class="fa fa-angle-right"></i>
-            </a>
-                    </p>
-    </div>
-                    
-    
-    <div class="item-inner-wrapper row">
-        <div class="friends-item-inner">
-            <div class="friends-item-img" style=""></div>
-            <h2>
-                                <i class="oc-icon-friends"></i>
-                                <span class="frndnm"></span>
-                                           </h2>
-                        <h6></h6>
-                    </div>
-    </div>
-    
-        <div class="row">
-        <div class="item-inner-info">
-                        <div class="add-btn-wrapper">
-                <a href="#" class="call_button">
-                                 </a>
-            </div>
-                        
-                        <div class="add-btn-wrapper">
-                <a href="#" class="email_button">
-                                  </a>
-            </div>
-            
-                <div  id="downVCard" class="add-btn-wrapper">
-                    <a href="#" class="vcard">
-                        <i class="fa fa-download"></i>
-                    </a>
-                        <br /><br />
-                        <span id="ready"></span>
+        
+        <div class="item-inner-wrapper row">
+            <div class="friends-item-inner">
+                <div class="friends-item-img" style=""></div>
+                <h2>
+                                    <i class="oc-icon-friends"></i>
+                                    <span class="frndnm"></span>
+                                               </h2>
+                            <h6></h6>
+                        </div>
+        </div>
+        
+            <div class="row">
+            <div class="item-inner-info">
+                            <div class="add-btn-wrapper">
+                    <a href="#" class="call_button">
+                                     </a>
                 </div>
-                        
-                        <p class="mobTitle">
-                        Mobile: 
-                <span class="green-text mob">+4790762776</span>
-            </p>
-                        
-                        <p class="emTitle">
-                        E-mail:
-                <span class="green-text em">hb@onecom.no</span>
-            </p>
-                        
-                        <p class="friendGender" style="display:none;">
-                        Gender:
-                <span class="green-text gender" >male</span>
-            </p>
-                        
-                        
-                            <h3 class="registration-questions-title" style="display:none;"></h3>
-                            <div class="qa">
-                         </div>
-                                                        </div>
-    </div>
-    </div>
+                            
+                            <div class="add-btn-wrapper">
+                    <a href="#" class="email_button">
+                                      </a>
+                </div>
+                
+                    <div  id="downVCard" class="add-btn-wrapper">
+                        <a href="#" class="vcard">
+                            <i class="fa fa-download"></i>
+                        </a>
+                            <br /><br />
+                            <span id="ready"></span>
+                    </div>
+                            
+                            <p class="mobTitle">
+                            Mobile: 
+                    <span class="green-text mob">+4790762776</span>
+                </p>
+                            
+                            <p class="emTitle">
+                            E-mail:
+                    <span class="green-text em">hb@onecom.no</span>
+                </p>
+                            
+                            <p class="friendGender" style="display:none;">
+                            Gender:
+                    <span class="green-text gender" >male</span>
+                </p>
+                            
+                            
+                                <h3 class="registration-questions-title" style="display:none;"></h3>
+                                <div class="qa">
+                             </div>
+                                                            </div>
+        </div>
+        </div>
 
 <!-- View Friend container Ends --><!-- Seeker Results container Start -->    
 
-<div class="container main-container seeker-game-container seeker-results-container" style="display: none;">
-  <div class="header-title row">
-    <p class="presentation-item-header">
-      
-<a class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
+    <div class="container main-container seeker-game-container seeker-results-container" style="display: none;">
+      <div class="header-title row">
+        <p class="presentation-item-header">
+          
+    <a class="nav-arrow prev" href="#" onclick="changetoagendaitem(); return false;" title="Back to presentation"><i class="fa fa-angle-left"></i></a>
 
-<span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetoseekerresults(); return false;"></span></span>   </p>
-  </div>
-   <div class="seeker-game-top-container row">
-        <div class="seek-questions col-xs-12">
-            <i class="map-icon"></i>
-                <span class="green-text">
-                                   </span>    
-        </div>
-    </div>
-    <div class="seeker-finished-container">
-        <div class="finished-bg"></div>
-        <div class="congrat-text-wrapper">
-            <p class="green-text"></p>
-            <p class="congratsText"></p>
-        </div>
-                <div class="btn-wrapper">
-            <a class="btn btn-primary btn-rounded reset_seek" href="javascript:reset_seeker();">
-                            </a>
-        </div>
+    <span class="breadcrumbs"><a href="#" onclick="changetoagendaitem(); return false;"></a> / <span class="green-text" onclick="changetoseekerresults(); return false;"></span></span>   </p>
+      </div>
+       <div class="seeker-game-top-container row">
+            <div class="seek-questions col-xs-12">
+                <i class="map-icon"></i>
+                    <span class="green-text">
+                                       </span>    
             </div>
-            <div class="seeker-top-scores-container">
-        <div class="seeker-scores-table">
-            <table class="table">
-                <thead>
-                <tr>
-                    <td class="seeker-scores-table-heading"></td>
-                    <td class="crct">
-                                            </td>
-                    <td class="seeker-hints-col">
-                        <span class="hints-count-label label label-danger hint_h">H</span>
-                    </td>
-                    <td class="showhide">
-                        <div class="bordered bordered1"><span>1</span></div>
-                    </td>
-                    <td class="showhide">
-                        <div class="bordered bordered2"><span>2</span></div>
-                    </td>
-                    <td class="showhide">
-                        <div class="bordered bordered3"><span>3</span></div>
-                    </td>
-                    <td class="plcs"></td>
-                </tr>
-                </thead>
-                <tbody>
-                                </tbody>
-            </table>
+        </div>
+        <div class="seeker-finished-container">
+            <div class="finished-bg"></div>
+            <div class="congrat-text-wrapper">
+                <p class="green-text"></p>
+                <p class="congratsText"></p>
+            </div>
+                    <div class="btn-wrapper">
+                <a class="btn btn-primary btn-rounded reset_seek" href="javascript:reset_seeker();">
+                                </a>
+            </div>
+                </div>
+                <div class="seeker-top-scores-container">
+            <div class="seeker-scores-table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td class="seeker-scores-table-heading"></td>
+                        <td class="crct">
+                                                </td>
+                        <td class="seeker-hints-col">
+                            <span class="hints-count-label label label-danger hint_h">H</span>
+                        </td>
+                        <td class="showhide">
+                            <div class="bordered bordered1"><span>1</span></div>
+                        </td>
+                        <td class="showhide">
+                            <div class="bordered bordered2"><span>2</span></div>
+                        </td>
+                        <td class="showhide">
+                            <div class="bordered bordered3"><span>3</span></div>
+                        </td>
+                        <td class="plcs"></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="seeker-finished-container">
+            <div class="btn-wrapper">
+                                <a class="btn btn-primary btn-rounded seeall" href="javascript:showseekerresults('l-full');">
+                                        </a>
+                        </div>
         </div>
     </div>
-    <div class="seeker-finished-container">
-        <div class="btn-wrapper">
-                            <a class="btn btn-primary btn-rounded seeall" href="javascript:showseekerresults('l-full');">
-                                    </a>
-                    </div>
-    </div>
-</div>
 
 <!-- Seeker Results container Ends --><!-- Score Card container Start -->
 
-<div class="container main-container leaderboards-container score-card-container" style="display: none;">
-  <div class="header-title row">
-    <p>
-<span class="breadcrumbs">
-<a href="#" onclick="changetoagendaitem(); return false;" id="b1"></a> / <a id="b2" href="#" onclick="changetoaddquiz(); return false;"></a> / <span class="green-text" onclick="changetoscorecard(); return false;"></span></span></p> </div>
-  <div class="subheader-grey row"></div>
-  <div class="top-results-table-container row">
-    <div class="team-points-table">
-      <table class="table table-striped">
-        <tbody>
-                                        <tr class="current-user">
-                            <td class="num-col">
-                                <span class="num">1</span>
-                            </td>
-                            <td class="avatar-col">
-                                <span class="avatar">
-                                    <div class="img img-circle" style="background-image:url('');"></div>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="name">
-                                    Rahul Chhabra                                </span>
-                            </td>
-                            <td class="point">
-                                2 698 500                            </td>
-                        </tr>
-                                            <tr>
-                            <td class="num-col">
-                                <span class="num">2</span>
-                            </td>
-                            <td class="avatar-col">
-                                <span class="avatar">
-                                    <div class="img img-circle" style="background-image:url('');"></div>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="name">
-                                    Marian Bucur                                </span>
-                            </td>
-                            <td class="point">
-                                1 774 000                            </td>
-                        </tr>
-                                            
-                                            <tr>
-                            <td class="num-col">
-                                <span class="num">4</span>
-                            </td>
-                            <td class="avatar-col">
-                                <span class="avatar"></span>
-                            </td>
-                            <td>
-                                <span class="name">-</span>
-                            </td>
-                            <td class="point">0</td>
-                        </tr>
-                                            
-                            </tbody>
-      </table>
-    </div>
-  </div>
-</div> 
+    <div class="container main-container leaderboards-container score-card-container" style="display: none;">
+      <div class="header-title row">
+        <p>
+    <span class="breadcrumbs">
+    <a href="#" onclick="changetoagendaitem(); return false;" id="b1"></a> / <a id="b2" href="#" onclick="changetoaddquiz(); return false;"></a> / <span class="green-text" onclick="changetoscorecard(); return false;"></span></span></p> </div>
+      <div class="subheader-grey row"></div>
+      <div class="top-results-table-container row">
+        <div class="team-points-table">
+          <table class="table table-striped">
+            <tbody>
+                                            <tr class="current-user">
+                                <td class="num-col">
+                                    <span class="num">1</span>
+                                </td>
+                                <td class="avatar-col">
+                                    <span class="avatar">
+                                        <div class="img img-circle" style="background-image:url('');"></div>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="name">
+                                        Rahul Chhabra                                </span>
+                                </td>
+                                <td class="point">
+                                    2 698 500                            </td>
+                            </tr>
+                                                <tr>
+                                <td class="num-col">
+                                    <span class="num">2</span>
+                                </td>
+                                <td class="avatar-col">
+                                    <span class="avatar">
+                                        <div class="img img-circle" style="background-image:url('');"></div>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="name">
+                                        Marian Bucur                                </span>
+                                </td>
+                                <td class="point">
+                                    1 774 000                            </td>
+                            </tr>
+                                                
+                                                <tr>
+                                <td class="num-col">
+                                    <span class="num">4</span>
+                                </td>
+                                <td class="avatar-col">
+                                    <span class="avatar"></span>
+                                </td>
+                                <td>
+                                    <span class="name">-</span>
+                                </td>
+                                <td class="point">0</td>
+                            </tr>
+                                                
+                                </tbody>
+          </table>
+        </div>
+      </div>
+    </div> 
 
 <!-- Score Card container Ends --><!-- Agenda item container Start -->
    
- <div class="container main-container agenda-item-container" style="display: none;">
-  <div class="header-title row">
-    <p>
-      <a class="nav-arrow prev" href="#" title="Forrige"><i class="fa fa-angle-left"></i></a>
-    <span class="breadcrumbs"><span class="green-text">hello</span></span>    
-    <a class="nav-arrow next" href="#" title="Neste"><i class="fa fa-angle-right"></i></a>
-  </p>  </div>
-  <div class="row">
-   <div class="date-wrapper ">
-      <div class="date">
-                <p></p>
-            </div>
-    </div>
-    <div class="time-wrapper ">
-      <div class="time">
-                <p><i class="fa fa-clock-o"></i> </p>
-            </div>
-    </div>
-                  </div>
-      <div class="main-img-wrapper">
-    <div class="main-img agenda-main-img" style="background-image: url('');"></div>
-  </div> 
-      <div class="agenda-item-img-info">
-    <h5></h5>
-            <p>
-             
-            &nbsp;        </p>
-          </div>
-  <div class="agenda-item-future row">
-    <div class="container ">
-      <div class="futures-wrapper">
-      <div class="future-title">:-)</div>
+     <div class="container main-container agenda-item-container" style="display: none;">
+      <div class="header-title row">
+        <p>
+          <a class="nav-arrow prev" href="#" title="Forrige"><i class="fa fa-angle-left"></i></a>
+        <span class="breadcrumbs"><span class="green-text">hello</span></span>    
+        <a class="nav-arrow next" href="#" title="Neste"><i class="fa fa-angle-right"></i></a>
+      </p>  </div>
       <div class="row">
-          <ul class="presentation-modules">
-                       
-          </ul>
-      </div>
-      <div class="here-video">
-        
-        </div>
-                                        <div class="future-info ">
-          <p></p>
-<p><span></span></p>                    
-                            </div>
-      </div>
-    </div>
-  </div>
-      
-    <div class="row">
-    <div class="agenda-item-rating-container" style="display:none;">
-      <span class="urrate"></span>
-      <div class="item-interactions">
-          <div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="1" data-original-title="" title="">   
-                                  <a href="javascript:void(0)" onclick="rateme(1);" class="rate-star f1" data-rate="1">
-                  <i class="fa fa-star"></i>
-              </a>
-                                  <a href="javascript:void(0)" onclick="rateme(2);" class="rate-star f2" data-rate="2">
-                  <i class="fa fa-star"></i>
-              </a>
-                                  <a href="javascript:void(0)" onclick="rateme(3);" class="rate-star f3" data-rate="3">
-                  <i class="fa fa-star"></i>
-              </a>
-                                  <a href="javascript:void(0)" onclick="rateme(4);" class="rate-star f4" data-rate="4">
-                  <i class="fa fa-star"></i>
-              </a>
-                                  <a href="javascript:void(0)" onclick="rateme(5);" class="rate-star f5" data-rate="5">
-                  <i class="fa fa-star"></i>
-              </a>
-                            </div>
-      </div>   
-                  
-                  <a id="rate" onclick="submitrating();" class="hidden" href="javascript:void();"></a>
-                  <div class="after-rating-container hidden">
-                                <p class="msg"></p>
-                <div class="comment-form hidden">
-                    <div class="form-group">
-                        <input type="text" class="form-control comment-input" placeholder="">
-                        <span><i class="fa fa-comment"></i></span>
-                    </div>
-                    <div class="after-rate-btn-wrapper">
-                        <a class="cancel-btn send-comment" onclick="cancelagendasubmit();" href="javascript:void(0)"></a>
-                        <a class="send-btn send-comment" onclick="submitagendacomment();" href="javascript:void(0)"></a>          
-                    </div>
+       <div class="date-wrapper ">
+          <div class="date">
+                    <p></p>
                 </div>
+        </div>
+        <div class="time-wrapper ">
+          <div class="time">
+                    <p><i class="fa fa-clock-o"></i> </p>
+                </div>
+        </div>
                       </div>
-                    
-    </div>
-  </div>
-    </div>                                                                                  
+          <div class="main-img-wrapper">
+        <div class="main-img agenda-main-img" style="background-image: url('');"></div>
+      </div> 
+          <div class="agenda-item-img-info">
+        <h5></h5>
+                <p>
+                 
+                &nbsp;        </p>
+              </div>
+      <div class="agenda-item-future row">
+        <div class="container ">
+          <div class="futures-wrapper">
+          <div class="future-title">:-)</div>
+          <div class="row">
+              <ul class="presentation-modules">
+                           
+              </ul>
+          </div>
+          <div class="here-video">
+            
+            </div>
+                                            <div class="future-info ">
+              <p></p>
+    <p><span></span></p>                    
+                                </div>
+          </div>
+        </div>
+      </div>
+          
+        <div class="row">
+        <div class="agenda-item-rating-container" style="display:none;">
+          <span class="urrate"></span>
+          <div class="item-interactions">
+              <div class="item-interaction item-interaction-rate interaction-box" data-ratevalue="1" data-original-title="" title="">   
+                                      <a href="javascript:void(0)" onclick="rateme(1);" class="rate-star f1" data-rate="1">
+                      <i class="fa fa-star"></i>
+                  </a>
+                                      <a href="javascript:void(0)" onclick="rateme(2);" class="rate-star f2" data-rate="2">
+                      <i class="fa fa-star"></i>
+                  </a>
+                                      <a href="javascript:void(0)" onclick="rateme(3);" class="rate-star f3" data-rate="3">
+                      <i class="fa fa-star"></i>
+                  </a>
+                                      <a href="javascript:void(0)" onclick="rateme(4);" class="rate-star f4" data-rate="4">
+                      <i class="fa fa-star"></i>
+                  </a>
+                                      <a href="javascript:void(0)" onclick="rateme(5);" class="rate-star f5" data-rate="5">
+                      <i class="fa fa-star"></i>
+                  </a>
+                                </div>
+          </div>   
+                      
+                      <a id="rate" onclick="submitrating();" class="hidden" href="javascript:void();"></a>
+                      <div class="after-rating-container hidden">
+                                    <p class="msg"></p>
+                    <div class="comment-form hidden">
+                        <div class="form-group">
+                            <input type="text" class="form-control comment-input" placeholder="">
+                            <span><i class="fa fa-comment"></i></span>
+                        </div>
+                        <div class="after-rate-btn-wrapper">
+                            <a class="cancel-btn send-comment" onclick="cancelagendasubmit();" href="javascript:void(0)"></a>
+                            <a class="send-btn send-comment" onclick="submitagendacomment();" href="javascript:void(0)"></a>          
+                        </div>
+                    </div>
+                          </div>
+                        
+        </div>
+      </div>
+        </div>                                                                                  
 <!-- Agenda item container Ends --><!-- Scanner container Starts -->
 
     <div class="container main-container scannerDiv" style="display:none;">
@@ -1661,24 +1657,24 @@
 <!-- Scanner container Starts  Ends --><!-- Footer Starts -->
 
 
-<footer class="footertag" style="display: none;">
-    <div class="footer-widget" style="display:none"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 footer-menu">
-                                            
-                    </div>
+    <footer class="footertag" style="display: none;">
+        <div class="footer-widget" style="display:none"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 footer-menu">
+                                                
+                        </div>
+            </div>
         </div>
-    </div>
-</footer> 
+    </footer> 
 
 <!-- Footer Ends --><!-- Other Divs --> 
 
 
-</div>
+    </div>
 
  <!-- Side menu Starts -->
- <div class="dropdown-menu custom-dropdown" role="menu" aria-labelledby="dLabel" style="display:none;">
+    <div class="dropdown-menu custom-dropdown" role="menu" aria-labelledby="dLabel" style="display:none;">
                 <div class="user-profile-info">
                     <div class="img-wrapper" id="medium_profile_pic" style="background-image: url('')">
                         <a href="#" onclick="changetoprofile('yes'); return false;">
@@ -1774,7 +1770,7 @@
 
             </div>
             
- <!-- Side menu Ends --><!-- Modal View -->
+<!-- Side menu Ends --><!-- Modal View -->
        <div class="vex vex-theme-plain vote-forwarding-dialog" style="display: none;">
         <div class="vex-overlay"></div>
         <div class="vex-content">
@@ -1783,7 +1779,7 @@
           </form>
         </div>
       </div>
-  <!-- Modal View --><!-- Notifications Div View -->           
+<!-- Modal View --><!-- Notifications Div View -->           
         <div class="tooltipster-base tooltipster-sidetip tooltipster-borderless tooltipster-bottom tooltipster-fade tooltipster-show" style="min-width: 330px; max-width: 330px; pointer-events: auto; z-index: 9999999; position: fixed; top: 60px; height: 380px; width: 330px; animation-duration: 350ms; transition-5duration: 350ms; display: none;" id="tooltipster-409679">
             <div class="tooltipster-box">
                 <div class="tooltipster-content">
@@ -1807,31 +1803,22 @@
         </div>
 <!-- Notifications Div View -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/mediaelement-and-player.min.js"></script>
-         
-        <!-- Main js file -->
+        <script src="js/mediaelement-and-player.min.js"></script>         
+<!-- Main js file -->
         <script src="js/main.js"></script>
         <script src="js/custom.js"></script>
-
-        <!-- Page specific js files -->
+<!-- Page specific js files -->
         <script src="js/home.js"></script>
-
         <script src="js/jquery.endless-scroll.js"></script>
         <script src="js/overlay_mobile.js"></script>
-        <script src="js/overlay_quiz.js"></script>
-        
+        <script src="js/overlay_quiz.js"></script>        
         <script type="text/javascript" src="cordova.js"></script>
         <script src="js/facebookConnectPlugin.js"></script> 
         <script src="js/requestAnimationFrame.js"></script> 
         <script src="demo/fastclick.js"></script>
         <script src="demo/demo.js"></script>
-        
-
         <script src="js/canvas-video-player.js"></script>
-
         <script src="js/md5.js"></script> 
         <script src="js/functions.js"></script>
-        <!---script src="js/painlessfs.js"></script-->
-
         <script src="js/index.js"></script>    
 </body></html>
