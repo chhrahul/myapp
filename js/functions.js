@@ -7429,7 +7429,7 @@ function showquiz() {
 								$('.quiz-btn-wrapper').html('<button class="btn btn-primary nxt_q" type="button" onclick="submitmultipleanswers('+obj.question.instance_id+')" name="next_question" value="1"></button>');  
 							}
 							else{
-								var radio_button = '<label class="'+label_class+'"><div class="poeng-options"><input '+dis+' type="radio" class="ipt_quiz_a" onclick="submitanswer('+obj.question.instance_id+','+value+')" name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
+								var radio_button = '<label class="'+label_class+'"  onclick="submitanswer('+obj.question.instance_id+','+value+')"><div class="poeng-options"><input '+dis+' type="radio" class="ipt_quiz_a"  name="answer_position" id="ipt_quiz_a_1" value="'+value+'"><span class="check"></span><div class="text">'+arr[i]+'</div></div></label>';
 							}
 							if(checkdefined(obj.correctAnswerPositions) == 'yes' && obj.questionNumber != obj.numQuestions) {
 								$('.quiz-btn-wrapper').html('<button class="btn btn-primary next_q" type="button" onclick="gotonextquestion('+obj.question.instance_id+')" name="next_question" value="1"></button>'); 
