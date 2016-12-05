@@ -21,7 +21,7 @@
     <icon src="icons/iphone_180x180.png" gap:platform="ios" width="180" height="180" />
     <icon src="icons/LiveIcon.png" gap:platform="android" />
     <icon src="icons/LiveIcon.png" gap:platform="ios" />
-    <gap:plugin name="cordova-plugin-customurlscheme" source="npm" spec="4.2.0">
+    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
         <param name="URL_SCHEME" value="live" />
     </gap:plugin>
     <plugin spec="https://github.com/apache/cordova-plugin-camera" source="git" />
