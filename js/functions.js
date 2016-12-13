@@ -642,7 +642,8 @@ function resetpassword() {
   }
   else
    {
-    var main_url = fld_l_url + '/gamification/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+   	localStorage.url = localStorage.surl + "/"
+    var main_url = localStorage.url + 'gamification/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
     jQuery.ajax({
         url: main_url,
         dataType: "json",
@@ -1401,7 +1402,7 @@ var login = function() {
             facebookConnectPlugin.browserInit(appId);
         }
         //var fld_l_url = jQuery("#fld_l_url").val();
-        var fld_l_url = localStorage.surl;
+        var fld_l_url = localStorage.surl + "/";
           if(fld_l_url == '')
           {
              //alert('Please Enter Url');
@@ -1413,27 +1414,19 @@ var login = function() {
             return false;
         }
            else {
-           localStorage.url = fld_l_url + '/';
+           localStorage.url = fld_l_url;
            
            
            
         facebookConnectPlugin.login(["email"],
             function(response) {
 
-                //alert('here 1');
                 var newstr = JSON.stringify(response.authResponse.userID).replace(/\"/g, '');
                 var access_token = JSON.stringify(response.authResponse.accessToken).replace(/\"/g, '');
-                //alert(access_token)
                 var encoded_newstr = base64_encode(newstr);
                 var encoded_access_token = base64_encode(access_token);
-                // $("#login_submit").hide();
-                //   $(".loading").show();
-              //  alert(encoded_newstr);
-               // alert(encoded_access_token);
-               // alert(localStorage.event_id)
-               //createTables();
                
-               var main_url = localStorage.url + 'api/index.php/auth/logout?XDEBUG_SESSION_START=PHPSTORM';
+		var main_url = localStorage.url + 'api/index.php/auth/logout?XDEBUG_SESSION_START=PHPSTORM';
     	jQuery.ajax({
         url: main_url,
         dataType: "json",
@@ -5890,9 +5883,9 @@ function showfooter(active) {
 					onclickfn = '';
 
                     
-                    // if (name == 'home') {
-                    // 	onclickfn = 'onclick="changetogamification(); return false;"';
-                    // }
+                    if (name == 'home') {
+                    	onclickfn = 'onclick="changetogamification(); return false;"';
+                    }
 					if (name == 'agenda') {
                       onclickfn = 'onclick="changetoagenda(); return false;"';
                     }
