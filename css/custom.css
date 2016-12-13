@@ -2506,3 +2506,12 @@ div#pageone {
     width: 100%;
     text-align: center;
 }
+.presentation-modules li.inactive {
+    opacity: 0.3 !important;
+}
+h2.no-results {
+    color: #ffffff;
+    font-size: 30px;
+    padding: 50px 0;
+    text-align: center;
+}
