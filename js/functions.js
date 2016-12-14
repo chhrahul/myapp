@@ -6896,14 +6896,8 @@ function showvoting(sortby,sortdr,l)
 				$('.voting-content-item').html('<ul>');
 				var is_answer = 0;
 				if(obj.voteItems != undefined || obj.voteItems!= null) {
-				$.each(obj.voteItems, function( key, val ) {
-					if(checkdefined(val.is_active) == 'yes')
-					{
-						is_answer = 1;
-					}
-				});
-                   
-                    $.each( obj.voteItems, function( key, val ) {
+					                   
+                    $.each(obj.voteItems, function( key, val ) {
 						var classcss='';
 						var classcssli='';
 						var classss= '';
@@ -6941,6 +6935,7 @@ function showvoting(sortby,sortdr,l)
 						if(val.title.value == null || val.title.value == undefined || val.title.value == "") {
 							var valTitleValue = ""; 
 						}
+
 						else{
 							var valTitleValue =val.title.value
 						}
@@ -6951,46 +6946,58 @@ function showvoting(sortby,sortdr,l)
 						else{
 							var valSubtitleValue =val.subtitle.value;
 						}
+						var liclassac = 'class="answered"';
+						if(val.is_active == true && val.is_disabled == false && val.class == "active")
+						{
+							var liclassac = 'class="answered"';
+							is_answer = 1;
+
+						}
+						else if(val.is_active == undefined && val.is_disabled == false && val.class == "")
+						{
+							var liclassac = 'class="notanswered"';
+							is_answer = 0;
+
+						}
 						//alert(voteImageUrl);
-						$('.voting-content-item ul').append('<li ' + classcssli + '' + classss + '><a ' + classcss + ' href="#">' + voteImageUrl + '<h4 class="vote-item-title">' + valTitleValue + '</h4><p class="vote-item-subtitle">' + valSubtitleValue + '</p><div class="voting-item-count"><i class="icon-voting"></i>' + val.votes_count + ' <span class="forvotes">votes</span></div></a>' + giveVoteConfirm + '</li>');                      
+						$('.voting-content-item ul').append('<li ' + liclassac + ' ' + classcssli + '' + classss + '><a ' + liclassac + ' ' + classcss + ' href="#">' + voteImageUrl + '<h4 class="vote-item-title">' + valTitleValue + '</h4><p class="vote-item-subtitle">' + valSubtitleValue + '</p><div class="voting-item-count"><i class="icon-voting"></i>' + val.votes_count + ' <span class="forvotes">votes</span></div></a>' + giveVoteConfirm + '</li>');                      
 					});
 				}
                      
                      $('.voting-content-item').append('</ul>'); 
-                     if(is_answer != 1)
-                    {
-                                         
-                    $('.voting-content-item > ul > li > a, .voting-content-item > ul > li a.cancel , .voting-content-item > ul > li a.voting-toggle-btn').on('click', function (e) 
-                    {
-                    	
-						e.preventDefault();
-						var btn = $(this);
-						var votingContentWrapper = $('.voting-content-wrapper');
-						var isInactiveWrapper = votingContentWrapper.hasClass('inactive');
-						var isClosedWrapper = votingContentWrapper.hasClass('closed');
-						var isDisabledItem = btn.closest('li').hasClass('disabled');
 
-						if (isInactiveWrapper || isClosedWrapper || isDisabledItem) {
-							return false;
-						}
-						else {
-							btn.closest('li:not(.active)').toggleClass('opened');
-						}
-                  	});
-                    $('.voting-content-item > ul > li .voting-toggle-btn').on('click', function (e)
-                    {
-                    	
-                		e.preventDefault();
-                        
-                        var btn = $(this);
-                		btn.closest('li').toggleClass('active');
-                        
-                        setTimeout(function () 
-                        {
-                            window.location = btn.attr('href');
-                        }, 500);
-                	});
-                  }                  
+					// if(is_answer != 1)
+					// {
+
+						$('.voting-content-item > ul > li > a, .voting-content-item > ul > li a.cancel , .voting-content-item > ul > li a.voting-toggle-btn').on('click', function (e) {
+
+							e.preventDefault();
+							var btn = $(this);
+							var votingContentWrapper = $('.voting-content-wrapper');
+							var isInactiveWrapper = votingContentWrapper.hasClass('inactive');
+							var isClosedWrapper = votingContentWrapper.hasClass('closed');
+							var isDisabledItem = btn.closest('li').hasClass('disabled');
+							var isanswered = btn.closest('li').hasClass('answered');
+
+							if ((isInactiveWrapper == false || isClosedWrapper == false || isDisabledItem == false) && isanswered == true) {
+								return false;
+							}
+							else {
+								btn.closest('li:not(.active)').toggleClass('opened');
+							}
+						});
+						$('.voting-content-item > ul > li .voting-toggle-btn').on('click', function (e) {
+
+							e.preventDefault();
+
+							var btn = $(this);
+							btn.closest('li').toggleClass('active');
+
+							setTimeout(function() {
+								window.location = btn.attr('href');
+							}, 500);
+						});
+					// }                  
                 $('#vote-items-filter').on('keyup', function () 
                 {
                     	
@@ -10526,7 +10533,7 @@ function changetomyscanner(id) {
 	$(".agenda-menu-container").hide();
 	$(".ticketing-container").hide();
 	$(".leaderboards-container").hide();
-	$(".contacts-container").hide();parseI
+	$(".contacts-container").hide();
 	$(".notes-container").hide();
 	$(".add-comments-container").hide();
 	$(".add-questions-container").hide();
