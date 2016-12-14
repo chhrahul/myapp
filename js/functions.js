@@ -1395,6 +1395,7 @@ var fbLoginSuccess = function() {
 
 var login = function() {
     // alert('here');
+    $(".slowapploader").show();
     jQuery(document).ready(function($) {
 
         if (!window.cordova) {
@@ -1492,6 +1493,7 @@ var login = function() {
                                 }
                             });
                         } else {
+                        	$(".slowapploader").hide();
                             localStorage.user_fid = '';
                            // alert(obj.message); 
                            shownotification(obj.message,"Facebook login");
@@ -1602,7 +1604,7 @@ function changetoprofile(id)
 // }
 
 function loadgamification() {
-
+	$(".slowapploader").hide();
 	$("#tooltipster-409679").hide();
 	var css_url = localStorage.url+"resources/gamification/css/appearance.css.php?eid="+localStorage.event_id;
 	// var fonts_url = localStorage.url+"oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812";
