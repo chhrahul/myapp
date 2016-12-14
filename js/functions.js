@@ -595,78 +595,70 @@ function isLoggedIn()
 
 //Reset Password
 function resetpassword() {
-    //alert("asdas");
-  event.preventDefault();
-  
-  db.transaction(function(tx) {
-				tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-					var len = results.rows.length; 
-					
-					
-				  var pr = '';  
-                  var ys = '';  
-                  var fp = '';
-                            
-                  for (i = 0; i < len; i++) {
-                    
-                      if(results.rows.item(i).key_constant == 'ErrorURL')
-                      {
-                         pr = unescape(results.rows.item(i).key_val); 
-                      } 
-                      if(results.rows.item(i).key_constant == 'InvalidEmailOrPassword')
-                      {
-                         ys = unescape(results.rows.item(i).key_val); 
-                      }
-                      if(results.rows.item(i).key_constant == 'checkYourEmailPhoneMessages')
-                      {
-					  	fp = unescape(results.rows.item(i).key_val);
-					  	fp = fp.replace(/\<br\>/g,' ');
-					  }
-                      
-                      
-                   }
-  
-  var email = jQuery("#fld_rp_email").val();
-  var fld_l_url = jQuery("#fld_l_url").val();
-    
-  if (fld_l_url == '') {
-      //alert("Please Enter Url");
-     shownotification(pr,"Forgot Password?");
-      return false;
-  }
-  else if (email == '') {
-      //alert("Please Enter Email");
-      shownotification(ys,"Forgot Password?");
-      
-      return false;
-  }
-  else
-   {
-   	localStorage.url = localStorage.surl + "/"
-    var main_url = localStorage.url + 'gamification/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
-    jQuery.ajax({
-        url: main_url,
-        dataType: "json",
-        method: "POST",
-        data: {
-            email_sms_reset: email
-        },
-        success: function(resp) {
-            //alert(JSON.stringify(resp));
-            //alert('Please check your email for new password!');
-           // shownotification(fp,"Login");  
-           // alert(resp.login_success);
-            if (resp.login_success != '') {
-               shownotification(fp,"Login");
-            } else {
-                shownotification(resp.login_error,"Login");                
-            }      
-            window.location.href = 'index.html';
-        }
-    });
-    }
-   });
-   }); 
+	//alert("asdas");
+	event.preventDefault();
+
+	db.transaction(function(tx) {
+		tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+			var len = results.rows.length; 
+
+
+			var pr = '';  
+			var ys = '';  
+			var fp = '';
+
+			for (i = 0; i < len; i++) {
+				if(results.rows.item(i).key_constant == 'ErrorURL') {
+					pr = unescape(results.rows.item(i).key_val); 
+				} 
+				if(results.rows.item(i).key_constant == 'InvalidEmailOrPassword') {
+					ys = unescape(results.rows.item(i).key_val); 
+				}
+				if(results.rows.item(i).key_constant == 'checkYourEmailPhoneMessages') {
+					fp = unescape(results.rows.item(i).key_val);
+					fp = fp.replace(/\<br\>/g,' ');
+				}
+			}
+
+			var email = jQuery("#fld_rp_email").val();
+			var fld_l_url = jQuery("#fld_l_url").val();
+
+			if (fld_l_url == '') {
+				//alert("Please Enter Url");
+				shownotification(pr,"Forgot Password?");
+				return false;
+			}
+			else if (email == '') {
+				//alert("Please Enter Email");
+				shownotification(ys,"Forgot Password?");
+				return false;
+			}
+			else {
+				localStorage.url = localStorage.surl + "/"
+				var main_url = localStorage.url + 'gamification/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
+				jQuery.ajax({
+					url: main_url,
+					dataType: "json",
+					method: "POST",
+					data: {
+						email_sms_reset: email
+					},
+					success: function(resp) {
+						//alert(JSON.stringify(resp));
+						//alert('Please check your email for new password!');
+						// shownotification(fp,"Login");  
+						// alert(resp.login_success);
+						if (resp.login_success != '') {
+							shownotification(fp,"Login");
+						} else {
+							shownotification(resp.login_error,"Login");                
+						}      
+						window.location.href = 'index.html';
+					}
+				});
+			}
+		});
+	}); 
 }
 
 
