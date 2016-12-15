@@ -2527,4 +2527,6 @@ p.vote-item-subtitle {
 span.version {
     font-size: 10px !important;
     letter-spacing: 1px;
+    margin: 0 !important;
+    padding: 0 !important;
 }
