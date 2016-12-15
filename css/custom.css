@@ -2524,3 +2524,8 @@ p.vote-item-subtitle {
     word-wrap: break-word;
     padding: 0 0 10px 0;
 }
+span.version {
+    font-size: 1px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
