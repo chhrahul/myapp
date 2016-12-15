@@ -2539,8 +2539,8 @@ function loadagendaitem() {
                     }
                     //alert(text)
                     
-                   // var liClass = val.status_class;
-                   var liClass = "";
+                   var liClass = val.status_class;
+                   // var liClass = "";
                     
                     $(".presentation-modules").append('<li class="' + liClass + '"><a  '+onclick+'><div class="cell"><i class="' + icon_class + '"></i></div><div class="cell">' + text + '</div></a></li>');
 
@@ -8066,6 +8066,7 @@ function closenotescommentbox() {
 	$(".questions-filter-items").fadeOut();
 	$("#cpmainnote").html('<div class="close-btn-wrapper" onclick="closeingcommentbox();"><i class="fa fa-times close-btn"></i></div><div data-role="fieldcontain" class="form-group hidden frmfld_note_id ui-field-contain"><input id="frmfld_note_id" name="note_id" type="hidden" value="0"></div><div data-role="fieldcontain" class="form-group fileupload frmfld_files ui-field-contain"><i class="gicon-camera file-upload" onclick="shownotesbuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea frmfld_note ui-field-contain"><textarea class="form-control ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow" id="frmfld_note" name="note" maxlength="4096" placeholder="Make a note" style="height: 52px; overflow-y: hidden; width: 100%; margin-left: 67px;"></textarea><span style="margin-left: 63px;"><i class="gicon-notes"></i></span></div><div class="success-status hide" style="display: none;"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit ui-field-contain"><button type="button" name="submit" class="submit_com ui-btn ui-shadow ui-corner-all" onclick="addnote();">Save</button></div><img src="img/loading.gif" class="loading_send" style="display:none"></div><div class="swiper-container swiper-container-horizontal customcommenttextarea"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadImgePreviews"></div></div></div>');
 }
+
 //function to show comments
 function showcomments(sortby,sortdr,l)
 {
@@ -8216,9 +8217,9 @@ function showcomments(sortby,sortdr,l)
 				 localStorage.resubmit_code = val.noResubmitCode;
 				});
 
-				// if(obj.commentInstances.length == "0") {
-				// 	$('.inner_comment_loop').append('<h2 class="no-results">AddYourContribution</h2>');
-				// }
+				if(obj.commentInstances.length == "0") {
+					$('.inner_comment_loop').append('<h2 class="no-results">AddYourContribution</h2>');
+				}
 
 				$.each(obj.commentInstances, function(key, val) {
 					var image_url = localStorage.url+'resources/gamification/img/avatar-placeholder.png';
