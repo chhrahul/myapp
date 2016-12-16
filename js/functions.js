@@ -630,7 +630,7 @@ function resetpassword() {
 			}
 			else if (email == '') {
 				//alert("Please Enter Email");
-				shownotification(ys,"Forgot Password?");
+				shownotification('Invalid e-mail or password',"Forgot Password?");
 				return false;
 			}
 			else {
@@ -648,6 +648,8 @@ function resetpassword() {
 						//alert('Please check your email for new password!');
 						// shownotification(fp,"Login");  
 						// alert(resp.login_success);
+						var fp = "We have sent you a new password<br>\r\non email and sms!<br>\r\n<br>\r\nBest regards<br>\r\n<a href=\"http://www.experience.live\">Experience.Live";
+						fp = fp.replace(/\<br\>/g,' ');
 						if (resp.login_success != '') {
 							shownotification(fp,"Login");
 						} else {
