@@ -924,12 +924,6 @@ function loginme() {
 				        success: function(obj) {
 							var email = base64_encode(fld_l_email);
 							var pwd = base64_encode(fld_l_password);
-
-							// var email = "YWRpLnBhdHJhc2N1QG91dGxvb2suY29t";
-							// var pwd = "MTIzNDU2";
-
-				            // alert(email)
-				            //alert(pwd)
 				            var main_url = localStorage.url + 'api/index.php/auth/login?XDEBUG_SESSION_START=PHPSTORM';
 			             	// alert(main_url);
 				            $.ajax({
@@ -3948,7 +3942,7 @@ function showcommonagendalist(obj) {
             var c = Math.PI * 49.5 * 2;
             var pct = ((100 - progress) / 100) * c;
             pct = pct.toFixed(3) + 'px';
-            for(i=0;i<=1000;i++) {
+            for(i = 0; i <= 1000; i++) {
             	console.log(pct);
             }
              // alert(pct);
@@ -10856,7 +10850,7 @@ function innoti() {
 		        		$("#notifications-count").html(countnoti).show();
 		        	}
 		        	if(len > 0) {
-						$("#notifications").html('<dt class="actions-bar"><span class="action delete-all" onclick="deleteallnoti()"><i class="oc-icon-trash"></i> deleteAllNotifications</span></dt>');
+						$("#notifications").html('<dt class="actions-bar"><span class="action delete-all" onclick="deleteallnoti()"><i class="oc-icon-trash"></i>  Delete all</span></dt>');
 			        	$.each(textnoti, function(key, val) {
 			        		i++;
 			        		var notitime = jQuery.timeago(val.time);
@@ -10881,7 +10875,7 @@ function innoti() {
 			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + agotext + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
 			        		}
 			        		else {
-			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + len + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
+			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + len + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">Load more</span></dd>');
 			        		}
 			        		$(".slimScrollDiv, #notifications").css("height","380px");
 
@@ -11058,7 +11052,7 @@ function loadmorenoti(data) {
 		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt>');
 		        		}
 		        		else {
-		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">loadMoreNotifications</span></dd>');
+		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">Load more</span></dd>');
 		        		}
 		        		$(".slimScrollDiv, #notifications").css("height","380px");
 
