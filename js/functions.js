@@ -860,7 +860,7 @@ function loginme() {
 
 // ErrorURL
 // InvalidEmailOrPassword
-	
+	$(".slowapploader").hide();
     jQuery(document).ready(function($) {
        
         event.preventDefault();
@@ -3948,7 +3948,7 @@ function showcommonagendalist(obj) {
             var c = Math.PI * 49.5 * 2;
             var pct = ((100 - progress) / 100) * c;
             pct = pct.toFixed(3) + 'px';
-            for(i=0;i<=500;i++) {
+            for(i=0;i<=1000;i++) {
             	console.log(pct);
             }
              // alert(pct);
