@@ -1200,12 +1200,19 @@ function unlinkwithfacebook() {
     // Show a custom confirmation dialog
     //
     
-        navigator.notification.confirm(
-            con,  // message
+    	navigator.notification.confirm(
+            'Are you sure you want to unlink facebook from your account?',  // message
             onConfirmFacebook,              // callback to invoke with index of button pressed
             pr,            // title
-            ys+","+noo         // buttonLabels
+            [ 'Yes','No' ]        // buttonLabels
         );
+
+        // navigator.notification.confirm(
+        //     con,  // message
+        //     onConfirmFacebook,              // callback to invoke with index of button pressed
+        //     pr,            // title
+        //     ys+","+noo         // buttonLabels
+        // );
    
 
       });
@@ -3941,8 +3948,8 @@ function showcommonagendalist(obj) {
             var c = Math.PI * 49.5 * 2;
             var pct = ((100 - progress) / 100) * c;
             pct = pct.toFixed(3) + 'px';
-            for(i=0;i<=1000;i++) {
-            console.log(pct);
+            for(i=0;i<=500;i++) {
+            	console.log(pct);
             }
              // alert(pct);
             //54.5368
@@ -6340,12 +6347,19 @@ function removenote(id)
     // Show a custom confirmation dialog
     //
     
-        navigator.notification.confirm(
-            con,  // message
+    	navigator.notification.confirm(
+            'Delete confirmation',  // message
             onConfirmNote,              // callback to invoke with index of button pressed
-            pr,            // title
-            ys+","+noo         // buttonLabels
+            'Notes',            // title
+            [ 'Yes','No' ]        // buttonLabels
         );
+
+        // navigator.notification.confirm(
+        //     con,  // message
+        //     onConfirmNote,              // callback to invoke with index of button pressed
+        //     pr,            // title
+        //     ys+","+noo         // buttonLabels
+        // );
    
   /*if(confirm(con))
   {
@@ -8081,7 +8095,8 @@ function showcomments(sortby,sortdr,l)
 
         $(".notes-agenda-container").hide();
         $(".add-questions-container").hide();
-        $(".add-comments-container").hide();
+        // $(".add-comments-container").hide();
+        $("#cpmaincomment").show();
         $(".header").show();
 	    $(".dropdown-menu").show();
 	    $(".footertag").show();  
@@ -8144,7 +8159,7 @@ function showcomments(sortby,sortdr,l)
 				jQuery(".uploadImgePreviews").html("");
 				jQuery("#frmfld_comment").val("");
 				if(localStorage.submitcommentstatus) {
-					$("#cpmaincomment").show();
+					// $("#cpmaincomment").show();
 					if(localStorage.submitcommentstatus == "1") {
 						$(".success-status").removeClass("hide");
 						$(".error-status").removeClass("hide");
@@ -8607,11 +8622,11 @@ function deletecomment(instance_id)
                       {
                          pr = unescape(results.rows.item(i).key_val); 
                       } 
-                      if(results.rows.item(i).key_constant == 'yes')
+                      if(results.rows.item(i).key_constant == 'Yes')
                       {
                          ys = unescape(results.rows.item(i).key_val); 
                       }
-                      if(results.rows.item(i).key_constant == 'no')
+                      if(results.rows.item(i).key_constant == 'No')
                       {
                          noo = unescape(results.rows.item(i).key_val); 
                       }  
@@ -8623,11 +8638,19 @@ function deletecomment(instance_id)
     //
     
         navigator.notification.confirm(
-            con,  // message
+            'Delete confirmation',  // message
             onConfirmComment,              // callback to invoke with index of button pressed
-            pr,            // title
-            ys+","+noo         // buttonLabels
+            'Comments',            // title
+            [ 'Yes','No' ]        // buttonLabels
         );
+
+
+        // navigator.notification.confirm(
+        //     con,  // message
+        //     onConfirmComment,              // callback to invoke with index of button pressed
+        //     pr,            // title
+        //     [ 'Yes','No' ]        // buttonLabels
+        // );
    
 
       });
@@ -9366,7 +9389,7 @@ function changetoaddcomments(id) {
 	$("#tooltipster-409679").hide();
 	$(".footer-menu").removeClass("footer-menu-open");
 	$(".welcome-container").html('<div class="row"><div class="welcome-slider video"><img class="main_banner_image" src=""></div><div class="col-xs-12" style="background-color:#fff;"><div class="welcome-title"><h1></h1></div><p>&nbsp;</p><div class="welcome-content"></div></div></div>');
-	$(".questions-filter-items").fadeOut();
+	// $(".questions-filter-items").fadeOut();
 	if(id == 'yes')
 	{
 		$('.dropdown-btn').trigger('click');
