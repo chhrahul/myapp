@@ -837,7 +837,7 @@ function checkURL(value) {
 
 function createTables()
 {
-
+	alert("createTables");
 	db.transaction(function(tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_user (id integer primary key autoincrement,team,position,fb_user_id,fb_email,birthday_date,website, user_id, email, first_name, last_name,mobile, image_src, is_user_image, created,gender,player_code)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_ticket (id integer primary key autoincrement,user_id,ticketCode,ticketSrc)');
@@ -909,7 +909,7 @@ function loginme() {
 		            shownotification(pr,"Login");
 		            return false;
 		        } 
-		        else if(!checkURL(fld_l_url)){
+		        else if(!checkURL(fld_l_url)) {
 		              //alert("Please Enter A Valid Url");
 		              shownotification(pr,"Login");
 		            return false;
@@ -9696,6 +9696,7 @@ function changetoscorecard(id) {
 }
 
 function loadkeywords() {
+	alert("loadkeywords");
 	$(".loading_index_items").show();
 	$(".form-container").hide();
 	$(".hideloginbox").hide();
@@ -10056,6 +10057,7 @@ function clearsearchurl() {
 }
 
 function loadUrlEvents() {
+	alert("loadUrlEvents");
 	db.transaction(function(tx) {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
