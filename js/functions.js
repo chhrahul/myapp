@@ -8091,8 +8091,17 @@ function showcomments(sortby,sortdr,l)
 
         $(".notes-agenda-container").hide();
         $(".add-questions-container").hide();
-        // $(".add-comments-container").hide();
-        $("#cpmaincomment").show();
+
+		if(localStorage.commentSubmitted == "1") {
+			localStorage.commentSubmitted = "0";
+		}  
+		else {
+			localStorage.commentSubmitted = "0";
+			jQuery(".loading_agenda_items").show();
+			$(".add-comments-container").hide();
+        	// $("#cpmaincomment").show();
+		}
+        
         $(".header").show();
 	    $(".dropdown-menu").show();
 	    $(".footertag").show();  
@@ -8103,8 +8112,8 @@ function showcomments(sortby,sortdr,l)
 			sortdr = 'desc';
 	    } 
 
-	    $(".inner_comment_loop").html("");
-
+	    // $(".inner_comment_loop").html("");
+	    var innerHtml = "";
 		var taonclk = "sortcomments('timestamp','asc')";
 		var tdonclk = "sortcomments('timestamp','desc')";
 		var laonclk = "sortcomments('likes','asc')";
@@ -8124,10 +8133,8 @@ function showcomments(sortby,sortdr,l)
 
 		if(sortdr == 'desc' && sortby == 'likes') {
 			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
-		}
-
-                   
-        jQuery(".loading_agenda_items").show();
+		}       
+        
         importfooter('Add-comment/-/'+localStorage.short_url+'-' + localStorage.event_id + '/' + localStorage.agenda_id, 'comments');
         var main_urld = localStorage.url + 'Add-comment/-/'+ localStorage.short_url +'-' + localStorage.event_id + '/' + localStorage.agenda_id + '/sort/'+sortby+'/'+sortdr+'/?XDEBUG_SESSION_START=PHPSTORM&gvm_json=1';
 
@@ -8180,7 +8187,7 @@ function showcomments(sortby,sortdr,l)
 				}
 
 
-            	$(".inner_comment_loop").html("");
+            	// $(".inner_comment_loop").html("");
             	if(checkdefined(obj.commentInstances) == "yes") {
 					$(".questions-heading-title").show();
 				}
@@ -8229,7 +8236,7 @@ function showcomments(sortby,sortdr,l)
 				});
 
 				if(obj.commentInstances.length == "0") {
-					$('.inner_comment_loop').append('<h2 class="no-results">AddYourContribution</h2>');
+					$('.inner_comment_loop').html('<h2 class="no-results">AddYourContribution</h2>');
 				}
 
 				$.each(obj.commentInstances, function(key, val) {
@@ -8351,10 +8358,11 @@ function showcomments(sortby,sortdr,l)
 					}	                             
 	              
 					if(val.reply_to_comment_id == 0 || val.reply_to_comment_id == 'null' || val.reply_to_comment_id == null) {
-						$('.inner_comment_loop').append('<div id="comment_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"> </i> '+val.time_since+'</span></h3><div class="question-inner"><div><i class="fa fa-comment"></i></div><p>'+val.comments+' </p></div></div></div>'+comment_image+comment_video+'<div class="clearfix">'+delete_button+'<div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes"> '+val.likes+' Likes</span> </div><div class="dislikes-count ">' + dislike_link + '</div><div class="reply-to-comment"><i class="fa fa-reply"></i><span class="replypostplaceholder"></span></div></div></div><div class="questions-filter-items reply-form clearfix hide"><div id="replyform-'+val.instance_id+'" class="has-file-upload"><div class="form-group fileupload c'+val.instance_id+'_files" data-role="fieldcontain"><i class="oc-icon-camera file-upload dz-clickable greencamera" onclick="showreplyimagebuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea c'+val.instance_id+'_comment"><textarea class="form-control textcomment" id="c'+val.instance_id+'_comment" name="comment" maxlength="4096" placeholder=""></textarea><span><i class="fa fa-comment"></i></span></div><div class="success-status hide"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit"><button type="submit" class="reply-sub" onclick="submitcomment('+val.instance_id+')" name="submit"></button><button type="submit" class="btn-danger reply-cancel" name="cancel"></button></div></div><div class="swiper-container swiper-container-horizontal customcommenttextarea"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadReplyImgePreviews"></div></div></div></div></div>');
+						// $('.inner_comment_loop').append('<div id="comment_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"> </i> '+val.time_since+'</span></h3><div class="question-inner"><div><i class="fa fa-comment"></i></div><p>'+val.comments+' </p></div></div></div>'+comment_image+comment_video+'<div class="clearfix">'+delete_button+'<div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes"> '+val.likes+' Likes</span> </div><div class="dislikes-count ">' + dislike_link + '</div><div class="reply-to-comment"><i class="fa fa-reply"></i><span class="replypostplaceholder"></span></div></div></div><div class="questions-filter-items reply-form clearfix hide"><div id="replyform-'+val.instance_id+'" class="has-file-upload"><div class="form-group fileupload c'+val.instance_id+'_files" data-role="fieldcontain"><i class="oc-icon-camera file-upload dz-clickable greencamera" onclick="showreplyimagebuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea c'+val.instance_id+'_comment"><textarea class="form-control textcomment" id="c'+val.instance_id+'_comment" name="comment" maxlength="4096" placeholder=""></textarea><span><i class="fa fa-comment"></i></span></div><div class="success-status hide"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit"><button type="submit" class="reply-sub" onclick="submitcomment('+val.instance_id+')" name="submit"></button><button type="submit" class="btn-danger reply-cancel" name="cancel"></button></div></div><div class="swiper-container swiper-container-horizontal customcommenttextarea"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadReplyImgePreviews"></div></div></div></div></div>');
+						innerHtml += '<div id="comment_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"> </i> '+val.time_since+'</span></h3><div class="question-inner"><div><i class="fa fa-comment"></i></div><p>'+val.comments+' </p></div></div></div>'+comment_image+comment_video+'<div class="clearfix">'+delete_button+'<div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes"> '+val.likes+' Likes</span> </div><div class="dislikes-count ">' + dislike_link + '</div><div class="reply-to-comment"><i class="fa fa-reply"></i><span class="replypostplaceholder"></span></div></div></div><div class="questions-filter-items reply-form clearfix hide"><div id="replyform-'+val.instance_id+'" class="has-file-upload"><div class="form-group fileupload c'+val.instance_id+'_files" data-role="fieldcontain"><i class="oc-icon-camera file-upload dz-clickable greencamera" onclick="showreplyimagebuttons();"></i></div><div data-role="fieldcontain" class="form-group textarea c'+val.instance_id+'_comment"><textarea class="form-control textcomment" id="c'+val.instance_id+'_comment" name="comment" maxlength="4096" placeholder=""></textarea><span><i class="fa fa-comment"></i></span></div><div class="success-status hide"><div class="success-icon-wrapper"><i class="icon-check"></i></div><p></p></div><div class="error-status hide"><div class="error-icon-wrapper"><i class="fa fa-ban"></i></div><p></p></div><div class="clearfix"><div data-role="fieldcontain" class="frm_field submit"><button type="submit" class="reply-sub" onclick="submitcomment('+val.instance_id+')" name="submit"></button><button type="submit" class="btn-danger reply-cancel" name="cancel"></button></div></div><div class="swiper-container swiper-container-horizontal customcommenttextarea"><div id="uploadImgePreviews" class="files dropzone-previews swiper-wrapper uploadReplyImgePreviews"></div></div></div></div></div>';
 					}
 				});
-
+		$(".inner_comment_loop").html(innerHtml);	
         $.each(obj.commentInstances, function(key, val) {
               var image_url = localStorage.url+'resources/gamification/img/avatar-placeholder.png';
               if(checkdefined(val.image) == "yes")
@@ -8771,6 +8779,7 @@ function submitcomment(instance_id) {
 					comment:comment
 				},
 				success: function(r) {
+					console.log(JSON.stringify(r))
 					var rr = JSON.parse(r.response);
 					$.each(rr.commentInstances, function(key, val) {
 						// console.log( val.event_user_id + " ,...,...,..., " + rr.commentInstances.length);
@@ -8791,6 +8800,7 @@ function submitcomment(instance_id) {
 								localStorage.resubmit_code = '';      
 								// window.location.href="add_comments.html"
 								localStorage.submitcommentstatus = "1";
+								localStorage.commentSubmitted = "1";
 								changetoaddcomments();
 							}
 							return false;
@@ -8819,6 +8829,7 @@ function submitcomment(instance_id) {
 			},
 			success: function(resp) {
 				//alert(resp)
+				localStorage.commentSubmitted = "1";
 				localStorage.resubmit_code = '';   
 				localStorage.submitcommentstatus = "1";         
 				// window.location.href="add_comments.html"
@@ -8885,6 +8896,7 @@ function addCommentImages() {
 			    		localStorage.imageURI = '';
 						localStorage.resubmit_code = '';
 						localStorage.submitcommentstatus = "1";
+						localStorage.commentSubmitted = "1";
 						changetoaddcomments();
 			    	}
 			    	else{
