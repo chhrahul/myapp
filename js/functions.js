@@ -10890,7 +10890,7 @@ function innoti() {
 			        		else {
 			        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + len + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">Load more</span></dd>');
 			        		}
-			        		$(".slimScrollDiv, #notifications").css("height","380px");
+			        		$(".slimScrollDiv, #notifications").css("height","450px");
 
 			        		var notiid = "#dtid"+ val.instance_id;
 			        		$(notiid).find('a').each(function() {
@@ -11067,7 +11067,7 @@ function loadmorenoti(data) {
 		        		else {
 		        			$("#notifications").append('<dt class="' + dtclass + '" id="dtid'+ val.instance_id +'" onclick="notistatuschange(' + val.instance_id + ')"><span class="time-wrapper clearfix"><i class="delete-notification oc-icon-trash pull-right" id="facircle' + val.instance_id + '" onclick="deletesinglenoti(' + val.instance_id + ')"></i><i class="oc-icon-clock"></i><time datetime="' + val.time + '">' + notitime + '</time></span><div class="text">' + val.text + '</div></dt><dd id="load-more-wrapper" class="loader-wrapper" onclick="loadmorenoti(' + loadmorenoti + ');"><i class="fa fa-cog fa-spin"></i><span class="load-more">Load more</span></dd>');
 		        		}
-		        		$(".slimScrollDiv, #notifications").css("height","380px");
+		        		$(".slimScrollDiv, #notifications").css("height","450px");
 
 		        		var notiid = "#dtid"+ val.instance_id;
 		        		$(notiid).find('a').each(function() {
