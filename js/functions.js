@@ -221,57 +221,6 @@ var fileSystemSingleton = {
 };
 
 
-var Log = function(bucket, tag){
-  return function(message){
-    if(typeof bucket != 'undefined')
-    {
-      // console.log(' '+bucket+':');
-    }
-    if(typeof tag != 'undefined')
-    {
-      // console.log(' '+tag+':');
-    }
-    if(typeof message != 'object'){
-      // console.log('       '+message);
-    }
-    else
-    {
-      // console.log(message);
-    }
-  };
-}
-
-
-var fileSystemSingleton = {
-	fileSystem: false,
-
-	load : function(callback, fail){
-		fail = (typeof fail == 'undefined')? Log('FileSystem','load fail'): fail;
-		if(fileSystemSingleton.fileSystem){
-			callback(fileSystemSingleton.fileSystem);
-			return; 
-		}
-
-		if(!window.requestFileSystem){
-			return fail();
-		}
-
-
-		window.requestFileSystem(
-			LocalFileSystem.PERSISTENT,
-			0, 
-			function(fileSystem){
-				fileSystemSingleton.fileSystem = fileSystem;
-				callback(fileSystemSingleton.fileSystem);
-			}, 
-			function(err){
-				Log('FileSystem','load fail')('error loading file system');
-				fail(err);
-			}
-		);
-	}
-};
-
 var FileManager = function(){
 
 	
@@ -10063,14 +10012,17 @@ function loadUrlEvents() {
 	}); 
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
+		alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
+						    alert(JSon.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
-		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";		    			
+		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	
+		alert(main_url)	    			
 		    			$.ajax({
 						    url: main_url,
 						    dataType: "json",
