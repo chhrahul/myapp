@@ -919,6 +919,7 @@ function loginme() {
 		         	$(".loading").show();
 		         	localStorage.url = fld_l_url + '/';
 		        	var main_url = localStorage.url + 'api/index.php/auth/logout?XDEBUG_SESSION_START=PHPSTORM';
+		        	alert(main_url);
 			    	jQuery.ajax({
 				        url: main_url,
 				        dataType: "json",
@@ -927,7 +928,7 @@ function loginme() {
 							var email = base64_encode(fld_l_email);
 							var pwd = base64_encode(fld_l_password);
 				            var main_url = localStorage.url + 'api/index.php/auth/login?XDEBUG_SESSION_START=PHPSTORM';
-			             	// alert(main_url);
+			             	alert(main_url);
 				            $.ajax({
 				                url: main_url,
 				                dataType: "json",
@@ -937,7 +938,7 @@ function loginme() {
 				                    password: pwd
 				                },
 				                success: function(obj) {
-				                   // alert(JSON.stringify(obj));
+				                   alert(JSON.stringify(obj));
 				                    if (obj.status == 'error') {
 				                        alert(obj.message);
 				                        shownotification(obj.message,"Profile");
@@ -5254,6 +5255,7 @@ function showFewerEvents() {
 
 function getLoggedInUser(id)
 {
+	alert("getLoggedInUser");
    var main_url = localStorage.url + 'api/index.php/auth/user?gvm_json=1';
     jQuery.ajax({
       url: main_url,
@@ -5272,6 +5274,7 @@ function getLoggedInUser(id)
 
 function changecurrentevent(event_id,id)
 {                  
+	alert("changecurrentevent");
     // jQuery("footer .container").before('<div class="ui-widget-overlay"></div>');
     jQuery(".footer-widget").html('<div class="ui-widget-overlay"></div>');
     // jQuery(".my-events-title").before('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
@@ -5321,7 +5324,7 @@ function changecurrentevent(event_id,id)
 
 function login_process() {
 
-	
+	alert("login_process");
 
     db.transaction(function(tx) {
         tx.executeSql('delete from OCEVENTS_qa');
