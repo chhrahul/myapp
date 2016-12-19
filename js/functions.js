@@ -8098,7 +8098,7 @@ function showcomments(sortby,sortdr,l)
 		else {
 			localStorage.commentSubmitted = "0";
 			jQuery(".loading_agenda_items").show();
-			$(".add-comments-container").hide();
+			$(".add-comments-container").hide();			
         	// $("#cpmaincomment").show();
 		}
         
@@ -8779,7 +8779,6 @@ function submitcomment(instance_id) {
 					comment:comment
 				},
 				success: function(r) {
-					console.log(JSON.stringify(r))
 					var rr = JSON.parse(r.response);
 					$.each(rr.commentInstances, function(key, val) {
 						// console.log( val.event_user_id + " ,...,...,..., " + rr.commentInstances.length);
