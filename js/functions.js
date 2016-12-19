@@ -10075,7 +10075,8 @@ function loadUrlEvents() {
 						    url: main_url,
 						    dataType: "json",
 						    method: "GET",
-						    success: function(response) {					    	
+						    success: function(response) {	
+						    alert(JSon.stringify(response));				    	
 						    	if(response.status == "success") {
 						    		$.each(response.items, function(key, val) {
 						    			db.transaction(function(tx) {     
@@ -10091,7 +10092,7 @@ function loadUrlEvents() {
 								    });								    
 						    	}
 						    	else {
-						    		shownotification(response.error_msg,"Login");
+						    		shownotification(response.error_msg,"Login Events");
 						    	}
 						    }
 						});
