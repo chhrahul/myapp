@@ -787,9 +787,6 @@ function createTables() {
 
 
 function loginme() {
-
-// ErrorURL
-// InvalidEmailOrPassword
 	$(".slowapploader").hide();
     jQuery(document).ready(function($) {
        
@@ -798,47 +795,34 @@ function loginme() {
         db.transaction(function(tx) {
 			tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
 				var len = results.rows.length; 
-
-
 				var pr = '';  
 				var ys = '';  
 
 				for (i = 0; i < len; i++) {
-
-					if(results.rows.item(i).key_constant == 'ErrorURL')
-					{
+					if(results.rows.item(i).key_constant == 'ErrorURL') {
 						pr = unescape(results.rows.item(i).key_val); 
 					} 
-					if(results.rows.item(i).key_constant == 'InvalidEmailOrPassword')
-					{
+					if(results.rows.item(i).key_constant == 'InvalidEmailOrPassword') {
 						ys = unescape(results.rows.item(i).key_val); 
 					}
-
-
 				}
-				//alert(pr);
-				//alert(ys);
+
 		        var fld_l_email = $("#fld_l_email").val();
-		        //var fld_l_url = $("#fld_l_url").val();
 		        var fld_l_url = localStorage.surl;
 		        var fld_l_password = $("#fld_l_password").val();
 		        if (fld_l_email == '') {
-		            //alert("Please Enter Your Email");
 		            shownotification(ys,"Login");
 		            return false;
 		        } 
 		        else if (fld_l_password == '') {
-		            //alert("Please Enter Your Password");
 		            shownotification(ys,"Login");
 		            return false;
 		        } 
 		        else if (fld_l_url == '') {
-		            //alert("Please Enter Url");
 		            shownotification(pr,"Login");
 		            return false;
 		        } 
 		        else if(!checkURL(fld_l_url)) {
-		              //alert("Please Enter A Valid Url");
 		              shownotification(pr,"Login");
 		            return false;
 		        } 
@@ -873,57 +857,38 @@ function loginme() {
 				                        $(".loading").hide();
 				                    } 
 				                    else {
-				                        //createTables();
-
 				                        var DIR_Name = 'oc_photos';
 				                        var a = new DirManager();
 				                        a.create_r(DIR_Name, Log('created successfully'));
 
 				                        var b = new FileManager();
-				                        //alert(obj.data.image.image_src);	
 				                        var img_src = obj.data.image.image_src;
-				                       // localStorage.profilelogo = obj.data.image.image_src;
-				                        //alert(localStorage.profilelogo);
 				                        var image_name = getFileNameFromPath(img_src);
 				                        var STR = localStorage.url + "api/index.php/main/base64Image?XDEBUG_SESSION_START=PHPSTORM&image=" + img_src;
-
 
 				                        $.ajax({
 				                            url: STR,
 				                            dataType: "html",
 				                            success: function(DtatURL) {
 												b.download_file(DtatURL, DIR_Name + '/', getFileNameFromPath(obj.data.image.image_src), function(theFile) {
-
 													var ImgFullUrl = '';
 													ImgFullUrl = theFile.toURI();
 													// alert(ImgFullUrl);
-													db.transaction(function(tx) {      
-
+													db.transaction(function(tx) {  
 														tx.executeSql("delete from OCEVENTS_user");
 														tx.executeSql('INSERT INTO OCEVENTS_user (team,position,fb_user_id,fb_email,birthday_date,website,user_id,email,first_name,last_name,mobile,image_src,is_user_image,created,gender,player_code) VALUES ("' + obj.data.team + '","' + obj.data.position + '","' + obj.data.fb_user_id + '","' + obj.data.fb_email + '","' + obj.data.birthday_date + '","' + obj.data.website + '","' + obj.data.id + '","' + obj.data.email + '","' + obj.data.first_name + '","' + obj.data.last_name + '","' + obj.data.mobile + '","' + ImgFullUrl + '","' + obj.data.image.is_user_image + '","' + obj.data.created + '","' + obj.data.gender + '","' + obj.data.player_code + '")');
 														localStorage.user_id = obj.data.id;
 														if(localStorage.event_id == "" || localStorage.event_id == undefined || localStorage.event_id == null ) {
 															localStorage.event_id = obj.data.event_id;
 														}
-														// else {
-														// 	onloadchangetoevent(localStorage.event_id,0);
-														// }
-														// if(localStorage.event_language == "" || localStorage.event_language == undefined || localStorage.event_language == null ) {
-														// 	localStorage.event_language = obj.data.event_language;
-														// }
-														// onloadchangetoevent(localStorage.event_id,0);
 														changecurrentevent(localStorage.event_id,0);
-														// login_process();
 													});
 				                                });
-
 				                            }
 				                        });
 				                    }
-
-				                },fail: function()
-				                {
-				                  //alert('failed') ;
+				                }
+				                ,fail: function() {
 				                  shownotification("Failed","Login");
 				                }
 				            });
@@ -946,10 +911,6 @@ function autologinme() {
 		var fld_l_password = localStorage.linkurlpassword;
 		var fld_l_url = localStorage.linkurlselecturl;
 
-		// $("#fld_l_email").val() = fld_l_email;
-  //       $("#fld_l_url").val() = fld_l_url;
-  //       $("#fld_l_password").val() = fld_l_password;
-
 	    if (fld_l_email == '') {
             shownotification(ys,"Login");
             return false;
@@ -967,8 +928,7 @@ function autologinme() {
          	$(".loading").show();
          	
          	localStorage.url = fld_l_url + '/';    	
-        	//alert(fld_l_url);
-        	//http://oceventmanager.com/g-homepage/-/OCintranet-100041/?e=marian@onecom.no&h=e8093daab4d1730424287af2194c276d&i=%2FWeWillChangeIT-not_unique-1&gvm_json=1
+        	
         	var main_url = localStorage.url + 'g-homepage/-/OCintranet-100041/?e='+ fld_l_email +'&h=' + fld_l_password + '&i=%2FWeWillChangeIT-not_unique-1&gvm_json=1';
            
             $.ajax({
@@ -976,45 +936,33 @@ function autologinme() {
                 dataType: "json",
                 method: "POST",
                 success: function(data1) {
-
                 	var main_url = localStorage.url + 'api/index.php/auth/user?XDEBUG_SESSION_START=PHPSTORM';
-                	//http://www.oceventmanager.com/api/index.php/auth/user?XDEBUG_SESSION_START=PHPSTORM
                 	$.ajax({
 		                url: main_url,
 		                dataType: "json",
 		                method: "GET",
 		                success: function(obj) {
-
 		                	if (obj.status == 'error') {
-
 		                        shownotification(obj.message,"Profile");
 		                        $("#login_submit").show();
 		                        $(".loading").hide();
 		                    }
 		                    else {
-
-
 		                        var DIR_Name = 'oc_photos';
 		                        var a = new DirManager();
 		                        a.create_r(DIR_Name, Log('created successfully'));
-		                        
-
 		                        var b = new FileManager();
-		                        var img_src = obj.data.image.image_src;
-		                        
+		                        var img_src = obj.data.image.image_src;		                        
 		                        var image_name = getFileNameFromPath(img_src);
 		                        var STR = localStorage.url + "api/index.php/main/base64Image?XDEBUG_SESSION_START=PHPSTORM&image=" + img_src;
-		                        
 
 		                        $.ajax({
 		                            url: STR,
 		                            dataType: "html",
 		                            success: function(DtatURL) {
 		                                b.download_file(DtatURL, DIR_Name + '/', getFileNameFromPath(obj.data.image.image_src), function(theFile) {
-
 		                                    var ImgFullUrl = '';
-		                                    ImgFullUrl = theFile.toURI();
-		                                    
+		                                    ImgFullUrl = theFile.toURI();		                                    
 		                                    db.transaction(function(tx) {                                        
 		                                        tx.executeSql("delete from OCEVENTS_user");
 		                                        tx.executeSql('INSERT INTO OCEVENTS_user (team,position,fb_user_id,fb_email,birthday_date,website,user_id,email,first_name,last_name,mobile,image_src,is_user_image,created,gender,player_code) VALUES ("' + obj.data.team + '","' + obj.data.position + '","' + obj.data.fb_user_id + '","' + obj.data.fb_email + '","' + obj.data.birthday_date + '","' + obj.data.website + '","' + obj.data.id + '","' + obj.data.email + '","' + obj.data.first_name + '","' + obj.data.last_name + '","' + obj.data.mobile + '","' + ImgFullUrl + '","' + obj.data.image.is_user_image + '","' + obj.data.created + '","' + obj.data.gender + '","' + obj.data.player_code + '")');
@@ -1024,31 +972,19 @@ function autologinme() {
 		                                        login_process();
 		                                    });
 		                                });
-
 		                            }
 		                        });
 		                    }
-
-		                },fail: function()
-		                {
+		                },fail: function(){
 		                  shownotification("Failed","Login");
 		                }
 		            });            	
                 	
-                },fail: function()
-                {
+                },fail: function(){
                   shownotification("Failed","Login");
-                }
-            
+                }            
             });
-        	}
-            
-
-         
-
-        
-   
-    
+        	}    
 }
 
 
