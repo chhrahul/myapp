@@ -9933,7 +9933,8 @@ function loadUrlEvents() {
 		    success: function(obj) {
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
-		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	    			
+		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	    		
+		    			
 		    			$.ajax({
 						    url: main_url,
 						    dataType: "json",
