@@ -170,23 +170,20 @@ var DirManager = function(){
 };
 
 var Log = function(bucket, tag){
-  return function(message){
-    if(typeof bucket != 'undefined')
-    {
-      // console.log(' '+bucket+':');
-    }
-    if(typeof tag != 'undefined')
-    {
-      // console.log(' '+tag+':');
-    }
-    if(typeof message != 'object'){
-      // console.log('       '+message);
-    }
-    else
-    {
-      // console.log(message);
-    }
-  };
+	return function(message){
+		if(typeof bucket != 'undefined') {
+			// console.log(' '+bucket+':');
+		}
+		if(typeof tag != 'undefined') {
+			// console.log(' '+tag+':');
+		}
+		if(typeof message != 'object') {
+			// console.log('       '+message);
+		}
+		else {
+			// console.log(message);
+		}
+	};
 }
 
 
@@ -195,12 +192,12 @@ var fileSystemSingleton = {
 
 	load : function(callback, fail){
 		fail = (typeof fail == 'undefined')? Log('FileSystem','load fail'): fail;
-		if(fileSystemSingleton.fileSystem){
+		if(fileSystemSingleton.fileSystem) {
 			callback(fileSystemSingleton.fileSystem);
 			return; 
 		}
 
-		if(!window.requestFileSystem){
+		if(!window.requestFileSystem) {
 			return fail();
 		}
 
@@ -208,11 +205,11 @@ var fileSystemSingleton = {
 		window.requestFileSystem(
 			LocalFileSystem.PERSISTENT,
 			0, 
-			function(fileSystem){
+			function(fileSystem) {
 				fileSystemSingleton.fileSystem = fileSystem;
 				callback(fileSystemSingleton.fileSystem);
 			}, 
-			function(err){
+			function(err) {
 				Log('FileSystem','load fail')('error loading file system');
 				fail(err);
 			}
@@ -221,9 +218,7 @@ var fileSystemSingleton = {
 };
 
 
-var FileManager = function(){
-
-	
+var FileManager = function(){	
 
 	this.get_path = function(todir,tofilename, success){
 		fail = (typeof fail == 'undefined')? Log('FileManager','read file fail'): fail;
@@ -291,42 +286,35 @@ var FileManager = function(){
 		);
 	};
 
-	this.download_file = function(url, todir, tofilename, success, fail){
+	this.download_file = function(url, todir, tofilename, success, fail) {
 
 		fail = (typeof fail == 'undefined')? Log('FileManager','read file fail'): fail;
 		this.load_file(
 			todir,
 			tofilename,
-			function(fileEntry){
+			function(fileEntry) {
 
-					var sPath = fileEntry.toURL();
+				var sPath = fileEntry.toURL();
+				var fileTransfer = new FileTransfer();
+				fileEntry.remove();
 
-		            var fileTransfer = new FileTransfer();
-		            fileEntry.remove();
-		           
-		            fileTransfer.download(
-		                encodeURI(url),
-		                sPath,
-		                function(theFile) {
-		                    // console.log("download complete: " + theFile.toURI()); 
-		                    success(theFile);
-		                },
-		                function(error) {
-		                    // console.log("download error source " + error.source);
-		                    // console.log("download error target " + error.target);
-		                    // console.log("upload error code: " + error.code);
-		                    fail(error);
-		                }
-		            );
-
-
-				
-
+				fileTransfer.download(
+					encodeURI(url),
+					sPath,
+					function(theFile) {
+						// console.log("download complete: " + theFile.toURI()); 
+						success(theFile);
+					},
+					function(error) {
+						// console.log("download error source " + error.source);
+						// console.log("download error target " + error.target);
+						// console.log("upload error code: " + error.code);
+						fail(error);
+					}
+				);
 			},
 			fail
 		);
-
-		
 	};
 
 	this.read_file = function(dir, filename, success, fail){
@@ -344,12 +332,10 @@ var FileManager = function(){
 						    
 						    success(evt.target.result);
 						};
-
 						reader.readAsText(file);
 					}, 
 					fail
 				);
-
 			},
 			fail
 		);
@@ -375,22 +361,17 @@ var FileManager = function(){
 			},			
 			fail
 		);
-
-		//
 	};
 
 
 	this.remove_file = function(dir, filename, success, fail){
 		var full_file_path = dir+'/'+filename;
 		fileSystemSingleton.load(
-			function(fs){
-				
+			function(fs){				
 				// get file handler
 				fs.root.getFile(full_file_path, {create: false, exclusive: false}, function(fileEntry){fileEntry.remove(success, fail);}, fail);
 			}
-
-		);
-		//
+		);		
 	};
 };
 
@@ -784,9 +765,7 @@ function checkURL(value) {
     return (false);
 }
 
-function createTables()
-{
-	alert("createTables");
+function createTables() {
 	db.transaction(function(tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_user (id integer primary key autoincrement,team,position,fb_user_id,fb_email,birthday_date,website, user_id, email, first_name, last_name,mobile, image_src, is_user_image, created,gender,player_code)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_ticket (id integer primary key autoincrement,user_id,ticketCode,ticketSrc)');
@@ -10006,7 +9985,6 @@ function clearsearchurl() {
 }
 
 function loadUrlEvents() {
-	alert("loadUrlEvents");
 	db.transaction(function(tx) {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
@@ -10018,7 +9996,7 @@ function loadUrlEvents() {
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
-						    alert(JSon.stringify(obj));
+						    alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
 		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	
