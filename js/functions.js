@@ -9925,7 +9925,7 @@ function loadUrlEvents() {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
 	if(localStorage.UrlEvent_modified_time) {
-		var  main_urlmt = "	"+localStorage.UrlEvent_modified_time;
+		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
