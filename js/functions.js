@@ -9920,7 +9920,7 @@ function clearsearchurl() {
 }
 
 function loadUrlEvents() {
-alert("loadUrlEvents");
+// alert("loadUrlEvents");
 	db.transaction(function(tx) {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
