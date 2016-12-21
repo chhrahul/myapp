@@ -80,5 +80,6 @@
     <preference name="android-minSdkVersion" value="15" />             
     <preference name="android-targetSdkVersion" value="15" /> 
     <preference name="android-installLocation" value="auto" /> 
+    <access origin="*" />
 </widget>
 
