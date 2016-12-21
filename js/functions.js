@@ -9930,21 +9930,18 @@ alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
 		    dataType: "json",
-		    method: "GET",
+		    method: "POST",
 		    success: function(obj) {
-						    	alert("success => " + obj);
+alert("success => " + obj);
 alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
-		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	    		
-alert(main_url)
+		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
 		    			$.ajax({
 						    url: main_url,
 						    dataType: "json",
 						    method: "GET",
-						    success: function(response) {
-						    	alert(response);
-alert(JSON.stringify(response));				    	
+						    success: function(response) {	    	
 						    	if(response.status == "success") {
 						    		$.each(response.items, function(key, val) {
 						    			db.transaction(function(tx) {     
@@ -9976,9 +9973,8 @@ alert(JSON.stringify(response));
     			alert("fail => " + obj);
 				alert(JSON.stringify(obj));
 		    }
-		    ,error: function(obj) {
-				alert("error => " + obj);
-				alert(JSON.stringify(obj));
+		    ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				alert("error => " + XMLHttpRequest + " <=> " + textStatus + " <=> " + errorThrown);
 
 		    }
 		});
