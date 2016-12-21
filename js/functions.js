@@ -9925,7 +9925,7 @@ function loadUrlEvents() {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
 	if(localStorage.UrlEvent_modified_time) {
-		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php/?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
+		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
@@ -9933,40 +9933,40 @@ alert(main_urlmt)
 		    method: "POST",
 		    success: function(obj) {
 alert("success");
-		    	if(obj.status == "success") {
-		    		if(obj.modified == "0") {
-		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php/?action=get_solutions&modified_time=0";
-		    			$.ajax({
-						    url: main_url,
-						    dataType: "json",
-						    method: "GET",
-						    success: function(response) {	    	
-						    	if(response.status == "success") {
-						    		$.each(response.items, function(key, val) {
-						    			db.transaction(function(tx) {     
-											tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + val.url + '","0","0","' + val.name + '")');
-										});
-										if(checkdefined(val.events) == 'yes') {
-											$.each(val.events, function(key, res) {
-												db.transaction(function(tx) {      
-													tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + res.host + '","' + res.solution_id + '","' + res.event_id + '","' + res.title + '")');
-												});
-											});
-										}
-								    });								    
-						    	}
-						    	else {
-						    		shownotification(response.error_msg,"Login Events");
-						    	}
-						    }
-						});
-		    		}
-		    		else {
-		    			localStorage.UrlEvent_modified_time = obj.modified_time;
-		    			loadUrlEvents();
-		    		}
-		    	}		    	
-			    loadkeywords();
+		    // 	if(obj.status == "success") {
+		    // 		if(obj.modified == "0") {
+		    // 			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
+		    // 			$.ajax({
+						//     url: main_url,
+						//     dataType: "json",
+						//     method: "GET",
+						//     success: function(response) {	    	
+						//     	if(response.status == "success") {
+						//     		$.each(response.items, function(key, val) {
+						//     			db.transaction(function(tx) {     
+						// 					tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + val.url + '","0","0","' + val.name + '")');
+						// 				});
+						// 				if(checkdefined(val.events) == 'yes') {
+						// 					$.each(val.events, function(key, res) {
+						// 						db.transaction(function(tx) {      
+						// 							tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + res.host + '","' + res.solution_id + '","' + res.event_id + '","' + res.title + '")');
+						// 						});
+						// 					});
+						// 				}
+						// 		    });								    
+						//     	}
+						//     	else {
+						//     		shownotification(response.error_msg,"Login Events");
+						//     	}
+						//     }
+						// });
+		    // 		}
+		    // 		else {
+		    // 			localStorage.UrlEvent_modified_time = obj.modified_time;
+		    // 			loadUrlEvents();
+		    // 		}
+		    // 	}		    	
+			   //  loadkeywords();
 		    }
 		    ,fail: function() {
     			alert("fail");
