@@ -9932,6 +9932,7 @@ alert(main_urlmt)
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
+						    	alert(obj);
 alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
