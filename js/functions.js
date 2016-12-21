@@ -9920,26 +9920,29 @@ function clearsearchurl() {
 }
 
 function loadUrlEvents() {
+alert("loadUrlEvents");
 	db.transaction(function(tx) {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
-
+alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
+alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
 		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";	    		
-		    			
+alert(main_url)
 		    			$.ajax({
 						    url: main_url,
 						    dataType: "json",
 						    method: "GET",
-						    success: function(response) {				    	
+						    success: function(response) {
+alert(JSON.stringify(response));				    	
 						    	if(response.status == "success") {
 						    		$.each(response.items, function(key, val) {
 						    			db.transaction(function(tx) {     
