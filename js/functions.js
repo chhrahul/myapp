@@ -9972,10 +9972,19 @@ alert(JSON.stringify(response));
 		    	}		    	
 			    loadkeywords();
 		    }
+		    ,fail(obj) {
+    			alert(obj);
+				alert(JSON.stringify(obj));
+		    }
+		    ,error(obj) {
+				alert(obj);
+				alert(JSON.stringify(obj));
+
+		    }
 		});
 	}
 	else {
-		localStorage.UrlEvent_modified_time = "1467106221";
+		localStorage.UrlEvent_modified_time = "1482307366";
 		loadUrlEvents();
 	}
 }
