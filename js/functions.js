@@ -766,22 +766,22 @@ function checkURL(value) {
 }
 
 function createTables() {
-	// db.transaction(function(tx) {
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_user (id integer primary key autoincrement,team,position,fb_user_id,fb_email,birthday_date,website, user_id, email, first_name, last_name,mobile, image_src, is_user_image, created,gender,player_code)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_ticket (id integer primary key autoincrement,user_id,ticketCode,ticketSrc)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_points (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,hideTeamScores,label,instance_id)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_qa (id integer primary key autoincrement,user_id, question,answer)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_homepage (id integer primary key autoincrement,user_id,main_logo_small_image,main_banner_image,main_title,main_text,main_link,type,iframe_url,banner_video,module_type)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_teampoints (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,label,instance_id)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_yourteampoints (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,label,instance_id)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_footerlinks (id integer primary key autoincrement,name,icon,friends_requests_count,menu_text)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_footermorelinks (id integer primary key autoincrement,name,icon,friends_requests_count,menu_text)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_events (id integer primary key autoincrement,event_id,user_id,title,description,logo,image, short_url)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_keywords (id integer primary key autoincrement,key_constant,key_val)');
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_menu (id integer primary key autoincrement,parent_id,title,url,website_id)'); 
-	// 	tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_urleventslisting (id integer primary key autoincrement,url_name,url_link,solution_id,event_id,title)'); 
+	db.transaction(function(tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_user (id integer primary key autoincrement,team,position,fb_user_id,fb_email,birthday_date,website, user_id, email, first_name, last_name,mobile, image_src, is_user_image, created,gender,player_code)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_ticket (id integer primary key autoincrement,user_id,ticketCode,ticketSrc)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_points (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,hideTeamScores,label,instance_id)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_qa (id integer primary key autoincrement,user_id, question,answer)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_homepage (id integer primary key autoincrement,user_id,main_logo_small_image,main_banner_image,main_title,main_text,main_link,type,iframe_url,banner_video,module_type)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_teampoints (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,label,instance_id)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_yourteampoints (id integer primary key autoincrement,alias,user_id,name,position integer,userTotal,green_count,label,instance_id)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_footerlinks (id integer primary key autoincrement,name,icon,friends_requests_count,menu_text)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_footermorelinks (id integer primary key autoincrement,name,icon,friends_requests_count,menu_text)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_events (id integer primary key autoincrement,event_id,user_id,title,description,logo,image, short_url)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_keywords (id integer primary key autoincrement,key_constant,key_val)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_menu (id integer primary key autoincrement,parent_id,title,url,website_id)'); 
+		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_urleventslisting (id integer primary key autoincrement,url_name,url_link,solution_id,event_id,title)'); 
 
-	// }); 	
+	}); 	
 	loadUrlEvents();
 }
 
@@ -9924,58 +9924,57 @@ function loadUrlEvents() {
 	
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
-alert(main_urlmt)
+// alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
+// alert("success");
+		    	if(obj.status == "success") {
+		    		if(obj.modified == "0") {
+		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
+		    			$.ajax({
+						    url: main_url,
+						    dataType: "json",
+						    method: "GET",
+						    success: function(response) {	  
+								// db.transaction(function(tx) {
+								// 	tx.executeSql("delete from OCEVENTS_urleventslisting");							
+								// });   
 
-
-alert("success");
-		    // 	if(obj.status == "success") {
-		    // 		if(obj.modified == "0") {
-		    // 			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
-		    // 			$.ajax({
-						//     url: main_url,
-						//     dataType: "json",
-						//     method: "GET",
-						//     success: function(response) {	  
-									// db.transaction(function(tx) {
-									// 	tx.executeSql("delete from OCEVENTS_urleventslisting");							
-									// });   	
-						//     	if(response.status == "success") {
-						//     		$.each(response.items, function(key, val) {
-						//     			db.transaction(function(tx) {     
-						// 					tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + val.url + '","0","0","' + val.name + '")');
-						// 				});
-						// 				if(checkdefined(val.events) == 'yes') {
-						// 					$.each(val.events, function(key, res) {
-						// 						db.transaction(function(tx) {      
-						// 							tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + res.host + '","' + res.solution_id + '","' + res.event_id + '","' + res.title + '")');
-						// 						});
-						// 					});
-						// 				}
-						// 		    });								    
-						//     	}
-						//     	else {
-						//     		shownotification(response.error_msg,"Login Events");
-						//     	}
-						//     }
-						// });
-		    // 		}
-		    // 		else {
-		    // 			localStorage.UrlEvent_modified_time = obj.modified_time;
-		    // 			loadUrlEvents();
-		    // 		}
-		    // 	}		    	
-			   //  loadkeywords();
+						    	if(response.status == "success") {
+						    		$.each(response.items, function(key, val) {
+						    			db.transaction(function(tx) {     
+											tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + val.url + '","0","0","' + val.name + '")');
+										});
+										if(checkdefined(val.events) == 'yes') {
+											$.each(val.events, function(key, res) {
+												db.transaction(function(tx) {      
+													tx.executeSql('INSERT INTO OCEVENTS_urleventslisting (url_name,url_link,solution_id,event_id,title) VALUES ("' + val.name + '","' + res.host + '","' + res.solution_id + '","' + res.event_id + '","' + res.title + '")');
+												});
+											});
+										}
+								    });								    
+						    	}
+						    	else {
+						    		shownotification(response.error_msg,"Login Events");
+						    	}
+						    }
+						});
+		    		}
+		    		else {
+		    			localStorage.UrlEvent_modified_time = obj.modified_time;
+		    			loadUrlEvents();
+		    		}
+		    	}		    	
+			    loadkeywords();
 		    }
 		    ,fail: function() {
-    			alert("fail");
+    			// alert("fail");
 		    }
 		    ,error: function() { 
-				alert("error");
+				// alert("error");
 
 		    }
 		});
