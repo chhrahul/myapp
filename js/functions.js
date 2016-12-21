@@ -9942,6 +9942,7 @@ alert(main_url)
 						    dataType: "json",
 						    method: "GET",
 						    success: function(response) {
+						    	alert(response);
 alert(JSON.stringify(response));				    	
 						    	if(response.status == "success") {
 						    		$.each(response.items, function(key, val) {
