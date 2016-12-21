@@ -9925,7 +9925,7 @@ function loadUrlEvents() {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	}); 
 	if(localStorage.UrlEvent_modified_time) {
-		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
+		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php/?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
@@ -9933,10 +9933,9 @@ alert(main_urlmt)
 		    method: "POST",
 		    success: function(obj) {
 alert("success => " + obj);
-alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
-		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
+		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php/?action=get_solutions&modified_time=0";
 		    			$.ajax({
 						    url: main_url,
 						    dataType: "json",
@@ -9979,7 +9978,7 @@ alert(JSON.stringify(obj));
 		});
 	}
 	else {
-		localStorage.UrlEvent_modified_time = "1482313437";
+		localStorage.UrlEvent_modified_time = "1482317063";
 		loadUrlEvents();
 	}
 }
