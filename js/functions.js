@@ -9972,11 +9972,11 @@ alert(JSON.stringify(response));
 		    	}		    	
 			    loadkeywords();
 		    }
-		    ,fail(obj) {
+		    ,fail: function(obj) {
     			alert("fail => " + obj);
 				alert(JSON.stringify(obj));
 		    }
-		    ,error(obj) {
+		    ,error: function(obj) {
 				alert("error => " + obj);
 				alert(JSON.stringify(obj));
 
