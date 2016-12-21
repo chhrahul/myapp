@@ -9932,7 +9932,7 @@ alert(main_urlmt)
 		    dataType: "json",
 		    method: "POST",
 		    success: function(obj) {
-alert("success => " + obj);
+alert("success");
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
 		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php/?action=get_solutions&modified_time=0";
@@ -9968,11 +9968,11 @@ alert("success => " + obj);
 		    	}		    	
 			    loadkeywords();
 		    }
-		    ,fail: function(obj) {
-    			alert("fail => " + obj);
+		    ,fail: function() {
+    			alert("fail");
 		    }
-		    ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				alert("error => " + XMLHttpRequest + " <=> " + textStatus + " <=> " + errorThrown);
+		    ,error: function() { 
+				alert("error");
 
 		    }
 		});
