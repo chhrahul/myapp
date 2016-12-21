@@ -9932,7 +9932,7 @@ alert(main_urlmt)
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
-						    	alert(obj);
+						    	alert("success => " + obj);
 alert(JSON.stringify(obj));
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
@@ -9973,11 +9973,11 @@ alert(JSON.stringify(response));
 			    loadkeywords();
 		    }
 		    ,fail(obj) {
-    			alert(obj);
+    			alert("fail => " + obj);
 				alert(JSON.stringify(obj));
 		    }
 		    ,error(obj) {
-				alert(obj);
+				alert("error => " + obj);
 				alert(JSON.stringify(obj));
 
 		    }
