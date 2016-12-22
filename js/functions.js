@@ -9921,6 +9921,11 @@ function clearsearchurl() {
 
 function loadUrlEvents() {
 // alert("loadUrlEvents");
+  
+	db.transaction(function(tx) {
+		tx.executeSql("delete from OCEVENTS_urleventslisting");							
+	});
+	   
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 		$.ajax({
@@ -9935,10 +9940,7 @@ function loadUrlEvents() {
 						    url: main_url,
 						    dataType: "json",
 						    method: "GET",
-						    success: function(response) {	  
-								db.transaction(function(tx) {
-									tx.executeSql("delete from OCEVENTS_urleventslisting");							
-								});   
+						    success: function(response) {	
 
 						    	if(response.status == "success") {
 						    		$.each(response.items, function(key, val) {
