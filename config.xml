@@ -25,13 +25,13 @@
 
     <icon src="icons/LiveIcon.png" gap:platform="android" />
     <icon src="icons/LiveIcon.png" gap:platform="ios" />
-    <!--gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
         <param name="URL_SCHEME" value="live" />
     </gap:plugin>
     <plugin spec="https://github.com/apache/cordova-plugin-camera" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-file" source="git" /-->
+    <plugin spec="https://github.com/apache/cordova-plugin-file" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-whitelist" source="git" />
-    <!--plugin spec="https://github.com/apache/cordova-plugin-file-transfer" source="git" />
+    <plugin spec="https://github.com/apache/cordova-plugin-file-transfer" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-dialogs" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-media-capture" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-splashscreen" source="git" />
@@ -42,12 +42,10 @@
     <plugin name="cordova-plugin-facebook4" version="1.7.1">
         <param name="APP_ID" value="1419525454987223" />
         <param name="APP_NAME" value="EVENTMANAGER" />
-    </plugin-->
+    </plugin>
     <gap:config-file platform="ios" parent="UIStatusBarHidden">
         <true/>
     </gap:config-file>
-     <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <platform name="android">
         <splash src="icons/screen_640x960.png" density="land-hdpi"/>
         <splash src="icons/screen_640x960.png" density="land-ldpi"/>
@@ -82,6 +80,5 @@
     <preference name="android-minSdkVersion" value="15" />             
     <preference name="android-targetSdkVersion" value="15" /> 
     <preference name="android-installLocation" value="auto" /> 
-
 </widget>
 
