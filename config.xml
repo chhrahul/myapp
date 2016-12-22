@@ -49,7 +49,6 @@
      <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-        <allow-intent href="market:*" />
         <splash src="icons/screen_640x960.png" density="land-hdpi"/>
         <splash src="icons/screen_640x960.png" density="land-ldpi"/>
         <splash src="icons/screen_640x960.png" density="land-mdpi"/>
@@ -70,8 +69,6 @@
         <splash src="icons/screen_750x1334.png" width="750" height="1334"/>
         <splash src="icons/screen_1242x2208.png" width="1242" height="2208"/>
         <splash src="icons/screen_2208x1242.png" width="2208" height="1242"/>
-         <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
     </platform>
     <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
         <false/>
@@ -85,8 +82,6 @@
     <preference name="android-minSdkVersion" value="15" />             
     <preference name="android-targetSdkVersion" value="15" /> 
     <preference name="android-installLocation" value="auto" /> 
-    <access origin="http://*" />
-    <access origin="https://*" />
-    
+
 </widget>
 
