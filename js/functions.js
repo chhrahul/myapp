@@ -9923,13 +9923,11 @@ function loadUrlEvents() {
 // alert("loadUrlEvents");
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
-alert(main_urlmt)
 		$.ajax({
 		    url: main_urlmt,
 		    dataType: "json",
 		    method: "GET",
 		    success: function(obj) {
-alert("success");
 		    	if(obj.status == "success") {
 		    		if(obj.modified == "0") {
 		    			var main_url = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time=0";
