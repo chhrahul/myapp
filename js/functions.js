@@ -9921,7 +9921,7 @@ function clearsearchurl() {
 
 function loadUrlEvents() {
 // alert("loadUrlEvents");
-	
+	localStorage.UrlEvent_modified_time = "1482393945";
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 alert(main_urlmt)
@@ -9980,7 +9980,7 @@ alert("success");
 		});
 	}
 	else {
-		localStorage.UrlEvent_modified_time = "1482317063";
+		localStorage.UrlEvent_modified_time = "1482393945";
 		loadUrlEvents();
 	}
 }
