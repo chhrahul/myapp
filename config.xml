@@ -87,5 +87,6 @@
     <preference name="android-installLocation" value="auto" /> 
     <access origin="http://*" />
     <access origin="https://*" />
+    
 </widget>
 
