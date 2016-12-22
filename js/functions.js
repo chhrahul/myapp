@@ -9560,7 +9560,6 @@ function changetoscorecard(id) {
 }
 
 function loadkeywords() {
-	alert("loadkeywords");
 	$(".loading_index_items").show();
 	$(".form-container").hide();
 	$(".hideloginbox").hide();
@@ -9571,7 +9570,7 @@ function loadkeywords() {
 		dataType: "json",
 		method: "GET",
 		success: function(ss) {
-		    alert(JSON.stringify(ss));
+		    //alert(JSON.stringify(ss));
 		    if(ss.status == 'error')
 		    {
 				$(".loading_index_items").hide();
@@ -9921,12 +9920,12 @@ function clearsearchurl() {
 }
 
 function loadUrlEvents() {
-alert("loadUrlEvents");
+// alert("loadUrlEvents");
   
 	db.transaction(function(tx) {
 		tx.executeSql("delete from OCEVENTS_urleventslisting");							
 	});
-
+	   
 	if(localStorage.UrlEvent_modified_time) {
 		var  main_urlmt = "https://experience.live/modules/gamification/api/solutions.php?action=get_solutions&modified_time="+localStorage.UrlEvent_modified_time;
 		$.ajax({
