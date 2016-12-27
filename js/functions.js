@@ -787,6 +787,7 @@ function createTables() {
 
 
 function loginme() {
+	alert("loginme");
 	$(".slowapploader").hide();
     jQuery(document).ready(function($) {
        
@@ -1463,6 +1464,8 @@ function changetoprofile(id)
 // }
 
 function loadgamification() {
+	
+	alert("loadgamification");
 	$(".slowapploader").hide();
 	$("#tooltipster-409679").hide();
 	var css_url = localStorage.url+"resources/gamification/css/appearance.css.php?eid="+localStorage.event_id;
@@ -5118,6 +5121,7 @@ function showFewerEvents() {
 
 function getLoggedInUser(id)
 {
+	alert("getLoggedInUser");
    var main_url = localStorage.url + 'api/index.php/auth/user?gvm_json=1';
     jQuery.ajax({
       url: main_url,
@@ -5136,6 +5140,7 @@ function getLoggedInUser(id)
 
 function changecurrentevent(event_id,id)
 {                  
+	alert("changecurrentevent");
     // jQuery("footer .container").before('<div class="ui-widget-overlay"></div>');
     jQuery(".footer-widget").html('<div class="ui-widget-overlay"></div>');
     // jQuery(".my-events-title").before('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
@@ -5185,7 +5190,7 @@ function changecurrentevent(event_id,id)
 
 function login_process() {
 
-	
+	alert("login_process");
 
     db.transaction(function(tx) {
         tx.executeSql('delete from OCEVENTS_qa');
@@ -5225,7 +5230,7 @@ function login_process() {
 }
 
 function importhomepage() {
-	
+	alert("importhomepage");
     if(localStorage.event_language == 'en')
     {
        var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id;
