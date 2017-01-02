@@ -766,10 +766,6 @@ function checkURL(value) {
 }
 
 function createTables() {
-
-	var db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
-	
-
 	db.transaction(function(tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_user (id integer primary key autoincrement,team,position,fb_user_id,fb_email,birthday_date,website, user_id, email, first_name, last_name,mobile, image_src, is_user_image, created,gender,player_code)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS OCEVENTS_ticket (id integer primary key autoincrement,user_id,ticketCode,ticketSrc)');
@@ -791,16 +787,13 @@ function createTables() {
 
 
 function loginme() {
-	alert("loginme");
 	$(".slowapploader").hide();
     jQuery(document).ready(function($) {
        
         event.preventDefault();
        
         db.transaction(function(tx) {
-	alert("loginme tx");
 			tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-	alert("loginme select");
 				var len = results.rows.length; 
 				var pr = '';  
 				var ys = '';  
@@ -843,7 +836,6 @@ function loginme() {
 				        dataType: "json",
 				        method: "POST",
 				        success: function(obj) {
-				        	alert("logout => " + JSON.stringify(obj));
 							var email = base64_encode(fld_l_email);
 							var pwd = base64_encode(fld_l_password);
 				            var main_url = localStorage.url + 'api/index.php/auth/login?XDEBUG_SESSION_START=PHPSTORM';
@@ -857,7 +849,7 @@ function loginme() {
 				                    password: pwd
 				                },
 				                success: function(obj) {
-				                   alert("login => " + JSON.stringify(obj));
+				                   // alert(JSON.stringify(obj));
 				                    if (obj.status == 'error') {
 				                        alert(obj.message);
 				                        shownotification(obj.message,"Profile");
@@ -878,13 +870,11 @@ function loginme() {
 				                            url: STR,
 				                            dataType: "html",
 				                            success: function(DtatURL) {
-				                            	alert("login main => " + JSON.stringify(DtatURL));
 												b.download_file(DtatURL, DIR_Name + '/', getFileNameFromPath(obj.data.image.image_src), function(theFile) {
 													var ImgFullUrl = '';
 													ImgFullUrl = theFile.toURI();
 													// alert(ImgFullUrl);
 													db.transaction(function(tx) {  
-														alert("loginme tx");
 														tx.executeSql("delete from OCEVENTS_user");
 														tx.executeSql('INSERT INTO OCEVENTS_user (team,position,fb_user_id,fb_email,birthday_date,website,user_id,email,first_name,last_name,mobile,image_src,is_user_image,created,gender,player_code) VALUES ("' + obj.data.team + '","' + obj.data.position + '","' + obj.data.fb_user_id + '","' + obj.data.fb_email + '","' + obj.data.birthday_date + '","' + obj.data.website + '","' + obj.data.id + '","' + obj.data.email + '","' + obj.data.first_name + '","' + obj.data.last_name + '","' + obj.data.mobile + '","' + ImgFullUrl + '","' + obj.data.image.is_user_image + '","' + obj.data.created + '","' + obj.data.gender + '","' + obj.data.player_code + '")');
 														localStorage.user_id = obj.data.id;
@@ -1473,9 +1463,6 @@ function changetoprofile(id)
 // }
 
 function loadgamification() {
-
-	alert("loadgamification");
-
 	$(".slowapploader").hide();
 	$("#tooltipster-409679").hide();
 	var css_url = localStorage.url+"resources/gamification/css/appearance.css.php?eid="+localStorage.event_id;
@@ -5131,7 +5118,6 @@ function showFewerEvents() {
 
 function getLoggedInUser(id)
 {
-	alert("getLoggedInUser");
    var main_url = localStorage.url + 'api/index.php/auth/user?gvm_json=1';
     jQuery.ajax({
       url: main_url,
@@ -5150,7 +5136,6 @@ function getLoggedInUser(id)
 
 function changecurrentevent(event_id,id)
 {                  
-	alert("changecurrentevent");
     // jQuery("footer .container").before('<div class="ui-widget-overlay"></div>');
     jQuery(".footer-widget").html('<div class="ui-widget-overlay"></div>');
     // jQuery(".my-events-title").before('<div id="footerSlideContainer_loading"><img src="img/ajax-loader.gif" /></div>');
@@ -5200,7 +5185,7 @@ function changecurrentevent(event_id,id)
 
 function login_process() {
 
-	alert("login_process");
+	
 
     db.transaction(function(tx) {
         tx.executeSql('delete from OCEVENTS_qa');
@@ -5240,7 +5225,7 @@ function login_process() {
 }
 
 function importhomepage() {
-	alert("importhomepage");
+	
     if(localStorage.event_language == 'en')
     {
        var main_urld = localStorage.url + 'api/index.php/main/keywords?XDEBUG_SESSION_START=PHPSTORM&event_id=' + localStorage.event_id;
