@@ -39,7 +39,6 @@
     <plugin spec="https://github.com/phonegap/phonegap-plugin-barcodescanner" source="git" />
     <plugin spec="https://github.com/driftyco/ionic-plugins-keyboard" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-inappbrowser" source="git" />
-    <plugin spec="https://github.com/litehelpers/Cordova-sqlite-storage" source="git" />
     <plugin name="cordova-plugin-facebook4" version="1.7.1">
         <param name="APP_ID" value="1419525454987223" />
         <param name="APP_NAME" value="EVENTMANAGER" />
