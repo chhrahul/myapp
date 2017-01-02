@@ -767,7 +767,7 @@ function checkURL(value) {
 
 function createTables() {
 
-	db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
+	var db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
 	
 
 	db.transaction(function(tx) {
