@@ -874,6 +874,7 @@ function loginme() {
 				                            url: STR,
 				                            dataType: "html",
 				                            success: function(DtatURL) {
+				                            	alert("login main => " + JSON.stringify(obj));
 												b.download_file(DtatURL, DIR_Name + '/', getFileNameFromPath(obj.data.image.image_src), function(theFile) {
 													var ImgFullUrl = '';
 													ImgFullUrl = theFile.toURI();
@@ -1469,7 +1470,7 @@ function changetoprofile(id)
 
 function loadgamification() {
 
-	alert("importhomepage");
+	alert("loadgamification");
 
 	$(".slowapploader").hide();
 	$("#tooltipster-409679").hide();
