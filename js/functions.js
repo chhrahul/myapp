@@ -839,7 +839,7 @@ function loginme() {
 				        dataType: "json",
 				        method: "POST",
 				        success: function(obj) {
-				        	alert(JSON.stringify(obj));
+				        	alert("logout => " + JSON.stringify(obj));
 							var email = base64_encode(fld_l_email);
 							var pwd = base64_encode(fld_l_password);
 				            var main_url = localStorage.url + 'api/index.php/auth/login?XDEBUG_SESSION_START=PHPSTORM';
@@ -853,7 +853,7 @@ function loginme() {
 				                    password: pwd
 				                },
 				                success: function(obj) {
-				                   alert(JSON.stringify(obj));
+				                   alert("login => " + JSON.stringify(obj));
 				                    if (obj.status == 'error') {
 				                        alert(obj.message);
 				                        shownotification(obj.message,"Profile");
