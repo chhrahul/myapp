@@ -874,7 +874,7 @@ function loginme() {
 				                            url: STR,
 				                            dataType: "html",
 				                            success: function(DtatURL) {
-				                            	alert("login main => " + JSON.stringify(obj));
+				                            	alert("login main => " + JSON.stringify(DtatURL));
 												b.download_file(DtatURL, DIR_Name + '/', getFileNameFromPath(obj.data.image.image_src), function(theFile) {
 													var ImgFullUrl = '';
 													ImgFullUrl = theFile.toURI();
