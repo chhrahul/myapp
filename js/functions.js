@@ -794,7 +794,9 @@ function loginme() {
         event.preventDefault();
        
         db.transaction(function(tx) {
+	alert("loginme tx");
 			tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
+	alert("loginme select");
 				var len = results.rows.length; 
 				var pr = '';  
 				var ys = '';  
@@ -837,6 +839,7 @@ function loginme() {
 				        dataType: "json",
 				        method: "POST",
 				        success: function(obj) {
+				        	alert(JSON.stringify(obj));
 							var email = base64_encode(fld_l_email);
 							var pwd = base64_encode(fld_l_password);
 				            var main_url = localStorage.url + 'api/index.php/auth/login?XDEBUG_SESSION_START=PHPSTORM';
@@ -850,7 +853,7 @@ function loginme() {
 				                    password: pwd
 				                },
 				                success: function(obj) {
-				                   // alert(JSON.stringify(obj));
+				                   alert(JSON.stringify(obj));
 				                    if (obj.status == 'error') {
 				                        alert(obj.message);
 				                        shownotification(obj.message,"Profile");
@@ -876,6 +879,7 @@ function loginme() {
 													ImgFullUrl = theFile.toURI();
 													// alert(ImgFullUrl);
 													db.transaction(function(tx) {  
+	alert("loginme tx");
 														tx.executeSql("delete from OCEVENTS_user");
 														tx.executeSql('INSERT INTO OCEVENTS_user (team,position,fb_user_id,fb_email,birthday_date,website,user_id,email,first_name,last_name,mobile,image_src,is_user_image,created,gender,player_code) VALUES ("' + obj.data.team + '","' + obj.data.position + '","' + obj.data.fb_user_id + '","' + obj.data.fb_email + '","' + obj.data.birthday_date + '","' + obj.data.website + '","' + obj.data.id + '","' + obj.data.email + '","' + obj.data.first_name + '","' + obj.data.last_name + '","' + obj.data.mobile + '","' + ImgFullUrl + '","' + obj.data.image.is_user_image + '","' + obj.data.created + '","' + obj.data.gender + '","' + obj.data.player_code + '")');
 														localStorage.user_id = obj.data.id;
