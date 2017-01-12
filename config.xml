@@ -8,6 +8,7 @@
         Rahul Chhabra
     </author>
     <content src="index.html" />
+    <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -35,7 +36,9 @@
     <plugin spec="https://github.com/apache/cordova-plugin-dialogs" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-media-capture" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-splashscreen" source="git" />
-    <plugin spec="https://github.com/wymsee/cordova-imagePicker" source="git" />
+    <plugin spec="https://github.com/wymsee/cordova-imagePicker" source="git">
+    <param name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To choose multiple photos" />
+     </plugin> 
     <plugin spec="https://github.com/phonegap/phonegap-plugin-barcodescanner" source="git" />
     <plugin spec="https://github.com/driftyco/ionic-plugins-keyboard" source="git" />
     <plugin spec="https://github.com/apache/cordova-plugin-inappbrowser" source="git" />
@@ -57,6 +60,9 @@
         <splash src="icons/screen_640x960.png" density="port-xhdpi"/>
     </platform>
     <platform name="ios">
+    <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+    <string>Advertisement would like to store a photo.</string>
+</config-file>
         <splash src="icons/screen_320x480.png" width="320" height="480"/>
         <splash src="icons/screen_640x960.png" width="640" height="960"/>
         <splash src="icons/screen_768x1024.png" width="768" height="1024"/>

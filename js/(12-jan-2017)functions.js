@@ -5987,10 +5987,6 @@ function loadnotes()
             method: "GET",
             success: function(obj) {
             	// console.log(JSON.stringify(obj))
-
-            	if(obj.form.formSettings.max_files) {
-            		localStorage.maxfiles = obj.form.formSettings.max_files;
-            	} 
 				$('.header-title h1').html(obj.pageTitle);
 				$('.questions-heading-title').hide();
 				
@@ -6782,10 +6778,10 @@ function showvoting(sortby,sortdr,l)
 					}
 				});
 				//$.each( obj.votesCount, function( k, v ) {
- 
+
 					$('.votes-count .green-text').html(obj.totalCount);
 					$('.question_counter').html('votes');  
-					$('.   ').html("");
+					$('.small-text').html("");
 
 				//});
 				$('.voting-content-item').html('<ul>');
@@ -7624,7 +7620,7 @@ function showquestions(sortby,sortdr,l)
 		closequestionbox();
 	}
    		$('#questionPrev').attr('onclick', 'changetoagendaitem()'); 
-   		$(".votes-count").html('<i class="fa fa-question"></i><span class="green-text"></span><span class="question_counter"> Questions /</span><span class="small-text"></span><span class="small-text-ans"></span>');
+   		$(".votes-count").html('<i class="fa fa-question"></i><span class="green-text"></span><span class="question_counter"> Questions /</span><span class="small-text"></span>');
    		$("#frmfld_question").val("");
         if(l != 1)
         {
@@ -7654,19 +7650,19 @@ function showquestions(sortby,sortdr,l)
 
 		if(sortdr == 'desc' && sortby == 'timestamp') {
 			
-			$('.votes-sort').html('<span>Sort by:</span><a class="active sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-down time_s"></i><span class="time_tt"> Time</span></a><a onclick="' + laonclk + '" id="accsortbylikes"class="sortbylikes"><i class="fa fa-caret-up like_s"><span class="like_tt"> Likes</span></i> </a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="active sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-down time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
 		}
 
 		if(sortdr == 'asc' && sortby == 'timestamp') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="active sortbytime" id="accsortbytime" onclick="' + tdonclk + '"><i class="fa fa-caret-up time_s"></i> <span class="time_tt"> Time</span></a><a onclick="' + laonclk + '" id="accsortbylikes"class="sortbylikes"><i class="fa fa-caret-up like_s"></i> <span class="like_tt"> Likes</span></a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="active sortbytime" id="accsortbytime" onclick="' + tdonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
 		}
 
 		if(sortdr == 'asc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> <span class="time_tt"> Time</span></a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> <span class="like_tt"> Likes</span></a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + ldonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-up like_s"></i> Likes</a>');
 		}
 
 		if(sortdr == 'desc' && sortby == 'likes') {
-			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> <span class="time_tt"> Time</span></a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> <span class="like_tt"> Likes</span></a>');
+			$('.votes-sort').html('<span>Sort by:</span><a class="sortbytime" id="accsortbytime" onclick="' + taonclk + '"><i class="fa fa-caret-up time_s"></i> Time</a><a onclick="' + laonclk + '" id="accsortbylikes"class="active sortbylikes"><i class="fa fa-caret-down like_s"></i> Likes</a>');
 		}
 
 
@@ -7680,7 +7676,7 @@ function showquestions(sortby,sortdr,l)
             dataType: "json",
             method: "GET",
             success: function(obj) {
-            //console.log("container => " + obj.questionInstances);
+            
             	if(checkdefined(obj.questionInstances) == "yes") {
 					$(".questions-heading-title").show();
 				}
@@ -7694,7 +7690,7 @@ function showquestions(sortby,sortdr,l)
                // });
                 var label = '';
                 $.each(obj.breadcrumbs, function(key, val) {
-                	//console.log("breadcrumbs => " + val);
+
                     if (key == 0) {
                         $(".breadcrumbs a").html(val.text)
                     }
@@ -7702,10 +7698,8 @@ function showquestions(sortby,sortdr,l)
                         $(".breadcrumbs .green-text").html(val.text);
                     }
                 });
-
               $('.votes-count .green-text').html(obj.countQuestionInstances);
-              //$('.votes-count .small-text').html(obj.countAnswerInstances.answers + " answers");
-               $('.votes-count .small-text').html(obj.countAnswerInstances.answers);
+              $('.votes-count .small-text').html(obj.countAnswerInstances.answers + " answers");
               
               
                  localStorage.resubmit_code = obj.qForm.noResubmitCode;
@@ -7732,29 +7726,26 @@ function showquestions(sortby,sortdr,l)
               }
               var like_string = '';
               var dislike_link = '<a href="#" onclick="likedislikequestion('+val.instance_id+',0);"></a><span class="chkdislikes">Dislike</span>';
-             // var dislike_link = '';
               if(val.like == 1)
               {
                 like_string = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>';
-                dislike_link = '<i class="fa fa-thumbs-down"></i>';  
+                dislike_link = '<span class="chkdislikes">Dislike</span>';  
               }
               else if(val.like == 0)
               {
-                like_string = '<i class="fa fa-thumbs-up"></i>';
-                 dislike_link = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',0);"><i class="fa fa-thumbs-down"></i></a>';
-               // dislike_link = '<i class="fa fa-thumbs-down"></i> ';
+                like_string = '<a class="liked-btn show ">Disliked</a>';
+                dislike_link = '<span class="chkdislikes">Dislike</span>';
               }
               else
               {
                 like_string = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>';
-                //dislike_link = '<span class="chkdislikes">Dislike  kkk</span>';
-                dislike_link = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',0);"><i class="fa fa-thumbs-down"></i></a>';
+                dislike_link = '<span class="chkdislikes">Dislike</span>';
               } 
               
               if(val.event_user_id == localStorage.user_id)
               {
                  like_string = '<i class="fa fa-thumbs-up"></i>'; 
-                 dislike_link = '<i class="fa fa-thumbs-down"></i>';
+                 dislike_link = '<span class="chkdislikes">Dislike</span>';
                
               }
               var answer = '';
@@ -7763,7 +7754,7 @@ function showquestions(sortby,sortdr,l)
                   answer = '<div class="answer-inner"><div>A:</div><p>'+val.answer+'</p></div>';
               }
                 // alert(dislike_link);
-              $('.inner_comment_loop').append('<div id="question_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"></i>'+val.time_since+'</span></h3><div class="question-inner"><div>Q:</div><p>'+val.question+' </p></div></div></div>'+answer+'<div class="clearfix"><div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes">'+val.likes+'</span></div><div class="dislikes-count "> '+dislike_link+'<span class="chkdislikes"> '+val.dislikes +' Dislike </span></div></div></div></div>');
+              $('.inner_comment_loop').append('<div id="question_'+val.instance_id+'" class="questions-item-container row"><div class="clearfix"><div class="col-xs-2 questions-item-img"><div class="img-wrapper" style="background-image:url('+image_url+')"></div></div><div class="col-xs-10 question-item-info"><h3 class="clearfix">'+name+'<span><i class="fa fa-clock-o"></i>'+val.time_since+'</span></h3><div class="question-inner"><div>Q:</div><p>'+val.question+' </p></div></div></div>'+answer+'<div class="clearfix"><div class="likes-container"><div class="likes-count"> '+like_string+'<span class="chklikes">'+val.likes+'</span></div><div class="dislikes-count like-btn"><i class="fa fa-thumbs-down"></i> '+val.dislikes+' '+dislike_link+'</div></div></div></div>');
              
               
              
@@ -7786,27 +7777,23 @@ function showquestions(sortby,sortdr,l)
 		// 	// Hide main form container.
 		// 	container.slideToggle();  
 		// });
-
           if(l != 1)
           { 
            db.transaction(function(tx) {
                   tx.executeSql("SELECT * FROM OCEVENTS_keywords", [], function(tx, results) {
-
                   var len = results.rows.length;                  
-                  for (i = 0; i < len; i++) {     
-                  	//console.log("results => " + results.rows.item(i).key_val);
+                  for (i = 0; i < len; i++) {                    
                     if(results.rows.item(i).key_constant == 'presentationQuestionsTitle')
                     {
-                    	 
                         $('.question_counter').html(' '+unescape(results.rows.item(i).key_val)+' /');                     
                     }
                     if(results.rows.item(i).key_constant == 'orderByTime')
-                    {		//alert(results.rows.item(i).key_val);
-                         $('.time_tt').html(unescape(results.rows.item(i).key_val));                     
+                    {
+                        // $('.time_s').after(unescape(results.rows.item(i).key_val));                     
                     }
                     if(results.rows.item(i).key_constant == 'orderByLikes')
-                    {	//alert(results.rows.item(i).key_val);
-                         $('.like_tt').html(unescape(results.rows.item(i).key_val));                     
+                    {
+                        // $('.like_s').after(unescape(results.rows.item(i).key_val));                     
                     }
                     if(results.rows.item(i).key_constant == 'addQuestionSubmit')
                     {
@@ -7814,7 +7801,7 @@ function showquestions(sortby,sortdr,l)
                     }
                      if(results.rows.item(i).key_constant == 'addQuestionAnswers')
                     {
-                         $('.small-text-ans').html(' '+unescape(results.rows.item(i).key_val));                  
+                        // $('.small-text').append(' '+unescape(results.rows.item(i).key_val));                  
                     }
                     if(results.rows.item(i).key_constant == 'writeQuestion')
                     {
@@ -7825,7 +7812,7 @@ function showquestions(sortby,sortdr,l)
                         $('.questionspostplaceholder').html(unescape(results.rows.item(i).key_val));                     
                     }
                     if(results.rows.item(i).key_constant == 'addQuestionLikes')
-                    {	
+                    {
                         $('.chklikes').append(' '+unescape(results.rows.item(i).key_val));                     
                     }
                     /*
@@ -7904,9 +7891,7 @@ function submitquestion(instance_id)
 
 //function to like and dislike question
 function likedislikequestion(id,like) {
-
 	jQuery(document).ready(function($) {
-		//alert(like);
 		$(".loading_cancel").show();  
 		$(".questions-container").hide();
 		// var main_url = localStorage.url + 'Add-question/-/'+localStorage.short_url+'-'+localStorage.event_id+'/'+localStorage.agenda_id+'/?action=like&gvm_json=1&like='+like+'&c_id='+id;
@@ -7924,7 +7909,7 @@ function likedislikequestion(id,like) {
 				like: like
 			},
 			success: function(obj) {
-				 console.log(JSON.stringify(obj));
+				// console.log(JSON.stringify(obj));
 				//window.location.href = 'add_questions.html';
 				changetoaddquestions();
 			}
@@ -11174,7 +11159,6 @@ function addnote()
 							var imagesfinal = localStorage.imageURI.split(",,,");
 							var notesImgaeLength = imagesfinal.length;
 
-
 							if(notesImgaeLength > 1) {
 								addNotesImages();
 								// console.log("length is greater than one(1)" + notesImgaeLength);
@@ -11293,12 +11277,7 @@ function addNotesImages() {
 			   var main_url = localStorage.url + "modules/gamification/ajax/frontend_ws.php?XDEBUG_SESSION_START=PHPSTORM";
 			    ft.upload(imageURI, encodeURI(main_url), win, fail, options);
 
-
 			    function win(r) {
-			    	//alert(localStorage.allImageURILength);
-			    	//console.log('first=='+localStorage.allImageURILength);
-			    	//console.log('second=='+localStorage.allImageURILengthStart);
-			    	//alert(localStorage.allImageURILengthStart)
 			    	if(localStorage.allImageURILength == localStorage.allImageURILengthStart){
 			    		localStorage.imageURI = '';
 						localStorage.resubmit_code = '';      
@@ -11308,7 +11287,6 @@ function addNotesImages() {
 			    	else{
 			    		var lengthIncrement = 1;
 			    		localStorage.allImageURILengthStart = Number(localStorage.allImageURILengthStart) + Number(lengthIncrement);
-			    		//console.log('third=='+localStorage.allImageURILengthStart);
 						localStorage.submitnotestatus = "0";
 			    	}				
 			    }
