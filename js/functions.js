@@ -6697,6 +6697,7 @@ function sortvoting(s,r)
 //function to show voting
 function showvoting(sortby,sortdr,l)
 {
+
 	// alert(sortby + " , " + sortdr + " , " + l);
    jQuery(document).ready(function($) {
 
@@ -6785,7 +6786,8 @@ function showvoting(sortby,sortdr,l)
  
 					$('.votes-count .green-text').html(obj.totalCount);
 					$('.question_counter').html('votes');  
-					$('.   ').html("");
+					// $('small-text').html("");
+					$('.small-text').html("");
 
 				//});
 				$('.voting-content-item').html('<ul>');
@@ -7637,7 +7639,7 @@ function showquestions(sortby,sortdr,l)
 	    $(".dropdown-menu").show();
 	    $(".footertag").show();
 	    $(".submit_com").show();
-	    $(".loading_send").hide();  
+	    $(".loading_send").hide(); 
         if(checkdefined(sortby) != 'yes') {
           sortby = 'timestamp';
         }
