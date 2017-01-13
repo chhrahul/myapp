@@ -2531,3 +2531,6 @@ span.version {
     padding: 0 !important;
     width: 100% !important;
 }
+span.time_tt {
+  color: #F508ED !important;
+}
