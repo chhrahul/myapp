@@ -10469,9 +10469,7 @@ function swipepopimage() {
 }
 
 window.addEventListener('native.hidekeyboard', keyboardHideHandler);
-window.addEventListener('native.showkeyboard', keyboardShowHandler);    
-
-
+window.addEventListener('native.showkeyboard', keyboardShowHandler);
 
 function keyboardHideHandler(e){
 	$(".tempdiv").html("");
@@ -10480,7 +10478,7 @@ function keyboardShowHandler(e){
 	var isIphone = navigator.userAgent.indexOf('iPhone') >= 0;
 	if(isIphone) {
 		// $(".tempdiv").html("<style> header { position: static; float: left; z-index: 99; } footer { position: static; float: left; z-index: 99; margin-top: 130em;} .container.main-container { position: static; float: left; z-index: 9; margin:0; display: inline-block;} html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; } </style>");
-		$(".tempdiv").html("<style> header { position: absolute; } footer { position: absolute; } .container.main-container { position: relative; float: left; top: 0px; } html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; } .col-xs-12.footer-menu{ display:block; } .main-wrapper { overflow: hidden !important; } </style>");
+		$(".tempdiv").html("<style> header { position: absolute; } footer { position: absolute; } footer.footertag {   bottom: 0 !important; } .container.main-container { position: relative; float: left; top: 0px; } html.canvas; html.video { background: none; } #gamification-footer-menu { display: none; }  .col-xs-12.footer-menu{ display:block; } .main-wrapper { overflow: hidden !important; } </style>");
 
 	}
 }
