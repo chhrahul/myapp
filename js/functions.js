@@ -7737,13 +7737,13 @@ function showquestions(sortby,sortdr,l)
              // var dislike_link = '';
               if(val.like == 1)
               {
-                like_string = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',1);"><i class="fa fa-thumbs-up"></i></a>';
+                like_string = '<a class="like-btn" ><i class="fa fa-thumbs-up"></i></a>';
                 dislike_link = '<i class="fa fa-thumbs-down"></i>';  
               }
               else if(val.like == 0)
               {
                 like_string = '<i class="fa fa-thumbs-up"></i>';
-                 dislike_link = '<a class="like-btn" href="#" onclick="likedislikequestion('+val.instance_id+',0);"><i class="fa fa-thumbs-down"></i></a>';
+                 dislike_link = '<a class="like-btn"><i class="fa fa-thumbs-down"></i></a>';
                // dislike_link = '<i class="fa fa-thumbs-down"></i> ';
               }
               else
