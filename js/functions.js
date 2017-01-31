@@ -10772,17 +10772,23 @@ function innoti() {
 		        	var len = textnoti.length;
 		        	localStorage.notilen = len;
 		        	var i = 0;
-		        	// alert(JSON.stringify(obj.data._extra.notifications));
+                        //alert(JSON.stringify(obj.data._extra.notifications));
 		        	var pusherKey = obj.data._extra.notifications.pusherKey;
 		        	var pusherCluster = obj.data._extra.notifications.pusherCluster; 
 		        	var liveurl = localStorage.url.slice(0, -1);
 		        	var pusherAuthEndpointLink = liveurl + obj.data._extra.notifications.pusherAuthEndpointLink; 
 		        	var pusherUserChannel = obj.data._extra.notifications.pusherUserChannel; 
 		        	var pusherEvent = obj.data._extra.notifications.pusherEvent;
-
-		        	$(".pusherscript").html("<script type='text/javascript'> Pusher.logToConsole = true;var pusher = new Pusher('" + pusherKey + "', { cluster: '" + pusherCluster + "', authEndpoint: '" + pusherAuthEndpointLink + "' }); var channel = pusher.subscribe('" + pusherUserChannel + "'); channel.bind('" + pusherEvent + "', function(data) { newinnoti(data); }); </script>");
-
-		        	if(countnoti == 0) {
+                        //alert(pusherEvent);
+                        //var pusherId = obj.data._extra.notifications.pusherId;
+                        //var pusherSecret = obj.data._extra.notifications.pusherSecret;
+                       // alert('pusher chanel=='+pusherUserChannel+'---------'+pusherId+'-----'+pusherSecret+'----'+pusherKey);
+		        	/*$(".pusherscript").html("<script type='text/javascript'> Pusher.logToConsole = true;var pusher = new Pusher('" + pusherKey + "', { cluster: '" + pusherCluster + "', authEndpoint: '" + pusherAuthEndpointLink + "' }); var channel = pusher.subscribe('" + pusherUserChannel + "'); channel.bind('" + pusherEvent + "', function(data) { newinnoti(data); }); </script>");*/
+                        
+         $(".pusherscript").html("<script type='text/javascript'> Pusher.logToConsole = true; var pusher = new Pusher('" + pusherKey + "', { cluster: '" + pusherCluster + "', authEndpoint: '" + pusherAuthEndpointLink + "', encrypted: true }); var messageType = { unified: 0, realtime: 1, push: 2 }; pusher.connection.bind('state_change', function(states) { document.getElementById('pusher-eventeddd').innerHTML = states.current; var state = pusher.connection.state; console.log('connection state: ' + state); }); var channel = pusher.subscribe('" + pusherUserChannel + "'); channel.bind('" + pusherEvent + "', function(data) { newinnoti(data); document.getElementById('pusher-eventeddd').innerHTML = data.text; var message = data.text; var topic = pusherUserChannel ; sendMessage (type, topic, message); }); </script>");
+                        
+                        
+                        if(countnoti == 0) {
 		        		$("#notifications-count").html(countnoti).hide();
 		        	}
 		        	else{
@@ -10835,7 +10841,52 @@ function innoti() {
 	});
 	
 }
-
+    /*-----------------send message--*/
+                                                     function sendMessage(type, topic, message) {
+                                                     switch (type)
+                                                     {
+                                                     case messageType.unified:
+                                                     sendRealtimeMessage(topic, message);
+                                                     sendPushNotification(topic, message);
+                                                     break;
+                                                     case messageType.realtime:
+                                                     sendRealtimeMessage(topic, message);
+                                                     break;
+                                                     case messageType.push:
+                                                     sendPushNotification(topic, message);
+                                                     break;
+                                                     default:
+                                                     console.log('Message type not defined correctly. Please use: messageType.unified, .realtime or .push');
+                                                     break;
+                                                     }
+                                                     };
+                                                     function sendRealtimeMessage(channel, message) {
+                                                
+                                                     console.log('Sending Realtime Message');
+                                                     pusher.trigger(channel, 'new_notification', { message: message });
+                                                     }
+                                                     function sendPushNotification(interest, message) {
+                                                     console.log('Sending Push Notification');
+                                                     
+                                                     // APNs
+                                                     pusher.notify([interest], {
+                                                                   apns: {
+                                                                   aps: { 
+                                                                   alert: { 
+                                                                   title: 'Update from Pusher',
+                                                                   body: message
+                                                                   }
+                                                                   }
+                                                                   },
+                                                                   
+                                                                   // GCM
+                                                                   
+                                                                   webhook_url: "https://example.com/endpoint",
+                                                                   webhook_level: "INFO"
+                                                                   });
+                                                     };
+    /*-------------------*/
+                                                     
 function deletesinglenoti(data) {
 	var main_url = localStorage.url + 'modules/gamification/ajax/frontend_ws.php';
 	jQuery.ajax({
