@@ -74,9 +74,33 @@
 
                 var localLink = '/';
                 var GHomepageLink = "index.html";           
-            </script>           
-      </head>
-    <body onload="createTables();">
+            </script>
+            <!--script>
+                
+                // Initialise a new Pusher object
+                var pusher = new Pusher('1bb26d', {
+                                        encrypted: true
+                                        });
+                                        
+                                        // Bind to the connection's state-change event
+                                        // So we can update the UI based on the changes
+                                        pusher.connection.bind('state_change', function(states) {
+                                                               document.getElementById("pusher-event").innerHTML = states.current;
+                                                               var state = pusher.connection.state;
+                                                               console.log("connection state: " + state);
+                                                               });
+                                                               
+                                                               // Also subscribe to a channel and bind to an event
+                                                               // Update the UI when a new message is received
+                                                               var channel = pusher.subscribe('my-channel');
+                                                               channel.bind('my-event', function(data) {
+                                                                            document.getElementById("pusher-event").innerHTML = data.message;
+                                                                            });
+                                                                            
+                </script-->
+            </head>
+<body onload="createTables();">
+      <!--h1 id="pusher-eventeddd">Cool, it works!</h1-->
         <div class="cssdivs">
             <!--div class="fontsDiv">
                 <link rel="stylesheet" href="https://experience.live/oc-publisher-framework/beta/resources/oc-font-lib/oc-font-lib.css?14012812">
@@ -117,8 +141,8 @@
                     <div class="col-xs-12">
                         <div class="container logo-wrapper" id="mainLogo"></div>
                         <span class="gamification text-center">Engagement</span>
-                        
-                    <div align="center" class="loading_index_items" >
+                      
+                        <div align="center" class="loading_index_items" >
                         <br />
                         <img src="img/loading.gif" />
                         <br />
@@ -237,7 +261,10 @@
     <header class="header" style="display: none;">
         <div class="container">
             <div class="row">
+                <!--h1 id="pusher-eventeddd">Cool, it works!</h1-->
                 <div class="col-xs-1 header-dropdown-menu-wrapper">
+                    
+                    
                     <a class="dropdown-btn" href="javascript:return false;" >
                         <div class="menu">
                             <i class="menu-icon">
